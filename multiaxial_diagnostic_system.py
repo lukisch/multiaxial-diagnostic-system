@@ -212,8 +212,42 @@ class EvidenceEntry:
     axis: str = ""
     document_type: str = ""
     description: str = ""
+    assessment: str = ""
     date: str = ""
     source: str = ""
+
+
+@dataclass
+class ContactPerson:
+    name: str = ""
+    role: str = ""          # Elternteil, Partner, Hausarzt, Facharzt, Therapeut, etc.
+    institution: str = ""
+    phone: str = ""
+    notes: str = ""
+
+
+@dataclass
+class FormativeExperience:
+    description: str = ""
+    age_period: str = ""
+    impact: str = ""
+    date_added: str = ""
+
+
+@dataclass
+class CoreConflict:
+    conflict: str = ""
+    description: str = ""
+    date_added: str = ""
+
+
+@dataclass
+class ContactLog:
+    date: str = ""
+    contact_type: str = ""   # Telefonat, Gespräch, Beobachtung, Hausbesuch, Fremdanamnese
+    contact_person: str = ""
+    content: str = ""
+    axis_ref: str = ""
 
 
 @dataclass
@@ -245,6 +279,8 @@ class PatientData:
     education: str = ""
     iq_estimate: str = ""
     developmental_history: str = ""
+    formative_experiences: list = field(default_factory=list)
+    core_conflicts: list = field(default_factory=list)
     pid5_profile: PID5Profile = field(default_factory=PID5Profile)
 
     # Achse III: Medizinische Synopse (IIIa-IIIm, symmetrisch zu Achse I)
@@ -270,12 +306,14 @@ class PatientData:
 
     # Achse IV: Umwelt & Funktion
     functioning: FunctioningAssessment = field(default_factory=FunctioningAssessment)
+    contact_persons: list = field(default_factory=list)
 
     # Achse V: Bedingungsmodell
     condition_model: ConditionModel = field(default_factory=ConditionModel)
 
     # Achse VI: Belegsammlung
     evidence_entries: list = field(default_factory=list)
+    contact_log: list = field(default_factory=list)
 
     # CAVE-Warnhinweise (aus FALLBEZOGENE_AUSWERTUNG-Konzept)
     cave_alerts: list = field(default_factory=list)
@@ -1137,7 +1175,10 @@ elif menu == t("nav_axis2"):
                 unsafe_allow_html=True)
     p = get_patient()
 
-    tab_bio, tab_pid5 = st.tabs([t("ax2_tab_bio"), t("ax2_tab_pid5")])
+    tab_bio, tab_formative, tab_conflicts, tab_pid5 = st.tabs([
+        t("ax2_tab_bio"), t("ax2_tab_formative"),
+        t("ax2_tab_conflicts"), t("ax2_tab_pid5")
+    ])
 
     with tab_bio:
         p.education = st.text_area(t("ax2_education"), value=p.education)
@@ -1146,6 +1187,53 @@ elif menu == t("nav_axis2"):
             t("ax2_developmental"),
             value=p.developmental_history
         )
+
+    with tab_formative:
+        st.subheader(t("ax2_tab_formative"))
+        with st.form("formative_form"):
+            fe_desc = st.text_area(t("ax2_formative_desc"), key="fe_desc")
+            col1, col2 = st.columns(2)
+            fe_age = col1.text_input(t("ax2_formative_age"), key="fe_age")
+            fe_impact = col2.text_input(t("ax2_formative_impact"), key="fe_impact")
+            if st.form_submit_button(t("ax2_formative_add")):
+                if fe_desc.strip():
+                    p.formative_experiences.append(asdict(FormativeExperience(
+                        description=fe_desc.strip(),
+                        age_period=fe_age,
+                        impact=fe_impact,
+                        date_added=str(datetime.date.today())
+                    )))
+                    st.rerun()
+
+        if p.formative_experiences and HAS_PANDAS:
+            df_fe = pd.DataFrame(p.formative_experiences)[
+                ["description", "age_period", "impact", "date_added"]]
+            st.table(df_fe)
+        elif p.formative_experiences:
+            for fe in p.formative_experiences:
+                st.write(f"- {fe.get('description','')} ({fe.get('age_period','')})")
+
+    with tab_conflicts:
+        st.subheader(t("ax2_tab_conflicts"))
+        with st.form("conflict_form"):
+            cc_name = st.text_input(t("ax2_conflict_name"), key="cc_name")
+            cc_desc = st.text_area(t("ax2_conflict_desc"), key="cc_desc")
+            if st.form_submit_button(t("ax2_conflict_add")):
+                if cc_name.strip():
+                    p.core_conflicts.append(asdict(CoreConflict(
+                        conflict=cc_name.strip(),
+                        description=cc_desc,
+                        date_added=str(datetime.date.today())
+                    )))
+                    st.rerun()
+
+        if p.core_conflicts and HAS_PANDAS:
+            df_cc = pd.DataFrame(p.core_conflicts)[
+                ["conflict", "description", "date_added"]]
+            st.table(df_cc)
+        elif p.core_conflicts:
+            for cc in p.core_conflicts:
+                st.write(f"- **{cc.get('conflict','')}**: {cc.get('description','')}")
 
     with tab_pid5:
         st.subheader(t("ax2_pid5_subheader"))
@@ -1471,6 +1559,40 @@ elif menu == t("nav_axis4"):
     )
     p.functioning.psychosocial_stressors = stressors
 
+    st.markdown("---")
+
+    # --- Bezugspersonen & Behandlungsnetzwerk ---
+    st.subheader(t("ax4_contacts_subheader"))
+    with st.form("contact_person_form"):
+        col1, col2 = st.columns(2)
+        cp_name = col1.text_input(t("ax4_contact_name"), key="cp_name")
+        cp_role = col2.selectbox(t("ax4_contact_role"), [
+            "Elternteil", "Partner/in", "Kind", "Geschwister",
+            "Hausarzt/\u00e4rztin", "Facharzt/\u00e4rztin", "Therapeut/in",
+            "Sozialarbeiter/in", "Betreuer/in", "Arbeitgeber/in", "Sonstige"
+        ], key="cp_role")
+        col3, col4 = st.columns(2)
+        cp_inst = col3.text_input(t("ax4_contact_institution"), key="cp_inst")
+        cp_phone = col4.text_input(t("ax4_contact_phone"), key="cp_phone")
+        cp_notes = st.text_input(t("ax4_contact_notes"), key="cp_notes")
+        if st.form_submit_button(t("ax4_contact_add")):
+            if cp_name.strip():
+                p.contact_persons.append(asdict(ContactPerson(
+                    name=cp_name.strip(), role=cp_role,
+                    institution=cp_inst, phone=cp_phone, notes=cp_notes
+                )))
+                st.rerun()
+
+    if p.contact_persons and HAS_PANDAS:
+        df_cp = pd.DataFrame(p.contact_persons)[
+            ["name", "role", "institution", "phone", "notes"]]
+        st.table(df_cp)
+    elif p.contact_persons:
+        for cp in p.contact_persons:
+            st.write(f"- **{cp.get('name','')}** ({cp.get('role','')}): {cp.get('institution','')}")
+
+    st.markdown("---")
+
     st.subheader(t("ax4_functioning_summary"))
     col1, col2, col3 = st.columns(3)
     col1.metric("GAF", f"{p.functioning.gaf_score}/100")
@@ -1547,12 +1669,14 @@ elif menu == t("nav_axis6"):
         e_axis = col1.selectbox(t("ax6_axis_label"), ["I", "II", "III", "IV", "V"])
         e_type = col2.text_input(t("ax6_doc_type"))
         e_desc = col3.text_input(t("ax6_description"))
+        e_assessment = st.text_area(t("ax6_assessment"), key="e_assessment")
         e_source = st.text_input(t("ax6_source"))
         if st.form_submit_button(t("ax6_submit")):
             p.evidence_entries.append(asdict(EvidenceEntry(
                 axis=e_axis,
                 document_type=e_type,
                 description=e_desc,
+                assessment=e_assessment,
                 date=str(datetime.date.today()),
                 source=e_source
             )))
@@ -1630,7 +1754,43 @@ elif menu == t("nav_axis6"):
         st.table(df_tl)
     elif p.symptom_timeline:
         for tl in p.symptom_timeline:
-            st.write(f"{tl.get('symptom','')}: {tl.get('onset','')} → {tl.get('current_status','')}")
+            st.write(f"{tl.get('symptom','')}: {tl.get('onset','')} \u2192 {tl.get('current_status','')}")
+
+    st.markdown("---")
+
+    # --- Kontakt- & Beobachtungsprotokoll ---
+    st.subheader(t("ax6_contact_log_subheader"))
+    with st.form("contact_log_form"):
+        col1, col2 = st.columns(2)
+        cl_date = col1.text_input(t("ax6_contact_log_date"),
+                                   value=str(datetime.date.today()), key="cl_date")
+        cl_type = col2.selectbox(t("ax6_contact_log_type"), [
+            "Telefonat", "Gespr\u00e4ch", "Beobachtung", "Hausbesuch",
+            "Fremdanamnese", "E-Mail/Brief", "Sonstiges"
+        ], key="cl_type")
+        col3, col4 = st.columns(2)
+        cl_person = col3.text_input(t("ax6_contact_log_person"), key="cl_person")
+        cl_axis = col4.selectbox(t("ax6_contact_log_axis_ref"),
+                                  ["I", "II", "III", "IV", "V", "VI", "\u2014"],
+                                  key="cl_axis")
+        cl_content = st.text_area(t("ax6_contact_log_content"), key="cl_content")
+        if st.form_submit_button(t("ax6_contact_log_add")):
+            if cl_content.strip():
+                p.contact_log.append(asdict(ContactLog(
+                    date=cl_date, contact_type=cl_type,
+                    contact_person=cl_person, content=cl_content.strip(),
+                    axis_ref=cl_axis if cl_axis != "\u2014" else ""
+                )))
+                st.rerun()
+
+    if p.contact_log and HAS_PANDAS:
+        df_cl = pd.DataFrame(p.contact_log)[
+            ["date", "contact_type", "contact_person", "content", "axis_ref"]]
+        st.table(df_cl)
+    elif p.contact_log:
+        for cl in p.contact_log:
+            st.write(f"- [{cl.get('date','')}] {cl.get('contact_type','')}: "
+                     f"{cl.get('content','')}")
 
 
 # ===================================================================
@@ -1690,6 +1850,17 @@ elif menu == t("nav_synopsis"):
         )
         st.plotly_chart(fig, use_container_width=True)
 
+    # Prägende Erfahrungen & Grundkonflikte in Synopsis
+    if p.formative_experiences:
+        st.write(f"**{t('ax2_tab_formative')}**")
+        for fe in p.formative_experiences:
+            st.write(f"- {fe.get('description','')} ({fe.get('age_period','')}) "
+                     f"\u2192 {fe.get('impact','')}")
+    if p.core_conflicts:
+        st.write(f"**{t('ax2_tab_conflicts')}**")
+        for cc in p.core_conflicts:
+            st.write(f"- **{cc.get('conflict','')}**: {cc.get('description','')}")
+
     # --- HiTOP-Spektren ---
     if p.crosscutting_level1:
         st.markdown("<div class='axis-header'>HiTOP-SPEKTREN</div>",
@@ -1730,6 +1901,15 @@ elif menu == t("nav_synopsis"):
     col3.metric(t("syn_stressors_prefix"), f"{len(p.functioning.psychosocial_stressors)}")
     if p.functioning.psychosocial_stressors:
         st.write(f"{t('syn_stressors_prefix')}: " + ", ".join(p.functioning.psychosocial_stressors))
+    if p.contact_persons:
+        st.write(f"**{t('ax4_contacts_subheader')}**")
+        if HAS_PANDAS:
+            df_cp = pd.DataFrame(p.contact_persons)[
+                ["name", "role", "institution", "phone"]]
+            st.table(df_cp)
+        else:
+            for cp in p.contact_persons:
+                st.write(f"- {cp.get('name','')} ({cp.get('role','')})")
 
     # --- Achse V ---
     st.markdown(f"<div class='axis-header'>{t('syn_axis5_header')}</div>",
@@ -1749,6 +1929,16 @@ elif menu == t("nav_synopsis"):
                 unsafe_allow_html=True)
     if p.evidence_entries and HAS_PANDAS:
         st.table(pd.DataFrame(p.evidence_entries))
+    if p.contact_log:
+        st.write(f"**{t('ax6_contact_log_subheader')}**")
+        if HAS_PANDAS:
+            df_cl = pd.DataFrame(p.contact_log)[
+                ["date", "contact_type", "contact_person", "content", "axis_ref"]]
+            st.table(df_cl)
+        else:
+            for cl in p.contact_log:
+                st.write(f"- [{cl.get('date','')}] {cl.get('contact_type','')}: "
+                         f"{cl.get('content','')}")
 
     # --- Abdeckungsanalyse ---
     # --- Strukturierte Abdeckungsanalyse ---
@@ -1817,6 +2007,8 @@ elif menu == t("nav_synopsis"):
                     "education": p.education,
                     "iq": p.iq_estimate,
                     "developmental_history": p.developmental_history,
+                    "formative_experiences": p.formative_experiences,
+                    "core_conflicts": p.core_conflicts,
                     "pid5_profile": asdict(p.pid5_profile)
                 },
                 "III_medizinisch": {
@@ -1841,10 +2033,14 @@ elif menu == t("nav_synopsis"):
                 "IV_umwelt_funktion": {
                     "gaf": p.functioning.gaf_score,
                     "gdb": p.functioning.gdb_score,
-                    "stressors": p.functioning.psychosocial_stressors
+                    "stressors": p.functioning.psychosocial_stressors,
+                    "contact_persons": p.contact_persons
                 },
                 "V_bedingungsmodell": asdict(p.condition_model),
-                "VI_belegsammlung": p.evidence_entries
+                "VI_belegsammlung": {
+                    "evidence_entries": p.evidence_entries,
+                    "contact_log": p.contact_log
+                }
             },
             "screening": {
                 "crosscutting_level1": p.crosscutting_level1,

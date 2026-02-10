@@ -63,6 +63,36 @@
 
 ---
 
+## Phase 1c: Designphilosophie & Prozessdokumentation -- ERLEDIGT
+
+### 1c.1 Designphilosophie im Paper -- DONE
+- **Was:** Neuer Abschnitt 1.1 "Designphilosophie: Skelett, lebendes Dokument, maximale Freiheit"
+- **Drei Prinzipien:** Skelett-Prinzip (Struktur ohne Pflichtfelder), Lebendes Dokument (mitwachsende Akte), Bericht als Snapshot
+- **Wo:** Paper nach Einleitung, vor Architektur-Sektion
+
+### 1c.2 Achse II: Praegende Erfahrungen & Grundkonflikte -- DONE
+- **Was:** Neue Tabs in Achse II: Praegende Erfahrungen (Beschreibung, Lebensabschnitt, Auswirkung), Grundkonflikte (Konflikt, Beschreibung)
+- **Wo:** multiaxial_diagnostic_system.py (4 Tabs statt 2), translations.json (DE + EN), Synopsis, Export, Paper
+
+### 1c.3 Achse IV: Bezugspersonen & Behandlungsnetzwerk -- DONE
+- **Was:** Strukturiertes Kontaktpersonen-Register (Name, Rolle, Institution, Telefon, Anmerkungen)
+- **Wo:** multiaxial_diagnostic_system.py Achse IV, translations.json, Synopsis, Export, Paper
+
+### 1c.4 Achse VI: Bewertungsfeld in Evidenz-Matrix -- DONE
+- **Was:** Neues Feld "Klinische Bewertung" im Evidence-Formular
+- **Usecase:** Laborbericht eingehend -> Arzt dokumentiert Bewertung + Achsenverweis
+
+### 1c.5 Achse VI: Kontakt- & Beobachtungsprotokoll -- DONE
+- **Was:** Strukturiertes Protokoll (Datum, Kontaktart, Person, Inhalt, Achsenbezug)
+- **Kontaktarten:** Telefonat, Gespraech, Beobachtung, Hausbesuch, Fremdanamnese, E-Mail/Brief, Sonstiges
+- **Wo:** multiaxial_diagnostic_system.py Achse VI, translations.json, Synopsis, Export, Paper
+
+### 1c.6 Paper V4 -> V5 Update -- DONE
+- **Was:** Designphilosophie-Sektion, Achse II/IV/VI erweitert, Tabelle 1 aktualisiert, 9 statt 8 Innovationen, Abstract/Zusammenfassung/English Translation aktualisiert
+- **Ergebnis:** 30 Seiten PDF
+
+---
+
 ## Phase 2: Strukturerweiterung (Prioritaet HOCH)
 
 ### 2.1 Achse V: P1-P4 Strukturierte Kodierung

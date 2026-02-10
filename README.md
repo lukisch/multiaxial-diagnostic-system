@@ -52,20 +52,20 @@ streamlit run multiaxial_diagnostic_system.py
 ## Project Structure
 
 ```
-multiaxial_diagnostic_system.py   # Main application (V9, ~1850 lines)
+multiaxial_diagnostic_system.py   # Main application (V9, ~2080 lines)
 translations.json                 # Bilingual i18n (DE/EN)
-Review_Multiaxiale_Diagnostik.tex # Scientific paper (V4, LaTeX)
+Review_Multiaxiale_Diagnostik.tex # Scientific paper (V5, LaTeX)
 Konzept_Dimensionale_Integration.md  # Dimensional integration concept
 Ausbauplan_Prototyp_V9.md        # Development roadmap
 ```
 
 ## Scientific Paper
 
-The accompanying paper *"An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis"* (V4) is included as LaTeX source. It covers the theoretical foundation, clinical rationale, and validation strategy.
+The accompanying paper *"An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis"* (V5) is included as LaTeX source. It covers the theoretical foundation, clinical rationale, and validation strategy.
 
 ### Citing This Work
 
-> Geiger, L. (2026). Ein integriertes multiaxiales Modell zur computergestuetzten psychiatrischen Diagnostik: Synthese von DSM-5-TR, ICD-11 und ICF in einem 6-Achsen-Expertensystem. Working Paper, Version 4.
+> Geiger, L. (2026). Ein integriertes multiaxiales Modell zur computergestuetzten psychiatrischen Diagnostik: Synthese von DSM-5-TR, ICD-11 und ICF in einem 6-Achsen-Expertensystem. Working Paper, Version 5.
 
 ## Development Roadmap
 
