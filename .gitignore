@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary
+_ul/
+
+# Claude Code internal
+.claude/
+
+# Personal strategy notes (not for public repo)
+LINKEDIN.txt
+PUBLICATION_STRATEGY.txt
+ZENODO.txt
+REVIEW.txt
+
+# Artifacts from other tools
+compass_artifact_*.md
+
+# Legacy/Template files
+Beispiel_Template_LaTex.tex
+icf11dsm5.txt
+
+# Binary documents (keep PDF of paper)
+*.docx

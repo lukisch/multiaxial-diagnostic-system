@@ -1,0 +1,762 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,english]{babel}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{mathptmx}
+\usepackage{helvet}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{longtable}
+\usepackage{quoting}
+\usepackage{multirow}
+\usepackage{array}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+
+\titleformat{\section}{\Large\bfseries\sffamily\color{black}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{darkgray}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\sffamily\color{darkgray}}{\thesubsubsection}{1em}{}
+
+\hypersetup{
+    pdftitle={Multiaxiale Psychodiagnostik},
+    pdfauthor={Lukas Geiger},
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+\onehalfspacing
+
+\begin{document}
+
+% ===================================================================
+% TITELSEITE
+% ===================================================================
+\selectlanguage{ngerman}
+
+\title{\textbf{\huge Ein integriertes multiaxiales Modell\\zur computergest\"utzten psychiatrischen Diagnostik}\\[0.5em]
+\Large Synthese von DSM-5-TR, ICD-11 und ICF\\in einem 6-Achsen-Expertensystem\\[0.3em]
+\large Ein wissenschaftliches Review}
+
+\author[1]{Lukas Geiger\thanks{Korrespondenz: Lukas Geiger, Gei\ss{}b\"uhlweg 1, 79872 Bernau, Deutschland.}}
+\affil[1]{Unabh\"angiger Forscher, Bernau im Schwarzwald}
+
+\date{Februar 2026 --- Version 4 \\ \vspace{0.5em} \small \textit{Wissenschaftliches Review --- Arbeitspapier}}
+
+\maketitle
+
+\begin{abstract}
+\noindent Die vorliegende Arbeit pr\"asentiert ein neuartiges 6-Achsen-Modell zur computergest\"utzten multiaxialen psychiatrischen Diagnostik, das die kategoriale Diagnostik nach DSM-5-TR und ICD-11 mit der funktionalen Klassifikation der ICF in einem integrierten Expertensystem vereint. Das Modell adressiert systematisch die klinischen Defizite, die durch die Abschaffung des multiaxialen Systems im DSM-5 (2013) entstanden sind, und geht zugleich \"uber das historische DSM-IV-System hinaus: Achse~I (Psychische Profile) erfasst akute, chronische, remittierte und widerlegte Diagnosen einschlie\ss{}lich Behandlungsgeschichte und Abdeckungsanalyse; Achse~II (Biographie und Entwicklung) integriert dimensionale Pers\"onlichkeitsdiagnostik mittels PID-5; Achse~III (Medizinische Synopse) bildet eine symmetrische Parallelstruktur zu Achse~I mit 13~Subachsen einschlie\ss{}lich beitragender medizinischer Faktoren, Verdachtsdiagnosen, integrierter Kausalanalyse und strukturierter Medikamentenanamnese; Achse~IV (Umwelt und Funktion) kombiniert ICF, WHODAS~2.0, das deutsche GdB-System und das Cultural Formulation Interview; Achse~V (Integriertes Bedingungsmodell) verbindet erstmals Fallformulierung mit diagnostischer Klassifikation in einem operationalisierten 3P/4P-Schema; Achse~VI (Belegsammlung und klinische Sicherheit) implementiert eine systematische Evidenz-Matrix, CAVE-Warnhinweise f\"ur kritische klinische Risiken und einen longitudinalen Symptomverlauf. Das multi-professionelle Zuordnungsmodell definiert explizite Zust\"andigkeiten f\"ur Psychologen, Mediziner, Sozialarbeiter und das interdisziplin\"are Team. Die 6-Stufen-Gatekeeper-Logik bildet exakt die von Michael~B. First publizierte Goldstandard-Sequenz ab. Die Abdeckungsanalyse --- die systematische Identifikation diagnostisch unerkl\"arter Symptome --- stellt eine genuine Innovation dar und wird in Version~4 durch quantitative Abdeckungsmetriken (\%-basierte Symptom-Diagnosen-Zuordnung) und einen priorisierten 3-Stufen-Untersuchungsplan (dringend/wichtig/Verlaufskontrolle) operationalisiert. Jede Diagnose erh\"alt eine strukturierte PRO/CONTRA-Evidenzbewertung mit expliziter Konfidenzsch\"atzung. Die HiTOP-Spektren werden direkt aus den Cross-Cutting-Ergebnissen berechnet. Neue Abschnitte adressieren dimensionale Integration (HiTOP/RDoC), Ethik und Datenschutz, Validierungsstrategie sowie Interoperabilit\"atsstandards (HL7 FHIR). Die technische Implementierung als hierarchische Zustandsmaschine mit 11~St\"orungsmodulen wird vorgestellt.
+
+\vspace{0.5em}
+\noindent \textbf{Schl\"usselbegriffe:} Multiaxiale Diagnostik, DSM-5-TR, ICD-11, ICF, Expertensystem, Differenzialdiagnostik, Abdeckungsanalyse, Fallformulierung, Cross-Cutting Symptom Measures, Hierarchische Zustandsmaschine, PID-5, WHODAS~2.0, HiTOP, RDoC, Multi-professionell, HL7 FHIR, PRO/CONTRA-Evidenzbewertung, CAVE-Warnhinweise, Symptomverlauf
+
+\vspace{0.5em}
+\noindent \textbf{Disziplinen:} Klinische Psychologie, Psychiatrie, Medizinische Informatik, Psychometrie, Rehabilitationswissenschaft, Soziale Arbeit
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ===================================================================
+% CO-AUTOREN
+% ===================================================================
+\section*{Angaben zur KI-Nutzung und Methodik}
+\addcontentsline{toc}{section}{Angaben zur KI-Nutzung und Methodik}
+
+Die vorliegende Arbeit wurde unter intensiver Mitwirkung folgender KI-Systeme erstellt. Da ihre Beitr\"age \"uber blo\ss{}e Hilfestellungen hinausgingen, werden sie hier detailliert ausgewiesen:
+
+\begin{description}[style=nextline, leftmargin=2cm]
+\item[\textbf{Claude Opus 4.6} (Anthropic)] Co-Writer: Textgenese, Strukturierung, argumentative Ausarbeitung und systematisches Review mit L\"uckenanalyse.
+\item[\textbf{Gemini} (Google DeepMind) \& \textbf{Copilot} (Microsoft)] Reviewer: Kritisches Lektorat, Pr\"ufung auf Konsistenz und systematische Literaturrecherche.
+\end{description}
+
+\vspace{1em}
+\noindent\textit{Hinweis:} Trotz des erheblichen maschinellen Beitrags liegt die finale Verantwortung f\"ur den wissenschaftlichen Inhalt und die Interpretation der Ergebnisse beim menschlichen Autor.
+
+\newpage
+
+% ===================================================================
+% TEIL I: GRUNDLAGEN UND PROBLEMSTELLUNG
+% ===================================================================
+
+\section{Einleitung: Die diagnostische L\"ucke nach Abschaffung des multiaxialen Systems}
+\label{sec:einleitung}
+
+Die Abschaffung des multiaxialen Diagnosesystems im DSM-5 \citep{APA2013} hinterlie\ss{} eine strukturelle L\"ucke in der psychiatrischen Diagnostik. Das urspr\"ungliche, mit dem DSM-III (1980) eingef\"uhrte System umfasste f\"unf Achsen: Achse~I (klinische St\"orungen), Achse~II (Pers\"onlichkeitsst\"orungen und geistige Behinderung), Achse~III (medizinische Krankheitsfaktoren), Achse~IV (psychosoziale und umweltbezogene Probleme in 9~Kategorien) und Achse~V (Globale Beurteilung des Funktionsniveaus, GAF-Score 0--100). Die APA eliminierte dieses System nach einem bereits 2004 initiierten Abschaffungsantrag aus folgenden Gr\"unden: geringe Interrater-Reliabilit\"at des GAF-Scores, konzeptuelle Vermengung von Symptomen und Funktionsniveau in Achse~V, inkonsistente klinische Nutzung von Achse~IV und die k\"unstliche Grenze zwischen Achse~I und~II.
+
+Die klinische Gemeinschaft verlor dabei mehr als sie gewann. Probst (2014) dokumentierte, dass die Eliminierung von Achse~IV \glqq die Notwendigkeit der Kontextber\"ucksichtigung nicht eliminiert\grqq{}. Kress et al. (2014) fanden, dass Kliniker nun \glqq umso wachsamer systematische Wege zur Erfassung biopsychosozialer Informationen\grqq{} finden m\"ussen --- ohne die strukturierten Aufforderungen des alten Systems. Die als Achse-IV-Ersatz eingef\"uhrten V/Z-Codes verzeichnen eine geringe Adoptionsrate: Erlich und First (2025) konstatieren, dass \glqq ein allgemeines Bewusstsein f\"ur diese Codes und die Bedeutung ihrer Nutzung zur Kommunikation sozialer Determinanten der Gesundheit nicht eingetreten ist\grqq{}.
+
+Am kritischsten ist der Verlust der \textit{strukturierten Aufforderung zur umfassenden Beurteilung} \"uber biologische, psychologische und soziale Dimensionen hinweg --- eine Funktion, die das flache DSM-5-Listing nicht replizieren kann. Die vorliegende Arbeit stellt ein 6-Achsen-Modell vor, das jede spezifische Schw\"ache des historischen Systems adressiert und zugleich F\"ahigkeiten erg\"anzt, die keines der bisherigen Systeme besessen hat.
+
+\subsection{Institutionelle Konvergenz}
+
+Das vorgeschlagene Modell steht nicht isoliert, sondern antizipiert die Richtung, in die sich die psychiatrischen Institutionen selbst bewegen. Das 17-k\"opfige \textit{APA Future DSM Strategic Committee} entwickelt derzeit eine \glqq Roadmap\grqq{} mit vier Unterkomitees, die Dimensionalit\"at, Biomarker, Funktion/Lebensqualit\"at und sozio\"okonomische/kulturelle/umweltbezogene Determinanten explorieren. Erlich, First et al.\ (2025, \textit{Psychiatric Services}) fordern explizit die R\"uckkehr zu einem biaxialen System zur Erfassung sozialer Determinanten der Gesundheit.
+
+
+% ===================================================================
+% 2. DAS 6-ACHSEN-MODELL
+% ===================================================================
+\section{Architektur des 6-Achsen-Modells}
+\label{sec:modell}
+
+Das vorgeschlagene Modell integriert die kategoriale Diagnostik (DSM-5-TR/ICD-11) in ein epistemologisches Gesamtsystem. Es dient der Erfassung der diagnostischen Lebensspanne, der Kausalit\"atspr\"ufung zwischen Somatik und Psyche sowie der Dokumentation der Behandlungs- und Remissionsgeschichte. Ein zentrales Designprinzip ist die \textbf{symmetrische Parallelstruktur} zwischen Achse~I und Achse~III: Beide Achsen verf\"ugen \"uber analoge Subachsen (Verdachtsdiagnosen, Widerlegungen, Behandlungsgeschichte, Abdeckungsanalyse, Untersuchungsplan), sodass Psychologen und Mediziner mit identischen strukturellen Werkzeugen in ihren jeweiligen Dom\"anen arbeiten k\"onnen. Tabelle~\ref{tab:achsen} gibt eine \"Ubersicht.
+
+\begin{longtable}{p{0.8cm}p{2.2cm}p{3.8cm}p{4cm}p{2cm}}
+\caption{\"Ubersicht der diagnostischen Achsen des 6-Achsen-Modells} \label{tab:achsen} \\
+\toprule
+\textbf{Achse} & \textbf{Bezeichnung} & \textbf{Unterteilung} & \textbf{Kerninhalte} & \textbf{Profession} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Achse} & \textbf{Bezeichnung} & \textbf{Unterteilung} & \textbf{Kerninhalte} & \textbf{Profession} \\
+\midrule
+\endhead
+I & Psychische Profile & Ia: Akute St\"orungen \newline Ib: Chronische Verl\"aufe \newline Ic: Widerlegte Verdachte \newline Id: Remittierte Diagnosen \newline Ie: Remissionsfaktoren \newline If: Behandlungsgeschichte \newline Ig: Therapietreue \newline Ih: Verdachtsdiagnosen \newline Ii: Abdeckungsanalyse \newline Ij: Untersuchungsplan & DSM-5 Cross-Cutting; PHQ-9, PCL-5, ITQ; Differenzialdiagnostik; Chronifizierung; Zeitliche Verortung & Psychologe / Psychiater \\
+\addlinespace
+II & Biographie \& Entwicklung & Entwicklungshistorie \newline Pers\"onlichkeit \newline Quellenpr\"ufung & IQ, Bildung, Sozialisation; PID-5-BF/+M; Zeugnisse, Interviews & Psychologe / Sozialp\"adagoge \\
+\addlinespace
+III & Medizinische Synopse & IIIa: Akute med. Diagnosen \newline IIIb: Chron. Diagnosen (erkl.) \newline IIIc: Beitragende Faktoren \newline IIId: Remittierte Erkrank. \newline IIIe: Remissionsfaktoren \newline IIIf: Behandlungsgesch. \newline IIIg: Medikamentenadh. \newline IIIh: Verdachtsdiagnosen \newline IIIi: Abdeckungsanalyse \newline IIIj: Untersuchungsplan \newline IIIk: Kausalit\"atsanalyse \newline IIIl: Genetik/Familie \newline IIIm: Medikamenten\-anamnese & Biographische Medizin\-geschichte; Kausal\-analyse Soma--Psyche; erbbiologische Belastung; Pharmako\-therapie mit Wirkungs\-bewertung & Mediziner / Facharzt \\
+\addlinespace
+IV & Umwelt \& Funktion & Teilhabe (ICF) \newline Psychosoziale Umst\"ande \newline Cultural Formulation & WHODAS~2.0, GdB; Mini-ICF-APP; Stressoren; Wohnen, Finanzen; CFI & Sozialarbeiter / Sozialp\"adagoge \\
+\addlinespace
+V & Bedingungsmodell & Pr\"adisponierende Fakt. \newline Ausl\"osende Faktoren \newline Aufrechterhaltende Fakt. \newline Protektive Faktoren \newline Klinische Synthese & 3P/4P-Modell; Achsen\-integration; Behandlungs\-planung; Prognose & Interdisziplin\"ares Team \\
+\addlinespace
+VI & Belegsammlung \& Klinische Sicherheit & Evidenz-Matrix \newline CAVE-Warnhinweise \newline Symptomverlauf & Dokumentenregister; CAVE-Alerts (Labor\-artefakte, Kontra\-indikationen, Interaktionen); longitudinaler Symptomverlauf mit Therapie\-ansprechen & Alle Professionen \\
+\bottomrule
+\end{longtable}
+
+\subsection{Achse I: Psychische Profile --- Temporale Diagnostik}
+\label{sec:achse1}
+
+Achse~I geht weit \"uber die einfache Diagnoseliste des DSM-5 hinaus, indem sie Diagnosen in ihrer zeitlichen Dynamik erfasst. Die Unterteilung in zehn Subachsen (Ia--Ij) erm\"oglicht die Dokumentation des gesamten diagnostischen Lebenslaufs: aktuelle akute St\"orungen (Ia), chronische Verl\"aufe mit Chronifizierungsrisiko (Ib), explizit widerlegte Verdachtsdiagnosen mit differenzialdiagnostischer Begr\"undung (Ic), remittierte Diagnosen mit belegter Inaktivit\"at (Id), Remissionsfaktoren wie Therapie, Medikation oder spontane Bew\"altigung (Ie), vollst\"andige Behandlungsgeschichte einschlie\ss{}lich Wirkungen und Nebenwirkungen (If), Therapietreue aus Selbst- und Fremdperspektive (Ig), laufende Verdachtsdiagnosen als diagnostische Hypothesen (Ih), die Abdeckungsanalyse unerklärter Restsymptomatik (Ii) und strukturierte Untersuchungspl\"ane f\"ur n\"achste diagnostische Schritte (Ij).
+
+Die Reihenfolge von Abdeckungsanalyse (Ii) vor Untersuchungsplan (Ij) folgt der klinischen Logik: Erst m\"ussen diagnostisch unerklärte Symptome systematisch identifiziert werden, bevor gezielte Untersuchungen zu deren Kl\"arung geplant werden k\"onnen. Der Untersuchungsplan ergibt sich somit direkt aus den L\"ucken der Abdeckungsanalyse.
+
+\textbf{PRO/CONTRA-Evidenzbewertung:} Jede Diagnose erh\"alt eine strukturierte Evidenzbewertung mit expliziter Dokumentation der Befunde, die f\"ur (PRO) und gegen (CONTRA) die Diagnose sprechen, sowie eine numerische Konfidenzsch\"atzung (0--100\%). Diese Operationalisierung folgt dem Prinzip der differenzialdiagnostischen Transparenz: Der Kliniker muss nicht nur dokumentieren, \textit{dass} eine Diagnose gestellt wird, sondern \textit{warum} --- und welche Gegenargumente er erw\"agt und verworfen hat.
+
+\textbf{Quantitative Abdeckungsanalyse (Ii):} Die Abdeckungsanalyse wird durch eine Symptom-Diagnosen-Matrix operationalisiert, in der jedes Symptom einer oder mehreren erkl\"arenden Diagnosen zugeordnet wird. F\"ur jedes Symptom wird ein Abdeckungsprozentsatz berechnet, der den Grad der diagnostischen Erkl\"arung quantifiziert. Die Gesamtabdeckungsmetrik (z.\,B.\ $\sim$88\%) gibt dem Kliniker eine quantitative R\"uckmeldung \"uber die Vollst\"andigkeit seiner diagnostischen Arbeit. Symptome werden als \textit{vollst\"andig abgedeckt} ($\geq$85\%), \textit{partiell abgedeckt} (60--84\%) oder \textit{unzureichend abgedeckt} ($<$60\%) klassifiziert.
+
+\textbf{Priorisierter Untersuchungsplan (Ij):} Der Untersuchungsplan verwendet ein 3-Stufen-Priorisierungsschema: \textit{Dringend} (innerhalb von 4~Wochen abzukl\"aren --- z.\,B.\ Suizidalit\"atsabkl\"arung, medizinische Notfalldiagnostik), \textit{Wichtig} (innerhalb von 3~Monaten --- z.\,B.\ neuropsychologische Testung, Differenzialdiagnostik) und \textit{Verlaufskontrolle} (kontinuierliches Monitoring --- z.\,B.\ Symptomverlauf unter Therapie). Jede geplante Untersuchung wird einem Fachgebiet zugeordnet und mit einer klinischen Begr\"undung versehen.
+
+Diese temporale Dimensionalit\"at fehlte sowohl in Achse~I des DSM-IV als auch im flachen Listing des DSM-5.
+
+\subsection{Achse II: Biographie und dimensionale Pers\"onlichkeit}
+
+Achse~II modernisiert die alte Pers\"onlichkeitsachse durch Integration des dimensionalen Trait-Assessments mittels PID-5, wie es sowohl ICD-11 als auch das Alternative Modell des DSM-5 empfehlen. Das ICD-11-Modell ersetzt die kategorialen Pers\"onlichkeitsst\"orungs-Typen durch ein Schweregrad-Rating (Pers\"onlichkeitsschwierigkeit $\to$ leicht $\to$ moderat $\to$ schwer), f\"unf Trait-Qualifikatoren (Negative Affektivit\"at, Distanziertheit, Dissozialit\"at, Enthemmung, Anankastie) und einen Borderline-Muster-Spezifikator. Das DSM-5-AMPD verwendet die Level of Personality Functioning Scale (LPFS) f\"ur Kriterium~A und f\"unf Trait-Dom\"anen mit 25 Facetten f\"ur Kriterium~B.
+
+Der \textbf{PID-5-BF+M} (36~Items, 6~Dom\"anen, 18~Facetten) verbr\"uckt beide Systeme und ist in \"uber 12~Sprachen verf\"ugbar. Metaanalysen zeigen eine Gesamt-Konvergenz von $r = 0{,}62$ zwischen den Systemen, mit Dom\"anen-Korrelationen von $r = 0{,}78$--$0{,}86$, mit Ausnahme von Anankastie ($r = 0{,}34$), die kein direktes AMPD-\"Aquivalent besitzt.
+
+\subsection{Achse III: Medizinische Synopse --- Symmetrische Parallelstruktur zu Achse~I}
+\label{sec:achse3}
+
+Ein zentrales Designprinzip des Modells ist die \textbf{strukturelle Symmetrie} zwischen Achse~I (psychisch) und Achse~III (somatisch). Die Einsicht dahinter: Wenn ein Psychologe in Achse~I Verdachtsdiagnosen formulieren, Widerlegungen dokumentieren und Abdeckungsanalysen durchf\"uhren kann, muss ein Mediziner in Achse~III \"uber exakt dieselben M\"oglichkeiten verf\"ugen. Nur so funktioniert das multi-professionelle Modell.
+
+Achse~III umfasst daher 13~Subachsen:
+
+\begin{description}[style=nextline, leftmargin=1.5cm, font=\bfseries]
+\item[IIIa--IIIj: Parallele Kernstruktur] Diese zehn Subachsen spiegeln die Struktur von Achse~I: akute somatische Diagnosen (IIIa), chronische somatische Diagnosen mit vollst\"andig erkl\"arendem Charakter (IIIb), beitragende medizinische Faktoren --- somatische Befunde, die Psychopathologie beg\"unstigen oder verst\"arken, ohne sie vollst\"andig zu erkl\"aren (IIIc), remittierte somatische Erkrankungen (IIId), somatische Remissionsfaktoren --- operative Eingriffe, Medikation, Lebensstil\"anderung (IIIe), medizinische Behandlungsgeschichte einschlie\ss{}lich Operationen, Pharmakotherapie und Nebenwirkungen (IIIf), Medikamentenadhärenz aus \"arztlicher Dokumentation und Patientenbericht (IIIg), medizinische Verdachtsdiagnosen als laufende diagnostische Hypothesen (IIIh), somatische Abdeckungsanalyse --- K\"orpersymptome, die durch keine aktuelle medizinische Diagnose erkl\"art werden (IIIi), und medizinischer Untersuchungsplan f\"ur weiterf\"uhrende somatische Diagnostik (IIIj).
+\item[IIIk--IIIm: Achse-III-spezifische Subachsen] Drei Subachsen haben keine Entsprechung in Achse~I, da sie die spezifische Soma--Psyche-Beziehung abbilden: integrierte Kausalit\"atsanalyse --- systematische Zuordnung somatischer Befunde zur Psychopathologie unter Differenzierung von vollst\"andiger Erkl\"arung (z.\,B.\ Hypothyreose erkl\"art Depression) und beg\"unstigender Wirkung (z.\,B.\ chronischer Schmerz verst\"arkt Angstst\"orung) (IIIk); genetische und famili\"are Belastung --- Familienanamnese f\"ur somatische und psychische Erkrankungen, bekannte genetische Pr\"adispositionen und ggf.\ Ergebnisse aus Exom-Sequenzierung (IIIl); Medikamentenanamnese und Interaktionen --- strukturierte Erfassung aller aktuellen und vergangenen Medikamente mit Dosierung, Einheit, Zweck/Indikation, Einnahmeschema, Wirkungsbewertung (0--10), Nebenwirkungen und potentiellen Interaktionen (IIIm).
+\end{description}
+
+\textbf{Anmerkung zur Strukturentscheidung IIIb/IIIc:} Die explizite Differenzierung zwischen vollst\"andig erkl\"arenden chronischen Diagnosen (IIIb) und blo\ss{} beitragenden Faktoren (IIIc) integriert die Kausalanalyse direkt in die Klassifikationsstruktur. Widerlegte medizinische Verdachtsdiagnosen werden innerhalb von IIIh (Verdachtsdiagnosen) durch einen Statuswechsel dokumentiert, analog zur klinischen Praxis, in der Verdachtsdiagnosen ausgeschlossen und mit Begr\"undung verworfen werden.
+
+\textbf{Anmerkung zu IIIm:} Die Medikamentenanamnese als eigenst\"andige Subachse (statt blo\ss{}er Auflistung in IIIf) erm\"oglicht eine strukturierte Erfassung von Wirkungsprofilen, Interaktionsrisiken und Therapietreue auf Pr\"aparatebene. Dies ist klinisch essentiell, da Polypharmazie und Medikamenteninteraktionen eine h\"aufige Ursache sowohl f\"ur somatische als auch f\"ur psychiatrische Komplikationen darstellen.
+
+Diese Symmetrie stellt sicher, dass das System als \textit{gemeinsames Werkzeug} f\"ur Mediziner und Psychologen funktioniert. Ein Mediziner, der Achse~III ausf\"ullt, verf\"ugt \"uber dieselbe diagnostische Tiefe wie ein Psychologe in Achse~I.
+
+\subsection{Achse IV: Umwelt und Funktion --- ICF-Integration und Cultural Formulation}
+\label{sec:achse4}
+
+Achse~IV kombiniert mehrere validierte Instrumente. Der \textbf{WHODAS~2.0} (WHO Disability Assessment Schedule) erfasst sechs Dom\"anen --- Kognition, Mobilit\"at, Selbstversorgung, Umgang mit Menschen, Lebensaktivit\"aten und Partizipation --- wahlweise als 12-Item-Kurzform (erkl\"art 81\% der Varianz) oder 36-Item-Vollversion. Die psychometrischen Eigenschaften sind stark: Cronbachs $\alpha = 0{,}94$--$0{,}96$, Test-Retest-ICC $= 0{,}93$--$0{,}96$.
+
+WHODAS~2.0 und GAF messen \textit{fundamental unterschiedliche Konstrukte}: GAF vermengt Symptome und Funktionsniveau; WHODAS~2.0 misst Behinderung unabh\"angig von der Symptomschwere. Gspandl et al.\ (2018) fanden \textit{keine signifikante Korrelation} zwischen selbstbewertetem WHODAS~2.0 und GAF bei Schizophrenie-Spektrum-St\"orungen. Das System implementiert beide: WHODAS~2.0 f\"ur die Behinderungserfassung und GAF als vertraute klinische Kurzformel mit explizitem Hinweis auf dessen Limitierungen.
+
+F\"ur den deutschen Kontext ist die \textbf{GdB-Integration} (Grad der Behinderung) essentiell. Der GdB verwendet eine 20--100-Skala ($\geq 50$ = Schwerbehinderung) und wird nach den Versorgungsmedizinischen Grunds\"atzen (VMG) bewertet.
+
+Drei validierte \textbf{ICF Core Sets} existieren f\"ur psychische Gesundheit: Depression (31~kurze/121~umfassende Kategorien), bipolare St\"orungen (19/38) und Schizophrenie (25/97). F\"ur die praktische Implementierung ist das \textbf{Mini-ICF-APP} (Mini-ICF f\"ur Aktivit\"aten und Partizipation bei psychischen St\"orungen) von Linden \& Baron (2005) mit 13~Kapazit\"atsdimensionen das effizienteste Werkzeug.
+
+\subsubsection{Cultural Formulation Interview (CFI)}
+
+Das DSM-5-TR enth\"alt ein strukturiertes \textbf{Cultural Formulation Interview} (CFI) mit 16~Kernfragen in vier Dom\"anen: kulturelle Definition des Problems, kulturelle Wahrnehmung von Ursache/Kontext/Unterst\"utzung, kulturelle Faktoren in der Bew\"altigung und kulturelle Faktoren in der Kliniker-Patient-Beziehung. F\"ur ein Modell, das umfassende biopsychosoziale Erfassung beansprucht, ist die Integration des CFI als optionales Modul in Achse~IV essentiell. Die 12~supplementären Module des CFI (f\"ur spezifische Populationen und Kontexte) k\"onnen bedarfsorientiert aktiviert werden.
+
+\subsection{Achse V: Integriertes Bedingungsmodell --- Operationalisierte Fallformulierung}
+\label{sec:achse5}
+
+Achse~V ist g\"anzlich neuartig. Das pr\"adisponierende--ausl\"osende--aufrechterhaltende Faktorenmodell (klinisches 3P/4P-Modell) verbr\"uckt diagnostische Klassifikation mit Fallformulierung --- etwas, das keine DSM-Edition jemals enthalten hat. Owen (2023) argumentiert, dass dieser Formulierungsansatz \glqq die Auswahl der Fakten diszipliniert und die Behandlung zielgerichtet macht\grqq{}. Die Synthese aller Achsen --- wie Biologie (III), Biographie (II) und aktuelle Stressoren (IV) mit der Psychopathologie (I) interagieren --- wird hier expliziert.
+
+Das Modell operationalisiert die Fallformulierung durch vier strukturierte Komponenten:
+
+\begin{description}[style=nextline, leftmargin=1.5cm, font=\bfseries]
+\item[Pr\"adisponierende Faktoren (P1)] Vulnerabilit\"atsfaktoren, die vor der St\"orung existierten. Quellen: Achse~II (biographische Risikofaktoren, Pers\"onlichkeits-Traits), Achse~III (genetische Belastung, IIIm), Achse~IV (fr\"uhe psychosoziale Belastungen). Kodierung: Faktor, Quellenachse, Evidenzst\"arke (gesichert/wahrscheinlich/m\"oglich), Beleg (Achse~VI-Referenz).
+\item[Ausl\"osende Faktoren (P2)] Ereignisse oder Ver\"anderungen, die das Auftreten der St\"orung ausgelöst haben. Quellen: Achse~IV (aktuelle Stressoren, Life Events), Achse~III (somatische Ausl\"oser). Kodierung: Faktor, zeitlicher Zusammenhang, Quellenachse, Beleg.
+\item[Aufrechterhaltende Faktoren (P3)] Bedingungen, die die St\"orung perpetuieren. Quellen: Achse~I (Komorbidit\"aten, Therapietreue), Achse~III (unbehandelte somatische Befunde), Achse~IV (fortbestehende psychosoziale Belastungen). Kodierung: Faktor, Mechanismus, \"Anderbarkeit (modifizierbar/stabil), Priorit\"at f\"ur Intervention.
+\item[Protektive Faktoren (P4)] Ressourcen, die Resilienz f\"ordern. Quellen: Achse~II (Pers\"onlichkeitsst\"arken), Achse~IV (soziale Unterst\"utzung, \"okonomische Ressourcen), Achse~I (Remissionsfaktoren, Ie). Kodierung: Faktor, Quellenachse, Aktivierbarkeit.
+\end{description}
+
+Die Verkn\"upfung mit der Abdeckungsanalyse (Achse~Ii) ist zentral: Symptome, die durch keine Achse-I-Diagnose abgedeckt sind, \textit{sollten} durch die Achse-V-Formulierung erkl\"arbar sein. Symptome, die weder diagnostisch noch formulatorisch erkl\"art werden, repr\"asentieren genuine diagnostische L\"ucken und triggern den Untersuchungsplan (Achse~Ij).
+
+\subsection{Achse VI: Belegsammlung, CAVE-Warnhinweise und Symptomverlauf}
+
+Achse~VI wurde gegen\"uber dem Originalentwurf substanziell erweitert und umfasst nun drei Komponenten:
+
+\begin{description}[style=nextline, leftmargin=1.5cm, font=\bfseries]
+\item[Evidenz-Matrix] Ein zentrales Dokumentenverzeichnis, das jede kodierte Information mit einem Beleg verkn\"upft (Dokumentenanalyse, Befragung, Testung). Diese Innovation hat keinen Pr\"azedenzfall in irgendeinem Klassifikationssystem und unterst\"utzt direkt die klinische Rechenschaftspflicht.
+\item[CAVE-Warnhinweise] Ein strukturiertes Warnsystem f\"ur kritische klinische Risiken, die achsen\"ubergreifend Relevanz haben. Jeder Warnhinweis wird mit einer Kategorie versehen: \textit{Medikamenten-Interaktion} (z.\,B.\ Lithium + NSAR), \textit{Labor-Artefakt} (z.\,B.\ CRP-Erh\"ohung durch chronische Entz\"undung, nicht akute Infektion), \textit{Kontraindikation} (z.\,B.\ Schwangerschaft bei bestimmter Medikation), \textit{zeitliche Fehlzuordnung} (z.\,B.\ Symptombeginn vor oder nach vermutetem Ausl\"oser), \textit{diagnostische Einschr\"ankung} (z.\,B.\ nicht verwertbarer Testbefund) und \textit{sonstiger Warnhinweis}. Jeder Alert referenziert die betroffene Quellenachse (I--VI), sodass die klinische Relevanz sofort kontextualisiert ist. CAVE-Alerts werden in der Gesamtsynopse prominent rot hervorgehoben.
+\item[Longitudinaler Symptomverlauf] Eine strukturierte Dokumentation des zeitlichen Symptomverlaufs: F\"ur jedes relevante Symptom wird Beginn (Erstmanifestation), aktueller Status (aktiv/remittiert/fluktuierend) und Therapieansprechen (Response/Non-Response/Partial Response) erfasst. Diese longitudinale Perspektive erm\"oglicht die Identifikation von Verlaufsmustern, Therapieresistenz und Chronifizierungsrisiken, die in einer rein querschnittlichen Diagnostik unsichtbar bleiben.
+\end{description}
+
+Die Erweiterung von Achse~VI reflektiert die klinische Erkenntnis, dass ein diagnostisches System nicht nur \textit{klassifizieren}, sondern auch \textit{warnen} und \textit{\"uber die Zeit verfolgen} muss. Die CAVE-Funktion adressiert das in der Polypharmazie- und Komplexit\"atsmedizin wachsende Problem klinischer Risiken, die in keiner einzelnen Achse vollst\"andig abgebildet sind, aber achsen\"ubergreifend Konsequenzen haben.
+
+\subsection{Multi-professionelle Zuordnung}
+\label{sec:multiprofessionell}
+
+Ein zentrales Designmerkmal des 6-Achsen-Modells ist die explizite Zuordnung von Achsen zu Professionsgruppen. Die symmetrische Architektur von Achse~I und Achse~III erm\"oglicht, dass jede Berufsgruppe in ihrer Dom\"ane mit identischen strukturellen Werkzeugen arbeitet:
+
+\begin{table}[H]
+\centering
+\caption{Multi-professionelle Achsenzuordnung}
+\label{tab:professionen}
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{Achse} & \textbf{Prim\"are Profession} & \textbf{Begr\"undung} \\
+\midrule
+I & Psychologe / Psychiater & Psychodiagnostische Kompetenz; Testungshoheit \\
+\addlinespace
+II & Psychologe / Sozialp\"adagoge & Biographische Anamnese; Pers\"onlichkeitsdiagnostik \\
+\addlinespace
+III & Mediziner / Facharzt & Somatische Diagnosestellung; Kausalanalyse \\
+\addlinespace
+IV & Sozialarbeiter / Sozialp\"adagoge & Lebensweltexpertise; ICF-Kompetenz; Teilhabebewertung \\
+\addlinespace
+V & Interdisziplin\"ares Team & Synthese erfordert alle Perspektiven \\
+\addlinespace
+VI & Alle Professionen & Jede Profession belegt ihre eigenen Befunde \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Dieses Modell stellt sicher, dass (a)~jede Profession \"uber die gleiche strukturelle Tiefe in ihrer Dom\"ane verf\"ugt, (b)~die Achse~V-Synthese die interdisziplin\"are Zusammenarbeit erzwingt, und (c)~Achse~VI die professions\"ubergreifende Belegbarkeit sichert. Die identische Subachsen-Struktur von I und III ist dabei kein Zufall, sondern Designentscheidung: Ein Mediziner, der in IIIh eine somatische Verdachtsdiagnose formuliert, nutzt exakt dieselbe Logik wie ein Psychologe, der in Ih eine psychische Verdachtsdiagnose eintr\"agt.
+
+\subsection{Komorbidit\"atsregeln und diagnostische Hierarchie}
+\label{sec:komorbiditaet}
+
+Das System implementiert drei Ebenen von Komorbidit\"atsregeln, die f\"ur die korrekte diagnostische Entscheidungsfindung essentiell sind:
+
+\begin{description}[style=nextline, leftmargin=1.5cm, font=\bfseries]
+\item[Hierarchische Exklusionsregeln] Bestimmte Diagnosen schlie\ss{}en andere aus. Beispiel: Eine Schizophrenie-Diagnose schlie\ss{}t eine gleichzeitige schizoaffektive St\"orung aus. Das System kodiert diese als harte Constraints, die bei der Diagnoseeingabe automatisch gepr\"uft werden.
+\item[\glqq Due to another condition\grqq{}-Regeln] Viele DSM-5-TR-Diagnosen erfordern den Ausschluss, dass die Symptomatik durch eine andere psychische St\"orung, eine Substanz oder einen medizinischen Krankheitsfaktor besser erkl\"art wird. Diese Regeln werden direkt durch die Gatekeeper-Stufen~1--3 (Abschnitt~\ref{sec:gatekeeper}) implementiert.
+\item[Erlaubte Komorbidit\"aten mit Priorisierung] Bei 4+ aktiven Diagnosen priorisiert das System nach: (1)~klinischer Dringlichkeit (Suizidalit\"at, Psychose), (2)~Schweregrad (Achse-I-Akutstatus), (3)~Behandelbarkeit (modifizierbare aufrechterhaltende Faktoren aus Achse~V), (4)~chronologischer Reihenfolge.
+\end{description}
+
+
+% ===================================================================
+% 3. GATEKEEPER-LOGIK
+% ===================================================================
+\section{Die 6-Stufen-Gatekeeper-Logik der Differenzialdiagnostik}
+\label{sec:gatekeeper}
+
+Das System implementiert eine dynamische Warteschlange, in der Screening-Auff\"alligkeiten spezifische DSM-5-TR/ICD-11-Module triggern. Die 6-Stufen-Sequenz bildet exakt das von Michael~B. First im \textit{DSM-5-TR Handbook of Differential Diagnosis} (2024) publizierte Framework ab (Tabelle~\ref{tab:gatekeeper}).
+
+\begin{table}[H]
+\centering
+\caption{Alignment der 6-Stufen-Gatekeeper-Logik mit Firsts Goldstandard}
+\label{tab:gatekeeper}
+\begin{tabularx}{\textwidth}{clXc}
+\toprule
+\textbf{Stufe} & \textbf{Systemschritt} & \textbf{Firsts Framework} & \textbf{Match} \\
+\midrule
+1 & Simulationsausschluss & Malingering und artifizielle St\"orung ausschlie\ss{}en & Exakt \\
+\addlinespace
+2 & Substanzausschluss & Substanz\"atiologie ausschlie\ss{}en & Exakt \\
+\addlinespace
+3 & Medizinischer Ausschluss & \"Atiologische medizinische Erkrankung ausschlie\ss{}en & Exakt \\
+\addlinespace
+4 & Prim\"arkategorie & Spezifische Prim\"arst\"orung(en) bestimmen & Exakt \\
+\addlinespace
+5 & Anpassungsst\"orung & Anpassungsst\"orungen differenzieren & Exakt \\
+\addlinespace
+6 & Funktionsschwelle & Grenze zu \glqq keine psychische St\"orung\grqq{} & Konzeptuell \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+First beschreibt dieses Framework als den definitiven Makro-Level-Diagnoseprozess. Sein Handbook enth\"alt dar\"uber hinaus \textbf{30 symptomorientierte Entscheidungsb\"aume} (zwei in der TR-Edition erg\"anzt f\"ur dissoziative Symptome und repetitive pathologische Verhaltensweisen) und \textbf{67~Differenzialdiagnosetabellen}, die alle dieser Sequenz folgen.
+
+\textbf{Anmerkung zu Stufe~6 (\glqq konzeptuell\grqq{}):} W\"ahrend die Stufen~1--5 exakt algorithmisch abbildbar sind, ist Stufe~6 --- die Grenzziehung zwischen normaler Stressreaktion und psychischer St\"orung --- inh\"arent eine klinische Urteilsentscheidung. Das System unterst\"utzt diese durch objektive Funktionsdaten (WHODAS~2.0, Mini-ICF-APP aus Achse~IV) und die Cross-Cutting-Schwellenwerte, kann aber die klinische Entscheidung nicht vollst\"andig automatisieren. Diese epistemische Grenze wird transparent kommuniziert.
+
+
+% ===================================================================
+% 4. CROSS-CUTTING SCREENING
+% ===================================================================
+\section{Cross-Cutting Symptom Measures als intelligente Triage}
+\label{sec:screening}
+
+Die DSM-5 Cross-Cutting Symptom Measures bilden das R\"uckgrat der Screening-Architektur. Das \textbf{Level-1-Erwachsenenma\ss{}} enth\"alt \textbf{23~Items \"uber 13~Dom\"anen}: Depression (2), \"Arger (1), Manie (2), Angst (3), somatische Symptome (2), Suizidalit\"at (1), Psychose (2), Schlafprobleme (1), Ged\"achtnis (1), repetitive Gedanken und Verhaltensweisen (2), Dissoziation (1), Pers\"onlichkeitsfunktion (2) und Substanzgebrauch (3). Jedes Item verwendet eine 5-stufige Likert-Skala (0~=~keine bis 4~=~schwer).
+
+Die Schwellenlogik ist klinisch kalibriert: \textbf{Die meisten Dom\"anen triggern Level~2 bei $\geq 2$ (leicht)}, aber drei sicherheitskritische Dom\"anen --- Suizidalit\"at, Psychose und Substanzgebrauch --- \textbf{triggern bei $\geq 1$ (gering)}. Diese Asymmetrie reflektiert das klinische Imperativ, selbst minimale Best\"atigung gef\"ahrlicher Symptome nie zu \"ubersehen.
+
+Die Level-2-Ma\ss{}e verweisen auf spezifische validierte Instrumente: PROMIS Depression Short Form, PROMIS Anxiety Short Form, Altman Self-Rating Mania Scale (ASRM), PHQ-15 f\"ur somatische Symptome, PROMIS Sleep Disturbance, adaptierte FOCI Severity Scale f\"ur Zwangsst\"orungen und adaptierter NIDA-Modified ASSIST f\"ur Substanzgebrauch. F\"unf Dom\"anen (Suizidalit\"at, Psychose, Ged\"achtnis, Dissoziation, Pers\"onlichkeitsfunktion) besitzen \textit{keine offiziellen Level-2-Ma\ss{}e} --- die APA empfiehlt hier klinische Evaluation.
+
+Die DSM-5 Field Trials (Narrow et al., 2013) zeigten \textbf{gute bis exzellente Test-Retest-Reliabilit\"at} (ICC~0,64--0,97) f\"ur die meisten Items.
+
+\subsection{Kinder- und Jugendversion}
+
+Das DSM-5 Cross-Cutting-System umfasst eine separate \textbf{Elternberichtsversion f\"ur Kinder und Jugendliche} (6--17~Jahre) mit \textbf{25~Items \"uber 12~Dom\"anen}. Die Dom\"ane \glqq Pers\"onlichkeitsfunktion\grqq{} entf\"allt entwicklungsbedingt; stattdessen werden Reizbarkeit und \"Arger st\"arker gewichtet. F\"ur eine vollst\"andige Implementierung sollte das System die p\"adiatrische Variante als separaten Einstiegspfad anbieten und altersangepasste Level-2-Instrumente referenzieren (z.\,B.\ CBCL, SDQ, SCARED).
+
+\subsection{Umfassende Screening-Instrument-Matrix}
+
+Tabelle~\ref{tab:instrumente} zeigt die empfohlenen Instrumente f\"ur alle wesentlichen diagnostischen Dom\"anen.
+
+\begin{longtable}{p{2.5cm}p{2.3cm}cp{1.5cm}p{2.5cm}c}
+\caption{Screening-Instrument-Matrix} \label{tab:instrumente} \\
+\toprule
+\textbf{Dom\"ane} & \textbf{Instrument} & \textbf{Items} & \textbf{Cutoff} & \textbf{Sens./Spez.} & \textbf{Kosten} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Dom\"ane} & \textbf{Instrument} & \textbf{Items} & \textbf{Cutoff} & \textbf{Sens./Spez.} & \textbf{Kosten} \\
+\midrule
+\endhead
+Depression & PHQ-9 & 9 & $\geq 10$ & 88\%/88\% & Frei \\
+\addlinespace
+Angst & GAD-7 & 7 & $\geq 10$ & 89\%/82\% & Frei \\
+\addlinespace
+PTBS (DSM-5) & PCL-5 & 20 & 31--33 & 85--95\%/82--90\% & Frei \\
+\addlinespace
+PTBS/KPTBS (ICD-11) & ITQ & 18 & Algorithmus & Exzellent & Frei \\
+\addlinespace
+Psychoserisiko & PQ-16 & 16 & $\geq 6$ & 87\%/87\% & Frei \\
+\addlinespace
+Bipolar-Screening & MDQ & 15 & $\geq 7$ & 73\%/90\% & Frei \\
+\addlinespace
+ADHS & ASRS~v1.1 & 6 & $\geq 4$ & 69\%/99,5\% & Frei \\
+\addlinespace
+Autismus & AQ-10 & 10 & $\geq 6$ & 88\%/91\% & Frei \\
+\addlinespace
+Alkoholgebrauch & AUDIT & 10 & $\geq 8$ & 92\%/94\% & Frei \\
+\addlinespace
+Drogengebrauch & DAST-10 & 10 & $\geq 3$ & 98\%/91\% & Frei \\
+\addlinespace
+Pers\"onlichkeit & PID-5-BF & 25 & Dimensional & N/A & Frei \\
+\addlinespace
+Suizidalit\"at & C-SSRS & 6 & Jede Best\"at. & Risikoklassif. & Frei \\
+\addlinespace
+Zwang & OCI-R & 18 & $\geq 21$ & Gut & Frei \\
+\addlinespace
+Somatisierung & SSS-8 & 8 & $\geq 12$ & Vergleichbar & Frei \\
+\addlinespace
+Dissoziation & DES-II & 28 & $\geq 30$ & 74\%/80\% & Frei \\
+\addlinespace
+Essst\"orungen & SCOFF & 5 & $\geq 2$ & 84\%/90\% & Frei \\
+\addlinespace
+Essst\"orungen (detail.) & EDE-QS & 12 & $\geq 15$ & Gut/Gut & Frei \\
+\addlinespace
+Schlafst\"orungen & ISI & 7 & $\geq 15$ & 82\%/82\% & Frei \\
+\addlinespace
+Impulskontrolle & SSIS & 5 & $\geq 3$ & Screening & Frei \\
+\bottomrule
+\end{longtable}
+
+Alle empfohlenen Instrumente sind \textbf{frei verf\"ugbar} --- keine Lizenzkosten behindern die Implementierung.
+
+
+% ===================================================================
+% 5. KLASSIFIKATIONSDIVERGENZEN
+% ===================================================================
+\section{Kritische Divergenzen zwischen DSM-5-TR und ICD-11}
+\label{sec:divergenzen}
+
+Das System muss f\"unf kritische Divergenzen zwischen den Klassifikationssystemen kodieren.
+
+\subsection{Schizophrenie-Dauer}
+
+DSM-5-TR (295.90/F20.x) verlangt \textbf{6~Monate} kontinuierlicher Zeichen einschlie\ss{}lich mindestens 1~Monat aktiver Symptome, w\"ahrend ICD-11 (6A20) nur \textbf{1~Monat} fordert. Ein Patient kann somit die ICD-11-Kriterien f\"ur Schizophrenie erf\"ullen, unter DSM-5 aber nur die Diagnose einer schizophreniformen St\"orung erhalten.
+
+\subsection{PTBS-Architektur}
+
+DSM-5-TR verwendet \textbf{4~Cluster mit 20~Symptomen} (Intrusion $\geq$1/5, Vermeidung $\geq$1/2, Negative Kognitionen $\geq$2/7, Arousal $\geq$2/6). ICD-11 verwendet ein bewusst schmaleres Modell: \textbf{3~Cluster mit 6~Kernsymptomen}. ICD-11 f\"ugt dann die \textbf{Komplexe PTBS (6B41)} als distinkte Diagnose hinzu, die alle PTBS-Kriterien plus drei St\"orungen der Selbstorganisation (Affektdysregulation, negatives Selbstkonzept, Beziehungsschwierigkeiten) erfordert.
+
+\subsection{Pers\"onlichkeitsst\"orungen}
+
+ICD-11 ersetzte kategoriale Typen vollst\"andig durch ein dimensionales Modell. Das DSM-5-AMPD verwendet die LPFS f\"ur Kriterium~A und f\"unf Trait-Dom\"anen mit 25~Facetten f\"ur Kriterium~B. Der PID-5-BF+M verbr\"uckt beide Systeme.
+
+\subsection{Gaming Disorder}
+
+ICD-11 (6C51) verwendet einen monothetischen Ansatz (alle 4~Kriterien erforderlich; $\geq 12$~Monate). DSM-5-TR listet Internet Gaming Disorder nur als \glqq Condition for Further Study\grqq{} mit polythetischem Ansatz ($\geq 5$ von 9~Kriterien). Konkordanz: $\kappa = 0{,}80$, aber ICD-11 hat eine h\"ohere diagnostische Schwelle (Pr\"avalenz 2,7\% vs.\ DSM-5 5,2\%).
+
+\subsection{Komplexe Trauer / Prolonged Grief Disorder}
+
+ICD-11 (6B42) und DSM-5-TR (Prolonged Grief Disorder, neu aufgenommen) kodieren Anh\"altende Trauer\"st\"orung, unterscheiden sich aber in Zeitkriterium (ICD-11: 6~Monate; DSM-5-TR: 12~Monate) und Symptomkonfiguration. Das System muss beide Varianten abbilden.
+
+
+% ===================================================================
+% 6. ABDECKUNGSANALYSE
+% ===================================================================
+\section{Die Abdeckungsanalyse: Eine genuine Innovation}
+\label{sec:abdeckung}
+
+Die Abdeckungsanalyse (\textit{Coverage Analysis}) stellt die innovativste Komponente des Systems dar. Die Forschungsliteratur best\"atigt, dass \textbf{kein publiziertes Werkzeug eine automatisierte Abdeckungsanalyse implementiert} --- die systematische Kennzeichnung von Symptomen, die durch aktuelle Diagnosen nicht erkl\"art werden.
+
+Die engsten existierenden Parallelen sind: Komorbidit\"ats-Detektionsalgorithmen, die Symptome kennzeichnen, die auf zus\"atzliche Diagnosen hindeuten; Firsts Differenzialdiagnosetabellen, die \"uberlappende Pr\"asentationen vergleichen; und transdiagnostische Frameworks wie HiTOP, in denen Symptome als Netzwerkknoten modelliert werden. Nordgaard et al.\ (2020) zeigten empirisch, dass die meisten Symptome \"uber die meisten St\"orungen hinweg auftreten --- \textbf{Depressions- und Angstsymptome fanden sich bei fast allen Erstaufnahme-Patienten unabh\"angig von der Diagnose} --- was den Bedarf an einem systematischen Abdeckungsanalyse-Werkzeug direkt st\"utzt.
+
+Die Implementierung arbeitet wie folgt: (1)~Sammlung aller best\"atigten Symptome \"uber alle Screening-Instrumente, (2)~Zuordnung jedes Symptoms zu den diagnostischen Kriterien, die es erf\"ullt, (3)~Berechnung eines Abdeckungsprozentsatzes pro Symptom, der den Grad der diagnostischen Erkl\"arung quantifiziert, (4)~Klassifikation als vollst\"andig abgedeckt ($\geq$85\%), partiell abgedeckt (60--84\%) oder unzureichend abgedeckt ($<$60\%), (5)~Berechnung einer Gesamtabdeckungsmetrik als gewichteter Mittelwert \"uber alle Symptome, (6)~Pr\"asentation der Ergebnisse als Symptom-Diagnosen-Matrix mit visueller Hervorhebung diagnostischer L\"ucken. Das 4P-Modell (Achse~V) dient als nat\"urliches Komplement: Symptome, die nicht durch Achse-I-Diagnosen abgedeckt sind (Subachse~Ii), sollten durch die Achse-V-Formulierung erkl\"arbar sein; solche, die es nicht sind, repr\"asentieren genuine diagnostische L\"ucken und m\"unden in den priorisierten Untersuchungsplan (Subachse~Ij).
+
+Die quantitative Metrik (z.\,B.\ \glqq Gesamtabdeckung: $\sim$88\%\grqq{}) liefert dem Kliniker eine unmittelbare R\"uckmeldung \"uber die Vollst\"andigkeit seiner diagnostischen Arbeit --- ein Feature, das in der gesamten publizierten psychiatrischen Informatik ohne Pr\"azedenzfall ist.
+
+Die Abdeckungsanalyse wird symmetrisch auch in Achse~III implementiert (Subachse~IIIi): K\"orpersymptome, die durch keine aktuelle somatische Diagnose erkl\"art werden, werden systematisch identifiziert und f\"uhren zum medizinischen Untersuchungsplan (Subachse~IIIj).
+
+
+% ===================================================================
+% 7. DIMENSIONALE INTEGRATION
+% ===================================================================
+\section{Dimensionale Integration: HiTOP und RDoC als erg\"anzende Perspektiven}
+\label{sec:dimensional}
+
+Das 6-Achsen-Modell basiert prim\"ar auf kategorialer Diagnostik (DSM-5-TR/ICD-11), enth\"alt aber bereits dimensionale Elemente (PID-5, WHODAS~2.0). Zwei weitere dimensionale Frameworks verdienen Integration als erg\"anzende Schichten:
+
+\subsection{HiTOP (Hierarchical Taxonomy of Psychopathology)}
+
+Die Hierarchical Taxonomy of Psychopathology \citep{Kotov2017} organisiert psychische St\"orungen empirisch-hierarchisch in sechs Spektren: Internalizing (Depression, Angst, PTBS), Thought Disorder (Psychose, Manie), Disinhibited Externalizing (Substanzgebrauch, Impulskontrolle), Antagonistic Externalizing (Antisoziales Verhalten), Detachment (soziale Zur\"uckgezogenheit, Anhedonie) und Somatoform (somatische Symptome). Die Cross-Cutting-Ergebnisse des Systems werden direkt auf HiTOP-Spektren gemappt und als Radardiagramm visualisiert. Das Mapping nutzt die maximale Auspr\"agung der zugeh\"origen Cross-Cutting-Dom\"anen:
+
+\begin{itemize}[noitemsep]
+\item Internalizing = max(Depression, Anxiety, Somatic, Sleep)
+\item Thought Disorder = max(Psychosis, Dissociation)
+\item Disinhibited Externalizing = max(Substance, Mania)
+\item Antagonistic Externalizing = max(Anger)
+\item Detachment = max(Detachment/Memory)
+\item Somatoform = max(Somatic)
+\end{itemize}
+
+Diese automatische Berechnung erfordert \textit{keine zus\"atzliche Datenerhebung} --- die bereits im Cross-Cutting-Screening (Abschnitt~\ref{sec:screening}) erfassten Dom\"anenwerte werden direkt wiederverwendet. Die Darstellung als Radardiagramm (visuell distinct vom PID-5-Pers\"onlichkeitsprofil) f\"ordert die Erkennung transdiagnostischer Muster, die bei rein kategorialer Diagnostik unsichtbar bleiben.
+
+\subsection{RDoC (Research Domain Criteria)}
+
+Die Research Domain Criteria des NIMH \citep{Insel2010} definieren sechs Dom\"anen (Negative Valence, Positive Valence, Cognitive Systems, Social Processes, Arousal/Regulatory, Sensorimotor) mit sieben Analyseebenen (Gene, Molek\"ule, Zellen, Schaltkreise, Physiologie, Verhalten, Selbstbericht). F\"ur ein klinisches System ist RDoC prim\"ar als \textit{Forschungsannotation} relevant: Wenn Biomarker-Daten verf\"ugbar sind (z.\,B.\ Cortisol-Profile, Neuroimaging), k\"onnen diese den RDoC-Dom\"anen zugeordnet werden. Das APA Future DSM Strategic Committee exploriert explizit die Integration von Biomarkern --- das System ist darauf vorbereitet.
+
+Ein separates Konzeptpapier beschreibt die detaillierte Architektur der dimensionalen Integration.
+
+
+% ===================================================================
+% 8. TECHNISCHE ARCHITEKTUR
+% ===================================================================
+\section{Technische Architektur der Python-Implementierung}
+\label{sec:technik}
+
+\subsection{Hierarchische Zustandsmaschinen als Entscheidungsmotor}
+
+Nach Evaluation von vier Architekturans\"atzen --- AnyTree, Zustandsmaschinen, Rule Engines und Behavior Trees --- erweisen sich \textbf{Hierarchische Zustandsmaschinen (HSMs)} mittels der Python-Bibliothek \texttt{transitions} als optimale L\"osung f\"ur psychiatrische Diagnostik-Workflows.
+
+Die \texttt{transitions}-Bibliothek mit ihrer \texttt{HierarchicalMachine}-Erweiterung bietet: konditionelle Transitionen via Guards (direkte Abbildung von \glqq wenn Symptom~X $\to$ betrete Modul~Y\grqq{}), verschachtelte Zust\"ande (der 6-Stufen-Prozess mit st\"orungsspezifischen Submodulen), History States (R\"ucknavigation) und serialisierbaren Zustand (Speichern/Fortsetzen).
+
+Die Architektur bildet sich wie folgt ab:
+
+\begin{verbatim}
+Top-level: [Intake -> Step1_Malingering -> Step2_Substance ->
+            Step3_Medical -> Step4_CrossCutting ->
+            Step5_DisorderModules -> Step6_Functioning -> Summary]
+
+Step5_DisorderModules (verschachtelt, 11 Module):
+  +-- MoodDisorders -> {MDD_Criteria, Bipolar_Screening, Dysthymia,
+                        PMDD, Prolonged_Grief}
+  +-- AnxietyDisorders -> {GAD, Panic, Social_Anxiety, Phobias,
+                           Separation_Anxiety, Selective_Mutism}
+  +-- TraumaDisorders -> {PTSD_DSM5, PTSD_ICD11, CPTSD_DSO,
+                          Acute_Stress, Adjustment}
+  +-- PsychoticDisorders -> {Schizophrenia_1mo, Schizophrenia_6mo,
+                             Schizoaffective, Brief_Psychotic}
+  +-- PersonalityDisorders -> {LPFS, PID5_Traits, ICD11_Severity}
+  +-- OCDSpectrum -> {OCD_Criteria, BDD, Hoarding, Trichotillomania,
+                      Excoriation}
+  +-- DissociativeDisorders -> {DID, Depersonalization,
+                                Dissociative_Amnesia}
+  +-- EatingDisorders -> {AN, BN, BED, ARFID}
+  +-- NeurodevelopmentalDisorders -> {ADHD, ASD_Assessment}
+  +-- SubstanceUseDisorders -> {Alcohol_Use, Drug_Use,
+                                Behavioral_Addictions}
+  +-- SomaticDisorders -> {Somatic_Symptom, Illness_Anxiety,
+                           Conversion, Factitious}
+\end{verbatim}
+
+Die Erweiterung von 5 auf \textbf{11~St\"orungsmodule} stellt sicher, dass jedes Screening-Instrument der Matrix (Tabelle~\ref{tab:instrumente}) in einen diagnostischen Workflow m\"undet. Ein auff\"alliger DES-II-Score triggert das Modul DissociativeDisorders; ein erh\"ohter SCOFF-Score das Modul EatingDisorders. Ohne diese Vollst\"andigkeit bestünde eine systemische L\"ucke zwischen Screening und Diagnostik.
+
+AnyTree wird weiterhin f\"ur \textbf{Visualisierung und Serialisierung} der Baumstruktur genutzt (Graphviz-Export, JSON-Repr\"asentation), w\"ahrend \texttt{transitions} die Laufzeitlogik verwaltet.
+
+\subsection{Empfohlener Technologie-Stack}
+
+\begin{table}[H]
+\centering
+\caption{Empfohlener Technologie-Stack}
+\label{tab:techstack}
+\begin{tabularx}{\textwidth}{lXl}
+\toprule
+\textbf{Komponente} & \textbf{Empfehlung} & \textbf{Begr\"undung} \\
+\midrule
+Entscheidungsmotor & \texttt{transitions} (HSM) & Verschachtelte Zust\"ande, Guards \\
+Baumvisualisierung & \texttt{anytree} & Graphviz-Export, JSON \\
+UI (Prototyp) & Streamlit & Schnelles Prototyping, \texttt{st.navigation} \\
+PDF-Berichte & WeasyPrint + Jinja2 & Natives UTF-8, HTML/CSS-Templates \\
+Pers\"onlichkeits-Charts & Plotly & \texttt{px.line\_polar()} f\"ur PID-5-Radardiagramme \\
+Datenpersistenz & SQLModel + SQLite & Pydantic + SQLAlchemy kombiniert \\
+Datenvalidierung & Pydantic & Typsichere Diagnosekriterien-Modelle \\
+ICD-11-Codes & WHO ICD-11 API & Strukturierte Diagnose-Code-Suche \\
+Interoperabilit\"at & HL7 FHIR (R4) & Standardisierter Datenaustausch \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+% ===================================================================
+% 9. FUNKTIONALE ASSESSMENT-INTEGRATION
+% ===================================================================
+\section{Funktionale Beurteilung: Br\"ucke zwischen Diagnose und Behinderung}
+\label{sec:funktional}
+
+Die Integration funktionaler Beurteilung verbindet Diagnose und Teilhabe. Das Modell implementiert drei Ebenen: das krankheitsspezifische Assessment (ICF Core Sets), die allgemeine Behinderungsmessung (WHODAS~2.0) und die rechtlich-administrative Bewertung (GdB).
+
+ICD-11 selbst hat sich in Richtung ICF-Integration bewegt, indem \glqq Functioning Properties\grqq{} eingef\"uhrt wurden, die mit 103 rehabilitationsrelevanten Gesundheitszust\"anden verkn\"upft sind. F\"ur Schizophrenie und psychotische St\"orungen enth\"alt ICD-11 \textbf{dimensionale Qualifikatoren}, die mit rehabilitationsbasierter psychiatrischer Versorgung konsistent sind.
+
+
+% ===================================================================
+% 10. ETHIK UND DATENSCHUTZ
+% ===================================================================
+\section{Ethik, Datenschutz und algorithmischer Bias}
+\label{sec:ethik}
+
+Die computergest\"utzte psychiatrische Diagnostik wirft spezifische ethische Fragen auf, die bei der Entwicklung und Implementierung systematisch adressiert werden m\"ussen.
+
+\subsection{Algorithmischer Bias}
+
+Screening-Instrumente sind an spezifischen Populationen validiert. Der PHQ-9 zeigt kulturell variable Cutoff-Werte; der AQ-10 hat eine bekannte Geschlechterverzerrung bei Frauen mit Autismus-Spektrum-St\"orungen (\"Uberdiagnose bei M\"annern, Unterdiagnose bei Frauen). Das System muss diese Bias-Risiken transparent dokumentieren und --- wo verf\"ugbar --- populationsspezifische Normen anbieten. Die Integration des Cultural Formulation Interview (Abschnitt~\ref{sec:achse4}) adressiert kulturellen Bias auf der Systemebene.
+
+\subsection{Datenschutz und DSGVO}
+
+Psychiatrische Diagnosedaten geh\"oren zu den sensibelsten Gesundheitsdaten. Die Implementierung muss folgende Anforderungen erf\"ullen: Verschl\"usselung aller gespeicherten und \"ubertragenen Daten (AES-256, TLS~1.3); Zugriffskontrolle nach Professionszuordnung (Abschnitt~\ref{sec:multiprofessionell}); Audit-Trail f\"ur alle diagnostischen Entscheidungen; Recht auf L\"oschung und Datenportabilit\"at; Datensparsamkeit --- nur diagnostisch notwendige Informationen werden erfasst. Besondere Vorsicht gilt f\"ur die Belegsammlung (Achse~VI), die pers\"onliche Dokumente referenziert.
+
+\subsection{Klinische Verantwortung}
+
+Das System ist als \textit{Unterst\"utzungswerkzeug} konzipiert, nicht als diagnostischer Automat. Alle algorithmischen Diagnosevorschl\"age erfordern klinische Best\"atigung. Die epistemische Grenze der Automatisierbarkeit (vgl.\ Stufe~6 der Gatekeeper-Logik, Abschnitt~\ref{sec:gatekeeper}) wird im System explizit kommuniziert. Die finale diagnostische Verantwortung liegt stets beim behandelnden Kliniker.
+
+
+% ===================================================================
+% 11. VALIDIERUNGSSTRATEGIE
+% ===================================================================
+\section{Validierungsstrategie}
+\label{sec:validierung}
+
+Die Abschaffung des DSM-IV-Systems wurde unter anderem durch mangelnde Interrater-Reliabilit\"at begr\"undet. Das vorliegende System muss daher von Anfang an eine rigorose Validierungsstrategie verfolgen:
+
+\begin{description}[style=nextline, leftmargin=1.5cm, font=\bfseries]
+\item[Phase~1: Experten-Review (N=10--15)] Strukturiertes Review der Achsenarchitektur durch Psychiater, klinische Psychologen und Sozialarbeiter. Bewertung der Vollst\"andigkeit, klinischen Plausibilit\"at und Praktikabilit\"at. Ziel: Identifikation fehlender Subachsen oder \"uberfl\"ussiger Komponenten.
+\item[Phase~2: Pilotierung mit Fallvignetten (N=50)] Anwendung des Systems auf standardisierte Fallvignetten durch unabh\"angige Rater. Messung der Interrater-Reliabilit\"at (Cohen's $\kappa$, ICC) f\"ur jede Achse und Subachse. Vergleich mit Goldstandard-Diagnosen (SCID-5-CV, MINI 7.0).
+\item[Phase~3: Klinische Felderprobung (N=200+)] Prospektive Anwendung in klinischen Settings (ambulant und station\"ar). Messung von: Interrater-Reliabilit\"at, konvergente Validit\"at gegen\"uber etablierten Systemen, inkrementelle Validit\"at der Abdeckungsanalyse (werden durch Ii/IIIi identifizierte L\"ucken klinisch best\"atigt?), Akzeptanz und Usability (System Usability Scale, SUS).
+\item[Phase~4: Multi-Site-Trial] Multizentrische Studie zur Generalisierbarkeit. Vergleich station\"ar vs.\ ambulant, Erwachsene vs.\ Kinder/Jugendliche, verschiedene kulturelle Kontexte.
+\end{description}
+
+
+% ===================================================================
+% 12. INTEROPERABILITÄT
+% ===================================================================
+\section{Interoperabilit\"at und Gesundheits-IT-Standards}
+\label{sec:interop}
+
+F\"ur die Integration in bestehende Gesundheitsinformationssysteme muss das 6-Achsen-Modell standardkonforme Schnittstellen implementieren.
+
+\textbf{HL7 FHIR (R4):} Die Achsen lassen sich auf FHIR-Ressourcen abbilden: Achse~I/III-Diagnosen als \texttt{Condition}-Ressourcen mit Extensions f\"ur Subachsen-Zuordnung; Screening-Ergebnisse als \texttt{QuestionnaireResponse}; Funktionsstatus (Achse~IV) als \texttt{ClinicalImpression}; die Fallformulierung (Achse~V) als \texttt{CarePlan}; Belege (Achse~VI) als \texttt{DocumentReference}.
+
+\textbf{SNOMED CT:} Alle Diagnosen sollten neben DSM-5-TR- und ICD-11-Codes auch SNOMED-CT-Konzept-IDs f\"uhren, um internationale Interoperabilit\"at zu gew\"ahrleisten.
+
+\textbf{MHIRA-Kompatibilit\"at:} Das MHIRA-Projekt (Mental Health Information Reporting Assistant, BMC Psychiatry 2023) stellt die relevanteste Open-Source-Referenzarchitektur dar: ein cloud-basiertes, Docker-deployiertes psychiatrisches EHR-System mit digitalisierten psychometrischen Instrumenten. Eine FHIR-basierte Schnittstelle zum MHIRA-System sollte priorisiert werden.
+
+
+% ===================================================================
+% 13. DISKUSSION UND AUSBLICK
+% ===================================================================
+\section{Diskussion und Ausblick}
+\label{sec:diskussion}
+
+Das vorgestellte 6-Achsen-Modell ist kein R\"uckgriff auf das DSM-IV, sondern repr\"asentiert eine \textbf{genuine Weiterentwicklung}, auf die die psychiatrische Fachwelt selbst konvergiert. Acht Merkmale sind besonders innovativ:
+
+\textbf{Erstens} hat die Abdeckungsanalyse (Abschnitt~\ref{sec:abdeckung}) keine existierende Implementierung in der publizierten psychiatrischen Informatik. Sie adressiert das von Nordgaard et al.\ (2020) dokumentierte Grundproblem transdiagnostischer Symptom\"uberlappung und wird symmetrisch in Achse~I (Ii) und Achse~III (IIIi) implementiert.
+
+\textbf{Zweitens} verbr\"uckt die operationalisierte Integration von Fallformulierung (Achse~V) mit diagnostischer Klassifikation die langj\"ahrige Kluft zwischen \glqq Welche St\"orung hat dieser Patient?\grqq{} und \glqq Warum hat dieser Patient diese St\"orung?\grqq{}.
+
+\textbf{Drittens} adressiert die Dual-System-Architektur DSM-5-TR/ICD-11 ein reales klinisches Bed\"urfnis in Kontexten, in denen beide Systeme Anwendung finden.
+
+\textbf{Viertens} stellt die symmetrische Parallelstruktur von Achse~I und Achse~III sicher, dass das System als gemeinsames Werkzeug f\"ur alle beteiligten Professionen funktioniert --- ein Designprinzip, das in keinem bisherigen System verfolgt wurde.
+
+\textbf{F\"unftens} bietet die Erweiterung auf 11~St\"orungsmodule erstmals eine vollst\"andige Abdeckung zwischen Screening und Diagnostik: Jedes Screening-Instrument m\"undet in einen strukturierten diagnostischen Workflow.
+
+\textbf{Sechstens} operationalisiert die PRO/CONTRA-Evidenzbewertung mit numerischer Konfidenz die differenzialdiagnostische Transparenz: Der Kliniker muss nicht nur \textit{welche} Diagnose er stellt, sondern \textit{warum} dokumentieren --- einschlie\ss{}lich der bewusst verworfenen Gegenargumente.
+
+\textbf{Siebtens} implementiert das CAVE-Warnsystem in Achse~VI eine achsen\"ubergreifende Sicherheitsschicht, die kritische klinische Risiken (Labor-Artefakte, Medikamenten-Interaktionen, Kontraindikationen, zeitliche Fehlzuordnungen) prominent kennzeichnet --- ein Feature, das in keinem publizierten Klassifikationssystem existiert.
+
+\textbf{Achtens} erg\"anzt der longitudinale Symptomverlauf die querschnittliche Diagnostik um eine zeitliche Dimension: Die Dokumentation von Symptombeginn, aktuellem Status und Therapieansprechen erm\"oglicht die Identifikation von Chronifizierungsmustern und Therapieresistenz, die f\"ur die Behandlungsplanung essentiell sind.
+
+Die technische Implementierung sollte vier Meilensteine priorisieren: (1)~das Cross-Cutting-Screening-Modul als Einstiegspunkt des Systems, (2)~die Gatekeeper-Zustandsmaschine mittels \texttt{transitions} HSM, (3)~das PID-5-BF-Assessment mit Plotly-Radardiagramm und WeasyPrint-PDF-Export, und (4)~die FHIR-Schnittstellendefinition f\"ur Interoperabilit\"at.
+
+
+% ===================================================================
+% 14. ZUSAMMENFASSUNG
+% ===================================================================
+\section{Zusammenfassung}
+\label{sec:zusammenfassung}
+
+Die vorliegende Arbeit hat ein 6-Achsen-Modell zur computergest\"utzten multiaxialen psychiatrischen Diagnostik vorgestellt, das DSM-5-TR, ICD-11 und ICF in einem integrierten Expertensystem vereint. Das Modell adressiert jede historische Kritik am DSM-IV-System und f\"ugt neuartige Komponenten hinzu: die quantitative Abdeckungsanalyse mit Symptom-Diagnosen-Matrix und prozentualer Gesamtmetrik, das operationalisierte Bedingungsmodell, die PRO/CONTRA-Evidenzbewertung mit Konfidenzsch\"atzung pro Diagnose, den priorisierten 3-Stufen-Untersuchungsplan, CAVE-Warnhinweise f\"ur achsen\"ubergreifende klinische Risiken, den longitudinalen Symptomverlauf und die symmetrische Achsenarchitektur mit eigenst\"andiger Medikamentenanamnese. Die 6-Stufen-Gatekeeper-Logik bildet den Goldstandard nach First (2024) exakt ab. Die HiTOP-Spektren werden automatisch aus Cross-Cutting-Daten berechnet. Die multi-professionelle Zuordnung definiert klare Zust\"andigkeiten f\"ur Psychologen, Mediziner und Sozialarbeiter. Die Integration dimensionaler Perspektiven (HiTOP, RDoC), ethischer Leitlinien und einer rigoros gestuften Validierungsstrategie sichert wissenschaftliche Anschlussf\"ahigkeit. Die technische Implementierung als hierarchische Zustandsmaschine mit 11~St\"orungsmodulen und FHIR-Interoperabilit\"at bietet einen klaren Pfad vom Prototyp zum klinischen Werkzeug. Die institutionelle Validierung durch das APA Future DSM Strategic Committee und die Forderungen von Erlich und First (2025) best\"atigen die Relevanz des Ansatzes.
+
+
+% ===================================================================
+% ENGLISCHE ÜBERSETZUNG
+% ===================================================================
+\newpage
+\selectlanguage{english}
+
+\section*{English Translation}
+\addcontentsline{toc}{section}{English Translation}
+
+\subsection*{An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis: Synthesis of DSM-5-TR, ICD-11, and ICF in a 6-Axis Expert System}
+
+\subsubsection*{Abstract}
+
+This paper presents a novel 6-axis model for computer-assisted multiaxial psychiatric diagnosis that unifies categorical diagnostics according to DSM-5-TR and ICD-11 with the functional classification of the ICF in an integrated expert system. The model systematically addresses the clinical deficits created by the abolition of the multiaxial system in DSM-5 (2013) while going beyond the historical DSM-IV system: Axis~I (Mental Health Profiles) captures acute, chronic, remitted, and refuted diagnoses including treatment history, quantitative coverage analysis with percentage-based symptom-diagnosis matrices, and a prioritized 3-tier investigation plan across ten sub-axes; Axis~II (Biography and Development) integrates dimensional personality assessment via PID-5; Axis~III (Medical Synopsis) mirrors Axis~I's structure symmetrically with 13 sub-axes including contributing medical factors, medical suspected diagnoses, integrated causal analysis, genetics/family burden, and a structured medication history with efficacy ratings; Axis~IV (Environment and Functioning) combines ICF, WHODAS~2.0, the German GdB disability system, and the Cultural Formulation Interview; Axis~V (Integrated Condition Model) bridges case formulation with diagnostic classification through an operationalized 3P/4P schema; Axis~VI (Evidence Collection and Clinical Safety) implements a systematic evidence matrix, CAVE clinical alerts for cross-axis risk management, and longitudinal symptom tracking. Each diagnosis receives structured PRO/CONTRA evidence evaluation with explicit confidence estimation. HiTOP spectra are computed directly from Cross-Cutting screening results. A multi-professional assignment model defines explicit responsibilities for psychologists, physicians, social workers, and the interdisciplinary team. The 6-step gatekeeper logic exactly replicates the gold-standard sequence published by Michael~B. First. The coverage analysis represents a genuine innovation without precedent. New sections address dimensional integration (HiTOP/RDoC), ethics and data protection, validation strategy, and interoperability standards (HL7 FHIR). The technical implementation as a hierarchical state machine with 11 disorder modules is presented.
+
+\textbf{Keywords:} Multiaxial Diagnosis, DSM-5-TR, ICD-11, ICF, Expert System, Differential Diagnosis, Coverage Analysis, Case Formulation, Cross-Cutting Symptom Measures, Hierarchical State Machine, PID-5, WHODAS~2.0, HiTOP, RDoC, Multi-professional Model, HL7 FHIR, PRO/CONTRA Evidence Evaluation, CAVE Alerts, Symptom Timeline
+
+\subsubsection*{1. Introduction}
+
+The abolition of the multiaxial diagnostic system in DSM-5 left a structural gap in psychiatric diagnostics. The original five-axis system introduced with DSM-III (1980) was eliminated due to poor inter-rater reliability of the GAF score, conceptual conflation of symptoms and functioning in Axis~V, inconsistent clinical use of Axis~IV, and the artificial boundary between Axes~I and~II. The clinical community lost more than it gained: the structured prompt for comprehensive biopsychosocial assessment was replaced by a flat listing that cannot replicate this function. Institutionally, the APA's Future DSM Strategic Committee is developing a multi-domain diagnostic model, and Erlich, First et al.\ (2025) explicitly propose returning to structured axial assessment.
+
+\subsubsection*{2. Architecture of the 6-Axis Model}
+
+The model integrates categorical diagnostics (DSM-5-TR/ICD-11) into an epistemological total system. A central design principle is the \textbf{symmetric parallel structure} between Axis~I (psychological) and Axis~III (somatic): both axes feature analogous sub-axes (suspected diagnoses, treatment history, coverage analysis, investigation plan), enabling psychologists and physicians to work with identical structural tools in their respective domains. Axis~I tracks mental health profiles across ten sub-axes (Ia--Ij), with quantitative coverage analysis (Ii) preceding a prioritized 3-tier investigation plan (Ij, categorized as urgent/important/monitoring). Each diagnosis receives structured PRO/CONTRA evidence evaluation with numerical confidence estimation (0--100\%). Axis~II modernizes personality assessment through dimensional PID-5 trait profiling. Axis~III encompasses 13 sub-axes: ten parallel the structure of Axis~I (IIIa--IIIj), with IIIb explicitly coding fully explanatory chronic conditions and IIIc coding contributing medical factors, plus three axis-specific sub-axes for integrated causal analysis (IIIk), genetic/family burden (IIIl), and structured medication history with efficacy ratings (IIIm). Axis~IV combines WHODAS~2.0, GAF, GdB, ICF Core Sets, and the Cultural Formulation Interview. Axis~V operationalizes case formulation through structured 3P/4P coding with explicit links to coverage analysis gaps. Axis~VI implements a central evidence matrix, CAVE clinical alerts for cross-axis risk management (drug interactions, lab artifacts, contraindications, temporal misattributions, diagnostic limitations), and longitudinal symptom tracking with therapy response documentation. A multi-professional assignment model defines psychologists for Axis~I, physicians for Axis~III, social workers for Axis~IV, and the interdisciplinary team for Axis~V synthesis.
+
+\subsubsection*{3. The 6-Step Gatekeeper Logic}
+
+The differential diagnosis sequence exactly maps to First's gold-standard framework: (1)~rule out malingering, (2)~rule out substance etiology, (3)~rule out medical conditions, (4)~determine primary disorders, (5)~differentiate adjustment disorders, (6)~establish boundary with no mental disorder. Step~6 is marked as ``conceptual'' because the threshold between normal stress response and mental disorder inherently requires clinical judgment, supported but not replaced by objective functional data.
+
+\subsubsection*{4. Cross-Cutting Screening}
+
+The DSM-5 Cross-Cutting Symptom Measures (23~items across 13~domains for adults; 25~items across 12~domains for children/adolescents) form the screening backbone. The screening matrix now covers 19 domains including eating disorders (SCOFF, EDE-QS), sleep disorders (ISI), and impulse control, ensuring complete coverage across all 11 HSM disorder modules.
+
+\subsubsection*{5. Divergences, Coverage Analysis, and Dimensional Integration}
+
+Five critical DSM-5-TR/ICD-11 divergences require dual-system encoding, including the newly added Prolonged Grief Disorder. The coverage analysis is implemented symmetrically in Axis~I (Ii) and Axis~III (IIIi) with quantitative percentage-based metrics: each symptom receives a coverage percentage, classified as fully covered ($\geq$85\%), partially covered (60--84\%), or insufficiently covered ($<$60\%), yielding a total coverage metric. Dimensional integration via automatic HiTOP spectra computation from Cross-Cutting domain scores and RDoC research annotation provides complementary perspectives to categorical diagnosis.
+
+\subsubsection*{6. Ethics, Validation, and Interoperability}
+
+New sections address algorithmic bias in screening instruments, GDPR compliance for sensitive psychiatric data, clinical responsibility boundaries, a four-phase validation strategy (expert review, vignette piloting, clinical field trial, multi-site trial), and HL7 FHIR interoperability for integration with existing health IT systems.
+
+\subsubsection*{7. Conclusion}
+
+The proposed 6-axis system represents a genuine advancement. Key innovations include: symmetric Axis~I/III architecture enabling true multi-professional use; quantitative coverage analysis with percentage-based symptom-diagnosis matrices without published precedent; PRO/CONTRA evidence evaluation with confidence estimation for diagnostic transparency; a prioritized 3-tier investigation plan (urgent/important/monitoring); CAVE clinical alerts for cross-axis risk management; longitudinal symptom tracking with therapy response; structured medication history with efficacy ratings (IIIm); automatic HiTOP spectra computation from Cross-Cutting data; operationalized case formulation bridging diagnosis and treatment; expansion to 11 disorder modules ensuring complete screening-to-diagnosis coverage; and a rigorous validation roadmap. The institutional convergence with the APA Future DSM Strategic Committee confirms the approach's relevance.
+
+
+% ===================================================================
+% LITERATURVERZEICHNIS
+% ===================================================================
+\newpage
+\selectlanguage{ngerman}
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{99}
+
+\bibitem[APA(2013)]{APA2013}
+American Psychiatric Association (2013).
+\newblock \textit{Diagnostic and Statistical Manual of Mental Disorders} (5th ed.).
+\newblock Arlington, VA: American Psychiatric Publishing.
+
+\bibitem[APA(2022)]{APA2022}
+American Psychiatric Association (2022).
+\newblock \textit{Diagnostic and Statistical Manual of Mental Disorders, Text Revision} (DSM-5-TR).
+\newblock Washington, DC: American Psychiatric Publishing.
+
+\bibitem[Owen(2023)]{Owen2023}
+Owen, G. (2023).
+\newblock What is formulation in psychiatry?
+\newblock \textit{Psychological Medicine}, 53(5), 1700--1707. DOI: 10.1017/S0033291723000016.
+
+\bibitem[Cloitre et al.(2018)]{Cloitre2018}
+Cloitre, M., Shevlin, M., Brewin, C.\,R. et al. (2018).
+\newblock The International Trauma Questionnaire: Development of a self-report measure of ICD-11 PTSD and Complex PTSD.
+\newblock \textit{Acta Psychiatrica Scandinavica}, 138(6), 536--546.
+
+\bibitem[Erlich \& First(2025)]{ErlichFirst2025}
+Erlich, M.\,D. \& First, M.\,B. (2025).
+\newblock Returning to structured axial assessment for social determinants of health.
+\newblock \textit{Psychiatric Services}.
+
+\bibitem[First(2024)]{First2024}
+First, M.\,B. (2024).
+\newblock \textit{DSM-5-TR Handbook of Differential Diagnosis}.
+\newblock Washington, DC: American Psychiatric Publishing.
+
+\bibitem[Gspandl et al.(2018)]{Gspandl2018}
+Gspandl, S., Peirson, R.\,P., Nahhas, R.\,W. et al. (2018).
+\newblock Comparing self-rated WHODAS 2.0 and clinician-rated GAF.
+\newblock \textit{Psychiatry Research}, 267, 480--486.
+
+\bibitem[Insel et al.(2010)]{Insel2010}
+Insel, T., Cuthbert, B., Garvey, M. et al. (2010).
+\newblock Research Domain Criteria (RDoC): Toward a new classification framework for research on mental disorders.
+\newblock \textit{American Journal of Psychiatry}, 167(7), 748--751.
+
+\bibitem[Kotov et al.(2017)]{Kotov2017}
+Kotov, R., Krueger, R.\,F., Watson, D. et al. (2017).
+\newblock The Hierarchical Taxonomy of Psychopathology (HiTOP): A dimensional alternative to traditional nosologies.
+\newblock \textit{Journal of Abnormal Psychology}, 126(4), 454--477.
+
+\bibitem[Kress et al.(2014)]{Kress2014}
+Kress, V.\,E., Paylo, M.\,J. \& Stargell, N.\,A. (2014).
+\newblock Counseling and psychotherapy: Investigating practice from a scientific perspective.
+\newblock \textit{The Professional Counselor}, 4(4).
+
+\bibitem[Linden \& Baron(2005)]{LindenBaron2005}
+Linden, M. \& Baron, S. (2005).
+\newblock Das Mini-ICF-APP: Mini-ICF-Rating f\"ur Aktivit\"ats- und Partizipationsst\"orungen bei psychischen Erkrankungen.
+\newblock \textit{Die Rehabilitation}, 44(3), 153--159.
+
+\bibitem[Narrow et al.(2013)]{Narrow2013}
+Narrow, W.\,E., Clarke, D.\,E., Kuramoto, S.\,J. et al. (2013).
+\newblock DSM-5 field trials in the United States and Canada, Part III.
+\newblock \textit{American Journal of Psychiatry}, 170(1), 71--82.
+
+\bibitem[Nordgaard et al.(2020)]{Nordgaard2020}
+Nordgaard, J., Jessen, K., Saebye, D. \& Parnas, J. (2020).
+\newblock Variability in clinical diagnoses during the ICD-8 and ICD-10 era.
+\newblock \textit{Social Psychiatry and Psychiatric Epidemiology}.
+
+\bibitem[Probst(2014)]{Probst2014}
+Probst, B. (2014).
+\newblock The life and death of Axis IV: Caught in the quest for a theory-free diagnostic system.
+\newblock \textit{Research on Social Work Practice}, 24(1), 123--131.
+
+\bibitem[WHO(2019)]{WHO2019}
+World Health Organization (2019).
+\newblock \textit{International Classification of Diseases, 11th Revision} (ICD-11).
+\newblock Geneva: WHO.
+
+\bibitem[WHO(2010)]{WHO2010}
+World Health Organization (2010).
+\newblock \textit{WHODAS 2.0: WHO Disability Assessment Schedule 2.0}.
+\newblock Geneva: WHO.
+
+\end{thebibliography}
+
+\end{document}
