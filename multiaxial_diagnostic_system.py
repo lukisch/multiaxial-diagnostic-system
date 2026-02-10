@@ -56,6 +56,98 @@ try:
 except ImportError:
     HAS_PANDAS = False
 
+import sqlite3
+
+# ===================================================================
+# DIAGNOSTIC CODE DATABASE
+# ===================================================================
+
+_CODE_DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "diagnostic_codes.db")
+HAS_CODE_DB = os.path.exists(_CODE_DB_PATH)
+
+
+@st.cache_data(ttl=3600)
+def _load_code_options(system: str, lang: str = "de") -> list:
+    """Load all codes from a system as 'CODE - Title' strings for selectbox."""
+    if not HAS_CODE_DB:
+        return []
+    title_col = "title_de" if lang == "de" else "title_en"
+    conn = sqlite3.connect(_CODE_DB_PATH)
+    if system == "icd11":
+        rows = conn.execute(
+            f"SELECT code, {title_col} FROM icd11 ORDER BY code"
+        ).fetchall()
+    elif system == "dsm5":
+        rows = conn.execute(
+            f"SELECT icd10cm_code, {title_col} FROM dsm5 ORDER BY icd10cm_code"
+        ).fetchall()
+    elif system == "icf":
+        rows = conn.execute(
+            f"SELECT code, {title_col} FROM icf ORDER BY code"
+        ).fetchall()
+    else:
+        rows = []
+    conn.close()
+    return [f"{code} - {title}" for code, title in rows]
+
+
+@st.cache_data(ttl=3600)
+def _load_icd11_options_by_chapter(chapter: str, lang: str = "de") -> list:
+    """Load ICD-11 codes filtered by chapter."""
+    if not HAS_CODE_DB:
+        return []
+    title_col = "title_de" if lang == "de" else "title_en"
+    conn = sqlite3.connect(_CODE_DB_PATH)
+    rows = conn.execute(
+        f"SELECT code, {title_col} FROM icd11 WHERE chapter = ? ORDER BY code",
+        (chapter,)
+    ).fetchall()
+    conn.close()
+    return [f"{code} - {title}" for code, title in rows]
+
+
+def get_cross_mapped_code(source_system: str, source_code: str, target_system: str) -> str:
+    """Look up cross-mapped code between systems."""
+    if not HAS_CODE_DB:
+        return ""
+    conn = sqlite3.connect(_CODE_DB_PATH)
+    row = conn.execute(
+        "SELECT target_code FROM code_mapping WHERE source_system=? AND source_code=? AND target_system=? LIMIT 1",
+        (source_system, source_code, target_system)
+    ).fetchone()
+    if not row:
+        row = conn.execute(
+            "SELECT source_code FROM code_mapping WHERE target_system=? AND target_code=? AND source_system=? LIMIT 1",
+            (source_system, source_code, target_system)
+        ).fetchone()
+    conn.close()
+    return row[0] if row else ""
+
+
+def get_code_title(system: str, code: str, lang: str = "de") -> str:
+    """Get the title for a specific code."""
+    if not HAS_CODE_DB:
+        return ""
+    title_col = "title_de" if lang == "de" else "title_en"
+    conn = sqlite3.connect(_CODE_DB_PATH)
+    if system == "icd11":
+        row = conn.execute(f"SELECT {title_col} FROM icd11 WHERE code=?", (code,)).fetchone()
+    elif system == "dsm5":
+        row = conn.execute(f"SELECT {title_col} FROM dsm5 WHERE icd10cm_code=?", (code,)).fetchone()
+    elif system == "icf":
+        row = conn.execute(f"SELECT {title_col} FROM icf WHERE code=?", (code,)).fetchone()
+    else:
+        row = None
+    conn.close()
+    return row[0] if row else ""
+
+
+def _extract_code(option: str) -> str:
+    """Extract code from 'CODE - Title' selectbox format."""
+    if option and " - " in option:
+        return option.split(" - ")[0].strip()
+    return option.strip() if option else ""
+
 
 # ===================================================================
 # TRANSLATION SYSTEM (i18n)
@@ -307,6 +399,7 @@ class PatientData:
     # Achse IV: Umwelt & Funktion
     functioning: FunctioningAssessment = field(default_factory=FunctioningAssessment)
     contact_persons: list = field(default_factory=list)
+    icf_codes: list = field(default_factory=list)
 
     # Achse V: Bedingungsmodell
     condition_model: ConditionModel = field(default_factory=ConditionModel)
@@ -883,9 +976,25 @@ if menu == t("nav_gatekeeper"):
 
         with st.form("disorder_module_form"):
             diag_name = st.text_input(t("gate5_diag_name"))
+            _lang = st.session_state.get("lang", "de")
             col1, col2 = st.columns(2)
-            diag_icd11 = col1.text_input(t("gate5_icd11_code"))
-            diag_dsm5 = col2.text_input(t("gate5_dsm5_code"))
+            if HAS_CODE_DB:
+                _icd11_opts = [""] + _load_code_options("icd11", _lang)
+                _dsm5_opts = [""] + _load_code_options("dsm5", _lang)
+                diag_icd11_sel = col1.selectbox(
+                    t("gate5_icd11_code"), _icd11_opts, key="g5_icd11")
+                diag_dsm5_sel = col2.selectbox(
+                    t("gate5_dsm5_code"), _dsm5_opts, key="g5_dsm5")
+                col_m1, col_m2 = st.columns(2)
+                diag_icd11_manual = col_m1.text_input(
+                    t("code_manual_icd11"), key="g5_icd11_man")
+                diag_dsm5_manual = col_m2.text_input(
+                    t("code_manual_dsm5"), key="g5_dsm5_man")
+            else:
+                diag_icd11_sel = ""
+                diag_dsm5_sel = ""
+                diag_icd11_manual = col1.text_input(t("gate5_icd11_code"))
+                diag_dsm5_manual = col2.text_input(t("gate5_dsm5_code"))
             status_options = [t("gate5_status_acute"), t("gate5_status_chronic"),
                               t("gate5_status_suspected"), t("gate5_status_excluded")]
             diag_status = st.selectbox(t("gate5_status"), status_options)
@@ -907,6 +1016,19 @@ if menu == t("nav_gatekeeper"):
             diag_contra = col_con.text_area(t("diag_contra_evidence"), height=80)
 
             if st.form_submit_button(t("gate5_add_diag")):
+                # Code aus Selectbox oder manuellem Feld extrahieren
+                diag_icd11 = _extract_code(diag_icd11_sel) if diag_icd11_sel else diag_icd11_manual.strip()
+                diag_dsm5 = _extract_code(diag_dsm5_sel) if diag_dsm5_sel else diag_dsm5_manual.strip()
+                # Auto-Cross-Mapping: DSM-5 → ICD-11 und umgekehrt
+                if diag_dsm5 and not diag_icd11:
+                    diag_icd11 = get_cross_mapped_code("dsm5", diag_dsm5, "icd11")
+                elif diag_icd11 and not diag_dsm5:
+                    diag_dsm5 = get_cross_mapped_code("icd11", diag_icd11, "dsm5")
+                # Auto-Name aus Code-Titel wenn leer
+                if not diag_name.strip() and diag_icd11:
+                    diag_name = get_code_title("icd11", diag_icd11, _lang)
+                elif not diag_name.strip() and diag_dsm5:
+                    diag_name = get_code_title("dsm5", diag_dsm5, _lang)
                 diag = Diagnosis(
                     code_icd11=diag_icd11,
                     code_dsm5=diag_dsm5,
@@ -1304,15 +1426,34 @@ elif menu == t("nav_axis3"):
     ])
 
     # --- IIIa: Akute medizinische Diagnosen ---
+    _lang = st.session_state.get("lang", "de")
     with tab_acute:
         st.subheader(t("ax3_acute_subheader"))
         with st.form("med_acute_form"):
             mc_name = st.text_input(t("ax3_med_diag_name"), key="iiia_name")
             col1, col2 = st.columns(2)
-            mc_code = col1.text_input(t("ax3_med_diag_code"), key="iiia_code")
-            mc_dsm = col2.text_input(t("ax3_med_diag_dsm_code"), key="iiia_dsm")
+            if HAS_CODE_DB:
+                _icd11_all = [""] + _load_code_options("icd11", _lang)
+                _dsm5_all = [""] + _load_code_options("dsm5", _lang)
+                mc_code_sel = col1.selectbox(t("ax3_med_diag_code"), _icd11_all, key="iiia_code")
+                mc_dsm_sel = col2.selectbox(t("ax3_med_diag_dsm_code"), _dsm5_all, key="iiia_dsm")
+                col_m1, col_m2 = st.columns(2)
+                mc_code_man = col_m1.text_input(t("code_manual_icd11"), key="iiia_code_man")
+                mc_dsm_man = col_m2.text_input(t("code_manual_dsm5"), key="iiia_dsm_man")
+            else:
+                mc_code_sel, mc_dsm_sel = "", ""
+                mc_code_man = col1.text_input(t("ax3_med_diag_code"), key="iiia_code")
+                mc_dsm_man = col2.text_input(t("ax3_med_diag_dsm_code"), key="iiia_dsm")
             mc_evidence = st.text_area(t("ax3_evidence"), key="iiia_evidence")
             if st.form_submit_button(t("ax3_add_condition")):
+                mc_code = _extract_code(mc_code_sel) if mc_code_sel else mc_code_man.strip()
+                mc_dsm = _extract_code(mc_dsm_sel) if mc_dsm_sel else mc_dsm_man.strip()
+                if mc_dsm and not mc_code:
+                    mc_code = get_cross_mapped_code("dsm5", mc_dsm, "icd11")
+                elif mc_code and not mc_dsm:
+                    mc_dsm = get_cross_mapped_code("icd11", mc_code, "dsm5")
+                if not mc_name.strip() and mc_code:
+                    mc_name = get_code_title("icd11", mc_code, _lang)
                 p.med_diagnoses_acute.append(asdict(MedicalCondition(
                     name=mc_name, icd11_code=mc_code, dsm5_code=mc_dsm,
                     status="akut", evidence=mc_evidence
@@ -1327,8 +1468,16 @@ elif menu == t("nav_axis3"):
         with st.form("med_chronic_form"):
             mc_name = st.text_input(t("ax3_med_diag_name"), key="iiib_name")
             col1, col2 = st.columns(2)
-            mc_code = col1.text_input(t("ax3_med_diag_code"), key="iiib_code")
-            mc_dsm = col2.text_input(t("ax3_med_diag_dsm_code"), key="iiib_dsm")
+            if HAS_CODE_DB:
+                mc_code_sel = col1.selectbox(t("ax3_med_diag_code"), _icd11_all, key="iiib_code")
+                mc_dsm_sel = col2.selectbox(t("ax3_med_diag_dsm_code"), _dsm5_all, key="iiib_dsm")
+                col_m1, col_m2 = st.columns(2)
+                mc_code_man = col_m1.text_input(t("code_manual_icd11"), key="iiib_code_man")
+                mc_dsm_man = col_m2.text_input(t("code_manual_dsm5"), key="iiib_dsm_man")
+            else:
+                mc_code_sel, mc_dsm_sel = "", ""
+                mc_code_man = col1.text_input(t("ax3_med_diag_code"), key="iiib_code")
+                mc_dsm_man = col2.text_input(t("ax3_med_diag_dsm_code"), key="iiib_dsm")
             mc_causality = st.selectbox(
                 t("ax3_causality_label"),
                 [t("ax3_causality_full"), t("ax3_causality_contributing"),
@@ -1337,6 +1486,14 @@ elif menu == t("nav_axis3"):
             )
             mc_evidence = st.text_area(t("ax3_evidence"), key="iiib_evidence")
             if st.form_submit_button(t("ax3_add_condition")):
+                mc_code = _extract_code(mc_code_sel) if mc_code_sel else mc_code_man.strip()
+                mc_dsm = _extract_code(mc_dsm_sel) if mc_dsm_sel else mc_dsm_man.strip()
+                if mc_dsm and not mc_code:
+                    mc_code = get_cross_mapped_code("dsm5", mc_dsm, "icd11")
+                elif mc_code and not mc_dsm:
+                    mc_dsm = get_cross_mapped_code("icd11", mc_code, "dsm5")
+                if not mc_name.strip() and mc_code:
+                    mc_name = get_code_title("icd11", mc_code, _lang)
                 p.med_diagnoses_chronic.append(asdict(MedicalCondition(
                     name=mc_name, icd11_code=mc_code, dsm5_code=mc_dsm,
                     status="chronisch", causality=mc_causality,
@@ -1351,9 +1508,17 @@ elif menu == t("nav_axis3"):
         st.subheader(t("ax3_contributing_subheader"))
         with st.form("med_contrib_form"):
             mc_name = st.text_input(t("ax3_med_diag_name"), key="iiic_name")
-            mc_code = st.text_input(t("ax3_med_diag_code"), key="iiic_code")
+            if HAS_CODE_DB:
+                mc_code_sel = st.selectbox(t("ax3_med_diag_code"), _icd11_all, key="iiic_code")
+                mc_code_man = st.text_input(t("code_manual_icd11"), key="iiic_code_man")
+            else:
+                mc_code_sel = ""
+                mc_code_man = st.text_input(t("ax3_med_diag_code"), key="iiic_code")
             mc_evidence = st.text_area(t("ax3_evidence"), key="iiic_evidence")
             if st.form_submit_button(t("ax3_add_condition")):
+                mc_code = _extract_code(mc_code_sel) if mc_code_sel else mc_code_man.strip()
+                if not mc_name.strip() and mc_code:
+                    mc_name = get_code_title("icd11", mc_code, _lang)
                 p.med_diagnoses_contributing.append(asdict(MedicalCondition(
                     name=mc_name, icd11_code=mc_code,
                     status="aktiv", causality="beitragend",
@@ -1430,9 +1595,17 @@ elif menu == t("nav_axis3"):
         st.subheader(t("ax3_suspected_subheader"))
         with st.form("med_suspected_form"):
             ms_name = st.text_input(t("ax3_med_diag_name"), key="iiih_name")
-            ms_code = st.text_input(t("ax3_med_diag_code"), key="iiih_code")
+            if HAS_CODE_DB:
+                ms_code_sel = st.selectbox(t("ax3_med_diag_code"), _icd11_all, key="iiih_code")
+                ms_code_man = st.text_input(t("code_manual_icd11"), key="iiih_code_man")
+            else:
+                ms_code_sel = ""
+                ms_code_man = st.text_input(t("ax3_med_diag_code"), key="iiih_code")
             ms_evidence = st.text_area(t("ax3_evidence"), key="iiih_evidence")
             if st.form_submit_button(t("ax3_add_condition")):
+                ms_code = _extract_code(ms_code_sel) if ms_code_sel else ms_code_man.strip()
+                if not ms_name.strip() and ms_code:
+                    ms_name = get_code_title("icd11", ms_code, _lang)
                 p.med_diagnoses_suspected.append(asdict(MedicalCondition(
                     name=ms_name, icd11_code=ms_code,
                     status="Verdacht", evidence=ms_evidence
@@ -1590,6 +1763,48 @@ elif menu == t("nav_axis4"):
     elif p.contact_persons:
         for cp in p.contact_persons:
             st.write(f"- **{cp.get('name','')}** ({cp.get('role','')}): {cp.get('institution','')}")
+
+    st.markdown("---")
+
+    # --- ICF-Codes (Funktionsfähigkeit & Behinderung) ---
+    st.subheader(t("ax4_icf_subheader"))
+    _lang = st.session_state.get("lang", "de")
+    with st.form("icf_code_form"):
+        if HAS_CODE_DB:
+            _icf_opts = [""] + _load_code_options("icf", _lang)
+            icf_sel = st.selectbox(t("ax4_icf_select"), _icf_opts, key="icf_sel")
+            icf_manual = st.text_input(t("code_manual_icf"), key="icf_man")
+        else:
+            icf_sel = ""
+            icf_manual = st.text_input(t("ax4_icf_select"), key="icf_code")
+        icf_qualifier = st.selectbox(t("ax4_icf_qualifier"), [
+            "0 - " + t("ax4_icf_q0"),
+            "1 - " + t("ax4_icf_q1"),
+            "2 - " + t("ax4_icf_q2"),
+            "3 - " + t("ax4_icf_q3"),
+            "4 - " + t("ax4_icf_q4"),
+        ], key="icf_qual")
+        icf_notes = st.text_input(t("ax4_icf_notes"), key="icf_notes")
+        if st.form_submit_button(t("ax4_icf_add")):
+            icf_code = _extract_code(icf_sel) if icf_sel else icf_manual.strip()
+            if icf_code:
+                icf_title = get_code_title("icf", icf_code, _lang) if HAS_CODE_DB else ""
+                p.icf_codes.append({
+                    "code": icf_code,
+                    "title": icf_title or icf_code,
+                    "qualifier": icf_qualifier.split(" - ")[0],
+                    "qualifier_label": icf_qualifier,
+                    "notes": icf_notes
+                })
+                st.rerun()
+
+    if p.icf_codes and HAS_PANDAS:
+        df_icf = pd.DataFrame(p.icf_codes)[["code", "title", "qualifier_label", "notes"]]
+        df_icf.columns = ["Code", t("ax4_icf_title_col"), t("ax4_icf_qualifier"), t("ax4_icf_notes")]
+        st.table(df_icf)
+    elif p.icf_codes:
+        for ic in p.icf_codes:
+            st.write(f"- **{ic['code']}** {ic.get('title','')} [{ic.get('qualifier_label','')}]")
 
     st.markdown("---")
 
@@ -1910,6 +2125,14 @@ elif menu == t("nav_synopsis"):
         else:
             for cp in p.contact_persons:
                 st.write(f"- {cp.get('name','')} ({cp.get('role','')})")
+    if p.icf_codes:
+        st.write(f"**{t('ax4_icf_subheader')}**")
+        if HAS_PANDAS:
+            df_icf = pd.DataFrame(p.icf_codes)[["code", "title", "qualifier_label"]]
+            st.table(df_icf)
+        else:
+            for ic in p.icf_codes:
+                st.write(f"- {ic['code']} {ic.get('title','')} [{ic.get('qualifier_label','')}]")
 
     # --- Achse V ---
     st.markdown(f"<div class='axis-header'>{t('syn_axis5_header')}</div>",
@@ -2034,7 +2257,8 @@ elif menu == t("nav_synopsis"):
                     "gaf": p.functioning.gaf_score,
                     "gdb": p.functioning.gdb_score,
                     "stressors": p.functioning.psychosocial_stressors,
-                    "contact_persons": p.contact_persons
+                    "contact_persons": p.contact_persons,
+                    "icf_codes": p.icf_codes
                 },
                 "V_bedingungsmodell": asdict(p.condition_model),
                 "VI_belegsammlung": {
