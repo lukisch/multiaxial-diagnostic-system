@@ -1,5 +1,7 @@
 # Multiaxial Diagnostic Expert System (V9)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18736726.svg)](https://doi.org/10.5281/zenodo.18736726)
+
 A computer-assisted 6-axis psychiatric diagnostic system integrating DSM-5-TR, ICD-11, and ICF in a unified expert system.
 
 ## Overview
@@ -29,6 +31,14 @@ This system addresses the structural gap left by the abolition of the multiaxial
 - **6-Step Gatekeeper Logic**: Implementing First's (2024) gold-standard differential diagnosis sequence
 - **11 Disorder Modules**: Complete screening-to-diagnosis coverage via hierarchical state machine
 
+## Scientific Paper
+
+The theoretical foundation and clinical rationale for this system are described in the accompanying preprint:
+
+> **Geiger, L.** (2026). *An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis: Synthesis of DSM-5-TR, ICD-11, and ICF in a 6-Axis Expert System.* Zenodo. [https://doi.org/10.5281/zenodo.18736726](https://doi.org/10.5281/zenodo.18736726)
+
+The preprint is available in English, German, and a combined bilingual edition on Zenodo.
+
 ## Tech Stack
 
 - **UI**: Streamlit
@@ -52,20 +62,15 @@ streamlit run multiaxial_diagnostic_system.py
 ## Project Structure
 
 ```
-multiaxial_diagnostic_system.py   # Main application (V9, ~2080 lines)
-translations.json                 # Bilingual i18n (DE/EN)
-Review_Multiaxiale_Diagnostik.tex # Scientific paper (V5, LaTeX)
-Konzept_Dimensionale_Integration.md  # Dimensional integration concept
-Ausbauplan_Prototyp_V9.md        # Development roadmap
+multiaxial_diagnostic_system.py          # Main application (V9, ~2080 lines)
+translations.json                        # Bilingual i18n (DE/EN)
+build_code_database.py                   # Diagnostic code database builder
+diagnostic_codes.db                      # Pre-built code database (ICD-11/DSM-5-TR)
+en/Concept_Dimensional_Integration.md    # Dimensional integration concept (EN)
+en/Development_Roadmap_V9.md             # Development roadmap (EN)
+Konzept_Dimensionale_Integration.md      # Dimensional integration concept (DE)
+Ausbauplan_Prototyp_V9.md               # Development roadmap (DE)
 ```
-
-## Scientific Paper
-
-The accompanying paper *"An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis"* (V5) is included as LaTeX source. It covers the theoretical foundation, clinical rationale, and validation strategy.
-
-### Citing This Work
-
-> Geiger, L. (2026). Ein integriertes multiaxiales Modell zur computergestuetzten psychiatrischen Diagnostik: Synthese von DSM-5-TR, ICD-11 und ICF in einem 6-Achsen-Expertensystem. Working Paper, Version 5.
 
 ## Development Roadmap
 
