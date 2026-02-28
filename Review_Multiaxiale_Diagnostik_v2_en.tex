@@ -1,0 +1,367 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{mathptmx}
+\usepackage{helvet}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{longtable}
+\usepackage{quoting}
+\usepackage{multirow}
+\usepackage{array}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+
+\titleformat{\section}{\Large\bfseries\sffamily\color{black}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{darkgray}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\sffamily\color{darkgray}}{\thesubsubsection}{1em}{}
+
+\hypersetup{
+    pdftitle={Multiaxiale Psychodiagnostik},
+    pdfauthor={Lukas Geiger},
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+\onehalfspacing
+
+\begin{document}
+
+\title{\textbf{An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis: Synthesis of DSM-5-TR, ICD-11, and ICF in a 6-Axis Expert System}\\[0.3em]
+\large A Methods Paper}
+
+\author{Lukas Geiger}
+\date{February 2026 --- Version 2}
+
+\maketitle
+
+\subsubsection*{Abstract}
+
+This paper presents a novel 6-axis model for computer-assisted multiaxial psychiatric diagnosis that unifies categorical diagnostics according to DSM-5-TR and ICD-11 with the functional classification of the ICF in an integrated expert system. The model systematically addresses the clinical deficits created by the abolition of the multiaxial system in DSM-5 (2013) while going beyond the historical DSM-IV system: Axis~I (Mental Health Profiles) captures acute, chronic, remitted, and refuted diagnoses including treatment history, quantitative coverage analysis with percentage-based symptom-diagnosis matrices, and a prioritized 3-tier investigation plan across ten sub-axes; Axis~II (Biography and Development) integrates dimensional personality assessment via PID-5, formative life experiences, and core conflicts; Axis~III (Medical Synopsis) mirrors Axis~I's structure symmetrically with 13 sub-axes including contributing medical factors, medical suspected diagnoses, integrated causal analysis, genetics/family burden, and a structured medication history with efficacy ratings; Axis~IV (Environment and Functioning) combines ICF, WHODAS~2.0, the German degree of disability (GdB, \textit{Grad der Behinderung}), the Cultural Formulation Interview, and a structured contact persons and treatment network register; Axis~V (Integrated Condition Model) bridges case formulation with diagnostic classification through an operationalized 3P/4P schema; Axis~VI (Evidence Collection and Clinical Safety) implements a systematic evidence matrix with clinical assessment fields, CAVE clinical alerts for cross-axis risk management, longitudinal symptom tracking, and a contact and observation log. The system's design philosophy rests on three principles: the skeleton principle (structure without mandatory fields), the living document concept (a case file that grows with the clinical process), and the report-as-snapshot principle (reports as frozen states of the evolving document). Each diagnosis receives structured PRO/CONTRA evidence evaluation with explicit confidence estimation. HiTOP spectra are computed directly from Cross-Cutting screening results. A multi-professional assignment model provides exemplary, non-mandatory axis assignments for psychologists, physicians, social workers, and the interdisciplinary team --- a psychiatrist, for instance, may complete both Axis~I and Axis~III. The 6-step gatekeeper logic closely operationalizes the gold-standard differential diagnosis sequence published by Michael~B. First. The coverage analysis represents, to our knowledge, a novel approach for which no direct precedent has been identified in the reviewed literature. New sections address dimensional integration (HiTOP/RDoC), ethics and data protection, validation strategy, and interoperability standards (HL7 FHIR). The technical implementation as a hierarchical state machine with 11 disorder modules is presented. The complete source code is publicly available at \url{https://github.com/lukisch/multiaxial-diagnostic-system}.
+
+\textbf{Keywords:} Multiaxial Diagnosis, DSM-5-TR, ICD-11, ICF, Expert System, Differential Diagnosis, Coverage Analysis, Case Formulation, Cross-Cutting Symptom Measures, Hierarchical State Machine, PID-5, WHODAS~2.0, HiTOP, RDoC, Multi-professional Model, HL7 FHIR, PRO/CONTRA Evidence Evaluation, CAVE Alerts, Symptom Timeline, Living Document, Contact Log
+
+\subsubsection*{1. Introduction}
+
+The abolition of the multiaxial diagnostic system in DSM-5 left a structural gap in psychiatric diagnostics. The original five-axis system introduced with DSM-III (1980) was eliminated due to poor inter-rater reliability of the GAF score, conceptual conflation of symptoms and functioning in Axis~V, inconsistent clinical use of Axis~IV, and the artificial boundary between Axes~I and~II. Available evidence suggests the clinical community lost more than it gained \citep{Kress2014, Probst2014}: the structured prompt for comprehensive biopsychosocial assessment was replaced by a flat listing that cannot replicate this function. Institutionally, the APA's Future DSM Strategic Planning Committee is developing a multi-domain diagnostic model, and \citet{ErlichFirst2025} explicitly propose returning to structured axial assessment.
+
+\textbf{Existing multiaxial and integrative approaches.} The present model builds upon, but substantially extends, several foundational approaches to multiaxial and integrative psychiatric assessment. \citet{Williams1985} documented the origins and early critiques of the DSM-III multiaxial system, identifying both its clinical utility as a structured prompt for comprehensive assessment and its operational weaknesses---particularly the unreliable GAF score and the inconsistent application of the psychosocial stressors axis. The present model addresses these specific critiques: it replaces the GAF with validated instruments (WHODAS~2.0, ICF Core Sets), eliminates the artificial Axis~I/II boundary, and introduces quantitative coverage analysis as an objective complement to clinical judgment.
+
+\citet{Bolton2008} argued that formulation---the individualized narrative account of a patient's difficulties---should complement, not replace, categorical diagnosis. Bolton's key insight was that classification systems capture \textit{what} a patient has, while formulation captures \textit{why} and \textit{how}. The present model operationalizes this insight through Axis~V (Integrated Condition Model), which implements a structured 3P/4P formulation schema with explicit links back to the diagnostic axes---bridging the gap between Bolton's narrative formulation and the structured classification that clinical systems require.
+
+\citet{Wakefield1992} proposed the influential ``harmful dysfunction'' analysis, arguing that mental disorder is a condition in which an internal mechanism fails to perform its natural function \textit{and} the dysfunction causes harm to the individual. This conceptual framework informs the present model's approach to differential diagnosis: the 6-step gatekeeper logic \citep{First2024} systematically distinguishes normal variation from dysfunction by requiring evidence of both impaired mechanism \textit{and} clinically significant distress or functional impairment. The coverage analysis further operationalizes this by quantifying which symptoms are explained by established diagnoses and which remain unexplained---a direct operationalization of Wakefield's requirement to identify genuine dysfunction rather than mere statistical deviance.
+
+The present model thus synthesizes these traditions: it retains the structural comprehensiveness of Williams's multiaxial vision, operationalizes Bolton's formulation imperative, and embeds Wakefield's conceptual rigor into a computationally tractable system---while adding proposed innovations (symmetric Axis~I/III architecture, quantitative coverage analysis, CAVE alerts) that aim to go beyond all three predecessors.
+
+\subsubsection*{2. Methods}
+
+This paper follows a design science methodology for the development of a clinical decision-support artifact. The research process comprised four phases:
+
+\textbf{Phase~1: Problem identification and requirements analysis.} A structured review of the literature on the abolition of the DSM-IV multiaxial system identified five specific clinical deficits: loss of the structured prompt for biopsychosocial assessment, poor GAF inter-rater reliability, inconsistent Axis~IV usage, the artificial Axis~I/II boundary, and the low adoption rate of replacement V/Z codes \citep{APA2013, Kress2014, Probst2014, ErlichFirst2025}. Requirements were derived from these deficits, from First's (2024) gold-standard differential diagnosis framework, and from current dimensional approaches (HiTOP, RDoC, ICD-11 dimensional personality model).
+
+\textbf{Phase~2: Iterative design.} The 6-axis architecture was developed through iterative cycles of design, expert feedback, and refinement. Design decisions---such as the symmetric Axis~I/III structure, the coverage analysis innovation, and the CAVE alert system---were evaluated against the identified requirements. Each iteration was documented and versioned (V1--V5).
+
+\textbf{Phase~3: Prototypical implementation.} A Python reference implementation (approximately 1,850 lines) using hierarchical state machines (\texttt{transitions} library) and a Streamlit interface was developed to demonstrate feasibility. The source code is publicly available at \url{https://github.com/lukisch/multiaxial-diagnostic-system}.
+
+\textbf{Phase~4: AI-assisted development and review.} The manuscript and system design were developed with substantial AI assistance. Claude Opus~4.6 served as a drafting and synthesis tool; Gemini and Copilot were used as independent reviewers during revision. All AI contributions are documented in the AI Disclosure section (Disclosure Level~5). The scientific responsibility for all content rests with the human author.
+
+\textbf{Scope and limitations of the present paper.} This is a methods and design paper. It presents the architecture, rationale, and prototypical implementation of the 6-axis model. Empirical validation (inter-rater reliability, clinical utility, convergent validity) is planned in four phases (Section~6) but has not yet been conducted. The coverage analysis thresholds (85\%/60\%) are proposed as initial values based on clinical reasoning and require empirical calibration in future studies.
+
+\subsubsection*{3. Architecture of the 6-Axis Model}
+
+The model integrates categorical diagnostics (DSM-5-TR/ICD-11) into an epistemological total system. A central design principle is the \textbf{symmetric parallel structure} between Axis~I (psychological) and Axis~III (somatic): both axes feature analogous sub-axes (suspected diagnoses, treatment history, coverage analysis, investigation plan), enabling psychologists and physicians to work with identical structural tools in their respective domains. Axis~I tracks mental health profiles across ten sub-axes (Ia--Ij), with quantitative coverage analysis (Ii) preceding a prioritized 3-tier investigation plan (Ij, categorized as urgent/important/monitoring). Each diagnosis receives structured PRO/CONTRA evidence evaluation with numerical confidence estimation (0--100\%). Axis~II modernizes personality assessment through dimensional PID-5 trait profiling, supplemented by formative life experiences and core conflicts that feed into Axis~V case formulation. Axis~III encompasses 13 sub-axes: ten parallel the structure of Axis~I (IIIa--IIIj), with IIIb explicitly coding fully explanatory chronic conditions and IIIc explicitly coding contributing medical factors, plus three axis-specific sub-axes for integrated causal analysis (IIIk), genetic/family burden (IIIl), and structured medication history with efficacy ratings (IIIm). Axis~IV combines WHODAS~2.0, the Global Assessment of Functioning (GAF), the German degree of disability (GdB, \textit{Grad der Behinderung}), ICF Core Sets, the Cultural Formulation Interview, and a structured contact persons and treatment network register. Axis~V operationalizes case formulation through structured 3P/4P coding with explicit links to coverage analysis gaps. Axis~VI implements a central evidence matrix with clinical assessment fields, CAVE clinical alerts for cross-axis risk management (drug interactions, lab artifacts, contraindications, temporal misattributions, diagnostic limitations), longitudinal symptom tracking with therapy response documentation, and a contact and observation log documenting the diagnostic process itself. An exemplary multi-professional assignment model suggests psychologists for Axis~I, physicians for Axis~III, social workers for Axis~IV, and the interdisciplinary team for Axis~V synthesis; however, these assignments are non-mandatory and can be flexibly adapted to the clinical setting.
+
+\subsubsection*{4. The 6-Step Gatekeeper Logic}
+
+The differential diagnosis sequence closely follows First's \citeyearpar{First2024} gold-standard framework: (1)~rule out malingering, (2)~rule out substance etiology, (3)~rule out medical conditions, (4)~determine primary disorders, (5)~differentiate adjustment disorders, (6)~establish boundary with no mental disorder. Step~6 is marked as ``conceptual'' because the threshold between a normal stress response and a mental disorder inherently requires clinical judgment, supported but not replaced by objective functional data.
+
+\subsubsection*{5. Cross-Cutting Screening}
+
+The DSM-5 Cross-Cutting Symptom Measures (23~items across 13~domains for adults; 25~items across 12~domains for children/adolescents) form the screening backbone. The screening matrix now covers 19 domains including eating disorders (SCOFF, EDE-QS), sleep disorders (ISI), and impulse control, ensuring complete coverage across all 11 Hierarchical State Machine (HSM) disorder modules.
+
+\subsubsection*{6. Divergences, Coverage Analysis, and Dimensional Integration}
+
+Five critical DSM-5-TR/ICD-11 divergences require dual-system encoding, including Prolonged Grief Disorder (newly introduced in DSM-5-TR; present in ICD-11 as Prolonged Grief Disorder, 6B42). The coverage analysis is implemented symmetrically in Axis~I (Ii) and Axis~III (IIIi) with quantitative percentage-based metrics: each symptom receives a coverage percentage, classified as fully covered ($\geq$85\%), partially covered (60--84\%), or insufficiently covered ($<$60\%), yielding a total coverage metric. Dimensional integration via automatic HiTOP spectra computation from Cross-Cutting domain scores and RDoC research annotation provides complementary perspectives to categorical diagnosis.
+
+\subsubsection*{7. Ethics, Validation, and Interoperability}
+
+New sections address algorithmic bias in screening instruments, GDPR compliance for sensitive psychiatric data, clinical responsibility boundaries, a four-phase validation strategy (expert review, vignette piloting, clinical field trial, multi-site trial), and HL7 FHIR interoperability for integration with existing health IT systems.
+
+\subsubsection*{8. Limitations}
+
+This paper has several significant limitations that must be acknowledged.
+
+\textbf{No empirical validation.} The 6-axis model has not been tested with real patients or clinicians. The coverage analysis thresholds (85\%/60\%), the CAVE alert triggers, and the multi-professional assignment model are all based on theoretical reasoning and clinical experience, not on empirical data. Until inter-rater reliability studies, clinical utility assessments, and convergent validity analyses are conducted (as outlined in the four-phase validation roadmap, Section~7), the model's practical value remains undemonstrated.
+
+\textbf{Coverage analysis requires formal definition.} The coverage analysis---described as a novel approach without identified published precedent---lacks a formal mathematical definition. The percentage-based symptom-diagnosis mapping is intuitively appealing but raises several unresolved questions: How are symptom weights assigned? How are overlapping diagnoses handled in the coverage calculation? What is the sensitivity of the total coverage metric to individual symptom ratings? A formal specification with worked examples is needed before the coverage analysis can be independently implemented or evaluated.
+
+\textbf{Complexity may limit adoption.} The model's comprehensiveness (6 axes, 36+ sub-axes, 11 disorder modules) may constitute a barrier to clinical adoption. The historical failure of DSM-IV's multiaxial system was partly due to inconsistent clinical use---a simpler system has a better chance of consistent application. The ``skeleton principle'' (structure without mandatory fields) mitigates but does not eliminate this risk.
+
+\textbf{Limited literature base.} As a design paper, this work draws primarily on diagnostic classification manuals and a small number of foundational papers. A systematic review of all existing computer-assisted diagnostic systems (e.g., OPCRIT, DTREE, CATEGO) and their empirical track records would strengthen the rationale for the specific design choices made here.
+
+\textbf{AI-heavy development process.} The substantial AI involvement in both system design and manuscript preparation (Disclosure Level~5, as defined in the AI Disclosure section) raises questions about the reproducibility and independent verifiability of design decisions. While the source code is publicly available, the iterative design process---including expert feedback cycles---is not fully documented in a way that permits independent replication.
+
+\subsubsection*{9. Conclusion}
+
+The proposed 6-axis system represents a system design contribution to the psychiatric diagnostics literature. As a design science paper, its primary contribution is architectural---not empirical. The key innovations include: symmetric Axis~I/III architecture enabling true multi-professional use; quantitative coverage analysis with percentage-based symptom-diagnosis matrices without published precedent; PRO/CONTRA evidence evaluation with confidence estimation for diagnostic transparency; a prioritized 3-tier investigation plan (urgent/important/monitoring); CAVE clinical alerts for cross-axis risk management; longitudinal symptom tracking with therapy response; contact and observation log for diagnostic process documentation; formative experiences and core conflicts enriching biographical Axis~II; structured contact persons and treatment network in Axis~IV; structured medication history with efficacy ratings (IIIm); the living document design philosophy ensuring maximum clinical freedom; automatic HiTOP spectra computation from Cross-Cutting data; operationalized case formulation bridging diagnosis and treatment; expansion to 11 disorder modules ensuring complete screening-to-diagnosis coverage; and a rigorous validation roadmap. The convergence with the work of the APA's Future DSM Strategic Planning Committee \citep{ErlichFirst2025} supports the approach's relevance and timeliness.
+
+
+% ===================================================================
+% LITERATURVERZEICHNIS
+% ===================================================================
+\newpage
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{99}
+
+\bibitem[Aboraya et al.(2006)]{Aboraya2006}
+Aboraya, A., Rankin, E., France, C. et al. (2006).
+\newblock The reliability of psychiatric diagnosis revisited.
+\newblock \textit{Psychiatry}, 3(1), 41--50.
+
+\bibitem[Allison et al.(2012)]{Allison2012}
+Allison, C., Auyeung, B. \& Baron-Cohen, S. (2012).
+\newblock Toward brief ``red flags'' for autism screening: The Short Autism Spectrum Quotient and the Short Quantitative Checklist in 1,000 cases and 3,000 controls.
+\newblock \textit{Journal of the American Academy of Child \& Adolescent Psychiatry}, 51(2), 202--212.
+
+\bibitem[APA(2013)]{APA2013}
+American Psychiatric Association (2013).
+\newblock \textit{Diagnostic and Statistical Manual of Mental Disorders} (5th ed.).
+\newblock Arlington, VA: American Psychiatric Publishing.
+
+\bibitem[APA(2022)]{APA2022}
+American Psychiatric Association (2022).
+\newblock \textit{Diagnostic and Statistical Manual of Mental Disorders, Text Revision} (DSM-5-TR).
+\newblock Washington, DC: American Psychiatric Publishing.
+
+\bibitem[Ayuso-Mateos et al.(2010)]{AyusoMateos2010}
+Ayuso-Mateos, J.\,L., Miret, M., Caballero, F.\,F. et al. (2010).
+\newblock Multi-country evaluation of ICF Core Sets for depression.
+\newblock \textit{BMC Psychiatry}, 10, 44.
+
+\bibitem[Bach et al.(2022)]{Bach2022}
+Bach, B., Kramer, U., Doering, S. et al. (2022).
+\newblock The ICD-11 classification of personality disorders: A European perspective on challenges and opportunities.
+\newblock \textit{Borderline Personality Disorder and Emotion Dysregulation}, 9(1), 12.
+
+\bibitem[Barkham et al.(2023)]{Barkham2023}
+Barkham, M., De Jong, K., Delgadillo, J. \& Lutz, W. (2023).
+\newblock Routine outcome monitoring (ROM) and feedback.
+\newblock \textit{Psychotherapy Research}, 33(4), 407--413.
+
+\bibitem[Blevins et al.(2015)]{Blevins2015}
+Blevins, C.\,A., Weathers, F.\,W., Davis, M.\,T. et al. (2015).
+\newblock The Posttraumatic Stress Disorder Checklist for DSM-5 (PCL-5).
+\newblock \textit{Journal of Traumatic Stress}, 28(6), 489--498.
+
+\bibitem[Bolton(2008)]{Bolton2008}
+Bolton, D. (2008).
+\newblock \textit{What is Mental Disorder? An Essay in Philosophy, Science, and Values}.
+\newblock Oxford: Oxford University Press.
+
+\bibitem[Carlson \& Putnam(1993)]{CarlsonPutnam1993}
+Carlson, E.\,B. \& Putnam, F.\,W. (1993).
+\newblock An update on the Dissociative Experiences Scale.
+\newblock \textit{Dissociation}, 6(1), 16--27.
+
+\bibitem[Cloitre et al.(2018)]{Cloitre2018}
+Cloitre, M., Shevlin, M., Brewin, C.\,R. et al. (2018).
+\newblock The International Trauma Questionnaire: Development of a self-report measure of ICD-11 PTSD and Complex PTSD.
+\newblock \textit{Acta Psychiatrica Scandinavica}, 138(6), 536--546.
+
+\bibitem[Erlich et al.(2025)]{ErlichFirst2025}
+Erlich, M.\,D., First, M.\,B., Talley, R.\,M. et al. (2025).
+\newblock Integrating social determinants of health into clinical formulations: The need for a biaxial system in the DSM and psychiatry.
+\newblock \textit{Psychiatric Services}, 76(10), 911--914.
+
+\bibitem[First(2024)]{First2024}
+First, M.\,B. (2024).
+\newblock \textit{DSM-5-TR Handbook of Differential Diagnosis}.
+\newblock Washington, DC: American Psychiatric Publishing.
+
+\bibitem[Foa et al.(2002)]{Foa2002}
+Foa, E.\,B., Huppert, J.\,D., Leiberg, S. et al. (2002).
+\newblock The Obsessive-Compulsive Inventory: Development and validation of a short version.
+\newblock \textit{Psychological Assessment}, 14(4), 485--496.
+
+\bibitem[Gspandl et al.(2018)]{Gspandl2018}
+Gspandl, S., Peirson, R.\,P., Nahhas, R.\,W., Skale, T.\,G. \& Lehrer, D.\,S. (2018).
+\newblock Comparing Global Assessment of Functioning (GAF) and World Health Organization Disability Assessment Schedule (WHODAS) 2.0 in schizophrenia.
+\newblock \textit{Psychiatry Research}, 259, 251--253.
+
+\bibitem[Hevner et al.(2004)]{Hevner2004}
+Hevner, A.\,R., March, S.\,T., Park, J. \& Ram, S. (2004).
+\newblock Design science in information systems research.
+\newblock \textit{MIS Quarterly}, 28(1), 75--105.
+
+\bibitem[Huber et al.(2022)]{Huber2022}
+Huber, C.\,G., Aebi, B.\,J., Engeler, S.\,L. et al. (2022).
+\newblock Adoption of routine outcome monitoring in mental health settings.
+\newblock \textit{BMC Health Services Research}, 22, 1035.
+
+\bibitem[Insel et al.(2010)]{Insel2010}
+Insel, T., Cuthbert, B., Garvey, M. et al. (2010).
+\newblock Research Domain Criteria (RDoC): Toward a new classification framework for research on mental disorders.
+\newblock \textit{American Journal of Psychiatry}, 167(7), 748--751.
+
+\bibitem[Ising et al.(2012)]{Ising2012}
+Ising, H.\,K., Veling, W., Loewy, R.\,L. et al. (2012).
+\newblock The validity of the 16-item version of the Prodromal Questionnaire (PQ-16) to screen for ultra high risk of developing psychosis.
+\newblock \textit{Schizophrenia Research}, 138(2--3), 207--212.
+
+\bibitem[Keeley et al.(2016)]{Keeley2016}
+Keeley, J.\,W., Reed, G.\,M., Roberts, M.\,C. et al. (2016).
+\newblock Developing a science of clinical utility in diagnostic classification systems: Field study strategies for ICD-11 mental and behavioural disorders.
+\newblock \textit{American Psychologist}, 71(1), 3--16.
+
+\bibitem[Kessler et al.(2005)]{Kessler2005}
+Kessler, R.\,C., Adler, L., Ames, M. et al. (2005).
+\newblock The World Health Organization Adult ADHD Self-Report Scale (ASRS).
+\newblock \textit{Psychological Medicine}, 35(2), 245--256.
+
+\bibitem[Kotov et al.(2017)]{Kotov2017}
+Kotov, R., Krueger, R.\,F., Watson, D. et al. (2017).
+\newblock The Hierarchical Taxonomy of Psychopathology (HiTOP): A dimensional alternative to traditional nosologies.
+\newblock \textit{Journal of Abnormal Psychology}, 126(4), 454--477.
+
+\bibitem[Kotov et al.(2021)]{Kotov2021}
+Kotov, R., Krueger, R.\,F., Watson, D. et al. (2021).
+\newblock The Hierarchical Taxonomy of Psychopathology (HiTOP): A quantitative nosology based on consensus of evidence.
+\newblock \textit{Annual Review of Clinical Psychology}, 17, 83--108.
+
+\bibitem[Kotov et al.(2022)]{Kotov2022}
+Kotov, R., Krueger, R.\,F. \& Watson, D. (2022).
+\newblock The Hierarchical Taxonomy of Psychopathology (HiTOP) in psychiatric practice and research.
+\newblock \textit{Psychological Medicine}, 52(9), 1666--1678.
+
+\bibitem[Kress et al.(2014)]{Kress2014}
+Kress, V.\,E., Barrio Minton, C.\,A., Adamson, N.\,A., Paylo, M.\,J. \& Pope, V. (2014).
+\newblock The removal of the multiaxial system in the DSM-5: Implications and practice suggestions for counselors.
+\newblock \textit{The Professional Counselor}, 4(3), 191--201.
+
+\bibitem[Levis et al.(2019)]{Levis2019}
+Levis, B., Benedetti, A. \& Thombs, B.\,D. (2019).
+\newblock Accuracy of Patient Health Questionnaire-9 (PHQ-9) for screening to detect major depression.
+\newblock \textit{BMJ}, 365, l1476.
+
+\bibitem[Linden \& Baron(2005)]{LindenBaron2005}
+Linden, M. \& Baron, S. (2005).
+\newblock Das Mini-ICF-APP: Mini-ICF-Rating f\"ur Aktivit\"ats- und Partizipationsst\"orungen bei psychischen Erkrankungen.
+\newblock \textit{Die Rehabilitation}, 44(3), 153--159.
+
+\bibitem[Gierk et al.(2014)]{Gierk2014}
+Gierk, B., Kohlmann, S., Kroenke, K., Spangenberg, L., Zenger, M., Br\"ahler, E. \& L\"owe, B. (2014).
+\newblock The Somatic Symptom Scale-8 (SSS-8): A brief measure of somatic symptom burden.
+\newblock \textit{JAMA Internal Medicine}, 174(3), 399--407.
+
+\bibitem[Luciano et al.(2010)]{Luciano2010}
+Luciano, J.\,V., Ayuso-Mateos, J.\,L., Aguado, J. et al. (2010).
+\newblock The 12-item World Health Organization Disability Assessment Schedule II (WHO-DAS II): A nonparametric item response analysis.
+\newblock \textit{BMC Medical Research Methodology}, 10, 45.
+
+\bibitem[Morgan et al.(2009)]{Morgan2009}
+Morgan, J.\,F., Reid, F. \& Lacey, J.\,H. (2009).
+\newblock The SCOFF questionnaire: A new screening tool for eating disorders.
+\newblock \textit{Western Journal of Medicine}, 172(3), 164--165.
+
+\bibitem[Morin et al.(2011)]{Morin2011}
+Morin, C.\,M., Belleville, G., B\'elanger, L. \& Ivers, H. (2011).
+\newblock The Insomnia Severity Index: Psychometric indicators to detect insomnia cases and evaluate treatment response.
+\newblock \textit{Sleep}, 34(5), 601--608.
+
+\bibitem[Narrow et al.(2013)]{Narrow2013}
+Narrow, W.\,E., Clarke, D.\,E., Kuramoto, S.\,J. et al. (2013).
+\newblock DSM-5 field trials in the United States and Canada, Part III.
+\newblock \textit{American Journal of Psychiatry}, 170(1), 71--82.
+
+\bibitem[Nordgaard et al.(2020)]{Nordgaard2020}
+Nordgaard, J., Henriksen, M.\,G., Berge, J. \& Nilsson, L.\,S. (2020).
+\newblock First-admission patients in a psychiatric acute-care setting: Nonspecificity of psychiatric symptoms and diagnostic instability.
+\newblock \textit{Nordic Journal of Psychiatry}, 74(8), 581--586.
+
+\bibitem[Oltmanns \& Widiger(2018)]{OltmannsWidiger2018}
+Oltmanns, J.\,R. \& Widiger, T.\,A. (2018).
+\newblock A self-report measure for the ICD-11 dimensional trait model proposal: The Personality Inventory for ICD-11.
+\newblock \textit{Psychological Assessment}, 30(2), 154--169.
+
+\bibitem[Owen(2023)]{Owen2023}
+Owen, G. (2023).
+\newblock What is formulation in psychiatry?
+\newblock \textit{Psychological Medicine}, 53(5), 1700--1707. DOI: 10.1017/S0033291723000016.
+
+\bibitem[Posner et al.(2011)]{Posner2011}
+Posner, K., Brown, G.\,K., Stanley, B. et al. (2011).
+\newblock The Columbia-Suicide Severity Rating Scale (C-SSRS).
+\newblock \textit{American Journal of Psychiatry}, 168(12), 1266--1277.
+
+\bibitem[Probst(2014)]{Probst2014}
+Probst, B. (2014).
+\newblock The life and death of Axis IV: Caught in the quest for a theory-free diagnostic system.
+\newblock \textit{Research on Social Work Practice}, 24(1), 123--131.
+
+\bibitem[Rosenman et al.(2003)]{Rosenman2003}
+Rosenman, S.\,J., Korten, A.\,E., Medway, J. \& Evans, M. (2003).
+\newblock Dimensional vs.\ categorical diagnosis in psychosis.
+\newblock \textit{Acta Psychiatrica Scandinavica}, 107(5), 378--384.
+
+\bibitem[Saunders et al.(1993)]{Saunders1993}
+Saunders, J.\,B., Aasland, O.\,G., Babor, T.\,F. et al. (1993).
+\newblock Development of the Alcohol Use Disorders Identification Test (AUDIT).
+\newblock \textit{Addiction}, 88(6), 791--804.
+
+\bibitem[Spitzer et al.(2006)]{Spitzer2006}
+Spitzer, R.\,L., Kroenke, K., Williams, J.\,B.\,W. \& L\"owe, B. (2006).
+\newblock A brief measure for assessing Generalized Anxiety Disorder: The GAD-7.
+\newblock \textit{Archives of Internal Medicine}, 166(10), 1092--1097.
+
+\bibitem[Stasiak et al.(2023)]{Stasiak2023}
+Stasiak, K., Merry, S., Lignos, A. et al. (2023).
+\newblock Mental Health Information Reporting Assistant (MHIRA)---an open-source software facilitating evidence-based assessment for clinical services.
+\newblock \textit{BMC Psychiatry}, 23, 706.
+
+\bibitem[Wakefield(1992)]{Wakefield1992}
+Wakefield, J.\,C. (1992).
+\newblock The concept of mental disorder: On the boundary between biological facts and social values.
+\newblock \textit{American Psychologist}, 47(3), 373--388.
+
+\bibitem[WHO(2010)]{WHO2010}
+World Health Organization (2010).
+\newblock \textit{WHODAS 2.0: WHO Disability Assessment Schedule 2.0}.
+\newblock Geneva: WHO.
+
+\bibitem[WHO(2019)]{WHO2019}
+World Health Organization (2019).
+\newblock \textit{International Classification of Diseases, 11th Revision} (ICD-11).
+\newblock Geneva: WHO.
+
+\bibitem[Williams(1985)]{Williams1985}
+Williams, J.\,B.\,W. (1985).
+\newblock The multiaxial system of DSM-III: Where did it come from and where should it go? I.\ Its origins and critiques.
+\newblock \textit{Archives of General Psychiatry}, 42(2), 175--180.
+
+\bibitem[Zimmermann et al.(2021)]{Zimmermann2021}
+Zimmermann, J., Kerber, A., Rek, K. et al. (2021).
+\newblock Psychometric properties of the independent 36-item PID5BF+M for ICD-11 in the Czech-speaking community sample.
+\newblock \textit{Frontiers in Psychiatry}, 12, 643270.
+
+\end{thebibliography}
+
+\end{document}

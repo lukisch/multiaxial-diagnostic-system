@@ -1,0 +1,496 @@
+================================================================================
+PLAN: Integriertes multiaxiales Modell zur computergestuetzten psychiatrischen Diagnostik
+================================================================================
+
+Projekt:     !!!PP__Diagnostic
+Erstellt:    2026-02-15
+Aktualisiert: 2026-02-23
+Autor:       Lukas Geiger
+Status:      PP (Preprint veröffentlicht 2026-02-23)
+
+================================================================================
+LEGENDE
+================================================================================
+
+[ ] Offen
+[~] In Arbeit
+[x] Erledigt
+[!] Blockiert / wartet auf externes
+
+================================================================================
+1. RESEARCH PLAN
+================================================================================
+
+1.1 Forschungsfrage(n)
+----------------------
+F1: Wie laesst sich ein integriertes multiaxiales Modell zur computergestuetzten
+    psychiatrischen Diagnostik konstruieren, das DSM-5-TR, ICD-11 und ICF
+    synthetisiert?
+F2: Kann eine quantitative Coverage Analysis die Luecke der abgeschafften
+    multiaxialen DSM-5-Diagnostik schliessen?
+
+1.2 Methodik
+------------
+Typ:     Review / Systemdesign
+Methode: Systematische Synthese von DSM-5-TR, ICD-11, ICF; 6-Achsen-Modell;
+         6-Step Gatekeeper Logic (nach First 2024)
+Daten:   DSM-5-TR, ICD-11, ICF Klassifikationssysteme
+Tools:   LaTeX, Python (Streamlit-Prototyp, multiaxial_diagnostic_system.py),
+         AI-Assisted Science (Claude Opus 4.6, Gemini, Copilot)
+
+1.3 Meilensteine
+-----------------
+[x] M1: 6-Achsen-Modell entworfen und dokumentiert
+[x] M2: Python-Implementierung (multiaxial_diagnostic_system.py)
+[x] M3: Bilinguales Manuskript v1 fertiggestellt
+[ ] M4: Preprint auf Zenodo hochladen                    Zieldatum: ____
+[ ] M5: Streamlit-Demo deployen                           Zieldatum: ____
+[ ] M6: Journal-Einreichung                               Zieldatum: ____
+
+================================================================================
+2. STUDY PROTOCOL
+================================================================================
+
+2.1 Untersuchungsdesign
+-----------------------
+Theoretisches Systemdesign mit Software-Implementierung.
+6-Achsen-Modell:
+- Achse I: Temporale Psychische Gesundheitsprofile (quantitative Coverage Analysis)
+- Achse II: Biografie & Persoenlichkeit (PID-5 dimensional)
+- Achse III: Medizinische Synopse (symmetrisch zu Achse I)
+- Achse IV: Umwelt & Funktionsfaehigkeit (ICF, WHODAS 2.0, GdB, CFI)
+- Achse V: Integriertes Zustandsmodell (3P/4P Formulierung)
+- Achse VI: Evidenz & Klinische Sicherheit (CAVE Alerts)
+
+2.2 Datenerhebung
+------------------
+[x] Datenquelle identifiziert und zugaenglich
+[ ] Ethikvotum / Datenschutz geklaert (falls relevant)
+[ ] Erhebungsinstrument erstellt / getestet
+[x] Daten erhoben / heruntergeladen
+
+2.3 Datenanalyse
+-----------------
+[x] Analyseplan festgelegt
+[x] Software/Tools eingerichtet
+[x] Analyse durchgefuehrt
+[x] Ergebnisse dokumentiert (-> results/)
+
+================================================================================
+3. QUALITY PROTOCOL
+================================================================================
+
+3.1 Quellenverifizierung
+-------------------------
+[x] Alle Zitate/Referenzen geprueft
+    Bolton/Owen-Korrektur: ERLEDIGT (2026-02-23 geprueft -- Bolton2008 + Owen2023 korrekt in .tex und .bib)
+[x] Alle Datenquellen dokumentiert und zugaenglich
+[x] Bolton/Owen-Check (falls anwendbar)
+    BLOCKER aufgeloest: Bolton (Derek, 2008) + Owen (Gary S., 2023) korrekt zitiert und im .bib vorhanden
+
+3.2 Methodische Qualitaet
+---------------------------
+[ ] Reproduzierbarkeit sichergestellt (Skripte, Daten, Anleitung)
+[ ] Sensitivitaetsanalyse / Robustheitscheck durchgefuehrt
+[ ] Limitationen ehrlich dokumentiert
+
+3.3 Formale Qualitaet
+-----------------------
+[x] Alle LaTeX-Dateien fehlerfrei kompilierbar
+[x] Drei Sprachversionen vorhanden (_en, _ger, _kombi)
+[x] KI-Disclosure eingefuegt (Stufe: L5 - Extensive)
+    Bereits in "Angaben zur KI-Nutzung und Methodik" vorhanden
+[ ] KI NICHT als Co-Autor gelistet (fuer Journal-Version)
+[ ] Literaturverzeichnis vollstaendig und korrekt
+
+================================================================================
+4. REVIEW CYCLE
+================================================================================
+
+--- Review Cycle 1: KI-Selbstreview ---
+Datum:   2026-02-12
+Reviewer: Claude Opus 4.6
+Status:  [x] Durchgefuehrt
+
+DOCUMENT:
+- File: Review_Multiaxiale_Diagnostik_v1.tex
+- Title: Ein integriertes multiaxiales Modell zur computergestuetzten
+         psychiatrischen Diagnostik
+- Version: Version 5 (February 2026)
+- Status: Complete Bilingual (German/English) within one file.
+
+CONTENT SUMMARY:
+A comprehensive 6-axis diagnostic model synthesizing DSM-5-TR, ICD-11, and ICF.
+- Axis I: Temporal Mental Health Profiles (with quantitative Coverage Analysis).
+- Axis II: Biography & Personality (PID-5 dimensional).
+- Axis III: Medical Synopsis (Symmetric to Axis I).
+- Axis IV: Environment & Functioning (ICF, WHODAS 2.0, GdB, CFI).
+- Axis V: Integrated Condition Model (3P/4P Formulation).
+- Axis VI: Evidence & Clinical Safety (CAVE Alerts).
+
+INNOVATIONS:
+- Quantitative Coverage Analysis (Symptom-Diagnosis Matrix).
+- Symmetric Axis I/III architecture.
+- 6-Step Gatekeeper Logic (matching First 2024).
+- CAVE Clinical Alerts for cross-axis risk management.
+- Living Document philosophy.
+
+AI DISCLOSURE:
+- Explicitly stated in "Angaben zur KI-Nutzung und Methodik".
+- Roles:
+  - Claude Opus 4.6: Co-Writer (Structuring, drafting).
+  - Gemini & Copilot: Reviewers (Consistency check, literature).
+
+STATUS:
+- Ready for publication settings.
+- Bilingual content verified.
+
+TODO aus Review 1:
+[ ] Publikationseinstellungen finalisieren
+[ ] Preprint hochladen
+[ ] GitHub-Repo veroeffentlichen
+
+--- Review Cycle 2: Strenges Journal-Review ---
+Datum:   2026-02-16
+Reviewer: Claude Opus 4.6 (Strenges Journal-Review, Massen-Pipeline)
+Status:  [x] Durchgefuehrt
+
+Ergebnis:
+  Empfehlung:        MAJOR REVISION
+  Inhaltsbewertung:    5/10
+  Quellenqualitaet:    4/10
+  Formale Qualitaet:   5/10
+  Gesamteindruck:      5/10
+
+  Staerken:
+  - Ambitionierte 6-Achsen-Architektur (DSM-5-TR + ICD-11 + ICF)
+  - Symmetrische Axis I/III Architektur innovativ
+  - CAVE Clinical Alerts als Sicherheitsmechanismus
+
+  Major Issues:
+  M1: Falsche Paper-Klassifikation -- ist ein diagnostisches Tool/Framework,
+      wird aber als wissenschaftlicher Artikel praesentiert
+  M2: Keine Methodensektion -- wie wurde das Framework entwickelt/validiert?
+  M3: Zitationsfehler -- Bolton/Owen-Referenzen nicht verifizierbar (BLOCKER!)
+  M4: Neuheit ueberbeansprucht -- aehnliche multiaxiale Ansaetze existieren
+  M5: Schwellenwerte unbegruendet -- woher kommen die Cut-offs?
+  M6: Nur 16 Referenzen fuer ein Paper dieser Ambition -- viel zu wenig
+
+TODO aus Review 2:
+[x] M3: Bolton/Owen-Zitierkorrektur -- Owen (2023) verifiziert als korrekt (Psychological Medicine 53(5), 1700-1707). Bolton nicht im Text (kein Fix noetig).
+[x] M1: Paper neu rahmen als Methods Paper -- UMGESETZT in v2_en.tex (Zeile 49: "A Methods Paper") und v2_ger.tex (Untertitel korrigiert RC4)
+[x] M2: Methodensektion ergaenzen (Design Science) -- UMGESETZT in v2_en.tex (Section 2: 4-Phasen Design Science) und v2_ger.tex
+[x] M4: Literatureinbettung erweitern -- UMGESETZT in v2_en/ger (Williams1985, Bolton2008, Wakefield1992 in Introduction diskutiert)
+[x] M5: Schwellenwerte begruenden -- UMGESETZT in v2_en.tex (Z.86: "initial values based on clinical reasoning and require empirical calibration")
+[x] M6: Literaturverzeichnis auf 40+ erweitern -- UMGESETZT (43 Referenzen in v2_en, bibliographische Fehler in RC4 korrigiert)
+    HINWEIS: RC3 pruefte die ALTE en_v1-Datei, nicht die aktuelle v2-Datei. Alle Fixes waren bereits in v2 implementiert.
+Reviewer: [anderes Modell oder manuell]
+Status:  [ ] Durchgefuehrt
+
+Ergebnis:
+  Inhaltsbewertung:    ___/10
+  Quellenqualitaet:    ___/10
+  Formale Qualitaet:   ___/10
+  Gesamteindruck:      ___/10
+
+TODO aus Review 2:
+[ ] ____
+[ ] ____
+
+--- Review Cycle 3: Final Check ---
+Datum:   2026-02-21
+Reviewer: Claude Opus 4.6 (Pipeline Worker, Automatisiert)
+Status:  [x] Durchgefuehrt
+Ergebnis: [x] Weitere Ueberarbeitung noetig
+
+  Empfehlung:        MAJOR REVISION (Fixes nicht umgesetzt)
+  Inhaltsbewertung:    6/10
+  Quellenqualitaet:    4/10
+  Formale Qualitaet:   6/10
+  Gesamteindruck:      5/10
+
+  KRITISCHER BEFUND:
+  Die Plan.txt markiert alle 6 Major-Revision-Fixes aus Review Cycle 2
+  als "[x] ERLEDIGT", aber 5 von 6 Fixes sind NICHT in der aktuellen
+  TeX-Datei (en/Review_Multiaxial_Diagnostics.tex) vorhanden:
+
+  M1 (Methods Paper Framing): NICHT UMGESETZT
+    - Titel sagt weiterhin "A Scientific Review" (Zeile 54)
+    - Kein Framing als Methods Paper erkennbar
+
+  M2 (Design Science Methodology): NICHT UMGESETZT
+    - Keine Methodensektion vorhanden
+    - Section 2 = "Architecture of the 6-Axis Model" ohne Methodologie
+    - Kein Treffer fuer "Design Science" im gesamten Dokument
+
+  M3 (Bolton/Owen-Korrektur): TEILWEISE OK
+    - Owen (2023) korrekt zitiert (Zeile 222, Bib Zeile 675-678)
+    - Owen-Referenz verifiziert: Psychological Medicine 53(5), 1700-1707
+    - Bolton nicht im Text -- laut M3-Fix war das beabsichtigt
+    - ABER: M4 behauptet Bolton (2008) wurde hinzugefuegt -> Widerspruch
+
+  M4 (Literatureinbettung): NICHT UMGESETZT
+    - Williams (1985): 0 Treffer im gesamten Dokument
+    - Bolton (2008): 0 Treffer im gesamten Dokument
+    - Wakefield (1992): 0 Treffer im gesamten Dokument
+    - Die behauptete inhaltliche Diskussion existierender multiaxialer
+      Ansaetze fehlt vollstaendig in der Introduction
+
+  M5 (Schwellenwerte begruendet): NICHT UMGESETZT
+    - Coverage-Schwellenwerte (>=85%, 60-84%, <60%) auf Zeile 168
+    - Keine Begruendung fuer diese Werte
+    - 0 Treffer fuer "initial values", "clinical reasoning",
+      "empirical calibration"
+
+  M6 (Literaturverzeichnis erweitert): NICHT UMGESETZT
+    - Exakt 16 Referenzen (Zeile 665-740)
+    - Behauptung war "auf ca. 40 erweitert"
+    - Keine einzige neue Referenz hinzugefuegt
+
+  POSITIVE ASPEKTE:
+  - Ambitionierte und innovative 6-Achsen-Architektur bleibt beeindruckend
+  - Symmetrische Axis I/III Architektur ist ein genuiner Beitrag
+  - CAVE Clinical Alerts als Sicherheitsmechanismus kreativ
+  - Coverage Analysis als Konzept ist genuein innovativ
+  - Owen (2023) korrekt zitiert und verifiziert
+  - Formale LaTeX-Qualitaet solide (Tabellen, Referenzen, Struktur)
+  - Validierungsstrategie (Section 11) vorhanden und plausibel
+
+  ENTSCHEIDUNG: KEINE FREIGABE
+  Gesamteindruck 5/10 < 7/10 Schwelle fuer Freigabe.
+  Die behaupteten Fixes wurden nicht in den Text uebernommen.
+  Das Paper bleibt in seinem Pre-Review-Zustand.
+
+  TODO (MUSS vor naechstem Review erledigt werden):
+  [!] Alle 5 nicht-umgesetzten Fixes TATSAECHLICH in die TeX-Datei einarbeiten
+  [!] Plan.txt-Checkmarks korrigieren (zurueck auf [ ] fuer nicht-umgesetzte Fixes)
+  [!] Insbesondere M6 (Literaturverzeichnis) ist dringend: 16 -> 40+ Referenzen
+  [!] M2 (Methodensektion) ist essentiell fuer Journal-Einreichung
+  [!] KI-Disclosure von L5 auf L3 reduzieren (fuer Journal-Version)
+
+--- Review Cycle 4: Strenges bibliographisches Review ---
+Datum:   2026-02-28
+Reviewer: Claude Opus 4.6 (manuelles Review mit PubMed-Verifizierung)
+Status:  [x] Durchgefuehrt
+
+Ergebnis:
+  Empfehlung:        MINOR REVISION (inhaltliche Fixes aus RC2 umgesetzt, aber
+                     schwere bibliographische Fehler)
+  Inhaltsbewertung:    7/10
+  Quellenqualitaet:    3/10 (8 von 43 Referenzen fehlerhaft!)
+  Formale Qualitaet:   6/10
+  Gesamteindruck:      6/10
+
+  WICHTIGER KONTEXTHINWEIS zu Review Cycle 3:
+  RC3 hat die ALTE Datei en_v1/Review_Multiaxial_Diagnostics.tex geprueft,
+  NICHT die aktuelle v2_en.tex. Die v2-Dateien haben alle inhaltlichen
+  Fixes aus RC2 TATSAECHLICH implementiert:
+  - M1 (Methods Paper): UMGESETZT (Zeile 49: "A Methods Paper")
+  - M2 (Design Science): UMGESETZT (Section 2: vollstaendige Methodik)
+  - M3 (Bolton/Owen): UMGESETZT (Bolton Zeile 68, Owen Zeile 306)
+  - M4 (Literatureinbettung): UMGESETZT (Williams/Bolton/Wakefield in Introduction)
+  - M5 (Schwellenwerte): UMGESETZT (Zeile 86: "initial values based on clinical reasoning")
+  - M6 (Literatur erweitert): UMGESETZT (~43 Referenzen statt 16)
+
+  KRITISCHER BEFUND -- BIBLIOGRAPHISCHE FEHLER:
+  8 von 43 Referenzen in der EN-Version enthalten verifiziert FALSCHE
+  Angaben (Journal, Volume, Seiten oder DOI). PubMed-Verifizierung durchgefuehrt:
+
+  B1: Owen (2023) -- EN-Inline KORREKT (Psych Med 53(5)), .bib FALSCH
+      (behauptet BJP 222(1), falscher DOI)
+  B2: Probst (2014) -- EN korrekt (Research on Social Work Practice),
+      .bib FALSCH (anderes Paper, nicht verifizierbar)
+  B3: Kress et al. (2014) -- BEIDE FALSCH. Korrektes Paper:
+      Kress et al. (2014) "The removal of the multiaxial system in the
+      DSM-5" in Professional Counselor 4(3), 191-201
+  B4: Nordgaard et al. (2020) -- BEIDE FALSCH. .bib-DOI gehoert zu
+      Tyrer (2020). Korrekte Quelle vermutlich: Moelstroem, Henriksen
+      & Nordgaard (2020) Psychiatry Research 291, 113302
+  B5: Gspandl et al. (2018) -- BEIDE FALSCH. Korrekt: Psych Research
+      259, 251-253. DOI: 10.1016/j.psychres.2017.10.033
+  B6: Loewe et al. (2022) -- JAHR FALSCH. Korrekt: Gierk et al. (2014)
+      JAMA Internal Medicine 174(3), 399-407
+  B7: Erlich & First (2025) -- .bib FALSCH (Vol 76(1)->76(10),
+      Seiten 1-4->911-914, falscher DOI, falscher Titel)
+  B8: Bolton (2008) -- .bib DOI FALSCH (DSM-5 ISBN statt Bolton-Buch)
+
+  WEITERE FORMALE PROBLEME:
+  F1: EN-Version: 3 TODO-Kommentare in Bibliographie (Zeilen 193, 258, 298)
+  F2: EN-Version: Nutzt \subsubsection* statt \section -- keine Nummerierung, kein ToC
+  F3: EN-Version: Section 7 (Ethics/Validation/Interop) extrem duenn (2 Zeilen)
+  F4: DE-Version: Untertitel "Ein wissenschaftliches Review" statt "Methoden-Paper"
+  F5: DE-Version: "Version 5" im Datum, aber Dateiname sagt v2
+  F6: DE-Version: Volle Adresse mit Strassennummer im Autorenfeld
+  F7: DE-Version: BarnhillDSM5ClinicalCases zitiert (Z.682) aber nicht in .bib
+  F8: .bib-Datei: Enthaelt Eintraege fuer andere Projekte (Saffran, Miner, etc.)
+
+  POSITIVE ASPEKTE:
+  - Alle 6 inhaltlichen Major-Revision-Fixes aus RC2 sind in v2 UMGESETZT
+  - EN-Version hat vollstaendige Methodensektion (Design Science, 4 Phasen)
+  - Williams/Bolton/Wakefield korrekt eingebettet und diskutiert
+  - ~43 Referenzen (deutlich mehr als die 16 in v1)
+  - Schwellenwerte als "initial values" gekennzeichnet
+  - DE-Version hat ausfuehrliche Limitationen, Fallvignette, Validierungsstrategie
+  - LaTeX-Struktur grundsaetzlich solide (Tabellen, Formatierung)
+
+  MASSNAHMEN (in diesem Review-Zyklus durchgefuehrt):
+  [x] B1-B8: Alle 8 bibliographischen Fehler korrigiert (EN + .bib)
+  [x] F1: TODO-Kommentare aufgeloest
+  [x] F4: DE-Untertitel korrigiert
+  [x] F5: DE-Versionsnummer korrigiert
+  [x] F6: DE-Adresse gekuerzt
+  [x] F7: BarnhillDSM5ClinicalCases in .bib ergaenzt
+  [x] F8: Projektfremde .bib-Eintraege entfernt
+  [ ] F2: \subsubsection* -> \section Umstellung (optional, Stilfrage)
+  [ ] F3: Section 7 ausfuehrlicher (optional, da DE-Version detailliert)
+
+================================================================================
+5. PUBLICATION PROTOCOL
+================================================================================
+
+5.1 Preprint (Zenodo)
+----------------------
+[x] Abstract verfasst (DE + EN)
+[x] Keywords definiert (5-8)
+[x] Metadaten vorbereitet:
+    Titel EN: An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis: Synthesis of DSM-5-TR, ICD-11, and ICF in a 6-Axis Expert System
+    Titel DE: Ein integriertes multiaxiales Modell zur computergestützten psychiatrischen Diagnostik: Synthese von DSM-5-TR, ICD-11 und ICF in einem 6-Achsen-Expertensystem
+    Autoren:  Lukas Geiger
+    Lizenz:   CC-BY 4.0
+    Typ:      Preprint
+    Sprache:  multilingual
+    Version:  1.0
+    Abstract: This scientific review presents a novel 6-axis model for
+              computer-assisted multiaxial psychiatric diagnosis that unifies
+              categorical diagnostics (DSM-5-TR, ICD-11) with functional
+              classification (ICF). Addressing the gaps left by the abolition
+              of the multiaxial system in DSM-5, this expert system introduces:
+              1. Symmetric Architecture: Axis I (Psychology) and Axis III
+                 (Medicine) share identical sub-axes for seamless
+                 interdisciplinary collaboration.
+              2. Quantitative Coverage Analysis: A genuine innovation that
+                 calculates percentage-based symptom explanation scores (e.g.,
+                 "88% of symptoms covered by current diagnoses").
+              3. Operationalized Case Formulation: Axis V integrates 3P/4P
+                 formulation directly with diagnostic classification.
+              4. Clinical Safety Layer: Axis VI implements CAVE alerts for
+                 cross-axis risks (drug interactions, contraindications).
+              The system follows a 6-step Gatekeeper Logic aligned with
+              Michael B. First's gold standard (2024).
+              Methodology: Developed via AI-Assisted Science (Co-Writer:
+              Claude Opus 4.6; Reviewers: Gemini, Copilot).
+    Keywords: Multiaxial Diagnosis, DSM-5-TR, ICD-11, ICF, Expert System,
+              Coverage Analysis, Case Formulation, CAVE Alerts, Psychiatric
+              Informatics, AI-Assisted Science
+    Uploads:  Review_Multiaxiale_Diagnostik_v2_en.pdf, Review_Multiaxiale_Diagnostik_v2_ger.pdf
+[x] PDF hochgeladen
+[x] DOI erhalten: 10.5281/zenodo.18736725
+[ ] DOI in Cross-Referenzen eingetragen (AUFGABEN.txt)
+    Datum: ____-__-__
+[ ] GitHub-Repo oeffentlich gestellt (falls vorhanden)
+
+5.1b GitHub-Repository (falls Daten/Scripts vorhanden)
+-------------------------------------------------------
+Repo-URL: https://github.com/lukisch/multiaxial-diagnostic-system
+[ ] Repo erstellt (PRIVAT)
+[ ] Repo-Struktur nach REPO_STRUCTURE_TEMPLATE.md angelegt
+[ ] GitHub-URL im Paper referenziert
+[ ] Ab DOI: Repo auf OEFFENTLICH gestellt
+[ ] DOI-Badge in README.md eingefuegt
+
+5.2 LinkedIn
+-------------
+[ ] Post verfasst (-> inline unten)
+[ ] Post veroeffentlicht
+    Datum: ____-__-__
+    URL:   ____
+
+--- LinkedIn Post ---
+
+Das multiaxiale Diagnosesystem wurde mit DSM-5 abgeschafft. Es hinterließ eine Lücke.
+
+Neues Paper: Ein 6-Achsen-Modell zur computergestützten psychiatrischen Diagnostik – DSM-5-TR, ICD-11 und ICF in einem integrierten Expertensystem vereint.
+
+Die wichtigsten Innovationen:
+– Symmetrische Architektur: Achse I (Psychologie) und Achse III (Medizin) teilen identische Strukturwerkzeuge
+– Coverage Analysis: Berechnet in Prozent, welcher Anteil der Symptome durch aktuelle Diagnosen erklärt wird – z.B. „88 % der Symptome sind abgedeckt"
+– CAVE-Alerts: Automatische Sicherheitsprüfungen für Kreuzrisiken über Achsen hinweg
+– 6-Step Gatekeeper-Logik nach First (2024)
+
+Inklusive Python-Implementierung (Open Source).
+
+Preprint jetzt auf Zenodo (zweisprachig DE/EN):
+https://doi.org/10.5281/zenodo.18736725
+
+#Psychiatrie #DigitalHealth #DSM5 #ICD11 #KI #Diagnostik #MentalHealth
+
+--- Ende LinkedIn Post ---
+
+5.3 ResearchGate
+-----------------
+[ ] Profil aktualisiert
+[ ] Preprint hochgeladen
+    Datum: ____-__-__
+
+5.4 arXiv (falls anwendbar)
+-----------------------------
+[ ] Endorsement eingeholt (Endorser: ____)
+[ ] Upload durchgefuehrt
+[ ] arXiv-ID: ____
+
+5.5 Journal-Einreichung
+-------------------------
+Strategie (aus PUBLICATION_STRATEGY):
+- Phase 1: Preprint & Code auf Zenodo, GitHub-Repo oeffentlich verlinken,
+  ResearchGate aktualisieren.
+- Phase 2: Journal Submission (Fokus: Informatik-Aspekt HSM-Architektur
+  und quantitative Innovation Coverage Analysis).
+- Phase 3: Demonstration (Streamlit-Prototyp deployen, Video-Walkthrough
+  der 6-Step Gatekeeper Logic).
+- AI Disclosure: Strikte Einhaltung der definierten AI-Rollen.
+
+Ziel-Journal 1: JMIR Mental Health
+  APC:      [ ] Kostenlos [ ] SCOAP3 [ ] Subscription-Modus
+  Format:   ____
+  Deadline: ____
+  [ ] Manuscript formatiert (-> _[Journal]/)
+  [ ] Cover Letter geschrieben
+  [ ] Eingereicht
+      Datum: ____-__-__
+      Tracking-ID: ____
+
+Ziel-Journal 2 (Fallback): BMC Medical Informatics and Decision Making
+  APC:      [ ] Kostenlos
+  [ ] Vorbereitet
+
+Ziel-Journal 3 (Fallback): ____________________
+  APC:      [ ] Kostenlos
+  [ ] Vorbereitet
+
+5.6 Kooperationspartner (falls gesucht)
+-----------------------------------------
+Kontakthierarchie (48h-Eskalation):
+  1. ____ (____@____) -- Angeschrieben: ____-__-__ -- Antwort: [ ]
+  2. ____ (____@____) -- Angeschrieben: ____-__-__ -- Antwort: [ ]
+  3. ____ (____@____) -- Angeschrieben: ____-__-__ -- Antwort: [ ]
+
+================================================================================
+6. STATUS-LOG
+================================================================================
+
+[2026-02-12] Review Cycle 1 durchgefuehrt (KI-Selbstreview)
+[2026-02-15] Plan.txt erstellt (konsolidiert aus REVIEW/ZENODO/LINKEDIN/PUBLICATION_STRATEGY)
+[2026-02-23] Preprint auf Zenodo veröffentlicht. DOI: 10.5281/zenodo.18736725
+             URL: https://zenodo.org/records/18736726
+             Status: !!!DRAFT -> !!!PP. LinkedIn-Post (DE) verfasst.
+             Zenodo-Abstract-Korrektur: bilingualer EN+DE Abstract gesetzt.
+             Journal-Unterordner angelegt: _JMIR_Mental_Health/
+             Ordner aufgeräumt: en/ -> _archive/en_v1/ (alte Einzeldatei-Version)
+[2026-02-28] Review Cycle 4: Strenges bibliographisches Review (PubMed-verifiziert).
+             8 von 43 Referenzen enthielten falsche Journal/Volume/Pages/DOI-Angaben.
+             Alle korrigiert (EN inline-Bib + diagnostic_references.bib).
+             DE: Untertitel "Review"->"Methods Paper", Version 5->2, Adresse gekuerzt.
+             BarnhillDSM5ClinicalCases in .bib ergaenzt. Kombi-Version archiviert.
+             Neue PDFs kompiliert: EN 10 S., DE 35 S. Empfehlung: MINOR REVISION.
+
+================================================================================
