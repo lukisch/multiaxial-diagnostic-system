@@ -36,7 +36,14 @@ _ul/
 # Claude Code internal
 .claude/
 
-# Personal strategy notes (not for public repo)
+# Internal project management (not for public repo)
+Plan.txt
+_archive/
+_partners/
+*_submission/
+*BRIEFING*
+CORE.txt
+removed_sections/
 LINKEDIN.txt
 PUBLICATION_STRATEGY.txt
 ZENODO.txt

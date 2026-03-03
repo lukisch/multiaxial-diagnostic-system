@@ -1,7 +1,7 @@
 {
   "de": {
-    "app_title": "Multiaxiales Diagnostik-Expertensystem v9",
-    "sidebar_title": "Klinisches Cockpit v9",
+    "app_title": "Multiaxiales Diagnostik-Expertensystem v9.1",
+    "sidebar_title": "Klinisches Cockpit v9.1",
     "page_icon": "\ud83c\udfe5",
 
     "nav_gatekeeper": "Gatekeeper-Prozess",
@@ -454,7 +454,7 @@
     "syn_export": "Export",
     "syn_export_button": "JSON-Export generieren",
     "syn_download": "\ud83d\udce5 JSON herunterladen",
-    "syn_system_version": "Multiaxiales Diagnostik-Expertensystem v9",
+    "syn_system_version": "Multiaxiales Diagnostik-Expertensystem v9.1",
 
     "hitop_title": "HiTOP-Spektren (aus Cross-Cutting)",
     "hitop_internalizing": "Internalisierend",
@@ -615,15 +615,45 @@
     "ax6_contact_log_axis_ref": "Achsenbezug",
     "ax6_contact_log_add": "Protokolleintrag hinzuf\u00fcgen",
 
-    "footer_line1": "Multiaxiales Diagnostik-Expertensystem v9",
+    "footer_line1": "Multiaxiales Diagnostik-Expertensystem v9.1",
     "footer_line2": "DSM-5-TR / ICD-11 / ICF",
     "footer_line3": "Basierend auf First (2024): 6-Stufen-Differenzialdiagnostik",
-    "footer_date_prefix": "Stand"
+    "footer_date_prefix": "Stand",
+
+    "coverage_formal_title": "Formale Abdeckungsanalyse (Paper-Definition)",
+    "coverage_formal_metric": "C(S) = erklärte / alle Symptome",
+    "coverage_formal_warning": "Nicht alle Symptome sind diagnostisch erklärt. Überprüfen Sie die Abdeckungslücken.",
+
+    "gaf_deprecated_notice": "Hinweis: Die GAF-Skala wurde im DSM-5 durch WHODAS 2.0 ersetzt. Bevorzugen Sie WHODAS 2.0 für aktuelle Bewertungen.",
+
+    "ax3_rem_factors_info": "Detaillierte Analyse der Remissionsfaktoren für medizinische Erkrankungen. Siehe auch IIId für einzelne remittierte Diagnosen.",
+
+    "role_parent": "Elternteil",
+    "role_partner": "Partner/in",
+    "role_child": "Kind",
+    "role_sibling": "Geschwister",
+    "role_gp": "Hausarzt/-ärztin",
+    "role_specialist": "Facharzt/-ärztin",
+    "role_therapist": "Therapeut/in",
+    "role_social_worker": "Sozialarbeiter/in",
+    "role_caregiver": "Betreuer/in",
+    "role_employer": "Arbeitgeber/in",
+    "role_other": "Sonstige",
+
+    "contact_type_phone": "Telefonat",
+    "contact_type_talk": "Gespräch",
+    "contact_type_observation": "Beobachtung",
+    "contact_type_home_visit": "Hausbesuch",
+    "contact_type_collateral": "Fremdanamnese",
+    "contact_type_email": "E-Mail/Brief",
+    "contact_type_other": "Sonstiges",
+
+    "disclaimer_professional_use": "Nur für qualifiziertes Fachpersonal. Kein Ersatz für klinische Beurteilung. Keine Speicherung sensibler Daten ohne Einwilligung."
   },
 
   "en": {
-    "app_title": "Multiaxial Diagnostic Expert System v9",
-    "sidebar_title": "Clinical Cockpit v9",
+    "app_title": "Multiaxial Diagnostic Expert System v9.1",
+    "sidebar_title": "Clinical Cockpit v9.1",
     "page_icon": "\ud83c\udfe5",
 
     "nav_gatekeeper": "Gatekeeper Process",
@@ -1076,7 +1106,7 @@
     "syn_export": "Export",
     "syn_export_button": "Generate JSON Export",
     "syn_download": "\ud83d\udce5 Download JSON",
-    "syn_system_version": "Multiaxial Diagnostic Expert System v9",
+    "syn_system_version": "Multiaxial Diagnostic Expert System v9.1",
 
     "hitop_title": "HiTOP Spectra (from Cross-Cutting)",
     "hitop_internalizing": "Internalizing",
@@ -1237,9 +1267,39 @@
     "ax6_contact_log_axis_ref": "Axis Reference",
     "ax6_contact_log_add": "Add Log Entry",
 
-    "footer_line1": "Multiaxial Diagnostic Expert System v9",
+    "footer_line1": "Multiaxial Diagnostic Expert System v9.1",
     "footer_line2": "DSM-5-TR / ICD-11 / ICF",
     "footer_line3": "Based on First (2024): 6-Step Differential Diagnosis",
-    "footer_date_prefix": "Date"
+    "footer_date_prefix": "Date",
+
+    "coverage_formal_title": "Formal Coverage Analysis (Paper Definition)",
+    "coverage_formal_metric": "C(S) = explained / total symptoms",
+    "coverage_formal_warning": "Not all symptoms are diagnostically explained. Review coverage gaps.",
+
+    "gaf_deprecated_notice": "Note: The GAF scale was replaced by WHODAS 2.0 in DSM-5. Prefer WHODAS 2.0 for current assessments.",
+
+    "ax3_rem_factors_info": "Detailed analysis of remission factors for medical conditions. See also IIId for individual remitted diagnoses.",
+
+    "role_parent": "Parent",
+    "role_partner": "Partner",
+    "role_child": "Child",
+    "role_sibling": "Sibling",
+    "role_gp": "General Practitioner",
+    "role_specialist": "Specialist",
+    "role_therapist": "Therapist",
+    "role_social_worker": "Social Worker",
+    "role_caregiver": "Caregiver",
+    "role_employer": "Employer",
+    "role_other": "Other",
+
+    "contact_type_phone": "Phone Call",
+    "contact_type_talk": "Conversation",
+    "contact_type_observation": "Observation",
+    "contact_type_home_visit": "Home Visit",
+    "contact_type_collateral": "Collateral History",
+    "contact_type_email": "E-Mail/Letter",
+    "contact_type_other": "Other",
+
+    "disclaimer_professional_use": "For qualified professionals only. Not a substitute for clinical judgment. Do not store sensitive data without consent."
   }
 }

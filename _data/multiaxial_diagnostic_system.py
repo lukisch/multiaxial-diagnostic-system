@@ -12,8 +12,9 @@ Computergestütztes 6-Achsen-Diagnostiksystem basierend auf:
 - HiTOP-Spektren (Kotov et al., 2017) aus Cross-Cutting-Daten
 - Hierarchische Zustandsmaschine (HSM) als Entscheidungsmotor
 
-V9: Symmetrische Achse III (13 Subachsen), HiTOP-Integration, Ii/Ij-Swap
-    Bilingual (Deutsch / English) via translations.json
+V9.1: Symmetrische Achse III (13 Subachsen), HiTOP-Integration, Ii/Ij-Swap
+      Bilingual (Deutsch / English) via translations.json
+      XSS-Schutz, formale Coverage Analysis, WHODAS-Persistenz, GAF-Deprecation
 
 Technologie: transitions (HSM), Streamlit (UI), anytree (Visualisierung),
              Plotly (PID-5 + HiTOP Radar), Pydantic (Datenvalidierung)
@@ -24,6 +25,7 @@ Aufbauend auf V8 / Vorläuferscript icf11dsm5.py (V6 Expert System)
 
 import streamlit as st
 import datetime
+import html as html_mod
 import json
 import math
 import os
@@ -147,6 +149,11 @@ def _extract_code(option: str) -> str:
     if option and " - " in option:
         return option.split(" - ")[0].strip()
     return option.strip() if option else ""
+
+
+def esc(text) -> str:
+    """Escape user-supplied text for safe HTML embedding."""
+    return html_mod.escape(str(text)) if text else ""
 
 
 # ===================================================================
@@ -687,7 +694,7 @@ def render_hitop_radar(hitop: HiTOPProfile):
 # ===================================================================
 
 st.set_page_config(
-    page_title="Multiaxiales Diagnostik-Expertensystem v9",
+    page_title="Multiaxiales Diagnostik-Expertensystem v9.1",
     page_icon="🏥",
     layout="wide"
 )
@@ -909,8 +916,11 @@ if menu == t("nav_gatekeeper"):
                         options=list(likert_options.values()),
                         key=f"cc_{domain_key}_{i}"
                     )
-                    # Extrahiere numerischen Wert
-                    num_val = int(val.split("(")[1].replace(")", ""))
+                    # Extrahiere numerischen Wert (robust: Fallback auf Index)
+                    try:
+                        num_val = int(val.split("(")[1].replace(")", ""))
+                    except (IndexError, ValueError):
+                        num_val = list(likert_options.values()).index(val) if val in likert_options.values() else 0
                     responses[f"{domain_key}_{i}"] = num_val
                 st.markdown("---")
 
@@ -954,9 +964,9 @@ if menu == t("nav_gatekeeper"):
                 safety = t("gate5_safety_critical") if tr["threshold"] == 1 and tr["max_score"] >= 1 else ""
                 st.markdown(
                     f"<div class='status-alert {'critical' if safety else 'suspected'}'>"
-                    f"<b>{tr['label']}</b>: {t('gate5_max_score')} {tr['max_score']} "
-                    f"({t('gate4_threshold')} ≥{tr['threshold']}){safety}<br/>"
-                    f"→ Level 2: {tr['level2']}</div>",
+                    f"<b>{esc(tr['label'])}</b>: {t('gate5_max_score')} {tr['max_score']} "
+                    f"({t('gate4_threshold')} ≥{tr['threshold']}){esc(safety)}<br/>"
+                    f"→ Level 2: {esc(tr['level2'])}</div>",
                     unsafe_allow_html=True
                 )
         else:
@@ -1069,6 +1079,7 @@ if menu == t("nav_gatekeeper"):
         tab_gaf, tab_whodas, tab_gdb = st.tabs(["GAF", "WHODAS 2.0", "GdB"])
 
         with tab_gaf:
+            st.warning(t("gaf_deprecated_notice"))
             p.functioning.gaf_score = st.slider(
                 t("gate6_gaf_label"),
                 min_value=0, max_value=100, value=p.functioning.gaf_score,
@@ -1098,6 +1109,16 @@ if menu == t("nav_gatekeeper"):
                     pct = (total / max_score) * 100
                     st.metric(t("gate6_whodas_total"),
                               f"{total}/{max_score} ({pct:.0f}%)")
+                    # WHODAS domain scores in PatientData speichern
+                    # Items 0-1: Cognition, 2-3: Mobility, 4-5: Self-care,
+                    # 6-7: Getting along, 8-9: Life activities, 10-11: Participation
+                    if len(whodas_scores) >= 12:
+                        p.functioning.whodas_cognition = whodas_scores[0] + whodas_scores[1]
+                        p.functioning.whodas_mobility = whodas_scores[2] + whodas_scores[3]
+                        p.functioning.whodas_selfcare = whodas_scores[4] + whodas_scores[5]
+                        p.functioning.whodas_getting_along = whodas_scores[6] + whodas_scores[7]
+                        p.functioning.whodas_life_activities = whodas_scores[8] + whodas_scores[9]
+                        p.functioning.whodas_participation = whodas_scores[10] + whodas_scores[11]
 
         with tab_gdb:
             p.functioning.gdb_score = st.slider(
@@ -1157,14 +1178,14 @@ elif menu == t("nav_axis1"):
         st.write(f"**{t('ax1_suspected_header')}**")
         for d in p.diagnoses_suspected:
             st.markdown(
-                f"<div class='status-alert suspected'>? {t('ax1_suspected_prefix')}: {d['name']}</div>",
+                f"<div class='status-alert suspected'>? {t('ax1_suspected_prefix')}: {esc(d['name'])}</div>",
                 unsafe_allow_html=True
             )
 
         st.write(f"**{t('ax1_excluded_header')}**")
         for d in p.diagnoses_excluded:
             st.markdown(
-                f"<div class='status-alert excluded'>✖ {t('ax1_excluded_prefix')}: {d['name']}</div>",
+                f"<div class='status-alert excluded'>✖ {t('ax1_excluded_prefix')}: {esc(d['name'])}</div>",
                 unsafe_allow_html=True
             )
 
@@ -1246,6 +1267,18 @@ elif menu == t("nav_axis1"):
             col_f.metric(t("coverage_full"), f"{full}/{len(p.symptom_coverage)}")
             col_p.metric(t("coverage_partial"), f"{partial}/{len(p.symptom_coverage)}")
             col_i.metric(t("coverage_insufficient"), f"{insuff}/{len(p.symptom_coverage)}")
+
+            # Formale Coverage-Metrik nach Paper-Definition:
+            # C(S) = |{s in S : exists d in D, explains(d,s)}| / |S|
+            # Ein Symptom gilt als "erklaert" wenn coverage_pct >= 60%
+            explained = sum(1 for c in p.symptom_coverage if c.get("coverage_pct", 0) >= 60)
+            formal_coverage = explained / len(p.symptom_coverage) if p.symptom_coverage else 0
+            st.markdown("---")
+            st.markdown(f"**{t('coverage_formal_title')}**")
+            st.metric(t("coverage_formal_metric"),
+                      f"{explained}/{len(p.symptom_coverage)} = {formal_coverage:.0%}")
+            if formal_coverage < 1.0:
+                st.warning(t("coverage_formal_warning"))
 
         # Legacy-Freitext
         p.coverage_analysis = st.text_area(
@@ -1549,8 +1582,7 @@ elif menu == t("nav_axis3"):
     # --- IIIe: Remissionsfaktoren ---
     with tab_remf:
         st.subheader(t("ax3_rem_factors_subheader"))
-        st.info("Detaillierte Analyse der Remissionsfaktoren für medizinische Erkrankungen. "
-                "Siehe auch IIId für einzelne remittierte Diagnosen.")
+        st.info(t("ax3_rem_factors_info"))
 
     # --- Zweite Reihe Tabs: IIIf-IIIm ---
     tab_treat, tab_compl, tab_susp, tab_cov = st.tabs([
@@ -1614,7 +1646,7 @@ elif menu == t("nav_axis3"):
         for d in p.med_diagnoses_suspected:
             st.markdown(
                 f"<div class='status-alert suspected'>? {t('ax3_med_suspected_prefix')}: "
-                f"{d['name']} ({d.get('icd11_code','')})</div>",
+                f"{esc(d['name'])} ({esc(d.get('icd11_code',''))})</div>",
                 unsafe_allow_html=True
             )
 
@@ -1740,9 +1772,9 @@ elif menu == t("nav_axis4"):
         col1, col2 = st.columns(2)
         cp_name = col1.text_input(t("ax4_contact_name"), key="cp_name")
         cp_role = col2.selectbox(t("ax4_contact_role"), [
-            "Elternteil", "Partner/in", "Kind", "Geschwister",
-            "Hausarzt/\u00e4rztin", "Facharzt/\u00e4rztin", "Therapeut/in",
-            "Sozialarbeiter/in", "Betreuer/in", "Arbeitgeber/in", "Sonstige"
+            t("role_parent"), t("role_partner"), t("role_child"), t("role_sibling"),
+            t("role_gp"), t("role_specialist"), t("role_therapist"),
+            t("role_social_worker"), t("role_caregiver"), t("role_employer"), t("role_other")
         ], key="cp_role")
         col3, col4 = st.columns(2)
         cp_inst = col3.text_input(t("ax4_contact_institution"), key="cp_inst")
@@ -1936,8 +1968,8 @@ elif menu == t("nav_axis6"):
         for alert in p.cave_alerts:
             st.markdown(
                 f"<div class='status-alert critical'>"
-                f"<b>[{alert.get('category','')}]</b> {alert.get('text','')} "
-                f"({t('cave_axis_ref')}: {alert.get('axis_ref','')})</div>",
+                f"<b>[{esc(alert.get('category',''))}]</b> {esc(alert.get('text',''))} "
+                f"({t('cave_axis_ref')}: {esc(alert.get('axis_ref',''))})</div>",
                 unsafe_allow_html=True
             )
     else:
@@ -1980,8 +2012,9 @@ elif menu == t("nav_axis6"):
         cl_date = col1.text_input(t("ax6_contact_log_date"),
                                    value=str(datetime.date.today()), key="cl_date")
         cl_type = col2.selectbox(t("ax6_contact_log_type"), [
-            "Telefonat", "Gespr\u00e4ch", "Beobachtung", "Hausbesuch",
-            "Fremdanamnese", "E-Mail/Brief", "Sonstiges"
+            t("contact_type_phone"), t("contact_type_talk"), t("contact_type_observation"),
+            t("contact_type_home_visit"), t("contact_type_collateral"),
+            t("contact_type_email"), t("contact_type_other")
         ], key="cl_type")
         col3, col4 = st.columns(2)
         cl_person = col3.text_input(t("ax6_contact_log_person"), key="cl_person")
@@ -2034,10 +2067,10 @@ elif menu == t("nav_synopsis"):
     with col2:
         st.write(f"**{t('syn_diagnostic_certainty')}**")
         for d in p.diagnoses_suspected:
-            st.markdown(f"<div class='status-alert suspected'>? {t('ax1_suspected_prefix')}: {d['name']}</div>",
+            st.markdown(f"<div class='status-alert suspected'>? {t('ax1_suspected_prefix')}: {esc(d['name'])}</div>",
                         unsafe_allow_html=True)
         for d in p.diagnoses_excluded:
-            st.markdown(f"<div class='status-alert excluded'>✖ {t('ax1_excluded_prefix')}: {d['name']}</div>",
+            st.markdown(f"<div class='status-alert excluded'>✖ {t('ax1_excluded_prefix')}: {esc(d['name'])}</div>",
                         unsafe_allow_html=True)
 
     # --- Achse II ---
@@ -2099,7 +2132,7 @@ elif menu == t("nav_synopsis"):
             st.write(f"**{t('ax3_suspected_subheader')}**")
             for d in p.med_diagnoses_suspected:
                 st.markdown(
-                    f"<div class='status-alert suspected'>? {d['name']}</div>",
+                    f"<div class='status-alert suspected'>? {esc(d['name'])}</div>",
                     unsafe_allow_html=True)
     with col2:
         if p.medications:
@@ -2176,7 +2209,7 @@ elif menu == t("nav_synopsis"):
     if p.coverage_analysis:
         st.markdown(
             f"<div class='coverage-gap'><b>{t('syn_unexplained')}</b><br/>"
-            f"{p.coverage_analysis}</div>",
+            f"{esc(p.coverage_analysis)}</div>",
             unsafe_allow_html=True
         )
     elif not p.symptom_coverage:
@@ -2190,8 +2223,8 @@ elif menu == t("nav_synopsis"):
         for alert in p.cave_alerts:
             st.markdown(
                 f"<div class='status-alert critical'>"
-                f"<b>[{alert.get('category','')}]</b> {alert.get('text','')} "
-                f"({t('cave_axis_ref')}: {alert.get('axis_ref','')})</div>",
+                f"<b>[{esc(alert.get('category',''))}]</b> {esc(alert.get('text',''))} "
+                f"({t('cave_axis_ref')}: {esc(alert.get('axis_ref',''))})</div>",
                 unsafe_allow_html=True
             )
 
@@ -2293,6 +2326,7 @@ elif menu == t("nav_synopsis"):
 # ===================================================================
 
 st.sidebar.markdown("---")
+st.sidebar.warning(t("disclaimer_professional_use"))
 st.sidebar.caption(
     f"{t('footer_line1')}\n\n"
     f"{t('footer_line2')}\n\n"

@@ -1,8 +1,10 @@
-# Multiaxial Diagnostic Expert System (V9)
+# Multiaxial Diagnostic Expert System (V9.1)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18736726.svg)](https://doi.org/10.5281/zenodo.18736726)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18736725.svg)](https://doi.org/10.5281/zenodo.18736725)
 
 A computer-assisted 6-axis psychiatric diagnostic system integrating DSM-5-TR, ICD-11, and ICF in a unified expert system.
+
+> **For qualified mental health professionals only.** This tool supports but does not replace clinical judgment.
 
 ## Overview
 
@@ -21,7 +23,7 @@ This system addresses the structural gap left by the abolition of the multiaxial
 
 ### Key Innovations
 
-- **Quantitative Coverage Analysis** (Ii/IIIi): Percentage-based symptom-diagnosis matrix identifying unexplained symptoms
+- **Formal Coverage Analysis** (Ii/IIIi): Set-based metric C(S) = |explained| / |total symptoms| plus percentage-based symptom-diagnosis matrix identifying unexplained symptoms
 - **Symmetric Axis I/III Architecture**: Identical structural tools for psychologists and physicians
 - **PRO/CONTRA Evidence Evaluation**: Structured evidence for/against each diagnosis with confidence estimation
 - **CAVE Clinical Alerts**: Cross-axis risk management (drug interactions, lab artifacts, contraindications)
@@ -39,13 +41,21 @@ The theoretical foundation and clinical rationale for this system are described 
 
 The preprint is available in English, German, and a combined bilingual edition on Zenodo.
 
+### Security & Quality (V9.1)
+
+- **XSS Protection**: All user-supplied data HTML-escaped before rendering
+- **GAF Deprecation Notice**: DSM-5 replaced GAF with WHODAS 2.0; system shows deprecation warning
+- **Professional-Use Disclaimer**: Sidebar warning for qualified personnel only
+- **Robust Input Parsing**: Likert scale extraction with fallback handling
+- **Full Bilingual Coverage**: All UI strings (584 keys DE/EN) via `translations.json`, no hardcoded strings
+
 ## Tech Stack
 
 - **UI**: Streamlit
 - **Decision Engine**: `transitions` (Hierarchical State Machine)
 - **Visualization**: Plotly (PID-5 + HiTOP radar charts)
 - **Data Validation**: Python dataclasses
-- **Internationalization**: Bilingual (German/English) via `translations.json`
+- **Internationalization**: Bilingual (German/English) via `translations.json` (584 keys per language)
 
 ## Installation
 
@@ -56,47 +66,67 @@ pip install streamlit plotly pandas transitions anytree
 ## Usage
 
 ```bash
-streamlit run multiaxial_diagnostic_system.py
+streamlit run _data/multiaxial_diagnostic_system.py
 ```
 
 ## Project Structure
 
 ```
-multiaxial_diagnostic_system.py          # Main application (V9, ~2080 lines)
-translations.json                        # Bilingual i18n (DE/EN)
-build_code_database.py                   # Diagnostic code database builder
-diagnostic_codes.db                      # Pre-built code database (ICD-11/DSM-5-TR)
-en/Concept_Dimensional_Integration.md    # Dimensional integration concept (EN)
-en/Development_Roadmap_V9.md             # Development roadmap (EN)
-Konzept_Dimensionale_Integration.md      # Dimensional integration concept (DE)
-Ausbauplan_Prototyp_V9.md               # Development roadmap (DE)
+_data/multiaxial_diagnostic_system.py       # Main application (V9.1, ~2340 lines)
+_data/translations.json                     # Bilingual i18n (584 keys DE/EN)
+_data/build_code_database.py                # Diagnostic code database builder
+_data/diagnostic_codes.db                   # Pre-built code database (ICD-11/DSM-5-TR/ICF)
+_data/requirements.txt                      # Python dependencies
+_results/Konzept_Dimensionale_Integration.md  # Dimensional integration concept (DE)
+_results/Ausbauplan_Prototyp_V9.md            # Development roadmap (DE)
 ```
 
 ## Development Roadmap
 
-See [Ausbauplan_Prototyp_V9.md](Ausbauplan_Prototyp_V9.md) for the full roadmap.
+See [Ausbauplan_Prototyp_V9.md](_results/Ausbauplan_Prototyp_V9.md) for the full roadmap.
 
-**Completed (Sprint 1 / V9):**
+**Completed (Sprint 1 / V9 + V9.1):**
 - Ii/Ij swap (coverage before investigation)
 - HiTOP spectra from Cross-Cutting data
 - Symmetric Axis III (13 sub-axes)
 - PRO/CONTRA evidence evaluation with confidence
-- Quantitative coverage analysis with metrics
+- Formal + quantitative coverage analysis with metrics
 - Prioritized investigation plan (3-tier)
 - CAVE clinical alerts
 - Longitudinal symptom timeline
 - Extended medication form (IIIm)
 - Full JSON export
+- XSS protection (html escaping)
+- WHODAS 2.0 domain score persistence
+- GAF deprecation notice
+- Professional-use disclaimer
+- Full i18n coverage (no hardcoded strings)
+- Robust Likert scale parsing
 
 **Next (Sprint 2):**
 - Axis V P1-P4 structured coding
 - Pathophysiological causal model
 - Therapy resistance tracking
 - CGI-I / CGI-E outcome parameters
+- Session auto-save / data persistence
+
+## Citation
+
+If you use this system in your research, please cite:
+
+```bibtex
+@article{geiger2026multiaxial,
+  title={An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis},
+  author={Geiger, Lukas},
+  year={2026},
+  doi={10.5281/zenodo.18736725},
+  publisher={Zenodo}
+}
+```
 
 ## License
 
-All rights reserved. Academic use with attribution permitted.
+CC-BY 4.0. See [LICENSE](LICENSE) for details.
 
 ## Author
 
