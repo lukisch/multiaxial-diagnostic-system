@@ -37,9 +37,11 @@ This system addresses the structural gap left by the abolition of the multiaxial
 
 The theoretical foundation and clinical rationale for this system are described in the accompanying preprint:
 
-> **Geiger, L.** (2026). *An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis: Synthesis of DSM-5-TR, ICD-11, and ICF in a 6-Axis Expert System.* Zenodo. [https://doi.org/10.5281/zenodo.18736726](https://doi.org/10.5281/zenodo.18736726)
+> **Geiger, L.** (2026). *An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis: Synthesis of DSM-5-TR, ICD-11, and ICF in a 6-Axis Expert System.* Zenodo. [https://doi.org/10.5281/zenodo.18736725](https://doi.org/10.5281/zenodo.18736725)
 
-The preprint is available in English, German, and a combined bilingual edition on Zenodo.
+The preprint is available in English, German, and a combined bilingual edition:
+- [`paper/Review_Multiaxiale_Diagnostik_v2_en.pdf`](paper/Review_Multiaxiale_Diagnostik_v2_en.pdf) -- English
+- [`paper/Review_Multiaxiale_Diagnostik_v2_ger.pdf`](paper/Review_Multiaxiale_Diagnostik_v2_ger.pdf) -- German
 
 ### Security & Quality (V9.1)
 
@@ -72,13 +74,15 @@ streamlit run _data/multiaxial_diagnostic_system.py
 ## Project Structure
 
 ```
-_data/multiaxial_diagnostic_system.py       # Main application (V9.1, ~2340 lines)
-_data/translations.json                     # Bilingual i18n (584 keys DE/EN)
-_data/build_code_database.py                # Diagnostic code database builder
-_data/diagnostic_codes.db                   # Pre-built code database (ICD-11/DSM-5-TR/ICF)
-_data/requirements.txt                      # Python dependencies
-_results/Konzept_Dimensionale_Integration.md  # Dimensional integration concept (DE)
-_results/Ausbauplan_Prototyp_V9.md            # Development roadmap (DE)
+paper/                                       # Scientific preprint (EN + DE + .bib)
+_data/multiaxial_diagnostic_system.py        # Main application (V9.1, ~2340 lines)
+_data/translations.json                      # Bilingual i18n (584 keys DE/EN)
+_data/build_code_database.py                 # Diagnostic code database builder
+_data/diagnostic_codes.db                    # Pre-built code database (ICD-11/DSM-5-TR/ICF)
+_data/requirements.txt                       # Python dependencies
+_results/Konzept_Dimensionale_Integration.md # Dimensional integration concept (DE)
+_results/Ausbauplan_Prototyp_V9.md           # Development roadmap (DE)
+_archive/                                    # Previous versions (v1, kombi)
 ```
 
 ## Development Roadmap
