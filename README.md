@@ -6,6 +6,8 @@ A computer-assisted 6-axis psychiatric diagnostic system integrating DSM-5-TR, I
 
 > **For qualified mental health professionals only.** This tool supports but does not replace clinical judgment.
 
+<img src="_data/screenshot.jpg" alt="Multiaxial Diagnostic System - Gatekeeper Interface" width="700">
+
 ## Overview
 
 This system addresses the structural gap left by the abolition of the multiaxial system in DSM-5 (2013). It provides a comprehensive, multi-professional diagnostic framework with innovations that go beyond any previous classification system.
