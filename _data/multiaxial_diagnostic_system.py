@@ -1,6 +1,6 @@
 """
 ==========================================================================================
-KLINISCHES MULTIAXIALES EXPERTENSYSTEM (DSM-5-TR / ICD-11 / MULTIAXIAL V9)
+KLINISCHES MULTIAXIALES EXPERTENSYSTEM (DSM-5-TR / ICD-11 / MULTIAXIAL V10)
 ==========================================================================================
 
 Computergestütztes 6-Achsen-Diagnostiksystem basierend auf:
@@ -15,6 +15,8 @@ Computergestütztes 6-Achsen-Diagnostiksystem basierend auf:
 V9.1: Symmetrische Achse III (13 Subachsen), HiTOP-Integration, Ii/Ij-Swap
       Bilingual (Deutsch / English) via translations.json
       XSS-Schutz, formale Coverage Analysis, WHODAS-Persistenz, GAF-Deprecation
+V10:  Sprint 2 - Strukturierte 3P/4P-Kodierung, Pathophysiologisches Kausalmodell,
+      Therapieresistenz-Tracking, CGI-S/I Verlaufsparameter, Session Auto-Save
 
 Technologie: transitions (HSM), Streamlit (UI), anytree (Visualisierung),
              Plotly (PID-5 + HiTOP Radar), Pydantic (Datenvalidierung)
@@ -350,6 +352,41 @@ class ContactLog:
 
 
 @dataclass
+class StructuredFactor:
+    text: str = ""
+    source_axis: str = ""
+    evidence_level: str = ""
+
+
+@dataclass
+class PathophysiologicalModel:
+    genetic_neurobiological: str = ""
+    psychological_developmental: str = ""
+    environmental_situational: str = ""
+
+
+@dataclass
+class TreatmentAttempt:
+    treatment: str = ""
+    treatment_type: str = ""
+    start_date: str = ""
+    end_date: str = ""
+    response: str = ""
+    reason_stopped: str = ""
+    notes: str = ""
+
+
+@dataclass
+class CGIAssessment:
+    date: str = ""
+    cgi_s: int = 0
+    cgi_i: int = 0
+    therapeutic_effect: int = 0
+    side_effects: int = 0
+    notes: str = ""
+
+
+@dataclass
 class ConditionModel:
     predisposing: list = field(default_factory=list)
     precipitating: list = field(default_factory=list)
@@ -410,6 +447,18 @@ class PatientData:
 
     # Achse V: Bedingungsmodell
     condition_model: ConditionModel = field(default_factory=ConditionModel)
+    # Achse V: Strukturierte Faktoren (Sprint 2)
+    structured_predisposing: list = field(default_factory=list)
+    structured_precipitating: list = field(default_factory=list)
+    structured_perpetuating: list = field(default_factory=list)
+    structured_protective: list = field(default_factory=list)
+    pathophysiological_model: PathophysiologicalModel = field(default_factory=PathophysiologicalModel)
+
+    # Therapieresistenz (Sprint 2)
+    treatment_attempts: list = field(default_factory=list)
+
+    # CGI-Verlauf (Sprint 2)
+    cgi_assessments: list = field(default_factory=list)
 
     # Achse VI: Belegsammlung
     evidence_entries: list = field(default_factory=list)
@@ -694,7 +743,7 @@ def render_hitop_radar(hitop: HiTOPProfile):
 # ===================================================================
 
 st.set_page_config(
-    page_title="Multiaxiales Diagnostik-Expertensystem v9.1",
+    page_title="Multiaxiales Diagnostik-Expertensystem v10",
     page_icon="🏥",
     layout="wide"
 )
@@ -1160,11 +1209,12 @@ elif menu == t("nav_axis1"):
                 unsafe_allow_html=True)
     p = get_patient()
 
-    tab_diag, tab_rem, tab_treat, tab_plan = st.tabs([
+    tab_diag, tab_rem, tab_treat, tab_plan, tab_therapy_resist = st.tabs([
         t("ax1_tab_diag"),
         t("ax1_tab_rem"),
         t("ax1_tab_treat"),
-        t("ax1_tab_plan")
+        t("ax1_tab_plan"),
+        t("therapy_resist_subheader")
     ])
 
     with tab_diag:
@@ -1319,6 +1369,51 @@ elif menu == t("nav_axis1"):
             value=p.investigation_plan,
             key="inv_plan_legacy"
         )
+
+    # --- Therapieresistenz-Tracking (Sprint 2) ---
+    with tab_therapy_resist:
+        st.subheader(t("therapy_resist_subheader"))
+        with st.form("therapy_resist_form"):
+            tr_name = st.text_input(t("therapy_resist_treatment"), key="tr_name")
+            col1, col2, col3 = st.columns(3)
+            tr_type = col1.selectbox(t("therapy_resist_type"), [
+                t("therapy_resist_type_medication"),
+                t("therapy_resist_type_psychotherapy"),
+                t("therapy_resist_type_other")
+            ], key="tr_type")
+            tr_start = col2.text_input(t("therapy_resist_start"), key="tr_start")
+            tr_end = col3.text_input(t("therapy_resist_end"), key="tr_end")
+            col4, col5 = st.columns(2)
+            tr_response = col4.selectbox(t("therapy_resist_response"), [
+                t("therapy_resist_response_none"),
+                t("therapy_resist_response_partial"),
+                t("therapy_resist_response_full")
+            ], key="tr_response")
+            tr_reason = col5.text_input(t("therapy_resist_reason"), key="tr_reason")
+            tr_notes = st.text_area(t("therapy_resist_notes"), key="tr_notes")
+            if st.form_submit_button(t("therapy_resist_add")):
+                if tr_name.strip():
+                    p.treatment_attempts.append(asdict(TreatmentAttempt(
+                        treatment=tr_name.strip(),
+                        treatment_type=tr_type,
+                        start_date=tr_start,
+                        end_date=tr_end,
+                        response=tr_response,
+                        reason_stopped=tr_reason,
+                        notes=tr_notes
+                    )))
+                    st.rerun()
+
+        if p.treatment_attempts and HAS_PANDAS:
+            df_tr = pd.DataFrame(p.treatment_attempts)[
+                ["treatment", "treatment_type", "start_date", "end_date",
+                 "response", "reason_stopped", "notes"]]
+            st.table(df_tr)
+        elif p.treatment_attempts:
+            for ta in p.treatment_attempts:
+                st.write(f"- {ta.get('treatment','')} ({ta.get('treatment_type','')}) "
+                         f"{ta.get('start_date','')} - {ta.get('end_date','')}: "
+                         f"{ta.get('response','')}")
 
 
 # ===================================================================
@@ -1858,48 +1953,123 @@ elif menu == t("nav_axis5"):
 
     st.info(t("ax5_info"))
 
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader(t("ax5_predisposing"))
-        predisposing = st.text_area(
-            t("ax5_predisposing_placeholder"),
-            value="\n".join(p.condition_model.predisposing),
-            key="cm_predisposing"
-        )
-        p.condition_model.predisposing = [x for x in predisposing.split("\n") if x.strip()]
+    tab_3p4p, tab_patho = st.tabs([
+        t("ax5_tab_3p4p"),
+        t("ax5_tab_patho")
+    ])
 
-        st.subheader(t("ax5_precipitating"))
-        precipitating = st.text_area(
-            t("ax5_precipitating_placeholder"),
-            value="\n".join(p.condition_model.precipitating),
-            key="cm_precipitating"
-        )
-        p.condition_model.precipitating = [x for x in precipitating.split("\n") if x.strip()]
+    with tab_3p4p:
+        # --- Bestehende Freitext-Felder (Rueckwaertskompatibilitaet) ---
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader(t("ax5_predisposing"))
+            predisposing = st.text_area(
+                t("ax5_predisposing_placeholder"),
+                value="\n".join(p.condition_model.predisposing),
+                key="cm_predisposing"
+            )
+            p.condition_model.predisposing = [x for x in predisposing.split("\n") if x.strip()]
 
-    with col2:
-        st.subheader(t("ax5_perpetuating"))
-        perpetuating = st.text_area(
-            t("ax5_perpetuating_placeholder"),
-            value="\n".join(p.condition_model.perpetuating),
-            key="cm_perpetuating"
-        )
-        p.condition_model.perpetuating = [x for x in perpetuating.split("\n") if x.strip()]
+            st.subheader(t("ax5_precipitating"))
+            precipitating = st.text_area(
+                t("ax5_precipitating_placeholder"),
+                value="\n".join(p.condition_model.precipitating),
+                key="cm_precipitating"
+            )
+            p.condition_model.precipitating = [x for x in precipitating.split("\n") if x.strip()]
 
-        st.subheader(t("ax5_protective"))
-        protective = st.text_area(
-            t("ax5_protective_placeholder"),
-            value="\n".join(p.condition_model.protective),
-            key="cm_protective"
-        )
-        p.condition_model.protective = [x for x in protective.split("\n") if x.strip()]
+        with col2:
+            st.subheader(t("ax5_perpetuating"))
+            perpetuating = st.text_area(
+                t("ax5_perpetuating_placeholder"),
+                value="\n".join(p.condition_model.perpetuating),
+                key="cm_perpetuating"
+            )
+            p.condition_model.perpetuating = [x for x in perpetuating.split("\n") if x.strip()]
 
-    st.markdown("---")
-    p.condition_model.narrative = st.text_area(
-        t("ax5_narrative"),
-        value=p.condition_model.narrative,
-        height=200,
-        placeholder=t("ax5_narrative_placeholder")
-    )
+            st.subheader(t("ax5_protective"))
+            protective = st.text_area(
+                t("ax5_protective_placeholder"),
+                value="\n".join(p.condition_model.protective),
+                key="cm_protective"
+            )
+            p.condition_model.protective = [x for x in protective.split("\n") if x.strip()]
+
+        st.markdown("---")
+        p.condition_model.narrative = st.text_area(
+            t("ax5_narrative"),
+            value=p.condition_model.narrative,
+            height=200,
+            placeholder=t("ax5_narrative_placeholder")
+        )
+
+        # --- Strukturierte Faktorenerfassung (Sprint 2) ---
+        st.markdown("---")
+        st.subheader(t("ax5_structured_subheader"))
+
+        _axis_options = ["I", "II", "III", "IV"]
+        _evidence_options = [
+            t("ax5_evidence_confirmed"),
+            t("ax5_evidence_probable"),
+            t("ax5_evidence_hypothetical")
+        ]
+
+        _factor_configs = [
+            ("predisposing", t("ax5_struct_for_predisposing"), "structured_predisposing"),
+            ("precipitating", t("ax5_struct_for_precipitating"), "structured_precipitating"),
+            ("perpetuating", t("ax5_struct_for_perpetuating"), "structured_perpetuating"),
+            ("protective", t("ax5_struct_for_protective"), "structured_protective"),
+        ]
+
+        for factor_key, factor_label, attr_name in _factor_configs:
+            st.markdown(f"**{factor_label}**")
+            with st.form(f"struct_{factor_key}_form"):
+                col_t, col_a, col_e = st.columns([3, 1, 1])
+                sf_text = col_t.text_input(t("ax5_struct_text"), key=f"sf_{factor_key}_text")
+                sf_axis = col_a.selectbox(t("ax5_struct_axis"), _axis_options,
+                                          key=f"sf_{factor_key}_axis")
+                sf_evidence = col_e.selectbox(t("ax5_struct_evidence"), _evidence_options,
+                                              key=f"sf_{factor_key}_ev")
+                if st.form_submit_button(t("ax5_struct_add")):
+                    if sf_text.strip():
+                        getattr(p, attr_name).append(asdict(StructuredFactor(
+                            text=sf_text.strip(),
+                            source_axis=sf_axis,
+                            evidence_level=sf_evidence
+                        )))
+                        st.rerun()
+
+            current_factors = getattr(p, attr_name)
+            if current_factors and HAS_PANDAS:
+                df_sf = pd.DataFrame(current_factors)
+                st.table(df_sf)
+            elif current_factors:
+                for sf in current_factors:
+                    st.write(f"- [{sf.get('source_axis','')}] {sf.get('text','')} "
+                             f"({sf.get('evidence_level','')})")
+
+    with tab_patho:
+        st.subheader(t("ax5_patho_subheader"))
+        st.info(t("ax5_patho_info"))
+
+        p.pathophysiological_model.genetic_neurobiological = st.text_area(
+            t("ax5_patho_genetic"),
+            value=p.pathophysiological_model.genetic_neurobiological,
+            placeholder=t("ax5_patho_genetic_placeholder"),
+            key="patho_genetic"
+        )
+        p.pathophysiological_model.psychological_developmental = st.text_area(
+            t("ax5_patho_psychological"),
+            value=p.pathophysiological_model.psychological_developmental,
+            placeholder=t("ax5_patho_psychological_placeholder"),
+            key="patho_psych"
+        )
+        p.pathophysiological_model.environmental_situational = st.text_area(
+            t("ax5_patho_environmental"),
+            value=p.pathophysiological_model.environmental_situational,
+            placeholder=t("ax5_patho_environmental_placeholder"),
+            key="patho_env"
+        )
 
 
 # ===================================================================
@@ -2167,18 +2337,108 @@ elif menu == t("nav_synopsis"):
             for ic in p.icf_codes:
                 st.write(f"- {ic['code']} {ic.get('title','')} [{ic.get('qualifier_label','')}]")
 
+    # --- Therapieresistenz-Tracking (Synopsis) ---
+    if p.treatment_attempts:
+        st.markdown(f"<div class='axis-header'>{t('syn_therapy_resist_header')}</div>",
+                    unsafe_allow_html=True)
+        if HAS_PANDAS:
+            df_tr = pd.DataFrame(p.treatment_attempts)[
+                ["treatment", "treatment_type", "start_date", "end_date",
+                 "response", "reason_stopped"]]
+            st.table(df_tr)
+        else:
+            for ta in p.treatment_attempts:
+                st.write(f"- {ta.get('treatment','')} ({ta.get('treatment_type','')}) "
+                         f"{ta.get('start_date','')} - {ta.get('end_date','')}: "
+                         f"{ta.get('response','')}")
+
+    # --- CGI-Verlauf (Synopsis) ---
+    if p.cgi_assessments:
+        st.markdown(f"<div class='axis-header'>{t('syn_cgi_header')}</div>",
+                    unsafe_allow_html=True)
+        if HAS_PANDAS:
+            df_cgi = pd.DataFrame(p.cgi_assessments)[
+                ["date", "cgi_s", "cgi_i", "therapeutic_effect", "side_effects", "notes"]]
+            st.table(df_cgi)
+        else:
+            for ca in p.cgi_assessments:
+                st.write(f"- [{ca.get('date','')}] CGI-S: {ca.get('cgi_s',0)}, "
+                         f"CGI-I: {ca.get('cgi_i',0)}")
+
+    # --- CGI-Assessment Eingabe (Synopsis) ---
+    st.markdown(f"<div class='axis-header'>{t('cgi_subheader')}</div>",
+                unsafe_allow_html=True)
+    with st.form("cgi_form"):
+        cgi_date = st.text_input(t("cgi_date"),
+                                  value=str(datetime.date.today()), key="cgi_date")
+        col1, col2 = st.columns(2)
+        cgi_s_options = [t(f"cgi_s_{i}") for i in range(1, 8)]
+        cgi_i_options = [t(f"cgi_i_{i}") for i in range(1, 8)]
+        cgi_s = col1.selectbox(t("cgi_s_label"), cgi_s_options, key="cgi_s_sel")
+        cgi_i = col2.selectbox(t("cgi_i_label"), cgi_i_options, key="cgi_i_sel")
+        col3, col4 = st.columns(2)
+        cgi_eff_options = [t(f"cgi_effect_{i}") for i in range(1, 5)]
+        cgi_side_options = [t(f"cgi_side_{i}") for i in range(1, 5)]
+        cgi_eff = col3.selectbox(t("cgi_effect_label"), cgi_eff_options, key="cgi_eff_sel")
+        cgi_side = col4.selectbox(t("cgi_side_effects_label"), cgi_side_options, key="cgi_side_sel")
+        cgi_notes = st.text_input(t("cgi_notes"), key="cgi_notes_input")
+        if st.form_submit_button(t("cgi_add")):
+            # Numerischen Wert aus der Option extrahieren
+            cgi_s_val = cgi_s_options.index(cgi_s) + 1
+            cgi_i_val = cgi_i_options.index(cgi_i) + 1
+            cgi_eff_val = cgi_eff_options.index(cgi_eff) + 1
+            cgi_side_val = cgi_side_options.index(cgi_side) + 1
+            p.cgi_assessments.append(asdict(CGIAssessment(
+                date=cgi_date,
+                cgi_s=cgi_s_val,
+                cgi_i=cgi_i_val,
+                therapeutic_effect=cgi_eff_val,
+                side_effects=cgi_side_val,
+                notes=cgi_notes
+            )))
+            st.rerun()
+
     # --- Achse V ---
     st.markdown(f"<div class='axis-header'>{t('syn_axis5_header')}</div>",
                 unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        st.write(f"**{t('syn_predisposing')}**", ", ".join(p.condition_model.predisposing) or "—")
-        st.write(f"**{t('syn_precipitating')}**", ", ".join(p.condition_model.precipitating) or "—")
+        st.write(f"**{t('syn_predisposing')}**", ", ".join(p.condition_model.predisposing) or "\u2014")
+        st.write(f"**{t('syn_precipitating')}**", ", ".join(p.condition_model.precipitating) or "\u2014")
     with col2:
-        st.write(f"**{t('syn_perpetuating')}**", ", ".join(p.condition_model.perpetuating) or "—")
-        st.write(f"**{t('syn_protective')}**", ", ".join(p.condition_model.protective) or "—")
+        st.write(f"**{t('syn_perpetuating')}**", ", ".join(p.condition_model.perpetuating) or "\u2014")
+        st.write(f"**{t('syn_protective')}**", ", ".join(p.condition_model.protective) or "\u2014")
     if p.condition_model.narrative:
         st.info(f"**{t('syn_narrative_label')}**\n\n{p.condition_model.narrative}")
+
+    # Strukturierte Faktoren in Synopsis
+    _structured_lists = [
+        ("syn_predisposing", p.structured_predisposing),
+        ("syn_precipitating", p.structured_precipitating),
+        ("syn_perpetuating", p.structured_perpetuating),
+        ("syn_protective", p.structured_protective),
+    ]
+    has_structured = any(sl for _, sl in _structured_lists)
+    if has_structured:
+        st.markdown(f"**{t('syn_structured_factors')}**")
+        for label_key, factor_list in _structured_lists:
+            if factor_list:
+                st.write(f"*{t(label_key)}*")
+                for sf in factor_list:
+                    st.write(f"- [{sf.get('source_axis','')}] {sf.get('text','')} "
+                             f"({sf.get('evidence_level','')})")
+
+    # Pathophysiologisches Kausalmodell in Synopsis
+    pm = p.pathophysiological_model
+    if pm.genetic_neurobiological or pm.psychological_developmental or pm.environmental_situational:
+        st.markdown(f"<div class='axis-header'>{t('syn_patho_header')}</div>",
+                    unsafe_allow_html=True)
+        if pm.genetic_neurobiological:
+            st.write(f"**{t('ax5_patho_genetic')}:** {pm.genetic_neurobiological}")
+        if pm.psychological_developmental:
+            st.write(f"**{t('ax5_patho_psychological')}:** {pm.psychological_developmental}")
+        if pm.environmental_situational:
+            st.write(f"**{t('ax5_patho_environmental')}:** {pm.environmental_situational}")
 
     # --- Achse VI ---
     st.markdown(f"<div class='axis-header'>{t('syn_axis6_header')}</div>",
@@ -2293,7 +2553,14 @@ elif menu == t("nav_synopsis"):
                     "contact_persons": p.contact_persons,
                     "icf_codes": p.icf_codes
                 },
-                "V_bedingungsmodell": asdict(p.condition_model),
+                "V_bedingungsmodell": {
+                    **asdict(p.condition_model),
+                    "structured_predisposing": p.structured_predisposing,
+                    "structured_precipitating": p.structured_precipitating,
+                    "structured_perpetuating": p.structured_perpetuating,
+                    "structured_protective": p.structured_protective,
+                    "pathophysiological_model": asdict(p.pathophysiological_model)
+                },
                 "VI_belegsammlung": {
                     "evidence_entries": p.evidence_entries,
                     "contact_log": p.contact_log
@@ -2308,7 +2575,9 @@ elif menu == t("nav_synopsis"):
             "cave_alerts": p.cave_alerts,
             "symptom_coverage": p.symptom_coverage,
             "investigation_plans": p.investigation_plans,
-            "symptom_timeline": p.symptom_timeline
+            "symptom_timeline": p.symptom_timeline,
+            "treatment_attempts": p.treatment_attempts,
+            "cgi_assessments": p.cgi_assessments
         }
         json_str = json.dumps(export_data, indent=2, ensure_ascii=False,
                               default=str)
@@ -2319,6 +2588,91 @@ elif menu == t("nav_synopsis"):
             mime="application/json"
         )
         st.json(export_data)
+
+
+# ===================================================================
+# SESSION SAVE / LOAD (Sprint 2)
+# ===================================================================
+
+_SESSION_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+def _save_session(filename: str):
+    """Save current PatientData to JSON file."""
+    p = get_patient()
+    save_data = {
+        "session_version": "v10",
+        "saved_at": str(datetime.datetime.now()),
+        "current_gate": st.session_state.current_gate,
+        "lang": st.session_state.lang,
+        "patient": asdict(p)
+    }
+    filepath = os.path.join(_SESSION_DIR, filename)
+    with open(filepath, "w", encoding="utf-8") as f:
+        json.dump(save_data, f, indent=2, ensure_ascii=False, default=str)
+    return filepath
+
+
+def _load_session(filepath: str) -> bool:
+    """Load PatientData from JSON file."""
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        pd_dict = data.get("patient", {})
+        # Reconstruct nested dataclasses
+        if "pid5_profile" in pd_dict:
+            pd_dict["pid5_profile"] = PID5Profile(**pd_dict["pid5_profile"])
+        if "hitop_profile" in pd_dict:
+            pd_dict["hitop_profile"] = HiTOPProfile(**pd_dict["hitop_profile"])
+        if "functioning" in pd_dict:
+            pd_dict["functioning"] = FunctioningAssessment(**pd_dict["functioning"])
+        if "condition_model" in pd_dict:
+            pd_dict["condition_model"] = ConditionModel(**pd_dict["condition_model"])
+        if "pathophysiological_model" in pd_dict:
+            pd_dict["pathophysiological_model"] = PathophysiologicalModel(
+                **pd_dict["pathophysiological_model"])
+        # Create PatientData with safe defaults for missing fields
+        valid_fields = {f.name for f in PatientData.__dataclass_fields__.values()}
+        filtered = {k: v for k, v in pd_dict.items() if k in valid_fields}
+        st.session_state.patient = PatientData(**filtered)
+        st.session_state.current_gate = data.get("current_gate", 0)
+        return True
+    except Exception:
+        return False
+
+
+# --- Sidebar: Session Save/Load ---
+st.sidebar.markdown("---")
+st.sidebar.subheader(t("session_save"))
+
+_session_filename = st.sidebar.text_input(
+    t("session_filename_label"),
+    value="diagnostic_session.json",
+    key="session_filename"
+)
+
+col_save, col_load = st.sidebar.columns(2)
+if col_save.button(t("session_save"), key="btn_save"):
+    _save_session(_session_filename)
+    st.sidebar.success(t("session_save_success"))
+
+if col_load.button(t("session_load"), key="btn_load"):
+    _load_path = os.path.join(_SESSION_DIR, _session_filename)
+    if os.path.exists(_load_path):
+        if _load_session(_load_path):
+            st.sidebar.success(t("session_load_success"))
+            st.rerun()
+        else:
+            st.sidebar.error(t("session_load_error"))
+    else:
+        st.sidebar.error(t("session_load_error"))
+
+# Auto-load on first start if session file exists
+if 'session_autoloaded' not in st.session_state:
+    _auto_path = os.path.join(_SESSION_DIR, "diagnostic_session.json")
+    if os.path.exists(_auto_path):
+        _load_session(_auto_path)
+    st.session_state.session_autoloaded = True
 
 
 # ===================================================================

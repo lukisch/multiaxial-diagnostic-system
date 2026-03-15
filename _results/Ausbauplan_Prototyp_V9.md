@@ -177,8 +177,9 @@
 10. IIIm Medikamentenformular erweitert -- DONE
 11. JSON-Export mit allen neuen Feldern -- DONE
 
-### Sprint 2 -- NAECHSTER SPRINT
-1. Achse V P1-P4 Strukturierung
-2. Pathophysiologisches Kausalmodell
-3. Therapieresistenz-Tracking
-4. CGI-I / CGI-E Verlaufsparameter
+### Sprint 2 -- ERLEDIGT (V10, 2026-03-15)
+1. Achse V P1-P4 Strukturierung -- DONE
+2. Pathophysiologisches Kausalmodell -- DONE
+3. Therapieresistenz-Tracking -- DONE
+4. CGI-I / CGI-E Verlaufsparameter -- DONE
+5. Session Auto-Save / Datenpersistenz -- DONE

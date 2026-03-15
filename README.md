@@ -1,4 +1,4 @@
-# Multiaxial Diagnostic Expert System (V9.1)
+# Multiaxial Diagnostic Expert System (V10)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18736725.svg)](https://doi.org/10.5281/zenodo.18736725)
 
@@ -45,7 +45,7 @@ The preprint is available in English, German, and a combined bilingual edition:
 - [`paper/Review_Multiaxiale_Diagnostik_v2_en.pdf`](paper/Review_Multiaxiale_Diagnostik_v2_en.pdf) -- English
 - [`paper/Review_Multiaxiale_Diagnostik_v2_ger.pdf`](paper/Review_Multiaxiale_Diagnostik_v2_ger.pdf) -- German
 
-### Security & Quality (V9.1)
+### Security & Quality (V10)
 
 - **XSS Protection**: All user-supplied data HTML-escaped before rendering
 - **GAF Deprecation Notice**: DSM-5 replaced GAF with WHODAS 2.0; system shows deprecation warning
@@ -77,8 +77,8 @@ streamlit run _data/multiaxial_diagnostic_system.py
 
 ```
 paper/                                       # Scientific preprint (EN + DE + .bib)
-_data/multiaxial_diagnostic_system.py        # Main application (V9.1, ~2340 lines)
-_data/translations.json                      # Bilingual i18n (584 keys DE/EN)
+_data/multiaxial_diagnostic_system.py        # Main application (V10, ~2690 lines)
+_data/translations.json                      # Bilingual i18n (661 keys DE/EN)
 _data/build_code_database.py                 # Diagnostic code database builder
 _data/diagnostic_codes.db                    # Pre-built code database (ICD-11/DSM-5-TR/ICF)
 _data/requirements.txt                       # Python dependencies
@@ -109,12 +109,18 @@ See [Ausbauplan_Prototyp_V9.md](_results/Ausbauplan_Prototyp_V9.md) for the full
 - Full i18n coverage (no hardcoded strings)
 - Robust Likert scale parsing
 
-**Next (Sprint 2):**
-- Axis V P1-P4 structured coding
-- Pathophysiological causal model
-- Therapy resistance tracking
-- CGI-I / CGI-E outcome parameters
-- Session auto-save / data persistence
+**Completed (Sprint 2 / V10):**
+- Axis V P1-P4 structured coding (source axis + evidence level per factor)
+- Pathophysiological causal model (genetic-neurobiological / psychological-developmental / environmental-situational)
+- Therapy resistance tracking (treatment attempts, response rates, switch reasons)
+- CGI-S / CGI-I outcome parameters with longitudinal tracking
+- Session auto-save / data persistence (JSON-based save & load)
+
+**Next (Sprint 3):**
+- Multi-professional role model (login/role-based axis access)
+- Automated coverage analysis (cross-cutting to diagnosis mapping)
+- Comorbidity rules (automated warnings)
+- HSM disorder modules (11 structured modules)
 
 ## Citation
 
