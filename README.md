@@ -53,38 +53,98 @@ The preprint is available in English, German, and a combined bilingual edition:
 - **Robust Input Parsing**: Likert scale extraction with fallback handling
 - **Full Bilingual Coverage**: All UI strings (584 keys DE/EN) via `translations.json`, no hardcoded strings
 
+## Diagnostic Testcenter (NEW)
+
+A standalone web application for digital administration of all 16 validated screening instruments referenced in the paper. Supports both **remote client assessment** (link sharing) and **pen & paper** (print-friendly PDFs).
+
+### Features
+
+- **16 validated instruments** (PHQ-9, GAD-7, PCL-5, ITQ, AUDIT, C-SSRS, PQ-16, ASRS, AQ-10, OCI-R, SSS-8, DES-II, SCOFF, ISI, PID-5-BF, WHODAS 2.0) -- all freely available, bilingual (DE/EN)
+- **Automatic scoring** with severity classification, color-coded thresholds, and clinical action guides
+- **Test batteries**: Send multiple tests as a package -- client receives one link and works through all tests sequentially with progress tracking
+- **Link sharing**: Clinician creates session → generates token URL → sends to client → client fills out remotely → clinician views results
+- **Print-friendly output**: Single tests or bundles as printable HTML (pen & paper), with patient header, scoring tables, and references
+- **Critical item alerts**: Suicidality screening (PHQ-9 Item 9, C-SSRS) triggers immediate warnings with emergency resources
+- **REST API**: Full JSON API for programmatic integration (`/api/tests`, `/api/results/<token>`, `/api/score`)
+- **Integration with main system**: Cross-Cutting screening in the Streamlit app (Gate 5) links directly to the Testcenter for recommended Level-2 instruments
+
+### Testcenter Quick Start
+
+```bash
+cd _data/testcenter
+pip install flask
+python app.py
+# → http://localhost:5050
+```
+
+### Included Instruments
+
+| Instrument | Items | Domain | Axis | Scoring |
+|-----------|-------|--------|------|---------|
+| PHQ-9 | 9 | Depression | I | Sum (0-27), cutoff ≥10 |
+| GAD-7 | 7 | Anxiety | I | Sum (0-21), cutoff ≥10 |
+| PCL-5 | 20 | PTSD (DSM-5) | I | Sum + DSM-5 clusters |
+| ITQ | 16 | PTSD/CPTSD (ICD-11) | I | Diagnostic algorithm |
+| PQ-16 | 16 | Psychosis risk | I | Endorsement + distress |
+| ASRS v1.1 | 6 | ADHD | I | Threshold count |
+| AQ-10 | 10 | Autism spectrum | I | Directional sum |
+| AUDIT | 10 | Alcohol use | I | Sum (0-40), 3 subscales |
+| C-SSRS | 6 | Suicidality | I | Risk classification |
+| OCI-R | 18 | OCD | I | Sum + 6 subscales |
+| SSS-8 | 8 | Somatic symptoms | I | Sum (0-32) |
+| DES-II | 28 | Dissociation | I | Mean (0-100%) |
+| SCOFF | 5 | Eating disorders | I | Sum (0-5) |
+| ISI | 7 | Insomnia | I | Sum (0-28) |
+| PID-5-BF | 25 | Personality traits | II | 5 domains → HiTOP |
+| WHODAS 2.0 | 12 | Functioning | IV | 6 ICF domains |
+
 ## Tech Stack
 
-- **UI**: Streamlit
+- **Diagnostic System UI**: Streamlit
+- **Testcenter UI**: Flask + Bootstrap 5 + Jinja2
 - **Decision Engine**: `transitions` (Hierarchical State Machine)
 - **Visualization**: Plotly (PID-5 + HiTOP radar charts)
-- **Data Validation**: Python dataclasses
-- **Internationalization**: Bilingual (German/English) via `translations.json` (584 keys per language)
+- **Data Storage**: SQLite (diagnostic codes + test sessions)
+- **Internationalization**: Bilingual (German/English) via `translations.json` (661 keys per language)
 
 ## Installation
 
 ```bash
+# Main diagnostic system
 pip install streamlit plotly pandas transitions anytree
+
+# Testcenter (separate)
+pip install flask
 ```
 
 ## Usage
 
 ```bash
+# Main diagnostic system (clinician interface)
 streamlit run _data/multiaxial_diagnostic_system.py
+
+# Testcenter (patient-facing + clinician admin)
+python _data/testcenter/app.py
 ```
 
 ## Project Structure
 
 ```
 paper/                                       # Scientific preprint (EN + DE + .bib)
-_data/multiaxial_diagnostic_system.py        # Main application (V10, ~2690 lines)
+_data/multiaxial_diagnostic_system.py        # Main application (V10, ~2850 lines)
 _data/translations.json                      # Bilingual i18n (661 keys DE/EN)
 _data/build_code_database.py                 # Diagnostic code database builder
 _data/diagnostic_codes.db                    # Pre-built code database (ICD-11/DSM-5-TR/ICF)
 _data/requirements.txt                       # Python dependencies
+_data/testcenter/                            # Diagnostic Testcenter (Flask web app)
+    app.py                                   #   Main application
+    scoring.py                               #   Scoring engine (9 methods)
+    config.py                                #   Configuration
+    tests/                                   #   16 test definitions (JSON, bilingual)
+    templates/                               #   HTML templates (Bootstrap 5)
+    static/                                  #   CSS + JavaScript
 _results/Konzept_Dimensionale_Integration.md # Dimensional integration concept (DE)
 _results/Ausbauplan_Prototyp_V9.md           # Development roadmap (DE)
-_archive/                                    # Previous versions (v1, kombi)
 ```
 
 ## Development Roadmap
@@ -116,7 +176,17 @@ See [Ausbauplan_Prototyp_V9.md](_results/Ausbauplan_Prototyp_V9.md) for the full
 - CGI-S / CGI-I outcome parameters with longitudinal tracking
 - Session auto-save / data persistence (JSON-based save & load)
 
-**Next (Sprint 3):**
+**Completed (Sprint 3 / V10.1 -- Testcenter):**
+- Diagnostic Testcenter: standalone Flask web app with 16 validated instruments
+- Bilingual test definitions (DE/EN) with complete item content and scoring
+- Test batteries: multiple tests as a single client link
+- Print-friendly output for pen & paper administration
+- Automatic scoring with 9 scoring methods (sum, mean, algorithm, classification, etc.)
+- REST API for programmatic integration
+- Cross-Cutting → Testcenter integration (Gate 5 links to recommended instruments)
+- Session management with token-based link sharing and deletion
+
+**Next (Sprint 4):**
 - Multi-professional role model (login/role-based axis access)
 - Automated coverage analysis (cross-cutting to diagnosis mapping)
 - Comorbidity rules (automated warnings)

@@ -1,0 +1,75 @@
+{
+  "id": "ocir",
+  "name": {"de": "Zwangsinventar – Revidiert", "en": "Obsessive-Compulsive Inventory – Revised"},
+  "abbreviation": "OCI-R",
+  "version": "1.0",
+  "authors": "Foa, Huppert, Leiberg, Langner, Kichic, Hajcak, Salkovskis",
+  "year": 2002,
+  "license": "Free for clinical use",
+  "domain": {"de": "Zwangsstörung", "en": "Obsessive-Compulsive Disorder"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "description": {
+    "de": "18-Item Selbstbeurteilungsfragebogen zur Erfassung von Zwangssymptomen in 6 Subskalen: Waschen, Kontrollieren, Ordnen, Horten, Obsessionen, Neutralisieren.",
+    "en": "18-item self-report measure of OCD symptoms across 6 subscales: Washing, Checking, Ordering, Hoarding, Obsessing, Neutralizing."
+  },
+  "instructions": {
+    "de": "Die folgenden Aussagen beziehen sich auf Erfahrungen, die viele Menschen in ihrem Alltag haben. Bitte geben Sie an, wie sehr Sie sich im vergangenen Monat durch die jeweilige Erfahrung belastet oder beeinträchtigt gefühlt haben.",
+    "en": "The following statements refer to experiences that many people have in their everyday lives. Please indicate how much the experience described in each statement has distressed or bothered you during the past month."
+  },
+  "timeframe": {"de": "Letzter Monat", "en": "Past month"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
+    {"value": 1, "label": {"de": "Ein wenig", "en": "A little"}},
+    {"value": 2, "label": {"de": "Mäßig", "en": "Moderately"}},
+    {"value": 3, "label": {"de": "Ziemlich", "en": "A lot"}},
+    {"value": 4, "label": {"de": "Äußerst", "en": "Extremely"}}
+  ],
+  "items": [
+    {"number": 1, "subscale": "hoarding", "text": {"de": "Ich sammle Dinge, die ich nicht brauche", "en": "I have saved up so many things that they get in the way"}},
+    {"number": 2, "subscale": "checking", "text": {"de": "Ich kontrolliere Dinge häufiger als nötig", "en": "I check things more often than necessary"}},
+    {"number": 3, "subscale": "ordering", "text": {"de": "Ich rege mich auf, wenn Dinge nicht in Ordnung sind", "en": "I get upset if objects are not arranged properly"}},
+    {"number": 4, "subscale": "neutralizing", "text": {"de": "Ich fühle mich gezwungen zu zählen, während ich Dinge tue", "en": "I feel compelled to count while I am doing things"}},
+    {"number": 5, "subscale": "washing", "text": {"de": "Ich empfinde es als schwierig, Dinge zu berühren, die von Fremden oder bestimmten Personen berührt wurden", "en": "I find it difficult to touch an object when I know it has been touched by strangers or certain people"}},
+    {"number": 6, "subscale": "obsessing", "text": {"de": "Ich empfinde es als schwierig, meine eigenen Gedanken zu kontrollieren", "en": "I find it difficult to control my own thoughts"}},
+    {"number": 7, "subscale": "hoarding", "text": {"de": "Ich sammle Dinge, die ich nicht brauche", "en": "I collect things I don't need"}},
+    {"number": 8, "subscale": "checking", "text": {"de": "Ich überprüfe wiederholt Türen, Fenster, Schubladen usw.", "en": "I repeatedly check doors, windows, drawers, etc."}},
+    {"number": 9, "subscale": "ordering", "text": {"de": "Ich rege mich auf, wenn andere die Ordnung verändert haben, die ich hergestellt habe", "en": "I get upset if others change the way I have arranged things"}},
+    {"number": 10, "subscale": "neutralizing", "text": {"de": "Ich fühle mich gezwungen, bestimmte Zahlen zu wiederholen", "en": "I feel I have to repeat certain numbers"}},
+    {"number": 11, "subscale": "washing", "text": {"de": "Manchmal muss ich mich mehrmals waschen oder reinigen", "en": "I sometimes have to wash or clean myself simply because I feel contaminated"}},
+    {"number": 12, "subscale": "obsessing", "text": {"de": "Ich werde von unangenehmen Gedanken gegen meinen Willen beunruhigt", "en": "I am upset by unpleasant thoughts that come into my mind against my will"}},
+    {"number": 13, "subscale": "hoarding", "text": {"de": "Ich vermeide es, Dinge wegzuwerfen, weil ich Angst habe, sie später doch noch zu brauchen", "en": "I avoid throwing things away because I am afraid I might need them later"}},
+    {"number": 14, "subscale": "checking", "text": {"de": "Ich überprüfe wiederholt Gas-/Wasserhähne und Lichtschalter nach dem Ausschalten", "en": "I repeatedly check gas and water taps and light switches after turning them off"}},
+    {"number": 15, "subscale": "ordering", "text": {"de": "Ich brauche Dinge in einer bestimmten Ordnung", "en": "I need things to be arranged in a particular way"}},
+    {"number": 16, "subscale": "neutralizing", "text": {"de": "Ich habe das Gefühl, dass es gute und schlechte Zahlen gibt", "en": "I feel that there are good and bad numbers"}},
+    {"number": 17, "subscale": "washing", "text": {"de": "Ich wasche mir häufiger die Hände als nötig", "en": "I frequently wash my hands more often than necessary"}},
+    {"number": 18, "subscale": "obsessing", "text": {"de": "Ich bekomme häufig üble Gedanken und habe Schwierigkeiten, sie loszuwerden", "en": "I frequently get nasty thoughts and have difficulty in getting rid of them"}}
+  ],
+  "scoring": {
+    "method": "sum",
+    "range": [0, 72],
+    "subscales": [
+      {"name": {"de": "Waschen", "en": "Washing"}, "items": [5, 11, 17], "range": [0, 12]},
+      {"name": {"de": "Kontrollieren", "en": "Checking"}, "items": [2, 8, 14], "range": [0, 12]},
+      {"name": {"de": "Ordnen", "en": "Ordering"}, "items": [3, 9, 15], "range": [0, 12]},
+      {"name": {"de": "Horten", "en": "Hoarding"}, "items": [1, 7, 13], "range": [0, 12]},
+      {"name": {"de": "Obsessionen", "en": "Obsessing"}, "items": [6, 12, 18], "range": [0, 12]},
+      {"name": {"de": "Neutralisieren", "en": "Neutralizing"}, "items": [4, 10, 16], "range": [0, 12]}
+    ],
+    "thresholds": [
+      {"min": 0, "max": 20, "severity": "none_mild", "label": {"de": "Unauffällig/leicht", "en": "Non-clinical/mild"}, "color": "#4CAF50"},
+      {"min": 21, "max": 72, "severity": "clinical", "label": {"de": "Klinisch auffällig – Zwangsstörung möglich", "en": "Clinically significant – OCD possible"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 21,
+    "subscale_cutoff": 5,
+    "subscale_note": {
+      "de": "Subskalen-Score ≥5 weist auf klinisch relevante Symptome in diesem Bereich hin",
+      "en": "Subscale score ≥5 indicates clinically relevant symptoms in that domain"
+    }
+  },
+  "references": [
+    "Foa EB, Huppert JD, Leiberg S, et al. The Obsessive-Compulsive Inventory: development and validation of a short version. Psychol Assess. 2002;14(4):485-496.",
+    "Gönner S, Leonhart R, Ecker W. Das Zwangsinventar OCI-R – die deutsche Version des Obsessive-Compulsive Inventory-Revised. Psychother Psychosom Med Psychol. 2007;57(9-10):395-404."
+  ],
+  "source_url": "https://psychology-tools.com/test/oci-r"
+}

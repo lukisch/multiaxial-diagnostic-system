@@ -1,0 +1,165 @@
+{
+  "id": "whodas12",
+  "name": {"de": "WHO Behinderungs-Bewertungsskala 2.0 (Kurzversion)", "en": "WHO Disability Assessment Schedule 2.0 (Short Version)"},
+  "abbreviation": "WHODAS 2.0 (12-Item)",
+  "version": "2.0",
+  "authors": "WHO (Üstün, Kostanjsek, Chatterji, Rehm)",
+  "year": 2010,
+  "license": "Public Domain (WHO)",
+  "domain": {"de": "Funktionalität / Behinderung", "en": "Functioning / Disability"},
+  "axis": "IV",
+  "hitop_spectrum": null,
+  "description": {
+    "de": "12-Item Kurzversion der WHODAS 2.0 zur Erfassung von Funktionsbeeinträchtigungen über 6 Lebensbereiche. Kulturübergreifend validiert, kompatibel mit ICF.",
+    "en": "12-item short version of the WHODAS 2.0 for assessing functional impairment across 6 life domains. Cross-culturally validated, compatible with ICF."
+  },
+  "instructions": {
+    "de": "Dieser Fragebogen erfasst Schwierigkeiten, die Menschen aufgrund von Gesundheitsproblemen haben. Mit Gesundheitsproblemen sind Krankheiten oder andere gesundheitliche Störungen gemeint, die kurz- oder langfristig bestehen, sowie Verletzungen, psychische oder emotionale Probleme und Alkohol- oder Drogenprobleme. Denken Sie bei Ihren Antworten an die letzten 30 Tage.",
+    "en": "This questionnaire asks about difficulties due to health conditions. Health conditions include diseases or illnesses, other health problems that may be short or long lasting, injuries, mental or emotional problems, and problems with alcohol or drugs. Think back over the past 30 days."
+  },
+  "timeframe": {"de": "Letzte 30 Tage", "en": "Past 30 days"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Keine", "en": "None"}},
+    {"value": 1, "label": {"de": "Leicht", "en": "Mild"}},
+    {"value": 2, "label": {"de": "Mäßig", "en": "Moderate"}},
+    {"value": 3, "label": {"de": "Schwer", "en": "Severe"}},
+    {"value": 4, "label": {"de": "Extrem/Nicht möglich", "en": "Extreme/Cannot do"}}
+  ],
+  "items": [
+    {
+      "number": 1,
+      "domain": "cognition",
+      "text": {
+        "de": "Sich auf etwas zu konzentrieren und es 10 Minuten lang zu tun?",
+        "en": "Concentrating on doing something for ten minutes?"
+      }
+    },
+    {
+      "number": 2,
+      "domain": "mobility",
+      "text": {
+        "de": "Lange Strecken zu gehen, wie z.B. einen Kilometer?",
+        "en": "Walking a long distance such as a kilometre (or equivalent)?"
+      }
+    },
+    {
+      "number": 3,
+      "domain": "self_care",
+      "text": {
+        "de": "Ihren ganzen Körper zu waschen?",
+        "en": "Washing your whole body?"
+      }
+    },
+    {
+      "number": 4,
+      "domain": "getting_along",
+      "text": {
+        "de": "Sich in Kleidung anzuziehen?",
+        "en": "Getting dressed?"
+      }
+    },
+    {
+      "number": 5,
+      "domain": "getting_along",
+      "text": {
+        "de": "Mit Menschen umzugehen, die Sie nicht kennen?",
+        "en": "Dealing with people you do not know?"
+      }
+    },
+    {
+      "number": 6,
+      "domain": "getting_along",
+      "text": {
+        "de": "Eine Freundschaft aufrechtzuerhalten?",
+        "en": "Maintaining a friendship?"
+      }
+    },
+    {
+      "number": 7,
+      "domain": "life_activities",
+      "text": {
+        "de": "Ihre tägliche Arbeit/Schule zu erledigen?",
+        "en": "Your day-to-day work/school?"
+      }
+    },
+    {
+      "number": 8,
+      "domain": "cognition",
+      "text": {
+        "de": "Neue Aufgaben zu lernen, z.B. den Weg zu einem neuen Ort zu finden?",
+        "en": "Learning a new task, for example, learning how to get to a new place?"
+      }
+    },
+    {
+      "number": 9,
+      "domain": "life_activities",
+      "text": {
+        "de": "Wie viel Schwierigkeiten hatten Sie bei der Teilnahme an Gemeinschaftsaktivitäten (z.B. Feste, religiöse oder andere Aktivitäten)?",
+        "en": "How much of a problem did you have in joining in community activities (for example, festivities, religious or other activities)?"
+      }
+    },
+    {
+      "number": 10,
+      "domain": "participation",
+      "text": {
+        "de": "Wie sehr waren Sie emotional von Ihrem Gesundheitszustand betroffen?",
+        "en": "How much have you been emotionally affected by your health problems?"
+      }
+    },
+    {
+      "number": 11,
+      "domain": "participation",
+      "text": {
+        "de": "Wie viele Tage hatten Sie in den letzten 30 Tagen solche Schwierigkeiten?",
+        "en": "In the past 30 days, how many days were these difficulties present?"
+      },
+      "response_type": "days",
+      "response_options": [
+        {"value": "numeric", "min": 0, "max": 30, "label": {"de": "Anzahl Tage (0-30)", "en": "Number of days (0-30)"}}
+      ]
+    },
+    {
+      "number": 12,
+      "domain": "participation",
+      "text": {
+        "de": "An wie vielen der letzten 30 Tage konnten Sie Ihre üblichen Aktivitäten oder Ihre Arbeit aufgrund Ihres Gesundheitszustands gar nicht ausführen?",
+        "en": "In the past 30 days, on how many days were you totally unable to carry out your usual activities or work because of any health condition?"
+      },
+      "response_type": "days",
+      "response_options": [
+        {"value": "numeric", "min": 0, "max": 30, "label": {"de": "Anzahl Tage (0-30)", "en": "Number of days (0-30)"}}
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "simple_sum_and_complex",
+    "simple": {
+      "description": {"de": "Einfache Summe der Items 1-10 (0-40)", "en": "Simple sum of items 1-10 (0-40)"},
+      "range": [0, 40]
+    },
+    "complex": {
+      "description": {"de": "Item-Response-Theory basierte Gewichtung (IRT). Ergibt Werte 0-100.", "en": "Item Response Theory based weighting (IRT). Yields scores 0-100."},
+      "range": [0, 100]
+    },
+    "domains": [
+      {"name": {"de": "Kognition", "en": "Cognition"}, "items": [1, 8]},
+      {"name": {"de": "Mobilität", "en": "Mobility"}, "items": [2]},
+      {"name": {"de": "Selbstversorgung", "en": "Self-care"}, "items": [3, 4]},
+      {"name": {"de": "Umgang mit Menschen", "en": "Getting along"}, "items": [5, 6]},
+      {"name": {"de": "Lebensaktivitäten", "en": "Life activities"}, "items": [7, 9]},
+      {"name": {"de": "Partizipation", "en": "Participation"}, "items": [10, 11, 12]}
+    ],
+    "thresholds_simple": [
+      {"min": 0, "max": 5, "severity": "none", "label": {"de": "Keine Beeinträchtigung", "en": "No disability"}, "color": "#4CAF50"},
+      {"min": 6, "max": 12, "severity": "mild", "label": {"de": "Leichte Beeinträchtigung", "en": "Mild disability"}, "color": "#8BC34A"},
+      {"min": 13, "max": 20, "severity": "moderate", "label": {"de": "Mäßige Beeinträchtigung", "en": "Moderate disability"}, "color": "#FFC107"},
+      {"min": 21, "max": 30, "severity": "severe", "label": {"de": "Schwere Beeinträchtigung", "en": "Severe disability"}, "color": "#FF9800"},
+      {"min": 31, "max": 40, "severity": "extreme", "label": {"de": "Extreme Beeinträchtigung", "en": "Extreme disability"}, "color": "#F44336"}
+    ]
+  },
+  "references": [
+    "Üstün TB, Kostanjsek N, Chatterji S, Rehm J, eds. Measuring Health and Disability: Manual for WHO Disability Assessment Schedule (WHODAS 2.0). Geneva: WHO; 2010.",
+    "WHO. WHO Disability Assessment Schedule 2.0 (WHODAS 2.0). Geneva: WHO; 2010."
+  ],
+  "source_url": "https://www.who.int/classifications/icf/whodasii/en/"
+}

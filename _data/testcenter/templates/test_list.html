@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}{{ 'All Tests' if lang == 'en' else 'Alle Tests' }} - Diagnostic Testcenter{% endblock %}
+
+{% block content %}
+<h1>{{ 'Available Screening Instruments' if lang == 'en' else 'Verfügbare Screening-Instrumente' }}</h1>
+<p class="text-muted mb-4">
+    {% if lang == 'en' %}
+        All instruments are validated, freely available, and bilingual (German/English).
+    {% else %}
+        Alle Verfahren sind validiert, frei verfügbar und bilingual (Deutsch/Englisch).
+    {% endif %}
+</p>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>{{ 'Instrument' if lang == 'en' else 'Instrument' }}</th>
+                <th>{{ 'Domain' if lang == 'en' else 'Bereich' }}</th>
+                <th>{{ 'Items' if lang == 'en' else 'Items' }}</th>
+                <th>{{ 'Cutoff' if lang == 'en' else 'Schwelle' }}</th>
+                <th>{{ 'Sens/Spec' if lang == 'en' else 'Sens/Spez' }}</th>
+                <th>{{ 'Actions' if lang == 'en' else 'Aktionen' }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tid, tdef in tests.items() %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('test_detail', test_id=tid, lang=lang) }}">
+                        <strong>{{ tdef.abbreviation }}</strong>
+                    </a>
+                    <br><small class="text-muted">{{ t(tdef.name, lang) }}</small>
+                </td>
+                <td><span class="badge bg-secondary">{{ t(tdef.domain, lang) }}</span></td>
+                <td>{{ tdef['items']|length }}</td>
+                <td>{{ tdef.scoring.get('clinical_cutoff', '-') }}</td>
+                <td>
+                    <small>
+                        {{ tdef.scoring.get('sensitivity', '-') }} /
+                        {{ tdef.scoring.get('specificity', '-') }}
+                    </small>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <a href="{{ url_for('print_test', test_id=tid, lang='de') }}"
+                           class="btn btn-outline-secondary" title="Drucken (DE)">DE</a>
+                        <a href="{{ url_for('print_test', test_id=tid, lang='en') }}"
+                           class="btn btn-outline-secondary" title="Print (EN)">EN</a>
+                        <a href="{{ url_for('create_session', lang=lang) }}?test_id={{ tid }}"
+                           class="btn btn-outline-primary" title="{{ 'Start' }}">
+                            {{ 'Start' if lang == 'en' else 'Start' }}
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

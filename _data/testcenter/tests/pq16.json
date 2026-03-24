@@ -1,0 +1,191 @@
+{
+  "id": "pq16",
+  "name": {"de": "Prodromalquestionär", "en": "Prodromal Questionnaire"},
+  "abbreviation": "PQ-16",
+  "version": "1.0",
+  "authors": "Ising, Velthorst, Nieman, Becker, Birchwood, Linszen, de Haan",
+  "year": 2012,
+  "license": "Free for clinical use",
+  "domain": {"de": "Psychose-Risiko", "en": "Psychosis Risk"},
+  "axis": "I",
+  "hitop_spectrum": "Thought Disorder",
+  "description": {
+    "de": "16-Item Screening zur Identifikation eines erhöhten Psychoserisikos. Erfasst prodromale Symptome wie Wahrnehmungsveränderungen, ungewöhnliche Gedankeninhalte und negative Symptome.",
+    "en": "16-item screening for identifying elevated psychosis risk. Assesses prodromal symptoms including perceptual disturbances, unusual thought content, and negative symptoms."
+  },
+  "instructions": {
+    "de": "Bitte lesen Sie jede Aussage sorgfältig durch und geben Sie an, ob Sie die beschriebene Erfahrung schon einmal gemacht haben. Wenn ja, geben Sie bitte an, wie belastend diese Erfahrung für Sie war.",
+    "en": "Please read each statement carefully and indicate whether you have ever had the experience described. If yes, please indicate how distressing this experience was for you."
+  },
+  "timeframe": {"de": "Lebenslang", "en": "Lifetime"},
+  "items": [
+    {
+      "number": 1,
+      "text": {
+        "de": "Ich habe das Gefühl, dass ich nicht ich selbst bin oder dass ein Teil meines Körpers mir nicht gehört",
+        "en": "I feel unreal, or that part of my body does not seem to belong to me"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 2,
+      "text": {
+        "de": "Ich höre manchmal ungewöhnliche Geräusche wie Knallen, Klicken, Zischen, Klatschen oder Klingeln in meinen Ohren",
+        "en": "I sometimes hear unusual sounds like banging, clicking, hissing, clapping or ringing in my ears"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 3,
+      "text": {
+        "de": "Es gibt Zeiten, in denen ich ungewöhnliche oder merkwürdige Gerüche wahrnehme, die andere nicht bemerken",
+        "en": "There are times when I smell or taste things that other people can't smell or taste"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 4,
+      "text": {
+        "de": "Ich fühle mich oft besonders unsicher in großen Menschenmengen",
+        "en": "I often feel that others have it in for me"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 5,
+      "text": {
+        "de": "Ich habe manchmal das Gefühl, dass Dinge oder Ereignisse um mich herum eine besondere Bedeutung für mich haben",
+        "en": "I sometimes feel that things I see on the TV or read in the newspaper have a special meaning for me"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 6,
+      "text": {
+        "de": "Manchmal sieht es so aus, als ob Menschen in ihrer Erscheinung ihre Form verändern oder anders aussehen, als sie sollten",
+        "en": "Sometimes I have felt that I am not in control of my own ideas or thoughts"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 7,
+      "text": {
+        "de": "Ich habe manchmal das Gefühl, dass meine Gedanken nicht ganz meine eigenen sind",
+        "en": "I feel that parts of my body have changed in some way, or that parts of my body are working differently than before"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 8,
+      "text": {
+        "de": "Meine Gedanken sind manchmal so stark, dass ich sie fast hören kann",
+        "en": "My thoughts are sometimes so strong that I can almost hear them"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 9,
+      "text": {
+        "de": "Manchmal sehe ich ungewöhnliche Dinge wie Blitze, Flammen, Lichtgestalten oder geometrische Figuren",
+        "en": "I sometimes see unusual things like flashes, flames, vague figures, or shadows out of the corner of my eye"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 10,
+      "text": {
+        "de": "Ich habe manchmal Angst, den Verstand zu verlieren",
+        "en": "I have had the experience of hearing faint or clear sounds of people or a person muttering or talking when there is no one near me"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 11,
+      "text": {
+        "de": "Ich glaube manchmal, dass ich besondere oder ungewöhnliche Fähigkeiten habe",
+        "en": "I have sometimes felt that I am not in control of my own body"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 12,
+      "text": {
+        "de": "Ich fühle mich manchmal sehr verwirrt darüber, ob das, was ich erlebe, real ist oder nur in meinem Kopf stattfindet",
+        "en": "I have sometimes been so worried about something that I could not sleep at night"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 13,
+      "text": {
+        "de": "Manchmal werden meine Gedanken verwirrt oder durcheinander",
+        "en": "My thinking is sometimes confused or mixed up"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 14,
+      "text": {
+        "de": "Ich habe Überzeugungen, die andere für seltsam oder ungewöhnlich halten",
+        "en": "I have had experiences with the supernatural"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 15,
+      "text": {
+        "de": "Ich fühle mich manchmal so, als ob mein Verstand leer ist",
+        "en": "I have sometimes felt that everyday things might not be real, as if I was in a dream"
+      },
+      "response_type": "binary_plus_distress"
+    },
+    {
+      "number": 16,
+      "text": {
+        "de": "Ich habe Schwierigkeiten, meine Emotionen oder mein Verhalten zu kontrollieren",
+        "en": "I sometimes see things that other people cannot see"
+      },
+      "response_type": "binary_plus_distress"
+    }
+  ],
+  "response_format": {
+    "endorsement": {
+      "options": [
+        {"value": 0, "label": {"de": "Nein / Falsch", "en": "No / False"}},
+        {"value": 1, "label": {"de": "Ja / Richtig", "en": "Yes / True"}}
+      ]
+    },
+    "distress": {
+      "condition": "only_if_endorsed",
+      "options": [
+        {"value": 0, "label": {"de": "Keine Belastung", "en": "No distress"}},
+        {"value": 1, "label": {"de": "Leichte Belastung", "en": "Mild distress"}},
+        {"value": 2, "label": {"de": "Mäßige Belastung", "en": "Moderate distress"}},
+        {"value": 3, "label": {"de": "Schwere Belastung", "en": "Severe distress"}}
+      ]
+    }
+  },
+  "scoring": {
+    "method": "endorsement_count_plus_distress",
+    "primary_score": {
+      "description": {"de": "Anzahl bejahter Items", "en": "Number of endorsed items"},
+      "range": [0, 16]
+    },
+    "distress_score": {
+      "description": {"de": "Summe der Belastungswerte", "en": "Sum of distress ratings"},
+      "range": [0, 48]
+    },
+    "thresholds": [
+      {"min": 0, "max": 5, "severity": "low_risk", "label": {"de": "Niedriges Psychoserisiko", "en": "Low psychosis risk"}, "color": "#4CAF50"},
+      {"min": 6, "max": 16, "severity": "elevated_risk", "label": {"de": "Erhöhtes Psychoserisiko – klinische Abklärung empfohlen", "en": "Elevated psychosis risk – clinical assessment recommended"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 6,
+    "sensitivity": "87%",
+    "specificity": "87%"
+  },
+  "references": [
+    "Ising HK, Veling W, Loewy RL, et al. The validity of the 16-item version of the Prodromal Questionnaire (PQ-16) to screen for ultra high risk of developing psychosis in the general help-seeking population. Schizophr Bull. 2012;38(6):1288-1296.",
+    "Loewy RL, Bearden CE, Johnson JK, Raine A, Cannon TD. The prodromal questionnaire (PQ): preliminary validation of a self-report screening measure for prodromal and psychotic syndromes. Schizophr Res. 2005;79(1):117-125."
+  ],
+  "source_url": "https://www.schizophrenia.com/sztest.htm"
+}

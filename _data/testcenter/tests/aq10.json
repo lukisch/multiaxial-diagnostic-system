@@ -1,0 +1,129 @@
+{
+  "id": "aq10",
+  "name": {"de": "Autismus-Spektrum-Quotient (Kurzform)", "en": "Autism Spectrum Quotient (Short Form)"},
+  "abbreviation": "AQ-10",
+  "version": "1.0",
+  "authors": "Allison, Auyeung, Baron-Cohen",
+  "year": 2012,
+  "license": "Free for clinical use",
+  "domain": {"de": "Autismus-Spektrum-Störung", "en": "Autism Spectrum Disorder"},
+  "axis": "I",
+  "hitop_spectrum": "Detachment",
+  "description": {
+    "de": "10-Item Kurzscreening zur Identifikation von Autismus-Spektrum-Merkmalen bei Erwachsenen. Abgeleitet vom 50-Item AQ (Baron-Cohen et al., 2001).",
+    "en": "10-item brief screening for autism spectrum traits in adults. Derived from the 50-item AQ (Baron-Cohen et al., 2001)."
+  },
+  "instructions": {
+    "de": "Bitte lesen Sie jede Aussage sorgfältig durch und geben Sie an, inwieweit Sie der Aussage zustimmen oder nicht zustimmen.",
+    "en": "Please read each statement carefully and indicate the extent to which you agree or disagree with it."
+  },
+  "timeframe": {"de": "Allgemein / Lebenslang", "en": "General / Lifetime"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Stimme voll zu", "en": "Definitely agree"}},
+    {"value": 1, "label": {"de": "Stimme eher zu", "en": "Slightly agree"}},
+    {"value": 2, "label": {"de": "Stimme eher nicht zu", "en": "Slightly disagree"}},
+    {"value": 3, "label": {"de": "Stimme gar nicht zu", "en": "Definitely disagree"}}
+  ],
+  "items": [
+    {
+      "number": 1,
+      "text": {
+        "de": "Ich bemerke häufig kleine Geräusche, die anderen nicht auffallen",
+        "en": "I often notice small sounds when others do not"
+      },
+      "scoring_direction": "agree"
+    },
+    {
+      "number": 2,
+      "text": {
+        "de": "Ich konzentriere mich meistens mehr auf das Gesamtbild als auf kleine Details",
+        "en": "I usually concentrate more on the whole picture, rather than the small details"
+      },
+      "scoring_direction": "disagree"
+    },
+    {
+      "number": 3,
+      "text": {
+        "de": "Es fällt mir leicht, mehrere Dinge gleichzeitig zu tun",
+        "en": "I find it easy to do more than one thing at once"
+      },
+      "scoring_direction": "disagree"
+    },
+    {
+      "number": 4,
+      "text": {
+        "de": "Wenn es eine Unterbrechung gibt, kann ich danach sehr schnell zu dem zurückkehren, was ich vorher getan habe",
+        "en": "If there is an interruption, I can switch back to what I was doing very quickly"
+      },
+      "scoring_direction": "disagree"
+    },
+    {
+      "number": 5,
+      "text": {
+        "de": "Es fällt mir leicht, zu erkennen, was jemand denkt oder fühlt, indem ich nur auf das Gesicht schaue",
+        "en": "I find it easy to 'read between the lines' when someone is talking to me"
+      },
+      "scoring_direction": "disagree"
+    },
+    {
+      "number": 6,
+      "text": {
+        "de": "Es fällt mir leicht herauszufinden, was jemand in einem Gespräch sagen will",
+        "en": "I know how to tell if someone listening to me is getting bored"
+      },
+      "scoring_direction": "disagree"
+    },
+    {
+      "number": 7,
+      "text": {
+        "de": "Wenn ich eine Geschichte lese, finde ich es schwierig, die Absichten der Figuren herauszufinden",
+        "en": "When I'm reading a story I find it difficult to work out the characters' intentions"
+      },
+      "scoring_direction": "agree"
+    },
+    {
+      "number": 8,
+      "text": {
+        "de": "Ich sammle gerne Informationen über Kategorien von Dingen (z.B. Autotypen, Vogelarten, Zugtypen, Pflanzenarten)",
+        "en": "I like to collect information about categories of things (e.g. types of car, types of bird, types of train, types of plant etc.)"
+      },
+      "scoring_direction": "agree"
+    },
+    {
+      "number": 9,
+      "text": {
+        "de": "Es fällt mir leicht, mir vorzustellen, wie es wäre, eine andere Person zu sein",
+        "en": "I find it easy to work out what someone is thinking or feeling just by looking at their face"
+      },
+      "scoring_direction": "disagree"
+    },
+    {
+      "number": 10,
+      "text": {
+        "de": "Es fällt mir schwer, die Absichten anderer einzuschätzen",
+        "en": "I find it difficult to work out people's intentions"
+      },
+      "scoring_direction": "agree"
+    }
+  ],
+  "scoring": {
+    "method": "directional_sum",
+    "description": {
+      "de": "Items mit 'agree'-Richtung: 1 Punkt für 'Stimme voll zu' oder 'Stimme eher zu'. Items mit 'disagree'-Richtung: 1 Punkt für 'Stimme eher nicht zu' oder 'Stimme gar nicht zu'. Summe der Punkte.",
+      "en": "Items with 'agree' direction: 1 point for 'Definitely agree' or 'Slightly agree'. Items with 'disagree' direction: 1 point for 'Slightly disagree' or 'Definitely disagree'. Sum of points."
+    },
+    "range": [0, 10],
+    "thresholds": [
+      {"min": 0, "max": 5, "severity": "below_threshold", "label": {"de": "Unter Schwellenwert", "en": "Below threshold"}, "color": "#4CAF50"},
+      {"min": 6, "max": 10, "severity": "above_threshold", "label": {"de": "Über Schwellenwert – Autismus-Abklärung empfohlen", "en": "Above threshold – autism assessment recommended"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 6,
+    "sensitivity": "88%",
+    "specificity": "91%"
+  },
+  "references": [
+    "Allison C, Auyeung B, Baron-Cohen S. Toward brief 'Red Flags' for autism screening: The Short Autism Spectrum Quotient and the Short Quantitative Checklist for Autism in toddlers in 1,000 cases and 3,000 controls. J Am Acad Child Adolesc Psychiatry. 2012;51(2):202-212.",
+    "Baron-Cohen S, Wheelwright S, Skinner R, et al. The autism-spectrum quotient (AQ): evidence from Asperger syndrome/high-functioning autism, males and females, scientists and mathematicians. J Autism Dev Disord. 2001;31(1):5-17."
+  ],
+  "source_url": "https://docs.autismresearchcentre.com/tests/"
+}

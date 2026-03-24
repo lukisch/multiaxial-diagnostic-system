@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Expired' if lang == 'en' else 'Abgelaufen' }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6 text-center">
+        <div class="alert alert-warning mt-4">
+            <h3>{{ 'Session Expired' if lang == 'en' else 'Sitzung abgelaufen' }}</h3>
+            <p>
+                {% if lang == 'en' %}
+                    This test session has expired. Please contact your clinician for a new link.
+                {% else %}
+                    Diese Testsitzung ist abgelaufen. Bitte kontaktieren Sie Ihre/n Therapeut/in für einen neuen Link.
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

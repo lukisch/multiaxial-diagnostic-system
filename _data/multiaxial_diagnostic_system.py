@@ -1069,17 +1069,74 @@ if menu == t("nav_gatekeeper"):
         st.subheader(t("gate5_subheader"))
         p = get_patient()
 
+        # Testcenter URL (konfigurierbar)
+        _TESTCENTER_URL = os.environ.get(
+            "TESTCENTER_URL", "http://localhost:5050")
+
+        # Mapping: Cross-Cutting Domain → Testcenter Test-IDs
+        _DOMAIN_TO_TESTS = {
+            "depression": [("phq9", "PHQ-9")],
+            "anxiety": [("gad7", "GAD-7")],
+            "somatic": [("sss8", "SSS-8")],
+            "suicidality": [("cssrs", "C-SSRS")],
+            "psychosis": [("pq16", "PQ-16")],
+            "sleep": [("isi", "ISI")],
+            "repetitive": [("ocir", "OCI-R")],
+            "dissociation": [("des2", "DES-II")],
+            "personality": [("pid5bf", "PID-5-BF")],
+            "substance": [("audit", "AUDIT")],
+        }
+
         if p.crosscutting_triggered:
             st.write(f"**{t('gate5_triggered')}**")
             for tr in p.crosscutting_triggered:
                 safety = t("gate5_safety_critical") if tr["threshold"] == 1 and tr["max_score"] >= 1 else ""
+                # Build testcenter links for this domain
+                tc_links = ""
+                domain_tests = _DOMAIN_TO_TESTS.get(tr["domain"], [])
+                if domain_tests:
+                    links_html = " | ".join(
+                        f"<a href='{esc(_TESTCENTER_URL)}/tests/{tid}' "
+                        f"target='_blank' style='color:#1565C0;font-weight:bold;'>"
+                        f"&#x1F4CB; {name}</a>"
+                        for tid, name in domain_tests
+                    )
+                    tc_links = (
+                        f"<div style='margin-top:4px;padding:4px 8px;"
+                        f"background:#e3f2fd;border-radius:4px;'>"
+                        f"Testcenter: {links_html}</div>"
+                    )
                 st.markdown(
                     f"<div class='status-alert {'critical' if safety else 'suspected'}'>"
                     f"<b>{esc(tr['label'])}</b>: {t('gate5_max_score')} {tr['max_score']} "
                     f"({t('gate4_threshold')} ≥{tr['threshold']}){esc(safety)}<br/>"
-                    f"→ Level 2: {esc(tr['level2'])}</div>",
+                    f"→ Level 2: {esc(tr['level2'])}"
+                    f"{tc_links}</div>",
                     unsafe_allow_html=True
                 )
+
+            # Testcenter-Schnellzugriff
+            st.markdown("---")
+            _lang = st.session_state.get("lang", "de")
+            _tc_label = ("Open Testcenter" if _lang == "en"
+                         else "Testcenter öffnen")
+            _tc_new = ("Create Test Session" if _lang == "en"
+                       else "Testsitzung erstellen")
+            col_tc1, col_tc2 = st.columns(2)
+            col_tc1.markdown(
+                f"<a href='{esc(_TESTCENTER_URL)}/tests?lang={_lang}' "
+                f"target='_blank' style='display:inline-block;padding:8px 16px;"
+                f"background:#1565C0;color:white;border-radius:4px;"
+                f"text-decoration:none;'>{_tc_label}</a>",
+                unsafe_allow_html=True
+            )
+            col_tc2.markdown(
+                f"<a href='{esc(_TESTCENTER_URL)}/sessions/create?lang={_lang}' "
+                f"target='_blank' style='display:inline-block;padding:8px 16px;"
+                f"background:#2E7D32;color:white;border-radius:4px;"
+                f"text-decoration:none;'>{_tc_new}</a>",
+                unsafe_allow_html=True
+            )
         else:
             st.success(t("gate5_no_trigger"))
 

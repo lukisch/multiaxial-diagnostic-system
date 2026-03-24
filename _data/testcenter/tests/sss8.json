@@ -1,0 +1,116 @@
+{
+  "id": "sss8",
+  "name": {"de": "Somatische Symptomskala-8", "en": "Somatic Symptom Scale-8"},
+  "abbreviation": "SSS-8",
+  "version": "1.0",
+  "authors": "Gierk, Kohlmann, Kroenke, Spangenberg, Zenger, Brähler, Löwe",
+  "year": 2014,
+  "license": "Free for clinical use",
+  "domain": {"de": "Somatische Symptome / Somatisierung", "en": "Somatic Symptoms / Somatization"},
+  "axis": "I",
+  "hitop_spectrum": "Somatoform",
+  "description": {
+    "de": "Kurzfragebogen zur Erfassung somatischer Symptombelastung. Abgeleitet vom PHQ-15, deckt 4 somatische Symptomcluster ab.",
+    "en": "Brief measure of somatic symptom burden. Derived from PHQ-15, covers 4 somatic symptom clusters."
+  },
+  "instructions": {
+    "de": "Wie stark haben Sie in den letzten 7 Tagen unter den folgenden körperlichen Beschwerden gelitten?",
+    "en": "How much have you been bothered by any of the following problems during the past 7 days?"
+  },
+  "timeframe": {"de": "Letzte 7 Tage", "en": "Past 7 days"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
+    {"value": 1, "label": {"de": "Ein wenig", "en": "A little bit"}},
+    {"value": 2, "label": {"de": "Etwas", "en": "Somewhat"}},
+    {"value": 3, "label": {"de": "Ziemlich", "en": "Quite a bit"}},
+    {"value": 4, "label": {"de": "Sehr", "en": "Very much"}}
+  ],
+  "items": [
+    {
+      "number": 1,
+      "cluster": "gastrointestinal",
+      "text": {
+        "de": "Magenbeschwerden oder Verdauungsprobleme",
+        "en": "Stomach or bowel problems"
+      }
+    },
+    {
+      "number": 2,
+      "cluster": "pain",
+      "text": {
+        "de": "Rücken- oder Gliederschmerzen",
+        "en": "Back pain"
+      }
+    },
+    {
+      "number": 3,
+      "cluster": "pain",
+      "text": {
+        "de": "Schmerzen in Armen, Beinen oder Gelenken",
+        "en": "Pain in your arms, legs, or joints"
+      }
+    },
+    {
+      "number": 4,
+      "cluster": "cardiopulmonary",
+      "text": {
+        "de": "Kopfschmerzen",
+        "en": "Headaches"
+      }
+    },
+    {
+      "number": 5,
+      "cluster": "cardiopulmonary",
+      "text": {
+        "de": "Schmerzen oder Probleme beim Geschlechtsverkehr",
+        "en": "Chest pain or shortness of breath"
+      }
+    },
+    {
+      "number": 6,
+      "cluster": "fatigue",
+      "text": {
+        "de": "Schwindel",
+        "en": "Dizziness"
+      }
+    },
+    {
+      "number": 7,
+      "cluster": "fatigue",
+      "text": {
+        "de": "Müdigkeit oder Energielosigkeit",
+        "en": "Feeling tired or having low energy"
+      }
+    },
+    {
+      "number": 8,
+      "cluster": "fatigue",
+      "text": {
+        "de": "Schlafstörungen",
+        "en": "Trouble sleeping"
+      }
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "range": [0, 32],
+    "subscales": [
+      {"name": {"de": "Gastrointestinal", "en": "Gastrointestinal"}, "items": [1], "range": [0, 4]},
+      {"name": {"de": "Schmerz", "en": "Pain"}, "items": [2, 3, 4], "range": [0, 12]},
+      {"name": {"de": "Kardiopulmonal", "en": "Cardiopulmonary"}, "items": [5, 6], "range": [0, 8]},
+      {"name": {"de": "Erschöpfung", "en": "Fatigue"}, "items": [7, 8], "range": [0, 8]}
+    ],
+    "thresholds": [
+      {"min": 0, "max": 3, "severity": "none", "label": {"de": "Keine bis minimale Belastung", "en": "No to minimal burden"}, "color": "#4CAF50"},
+      {"min": 4, "max": 7, "severity": "low", "label": {"de": "Geringe Belastung", "en": "Low burden"}, "color": "#8BC34A"},
+      {"min": 8, "max": 11, "severity": "medium", "label": {"de": "Mittlere Belastung", "en": "Medium burden"}, "color": "#FFC107"},
+      {"min": 12, "max": 15, "severity": "high", "label": {"de": "Hohe Belastung", "en": "High burden"}, "color": "#FF9800"},
+      {"min": 16, "max": 32, "severity": "very_high", "label": {"de": "Sehr hohe Belastung", "en": "Very high burden"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 12
+  },
+  "references": [
+    "Gierk B, Kohlmann S, Kroenke K, et al. The somatic symptom scale-8 (SSS-8): a brief measure of somatic symptom burden. JAMA Intern Med. 2014;174(3):399-407."
+  ],
+  "source_url": "https://www.phqscreeners.com/"
+}

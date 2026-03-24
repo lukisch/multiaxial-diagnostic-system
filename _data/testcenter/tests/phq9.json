@@ -1,0 +1,146 @@
+{
+  "id": "phq9",
+  "name": {"de": "Gesundheitsfragebogen für Patienten", "en": "Patient Health Questionnaire"},
+  "abbreviation": "PHQ-9",
+  "version": "1.0",
+  "authors": "Kroenke, Spitzer, Williams",
+  "year": 1999,
+  "license": "Public Domain",
+  "domain": {"de": "Depression", "en": "Depression"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "description": {
+    "de": "Screening-Instrument zur Erfassung des Schweregrads depressiver Symptome basierend auf den DSM-5 Kriterien für Major Depression.",
+    "en": "Screening instrument for assessing the severity of depressive symptoms based on DSM-5 criteria for Major Depressive Disorder."
+  },
+  "instructions": {
+    "de": "Wie oft haben Sie in den letzten 2 Wochen unter den folgenden Beschwerden gelitten?",
+    "en": "Over the last 2 weeks, how often have you been bothered by any of the following problems?"
+  },
+  "timeframe": {"de": "Letzte 2 Wochen", "en": "Last 2 weeks"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
+    {"value": 1, "label": {"de": "An einzelnen Tagen", "en": "Several days"}},
+    {"value": 2, "label": {"de": "An mehr als der Hälfte der Tage", "en": "More than half the days"}},
+    {"value": 3, "label": {"de": "Beinahe jeden Tag", "en": "Nearly every day"}}
+  ],
+  "items": [
+    {
+      "number": 1,
+      "text": {
+        "de": "Wenig Interesse oder Freude an Ihren Tätigkeiten",
+        "en": "Little interest or pleasure in doing things"
+      }
+    },
+    {
+      "number": 2,
+      "text": {
+        "de": "Niedergeschlagenheit, Schwermut oder Hoffnungslosigkeit",
+        "en": "Feeling down, depressed, or hopeless"
+      }
+    },
+    {
+      "number": 3,
+      "text": {
+        "de": "Schwierigkeiten ein- oder durchzuschlafen oder vermehrter Schlaf",
+        "en": "Trouble falling or staying asleep, or sleeping too much"
+      }
+    },
+    {
+      "number": 4,
+      "text": {
+        "de": "Müdigkeit oder Gefühl, keine Energie zu haben",
+        "en": "Feeling tired or having little energy"
+      }
+    },
+    {
+      "number": 5,
+      "text": {
+        "de": "Verminderter Appetit oder übermäßiges Bedürfnis zu essen",
+        "en": "Poor appetite or overeating"
+      }
+    },
+    {
+      "number": 6,
+      "text": {
+        "de": "Schlechte Meinung von sich selbst; Gefühl, ein Versager zu sein oder die Familie enttäuscht zu haben",
+        "en": "Feeling bad about yourself — or that you are a failure or have let yourself or your family down"
+      }
+    },
+    {
+      "number": 7,
+      "text": {
+        "de": "Schwierigkeiten, sich auf etwas zu konzentrieren, z.B. beim Zeitunglesen oder Fernsehen",
+        "en": "Trouble concentrating on things, such as reading the newspaper or watching television"
+      }
+    },
+    {
+      "number": 8,
+      "text": {
+        "de": "Waren Ihre Bewegungen oder Ihre Sprache so verlangsamt, dass es auch anderen auffallen würde? Oder waren Sie im Gegenteil zappelig oder ruhelos und hatten einen stärkeren Bewegungsdrang als sonst?",
+        "en": "Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual"
+      }
+    },
+    {
+      "number": 9,
+      "text": {
+        "de": "Gedanken, dass Sie lieber tot wären oder sich Leid zufügen möchten",
+        "en": "Thoughts that you would be better off dead, or of hurting yourself in some way"
+      }
+    }
+  ],
+  "supplementary_item": {
+    "text": {
+      "de": "Wenn eines oder mehrere dieser Probleme bei Ihnen vorliegen, geben Sie bitte an, wie sehr diese Probleme es Ihnen erschwert haben, Ihre Arbeit zu erledigen, Ihren Haushalt zu regeln oder mit anderen Menschen zurecht zu kommen:",
+      "en": "If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
+    },
+    "options": [
+      {"value": 0, "label": {"de": "Überhaupt nicht erschwert", "en": "Not difficult at all"}},
+      {"value": 1, "label": {"de": "Etwas erschwert", "en": "Somewhat difficult"}},
+      {"value": 2, "label": {"de": "Relativ stark erschwert", "en": "Very difficult"}},
+      {"value": 3, "label": {"de": "Sehr stark erschwert", "en": "Extremely difficult"}}
+    ]
+  },
+  "scoring": {
+    "method": "sum",
+    "range": [0, 27],
+    "thresholds": [
+      {"min": 0, "max": 4, "severity": "none", "label": {"de": "Minimal/keine Depression", "en": "Minimal depression"}, "color": "#4CAF50"},
+      {"min": 5, "max": 9, "severity": "mild", "label": {"de": "Leichte Depression", "en": "Mild depression"}, "color": "#FFC107"},
+      {"min": 10, "max": 14, "severity": "moderate", "label": {"de": "Mittelgradige Depression", "en": "Moderate depression"}, "color": "#FF9800"},
+      {"min": 15, "max": 19, "severity": "moderately_severe", "label": {"de": "Mittelschwere bis schwere Depression", "en": "Moderately severe depression"}, "color": "#FF5722"},
+      {"min": 20, "max": 27, "severity": "severe", "label": {"de": "Schwere Depression", "en": "Severe depression"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 10,
+    "sensitivity": "88%",
+    "specificity": "88%",
+    "action_guide": {
+      "de": [
+        {"range": "0-4", "action": "Keine Behandlung erforderlich"},
+        {"range": "5-9", "action": "Beobachten, Wiederholung bei nächstem Besuch"},
+        {"range": "10-14", "action": "Behandlungsplan erwägen (Beratung, Psychotherapie)"},
+        {"range": "15-19", "action": "Aktive Behandlung mit Psychotherapie und/oder Pharmakotherapie"},
+        {"range": "20-27", "action": "Sofortige Behandlung; bei unzureichendem Ansprechen Überweisung an Spezialisten"}
+      ],
+      "en": [
+        {"range": "0-4", "action": "No treatment required"},
+        {"range": "5-9", "action": "Watchful waiting; repeat at follow-up"},
+        {"range": "10-14", "action": "Consider treatment plan (counseling, psychotherapy)"},
+        {"range": "15-19", "action": "Active treatment with psychotherapy and/or pharmacotherapy"},
+        {"range": "20-27", "action": "Immediate treatment; if inadequate response, refer to specialist"}
+      ]
+    },
+    "critical_item": {
+      "item_number": 9,
+      "alert": {
+        "de": "ACHTUNG: Item 9 (Suizidalität) wurde positiv beantwortet. Sofortige Risikoeinschätzung erforderlich!",
+        "en": "WARNING: Item 9 (suicidality) endorsed. Immediate risk assessment required!"
+      }
+    }
+  },
+  "references": [
+    "Kroenke K, Spitzer RL, Williams JB. The PHQ-9: validity of a brief depression severity measure. J Gen Intern Med. 2001;16(9):606-613.",
+    "Löwe B, Spitzer RL, Zipfel S, Herzog W. Gesundheitsfragebogen für Patienten (PHQ-D). Manual und Testunterlagen. 2. Auflage. Karlsruhe: Pfizer; 2002."
+  ],
+  "source_url": "https://www.phqscreeners.com/"
+}

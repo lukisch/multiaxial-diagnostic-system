@@ -1,0 +1,138 @@
+{
+  "id": "cssrs",
+  "name": {"de": "Columbia-Suizid-Schweregrad-Bewertungsskala (Screener)", "en": "Columbia-Suicide Severity Rating Scale (Screener)"},
+  "abbreviation": "C-SSRS",
+  "version": "Screener",
+  "authors": "Posner, Brown, Stanley, Brent, Yershova, Oquendo, Currier, Melvin, Greenhill, Sackeim, Mann",
+  "year": 2011,
+  "license": "Free for clinical and research use",
+  "domain": {"de": "Suizidalität", "en": "Suicidality"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "description": {
+    "de": "Strukturiertes klinisches Interview zur Erfassung und Klassifikation von Suizidgedanken und suizidalem Verhalten. Screener-Version mit 6 Fragen zur Suizidideation.",
+    "en": "Structured clinical assessment for suicidal ideation and behavior. Screener version with 6 questions on suicidal ideation."
+  },
+  "instructions": {
+    "de": "Bitte beantworten Sie die folgenden Fragen mit Ja oder Nein. Die Fragen beziehen sich auf Gedanken und Verhaltensweisen, die Sie möglicherweise hatten.",
+    "en": "Please answer the following questions with Yes or No. The questions relate to thoughts and behaviors you may have experienced."
+  },
+  "timeframe": {"de": "Letzter Monat / Lebenslang", "en": "Past month / Lifetime"},
+  "alert": {
+    "de": "KLINISCHER HINWEIS: Jede positive Antwort erfordert eine sofortige klinische Einschätzung. Bei Fragen 3-6: Sofortiges Handeln erforderlich!",
+    "en": "CLINICAL NOTE: Any positive response requires immediate clinical assessment. Questions 3-6 positive: Immediate action required!"
+  },
+  "items": [
+    {
+      "number": 1,
+      "severity_level": 1,
+      "text": {
+        "de": "Haben Sie sich gewünscht, tot zu sein, oder haben Sie sich gewünscht, einschlafen zu können und nicht mehr aufzuwachen?",
+        "en": "Have you wished you were dead or wished you could go to sleep and not wake up?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nein", "en": "No"}},
+        {"value": 1, "label": {"de": "Ja", "en": "Yes"}}
+      ]
+    },
+    {
+      "number": 2,
+      "severity_level": 2,
+      "text": {
+        "de": "Haben Sie tatsächlich daran gedacht, sich das Leben zu nehmen?",
+        "en": "Have you actually had any thoughts of killing yourself?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nein", "en": "No"}},
+        {"value": 1, "label": {"de": "Ja", "en": "Yes"}}
+      ]
+    },
+    {
+      "number": 3,
+      "severity_level": 3,
+      "text": {
+        "de": "Haben Sie darüber nachgedacht, wie Sie sich das Leben nehmen könnten (z.B. haben Sie über eine Methode nachgedacht) oder einen Plan dafür ausgearbeitet?",
+        "en": "Have you been thinking about how you might do this (e.g., thought of a method) or worked out a plan?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nein", "en": "No"}},
+        {"value": 1, "label": {"de": "Ja", "en": "Yes"}}
+      ],
+      "critical": true
+    },
+    {
+      "number": 4,
+      "severity_level": 4,
+      "text": {
+        "de": "Hatten Sie die Absicht, danach zu handeln (im Gegensatz zu: Sie hatten zwar Gedanken, aber Sie würden sie definitiv nicht umsetzen)?",
+        "en": "Have you had these thoughts and had some intention of acting on them (as opposed to: you had the thoughts but would definitely not act on them)?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nein", "en": "No"}},
+        {"value": 1, "label": {"de": "Ja", "en": "Yes"}}
+      ],
+      "critical": true
+    },
+    {
+      "number": 5,
+      "severity_level": 5,
+      "text": {
+        "de": "Haben Sie angefangen, die Einzelheiten eines Plans zur Selbsttötung auszuarbeiten oder vorzubereiten? Haben Sie irgendetwas getan, um diesen Plan umzusetzen?",
+        "en": "Have you started to work out or have worked out the details of how to kill yourself? Did you intend to carry out this plan?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nein", "en": "No"}},
+        {"value": 1, "label": {"de": "Ja", "en": "Yes"}}
+      ],
+      "critical": true
+    },
+    {
+      "number": 6,
+      "severity_level": "behavior",
+      "text": {
+        "de": "Haben Sie jemals irgendetwas getan, sich angefangen etwas anzutun, oder etwas vorbereitet, um Ihrem Leben ein Ende zu setzen?",
+        "en": "Have you ever done anything, started to do anything, or prepared to do anything to end your life?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nein", "en": "No"}},
+        {"value": 1, "label": {"de": "Ja", "en": "Yes"}}
+      ],
+      "critical": true,
+      "sub_questions_if_yes": {
+        "de": "Wenn ja: War dies innerhalb der letzten 3 Monate?",
+        "en": "If yes: Was this within the past 3 months?"
+      }
+    }
+  ],
+  "scoring": {
+    "method": "classification",
+    "description": {
+      "de": "Keine Summenwert-Berechnung. Stattdessen Klassifikation nach höchstem bestätigtem Schweregrad. Jede positive Antwort bei Fragen 3-6 ist klinisch signifikant.",
+      "en": "No sum score. Classification based on highest endorsed severity level. Any positive response to questions 3-6 is clinically significant."
+    },
+    "risk_levels": [
+      {"items_positive": [], "level": "none", "label": {"de": "Kein identifiziertes Risiko", "en": "No identified risk"}, "color": "#4CAF50", "action": {"de": "Routine-Screening bei Folgebesuchen", "en": "Routine screening at follow-up"}},
+      {"items_positive": [1], "level": "wish_to_die", "label": {"de": "Todeswunsch", "en": "Wish to be dead"}, "color": "#FFC107", "action": {"de": "Klinische Einschätzung und Beobachtung", "en": "Clinical assessment and monitoring"}},
+      {"items_positive": [2], "level": "suicidal_thoughts", "label": {"de": "Suizidgedanken (unspezifisch)", "en": "Suicidal thoughts (non-specific)"}, "color": "#FF9800", "action": {"de": "Erweiterte Risikoeinschätzung", "en": "Extended risk assessment"}},
+      {"items_positive": [3], "level": "method_plan", "label": {"de": "Suizidgedanken mit Methode/Plan", "en": "Suicidal ideation with method/plan"}, "color": "#FF5722", "action": {"de": "SOFORT: Sicherheitsplanung, Zugang zu Mitteln einschränken", "en": "IMMEDIATE: Safety planning, means restriction"}},
+      {"items_positive": [4, 5], "level": "intent", "label": {"de": "Suizidabsicht", "en": "Suicidal intent"}, "color": "#F44336", "action": {"de": "NOTFALL: Psychiatrische Akutversorgung erforderlich", "en": "EMERGENCY: Acute psychiatric care required"}},
+      {"items_positive": [6], "level": "behavior", "label": {"de": "Suizidales Verhalten", "en": "Suicidal behavior"}, "color": "#B71C1C", "action": {"de": "NOTFALL: Sofortige psychiatrische Intervention", "en": "EMERGENCY: Immediate psychiatric intervention"}}
+    ],
+    "emergency_resources": {
+      "de": {
+        "telefonseelsorge": "0800 111 0 111 (kostenlos, 24/7)",
+        "telefonseelsorge_2": "0800 111 0 222 (kostenlos, 24/7)",
+        "notruf": "112"
+      },
+      "en": {
+        "crisis_line": "988 Suicide & Crisis Lifeline (USA)",
+        "crisis_text": "Text HOME to 741741",
+        "emergency": "911"
+      }
+    }
+  },
+  "references": [
+    "Posner K, Brown GK, Stanley B, et al. The Columbia-Suicide Severity Rating Scale: initial validity and internal consistency findings from three multisite studies with adolescents and adults. Am J Psychiatry. 2011;168(12):1266-1277."
+  ],
+  "source_url": "https://cssrs.columbia.edu/"
+}

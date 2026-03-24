@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Diagnostic Testcenter{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <h1 class="mb-3">{{ 'Dashboard' if lang == 'en' else 'Dashboard' }}</h1>
+        <p class="lead text-muted">
+            {% if lang == 'en' %}
+                Digital test center for validated psychiatric screening instruments.
+                All instruments are freely available for clinical use.
+            {% else %}
+                Digitales Testcenter für validierte psychiatrische Screening-Instrumente.
+                Alle Verfahren sind frei verfügbar für den klinischen Einsatz.
+            {% endif %}
+        </p>
+
+        <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+                <div class="card text-center border-primary">
+                    <div class="card-body">
+                        <h2 class="card-title text-primary">{{ tests|length }}</h2>
+                        <p class="card-text">{{ 'Tests Available' if lang == 'en' else 'Tests verfügbar' }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-center border-success">
+                    <div class="card-body">
+                        <h2 class="card-title text-success">{{ recent|selectattr('status', 'equalto', 'completed')|list|length }}</h2>
+                        <p class="card-text">{{ 'Completed' if lang == 'en' else 'Abgeschlossen' }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-center border-warning">
+                    <div class="card-body">
+                        <h2 class="card-title text-warning">{{ recent|selectattr('status', 'equalto', 'pending')|list|length }}</h2>
+                        <p class="card-text">{{ 'Pending' if lang == 'en' else 'Offen' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-4">{{ 'Test Catalog' if lang == 'en' else 'Testkatalog' }}</h3>
+        {% for group_name, group_tests in grouped.items() %}
+        <div class="card mb-3">
+            <div class="card-header bg-light">
+                <strong>{{ group_name }}</strong>
+                <span class="badge bg-secondary float-end">{{ group_tests|length }}</span>
+            </div>
+            <div class="list-group list-group-flush">
+                {% for tdef in group_tests %}
+                <a href="{{ url_for('test_detail', test_id=tdef.id, lang=lang) }}"
+                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ tdef.abbreviation }}</strong>
+                        <span class="text-muted ms-2">{{ t(tdef.name, lang) }}</span>
+                    </div>
+                    <div>
+                        <span class="badge bg-info">{{ tdef['items']|length }} Items</span>
+                        <span class="badge bg-secondary ms-1">{{ t(tdef.domain, lang) }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card mb-3">
+            <div class="card-header bg-primary text-white">
+                {{ 'Quick Actions' if lang == 'en' else 'Schnellzugriff' }}
+            </div>
+            <div class="card-body">
+                <a href="{{ url_for('create_session', lang=lang) }}" class="btn btn-primary w-100 mb-2">
+                    {{ 'Create Test Session' if lang == 'en' else 'Testsitzung erstellen' }}
+                </a>
+                <a href="{{ url_for('test_list', lang=lang) }}" class="btn btn-outline-secondary w-100">
+                    {{ 'Browse All Tests' if lang == 'en' else 'Alle Tests durchsuchen' }}
+                </a>
+            </div>
+        </div>
+
+        {% if recent %}
+        <div class="card">
+            <div class="card-header">
+                {{ 'Recent Sessions' if lang == 'en' else 'Letzte Sitzungen' }}
+            </div>
+            <div class="list-group list-group-flush" style="max-height: 400px; overflow-y: auto;">
+                {% for sess in recent %}
+                <a href="{{ url_for('view_results', token=sess.id, lang=lang) }}"
+                   class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                        <strong>{{ tests[sess.test_id].abbreviation if sess.test_id in tests else sess.test_id }}</strong>
+                        <span class="badge {{ 'bg-success' if sess.status == 'completed' else 'bg-warning' }}">
+                            {{ sess.status }}
+                        </span>
+                    </div>
+                    <small class="text-muted">
+                        {{ sess.client_name or ('Anonymous' if lang == 'en' else 'Anonym') }}
+                        &mdash; {{ sess.created_at[:16] }}
+                    </small>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

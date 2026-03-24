@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block title %}{{ test.abbreviation }} - {{ 'Test' }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">{{ test.abbreviation }} &mdash; {{ t(test.name, lang) }}</h4>
+            </div>
+            <div class="card-body">
+                {% if client_name %}
+                <p class="text-muted mb-2">
+                    {{ 'Patient' if lang == 'en' else 'Klient/in' }}: <strong>{{ client_name }}</strong>
+                </p>
+                {% endif %}
+
+                {% if test.get('alert') %}
+                <div class="alert alert-danger">{{ t(test.alert, lang) }}</div>
+                {% endif %}
+
+                <p class="mb-3"><em>{{ t(test.instructions, lang) }}</em></p>
+                <p class="text-muted small">
+                    {{ 'Timeframe' if lang == 'en' else 'Zeitrahmen' }}: {{ t(test.timeframe, lang) }}
+                </p>
+
+                <form method="POST" id="testForm">
+                    {% set global_options = test.get('response_options') %}
+
+                    {% for item in test['items'] %}
+                    <div class="card mb-3 test-item" id="item-card-{{ item.number }}">
+                        <div class="card-body">
+                            <p class="mb-2">
+                                <strong>{{ item.number }}.</strong>
+                                {{ t(item.text, lang) }}
+                                {% if item.get('critical') %}
+                                    <span class="badge bg-danger ms-1">!</span>
+                                {% endif %}
+                            </p>
+
+                            {% if item.get('response_type') == 'binary_plus_distress' %}
+                                {# PQ-16 style: endorsement + distress #}
+                                {% set rf = test.get('response_format', {}) %}
+                                <div class="mb-2">
+                                    {% for opt in rf.get('endorsement', {}).get('options', []) %}
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="item_{{ item.number }}_endorsed"
+                                               value="{{ opt.value }}" required
+                                               onchange="toggleDistress({{ item.number }}, {{ opt.value }})">
+                                        <label class="form-check-label">{{ t(opt.label, lang) }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div id="distress-{{ item.number }}" class="ms-4" style="display:none;">
+                                    <small class="text-muted">
+                                        {{ 'How distressing?' if lang == 'en' else 'Wie belastend?' }}
+                                    </small>
+                                    {% for opt in rf.get('distress', {}).get('options', []) %}
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="item_{{ item.number }}_distress"
+                                               value="{{ opt.value }}">
+                                        <label class="form-check-label small">{{ t(opt.label, lang) }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+
+                            {% elif item.get('response_type') == 'days' %}
+                                {# Numeric days input (WHODAS) #}
+                                <input type="number" class="form-control w-auto d-inline-block"
+                                       name="item_{{ item.number }}" min="0" max="30"
+                                       placeholder="0-30" required>
+                                <small class="text-muted ms-2">
+                                    {{ t(item.get('response_options', [{}])[0].get('label', {}), lang) }}
+                                </small>
+
+                            {% else %}
+                                {# Standard Likert/radio options #}
+                                {% set opts = item.get('response_options', global_options) %}
+                                {% if opts %}
+                                <div class="btn-group-vertical w-100" role="group">
+                                    {% for opt in opts %}
+                                    <input type="radio" class="btn-check"
+                                           name="item_{{ item.number }}"
+                                           id="item_{{ item.number }}_{{ opt.value }}"
+                                           value="{{ opt.value }}" required autocomplete="off">
+                                    <label class="btn btn-outline-secondary text-start"
+                                           for="item_{{ item.number }}_{{ opt.value }}">
+                                        <span class="badge bg-light text-dark me-2">{{ opt.value }}</span>
+                                        {{ t(opt.label, lang) }}
+                                    </label>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    {# Supplementary item (PHQ-9) #}
+                    {% if test.get('supplementary_item') %}
+                    <div class="card mb-3 border-info">
+                        <div class="card-body">
+                            <p class="mb-2"><strong>{{ t(test.supplementary_item.text, lang) }}</strong></p>
+                            <div class="btn-group-vertical w-100" role="group">
+                                {% for opt in test.supplementary_item.options %}
+                                <input type="radio" class="btn-check"
+                                       name="supplementary"
+                                       id="supp_{{ opt.value }}"
+                                       value="{{ opt.value }}" autocomplete="off">
+                                <label class="btn btn-outline-info text-start"
+                                       for="supp_{{ opt.value }}">
+                                    {{ t(opt.label, lang) }}
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                            {{ 'Submit' if lang == 'en' else 'Absenden' }}
+                        </button>
+                    </div>
+
+                    <div class="progress mt-3" style="height: 8px;">
+                        <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted" id="progressText">0 / {{ test['items']|length }}</small>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const totalItems = {{ test['items']|length }};
+
+function updateProgress() {
+    let answered = 0;
+    for (let i = 1; i <= totalItems; i++) {
+        const radios = document.querySelectorAll(`input[name="item_${i}"], input[name="item_${i}_endorsed"]`);
+        for (const r of radios) {
+            if (r.checked) { answered++; break; }
+        }
+        const numInput = document.querySelector(`input[name="item_${i}"][type="number"]`);
+        if (numInput && numInput.value !== '') answered++;
+    }
+    const pct = Math.round((answered / totalItems) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressText').textContent = answered + ' / ' + totalItems;
+}
+
+function toggleDistress(itemNum, endorsed) {
+    const el = document.getElementById('distress-' + itemNum);
+    if (el) el.style.display = endorsed > 0 ? 'block' : 'none';
+}
+
+document.addEventListener('change', updateProgress);
+document.getElementById('testForm').addEventListener('submit', function(e) {
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('submitBtn').textContent = '{{ "Sending..." if lang == "en" else "Wird gesendet..." }}';
+});
+</script>
+{% endblock %}

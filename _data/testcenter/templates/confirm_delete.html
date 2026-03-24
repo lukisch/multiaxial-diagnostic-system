@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Delete Session' if lang == 'en' else 'Sitzung löschen' }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="alert alert-danger">
+            <h4>{{ 'Delete Test Session?' if lang == 'en' else 'Testsitzung löschen?' }}</h4>
+            <p>
+                {% if lang == 'en' %}
+                    This will permanently delete the session and all associated results.
+                    This action cannot be undone.
+                {% else %}
+                    Dies löscht die Sitzung und alle zugehörigen Ergebnisse dauerhaft.
+                    Diese Aktion kann nicht rückgängig gemacht werden.
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <dl>
+                    <dt>{{ 'Test' }}</dt>
+                    <dd>{{ test.abbreviation }} &mdash; {{ t(test.name, lang) }}</dd>
+                    <dt>{{ 'Client' if lang == 'en' else 'Klient/in' }}</dt>
+                    <dd>{{ session.client_name or ('-') }}</dd>
+                    <dt>{{ 'Created' if lang == 'en' else 'Erstellt' }}</dt>
+                    <dd>{{ session.created_at[:16] }}</dd>
+                    <dt>Status</dt>
+                    <dd>{{ session.status }}</dd>
+                    <dt>Token</dt>
+                    <dd><code>{{ session.id }}</code></dd>
+                </dl>
+            </div>
+        </div>
+
+        <form method="POST">
+            <p class="text-muted small">
+                {% if lang == 'en' %}
+                    To confirm deletion, the token is pre-filled below. Click "Delete".
+                {% else %}
+                    Zur Bestätigung ist der Token vorausgefüllt. Klicken Sie auf "Löschen".
+                {% endif %}
+            </p>
+            <input type="hidden" name="confirm" value="{{ session.id }}">
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-danger">
+                    {{ 'Delete Permanently' if lang == 'en' else 'Endgültig löschen' }}
+                </button>
+                <a href="{{ url_for('view_results', token=session.id, lang=lang) }}"
+                   class="btn btn-outline-secondary">
+                    {{ 'Cancel' if lang == 'en' else 'Abbrechen' }}
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

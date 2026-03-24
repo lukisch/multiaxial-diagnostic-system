@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Complete' if lang == 'en' else 'Abgeschlossen' }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6 text-center">
+        {% if already_completed %}
+        <div class="alert alert-info mt-4">
+            <h3>{{ 'Already Completed' if lang == 'en' else 'Bereits abgeschlossen' }}</h3>
+            <p>
+                {% if lang == 'en' %}
+                    This test has already been completed. Your responses have been recorded.
+                {% else %}
+                    Dieser Test wurde bereits abgeschlossen. Ihre Antworten wurden gespeichert.
+                {% endif %}
+            </p>
+        </div>
+        {% else %}
+        <div class="alert alert-success mt-4">
+            <h3>{{ 'Thank You!' if lang == 'en' else 'Vielen Dank!' }}</h3>
+            <p>
+                {% if lang == 'en' %}
+                    Your responses to the <strong>{{ test.abbreviation }}</strong> have been recorded successfully.
+                    Your clinician will review the results.
+                {% else %}
+                    Ihre Antworten zum <strong>{{ test.abbreviation }}</strong> wurden erfolgreich gespeichert.
+                    Ihr/e Therapeut/in wird die Ergebnisse einsehen.
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+
+        <p class="text-muted mt-3">
+            {{ 'You can close this page now.' if lang == 'en' else 'Sie können diese Seite jetzt schließen.' }}
+        </p>
+    </div>
+</div>
+{% endblock %}

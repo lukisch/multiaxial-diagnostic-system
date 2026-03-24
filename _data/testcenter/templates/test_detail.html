@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}{{ test.abbreviation }} - Diagnostic Testcenter{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('test_list', lang=lang) }}">{{ 'Tests' }}</a></li>
+        <li class="breadcrumb-item active">{{ test.abbreviation }}</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-lg-8">
+        <h1>{{ test.abbreviation }} <small class="text-muted">{{ t(test.name, lang) }}</small></h1>
+
+        <p class="lead">{{ t(test.description, lang) }}</p>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <dl>
+                            <dt>{{ 'Authors' if lang == 'en' else 'Autoren' }}</dt>
+                            <dd>{{ test.authors }}</dd>
+                            <dt>{{ 'Year' if lang == 'en' else 'Jahr' }}</dt>
+                            <dd>{{ test.year }}</dd>
+                            <dt>{{ 'License' if lang == 'en' else 'Lizenz' }}</dt>
+                            <dd><span class="badge bg-success">{{ test.license }}</span></dd>
+                        </dl>
+                    </div>
+                    <div class="col-sm-6">
+                        <dl>
+                            <dt>{{ 'Items' if lang == 'en' else 'Items' }}</dt>
+                            <dd>{{ test['items']|length }}</dd>
+                            <dt>{{ 'Timeframe' if lang == 'en' else 'Zeitrahmen' }}</dt>
+                            <dd>{{ t(test.timeframe, lang) }}</dd>
+                            <dt>{{ 'Clinical Cutoff' if lang == 'en' else 'Klinischer Schwellenwert' }}</dt>
+                            <dd>{{ test.scoring.get('clinical_cutoff', '-') }}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if test.scoring.get('thresholds') or test.scoring.get('thresholds_simple') %}
+        <h3>{{ 'Scoring Thresholds' if lang == 'en' else 'Auswertungsschwellen' }}</h3>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>{{ 'Range' if lang == 'en' else 'Bereich' }}</th>
+                    <th>{{ 'Interpretation' if lang == 'en' else 'Interpretation' }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for thresh in (test.scoring.get('thresholds') or test.scoring.get('thresholds_simple', [])) %}
+                <tr>
+                    <td>
+                        <span class="badge" style="background-color: {{ thresh.color }}">
+                            {{ thresh.min }}–{{ thresh.max }}
+                        </span>
+                    </td>
+                    <td>{{ t(thresh.label, lang) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        {% if test.scoring.get('subscales') or test.scoring.get('domains') %}
+        <h3>{{ 'Subscales' if lang == 'en' else 'Subskalen' }}</h3>
+        <ul>
+            {% for sub in (test.scoring.get('subscales') or test.scoring.get('domains', [])) %}
+            <li><strong>{{ t(sub.name, lang) }}</strong>
+                {% if sub.get('items') %} (Items: {{ sub.items|join(', ') }}){% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <h3>{{ 'References' if lang == 'en' else 'Literatur' }}</h3>
+        <ul class="small">
+            {% for ref in test.get('references', []) %}
+            <li>{{ ref }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card border-primary">
+            <div class="card-header bg-primary text-white">
+                {{ 'Actions' if lang == 'en' else 'Aktionen' }}
+            </div>
+            <div class="card-body">
+                <a href="{{ url_for('create_session', lang=lang) }}?test_id={{ test.id }}"
+                   class="btn btn-primary w-100 mb-2">
+                    {{ 'Create Test Session' if lang == 'en' else 'Testsitzung erstellen' }}
+                </a>
+                <h6 class="mt-3">{{ 'Print blank test' if lang == 'en' else 'Leertest drucken' }}</h6>
+                <div class="btn-group w-100">
+                    <a href="{{ url_for('print_test', test_id=test.id, lang='de') }}"
+                       class="btn btn-outline-secondary">Deutsch</a>
+                    <a href="{{ url_for('print_test', test_id=test.id, lang='en') }}"
+                       class="btn btn-outline-secondary">English</a>
+                </div>
+            </div>
+        </div>
+
+        {% if test.get('source_url') %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <h6>{{ 'Official Source' if lang == 'en' else 'Offizielle Quelle' }}</h6>
+                <a href="{{ test.source_url }}" target="_blank" rel="noopener">{{ test.source_url }}</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

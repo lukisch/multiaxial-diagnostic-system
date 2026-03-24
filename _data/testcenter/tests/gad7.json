@@ -1,0 +1,110 @@
+{
+  "id": "gad7",
+  "name": {"de": "Fragebogen zur generalisierten Angststörung", "en": "Generalized Anxiety Disorder Scale"},
+  "abbreviation": "GAD-7",
+  "version": "1.0",
+  "authors": "Spitzer, Kroenke, Williams, Löwe",
+  "year": 2006,
+  "license": "Public Domain",
+  "domain": {"de": "Angststörung", "en": "Anxiety"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "description": {
+    "de": "Kurzscreening für generalisierte Angststörung und andere Angsterkrankungen. Auch als Verlaufsmaß geeignet.",
+    "en": "Brief screening for generalized anxiety disorder and other anxiety conditions. Also suitable as outcome measure."
+  },
+  "instructions": {
+    "de": "Wie oft haben Sie in den letzten 2 Wochen unter den folgenden Beschwerden gelitten?",
+    "en": "Over the last 2 weeks, how often have you been bothered by the following problems?"
+  },
+  "timeframe": {"de": "Letzte 2 Wochen", "en": "Last 2 weeks"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
+    {"value": 1, "label": {"de": "An einzelnen Tagen", "en": "Several days"}},
+    {"value": 2, "label": {"de": "An mehr als der Hälfte der Tage", "en": "More than half the days"}},
+    {"value": 3, "label": {"de": "Beinahe jeden Tag", "en": "Nearly every day"}}
+  ],
+  "items": [
+    {
+      "number": 1,
+      "text": {
+        "de": "Nervosität, Ängstlichkeit oder Anspannung",
+        "en": "Feeling nervous, anxious, or on edge"
+      }
+    },
+    {
+      "number": 2,
+      "text": {
+        "de": "Nicht in der Lage sein, Sorgen zu stoppen oder zu kontrollieren",
+        "en": "Not being able to stop or control worrying"
+      }
+    },
+    {
+      "number": 3,
+      "text": {
+        "de": "Übermäßige Sorgen bezüglich verschiedener Angelegenheiten",
+        "en": "Worrying too much about different things"
+      }
+    },
+    {
+      "number": 4,
+      "text": {
+        "de": "Schwierigkeiten beim Entspannen",
+        "en": "Trouble relaxing"
+      }
+    },
+    {
+      "number": 5,
+      "text": {
+        "de": "Rastlosigkeit, so dass Stillsitzen schwer fällt",
+        "en": "Being so restless that it's hard to sit still"
+      }
+    },
+    {
+      "number": 6,
+      "text": {
+        "de": "Schnelle Verärgerung oder Reizbarkeit",
+        "en": "Becoming easily annoyed or irritable"
+      }
+    },
+    {
+      "number": 7,
+      "text": {
+        "de": "Gefühl der Angst, so als würde etwas Schlimmes passieren",
+        "en": "Feeling afraid as if something awful might happen"
+      }
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "range": [0, 21],
+    "thresholds": [
+      {"min": 0, "max": 4, "severity": "none", "label": {"de": "Minimale Angst", "en": "Minimal anxiety"}, "color": "#4CAF50"},
+      {"min": 5, "max": 9, "severity": "mild", "label": {"de": "Leichte Angst", "en": "Mild anxiety"}, "color": "#FFC107"},
+      {"min": 10, "max": 14, "severity": "moderate", "label": {"de": "Mittelgradige Angst", "en": "Moderate anxiety"}, "color": "#FF9800"},
+      {"min": 15, "max": 21, "severity": "severe", "label": {"de": "Schwere Angst", "en": "Severe anxiety"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 10,
+    "sensitivity": "89%",
+    "specificity": "82%",
+    "action_guide": {
+      "de": [
+        {"range": "0-4", "action": "Keine Behandlung erforderlich"},
+        {"range": "5-9", "action": "Beobachten, Wiederholung bei nächstem Besuch"},
+        {"range": "10-14", "action": "Weitere diagnostische Abklärung empfohlen"},
+        {"range": "15-21", "action": "Aktive Behandlung dringend empfohlen"}
+      ],
+      "en": [
+        {"range": "0-4", "action": "No treatment required"},
+        {"range": "5-9", "action": "Watchful waiting; repeat at follow-up"},
+        {"range": "10-14", "action": "Further diagnostic assessment recommended"},
+        {"range": "15-21", "action": "Active treatment strongly recommended"}
+      ]
+    }
+  },
+  "references": [
+    "Spitzer RL, Kroenke K, Williams JBW, Löwe B. A brief measure for assessing generalized anxiety disorder: the GAD-7. Arch Intern Med. 2006;166(10):1092-1097.",
+    "Löwe B, Decker O, Müller S, et al. Validation and standardization of the Generalized Anxiety Disorder Screener (GAD-7) in the general population. Med Care. 2008;46(3):266-274."
+  ],
+  "source_url": "https://www.phqscreeners.com/"
+}

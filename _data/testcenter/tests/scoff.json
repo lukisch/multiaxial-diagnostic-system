@@ -1,0 +1,82 @@
+{
+  "id": "scoff",
+  "name": {"de": "SCOFF-Fragebogen für Essstörungen", "en": "SCOFF Questionnaire for Eating Disorders"},
+  "abbreviation": "SCOFF",
+  "version": "1.0",
+  "authors": "Morgan, Reid, Lacey",
+  "year": 1999,
+  "license": "Public Domain",
+  "domain": {"de": "Essstörungen", "en": "Eating Disorders"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "description": {
+    "de": "5-Fragen Kurzscreening zur Identifikation von Essstörungen. Das Akronym SCOFF steht für die Kernbereiche: Sick, Control, One stone, Fat, Food.",
+    "en": "5-question brief screening for eating disorders. The acronym SCOFF represents the core areas: Sick, Control, One stone, Fat, Food."
+  },
+  "instructions": {
+    "de": "Bitte beantworten Sie die folgenden fünf Fragen mit Ja oder Nein.",
+    "en": "Please answer the following five questions with Yes or No."
+  },
+  "timeframe": {"de": "Aktuell / Allgemein", "en": "Current / General"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Nein", "en": "No"}},
+    {"value": 1, "label": {"de": "Ja", "en": "Yes"}}
+  ],
+  "items": [
+    {
+      "number": 1,
+      "mnemonic": "S",
+      "text": {
+        "de": "Übergeben Sie sich, weil Sie sich unangenehm voll fühlen? (Sick)",
+        "en": "Do you make yourself Sick because you feel uncomfortably full?"
+      }
+    },
+    {
+      "number": 2,
+      "mnemonic": "C",
+      "text": {
+        "de": "Haben Sie Angst, die Kontrolle darüber zu verlieren, wie viel Sie essen? (Control)",
+        "en": "Do you worry you have lost Control over how much you eat?"
+      }
+    },
+    {
+      "number": 3,
+      "mnemonic": "O",
+      "text": {
+        "de": "Haben Sie kürzlich mehr als 6 kg in einem Zeitraum von 3 Monaten abgenommen? (One stone)",
+        "en": "Have you recently lost more than One stone (6.35 kg / 14 lbs) in a 3-month period?"
+      }
+    },
+    {
+      "number": 4,
+      "mnemonic": "F",
+      "text": {
+        "de": "Glauben Sie, dass Sie zu dick sind, obwohl andere sagen, dass Sie zu dünn sind? (Fat)",
+        "en": "Do you believe yourself to be Fat when others say you are too thin?"
+      }
+    },
+    {
+      "number": 5,
+      "mnemonic": "F",
+      "text": {
+        "de": "Würden Sie sagen, dass Essen Ihr Leben dominiert? (Food)",
+        "en": "Would you say that Food dominates your life?"
+      }
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "range": [0, 5],
+    "thresholds": [
+      {"min": 0, "max": 1, "severity": "negative", "label": {"de": "Screening negativ", "en": "Screen negative"}, "color": "#4CAF50"},
+      {"min": 2, "max": 5, "severity": "positive", "label": {"de": "Screening positiv – Essstörung möglich", "en": "Screen positive – eating disorder possible"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 2,
+    "sensitivity": "84%",
+    "specificity": "90%"
+  },
+  "references": [
+    "Morgan JF, Reid F, Lacey JH. The SCOFF questionnaire: assessment of a new screening tool for eating disorders. BMJ. 1999;319(7223):1467-1468."
+  ],
+  "source_url": "https://www.bmj.com/content/319/7223/1467"
+}

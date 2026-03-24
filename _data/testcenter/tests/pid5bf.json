@@ -1,0 +1,80 @@
+{
+  "id": "pid5bf",
+  "name": {"de": "Persönlichkeitsinventar für DSM-5 – Kurzform", "en": "Personality Inventory for DSM-5 – Brief Form"},
+  "abbreviation": "PID-5-BF",
+  "version": "1.0",
+  "authors": "Krueger, Derringer, Markon, Watson, Skodol (APA)",
+  "year": 2013,
+  "license": "Free for clinical and research use (APA)",
+  "domain": {"de": "Persönlichkeitsstörung / Persönlichkeitsmerkmale", "en": "Personality Disorder / Personality Traits"},
+  "axis": "II",
+  "hitop_spectrum": "Multiple (Internalizing, Antagonistic Externalizing, Disinhibited Externalizing, Detachment, Thought Disorder)",
+  "description": {
+    "de": "25-Item Selbstbeurteilungsfragebogen zur Erfassung der 5 maladaptiven Persönlichkeitsdomänen nach dem Alternativen DSM-5 Modell für Persönlichkeitsstörungen (AMPD). Kompatibel mit ICD-11 Persönlichkeitsstörungsmodell.",
+    "en": "25-item self-report measure of the 5 maladaptive personality domains from the DSM-5 Alternative Model for Personality Disorders (AMPD). Compatible with ICD-11 personality disorder model."
+  },
+  "instructions": {
+    "de": "Dies ist eine Liste von Dingen, die verschiedene Menschen über sich selbst denken könnten. Bitte geben Sie für jede Aussage an, wie gut sie im Allgemeinen auf Sie zutrifft.",
+    "en": "This is a list of things different people might say about themselves. Please indicate how well each statement describes you in general."
+  },
+  "timeframe": {"de": "Allgemein / Typisches Verhalten", "en": "General / Typical behavior"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Trifft überhaupt nicht zu", "en": "Very false or often false"}},
+    {"value": 1, "label": {"de": "Trifft eher nicht zu", "en": "Sometimes or somewhat false"}},
+    {"value": 2, "label": {"de": "Trifft eher zu", "en": "Sometimes or somewhat true"}},
+    {"value": 3, "label": {"de": "Trifft genau zu", "en": "Very true or often true"}}
+  ],
+  "items": [
+    {"number": 1, "domain": "negative_affectivity", "text": {"de": "Menschen würden mich als leichtsinnig beschreiben", "en": "People would describe me as reckless"}},
+    {"number": 2, "domain": "detachment", "text": {"de": "Ich habe das Gefühl, in der Gesellschaft anderer zu handeln, als spielte ich eine Rolle", "en": "I feel like I act totally on impulse"}},
+    {"number": 3, "domain": "antagonism", "text": {"de": "Ich bin es gewohnt, Leute herumzukommandieren", "en": "Even though I know better, I can't stop making rash decisions"}},
+    {"number": 4, "domain": "disinhibition", "text": {"de": "Ich handle oft impulsiv", "en": "I often feel like nothing I do really matters"}},
+    {"number": 5, "domain": "psychoticism", "text": {"de": "Ich verstehe nicht, warum manche Dinge andere so sehr beunruhigen", "en": "Others see me as irresponsible"}},
+    {"number": 6, "domain": "negative_affectivity", "text": {"de": "Ich mache mir über fast alles Sorgen", "en": "I worry about almost everything"}},
+    {"number": 7, "domain": "detachment", "text": {"de": "Ich halte mich von sozialen Kontakten fern", "en": "I avoid social events"}},
+    {"number": 8, "domain": "antagonism", "text": {"de": "Es kommt vor, dass ich Menschen benutze, um zu bekommen, was ich will", "en": "I often have to deal with people who are less important than me"}},
+    {"number": 9, "domain": "disinhibition", "text": {"de": "Ich werde oft ablenkbar", "en": "I'm often pretty careless with my money"}},
+    {"number": 10, "domain": "psychoticism", "text": {"de": "Ich habe ungewöhnliche Wahrnehmungen, z.B. unbekannte Stimmen gehört", "en": "I have seen things that weren't really there"}},
+    {"number": 11, "domain": "negative_affectivity", "text": {"de": "Meine Emotionen schwanken oft ohne erkennbaren Grund", "en": "I get emotional easily, and it's hard to calm down"}},
+    {"number": 12, "domain": "detachment", "text": {"de": "Ich habe nichts, für das ich mich begeistern könnte", "en": "Nothing seems to interest me very much"}},
+    {"number": 13, "domain": "antagonism", "text": {"de": "Ich bin ziemlich gut darin, andere um den Finger zu wickeln", "en": "I'm good at conning people"}},
+    {"number": 14, "domain": "disinhibition", "text": {"de": "Ich ziehe es vor, Dinge sofort zu bekommen, anstatt zu warten", "en": "I do things that are really stupid and likely to get me in trouble"}},
+    {"number": 15, "domain": "psychoticism", "text": {"de": "Ich vergesse manchmal ganze Alltagssituationen, als hätte ich sie nicht erlebt", "en": "I lose track of conversations because other things catch my attention"}},
+    {"number": 16, "domain": "negative_affectivity", "text": {"de": "Ich werde schnell wütend", "en": "I get angry easily"}},
+    {"number": 17, "domain": "detachment", "text": {"de": "Ich zeige meine Gefühle selten", "en": "I don't get as much pleasure from things as others seem to"}},
+    {"number": 18, "domain": "antagonism", "text": {"de": "Ich glaube, dass ich besondere Behandlung verdiene", "en": "I do things to make sure people notice me"}},
+    {"number": 19, "domain": "disinhibition", "text": {"de": "Mein Verhalten ist oft unberechenbar", "en": "People say I'm not considerate enough of others' feelings"}},
+    {"number": 20, "domain": "psychoticism", "text": {"de": "Ich habe Gedanken, die anderen seltsam erscheinen", "en": "I have several habits that others find eccentric or strange"}},
+    {"number": 21, "domain": "negative_affectivity", "text": {"de": "Ich fühle mich oft unsicher in meinen Beziehungen", "en": "I can have trouble telling the difference between dreams and waking life"}},
+    {"number": 22, "domain": "detachment", "text": {"de": "Ich bin selten von irgendetwas begeistert", "en": "I steer clear of romantic relationships"}},
+    {"number": 23, "domain": "antagonism", "text": {"de": "Es macht mir Spaß, die Kontrolle über eine Situation zu haben", "en": "I'm not interested in making friends"}},
+    {"number": 24, "domain": "disinhibition", "text": {"de": "Ich handle ohne nachzudenken", "en": "I take risks for excitement"}},
+    {"number": 25, "domain": "psychoticism", "text": {"de": "Die Dinge um mich herum fühlen sich manchmal unwirklich an oder ich fühle mich außerhalb meines Körpers", "en": "Things around me often feel unreal, or more real than usual"}}
+  ],
+  "scoring": {
+    "method": "domain_mean",
+    "range": [0, 3],
+    "domains": [
+      {"name": {"de": "Negative Affektivität", "en": "Negative Affectivity"}, "items": [1, 6, 11, 16, 21], "range": [0, 15], "hitop": "Internalizing", "icd11_trait": "Negative Affectivity"},
+      {"name": {"de": "Distanziertheit", "en": "Detachment"}, "items": [2, 7, 12, 17, 22], "range": [0, 15], "hitop": "Detachment", "icd11_trait": "Detachment"},
+      {"name": {"de": "Antagonismus", "en": "Antagonism"}, "items": [3, 8, 13, 18, 23], "range": [0, 15], "hitop": "Antagonistic Externalizing", "icd11_trait": "Dissociality"},
+      {"name": {"de": "Enthemmung", "en": "Disinhibition"}, "items": [4, 9, 14, 19, 24], "range": [0, 15], "hitop": "Disinhibited Externalizing", "icd11_trait": "Disinhibition"},
+      {"name": {"de": "Psychotizismus", "en": "Psychoticism"}, "items": [5, 10, 15, 20, 25], "range": [0, 15], "hitop": "Thought Disorder", "icd11_trait": "-"}
+    ],
+    "thresholds_per_domain": [
+      {"min": 0, "max": 4, "severity": "low", "label": {"de": "Gering", "en": "Low"}, "color": "#4CAF50"},
+      {"min": 5, "max": 9, "severity": "moderate", "label": {"de": "Moderat", "en": "Moderate"}, "color": "#FFC107"},
+      {"min": 10, "max": 15, "severity": "high", "label": {"de": "Hoch – klinisch auffällig", "en": "High – clinically significant"}, "color": "#F44336"}
+    ],
+    "hitop_mapping": {
+      "de": "Die 5 Domänen können direkt auf die HiTOP-Spektren abgebildet werden für dimensionale Persönlichkeitsdiagnostik.",
+      "en": "The 5 domains map directly onto HiTOP spectra for dimensional personality assessment."
+    }
+  },
+  "references": [
+    "Krueger RF, Derringer J, Markon KE, Watson D, Skodol AE. Initial construction of a maladaptive personality trait model and inventory for DSM-5. Psychol Med. 2012;42(9):1879-1890.",
+    "American Psychiatric Association. Online assessment measures: PID-5-BF. Washington, DC: APA; 2013.",
+    "Zimmermann J, Altenstein D, Krieger T, et al. The structure and correlates of self-reported DSM-5 maladaptive personality traits: findings from two German-speaking samples. J Pers Disord. 2014;28(4):518-540."
+  ],
+  "source_url": "https://www.psychiatry.org/psychiatrists/practice/dsm/educational-resources/assessment-measures"
+}

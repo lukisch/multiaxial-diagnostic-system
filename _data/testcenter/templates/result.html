@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Results' if lang == 'en' else 'Ergebnisse' }} - {{ test.abbreviation }}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('index', lang=lang) }}">Dashboard</a></li>
+        <li class="breadcrumb-item active">{{ test.abbreviation }} &mdash; {{ session.id }}</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-lg-8">
+        <h1>{{ test.abbreviation }} &mdash; {{ 'Results' if lang == 'en' else 'Ergebnisse' }}</h1>
+
+        {% if session.status != 'completed' %}
+        <div class="alert alert-warning">
+            {{ 'This test has not been completed yet.' if lang == 'en' else 'Dieser Test wurde noch nicht abgeschlossen.' }}
+            <br>
+            <a href="{{ url_for('client_test', token=session.id) }}">
+                {{ 'Link to test form' if lang == 'en' else 'Link zum Testformular' }}
+            </a>
+        </div>
+        {% else %}
+
+        {# Alerts #}
+        {% if scores.get('alerts') %}
+        {% for alert in scores.alerts %}
+        <div class="alert alert-danger">
+            <strong>{{ t(alert, lang) }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {# Emergency resources (C-SSRS) #}
+        {% if scores.get('details', {}).get('emergency_resources') %}
+        <div class="alert alert-danger">
+            <h5>{{ 'Emergency Resources' if lang == 'en' else 'Notfall-Ressourcen' }}</h5>
+            {% set er = scores.details.emergency_resources.get(lang, scores.details.emergency_resources.get('de', {})) %}
+            {% for key, val in er.items() %}
+            <div><strong>{{ key }}:</strong> {{ val }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {# Main score card #}
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <h2 style="color: {{ scores.get('color', '#333') }}">
+                    {{ scores.get('total_score', '-') }}
+                    {% if scores.get('max_score') %}
+                    <small class="text-muted">/ {{ scores.max_score }}</small>
+                    {% endif %}
+                </h2>
+                <h4 style="color: {{ scores.get('color', '#333') }}">
+                    {{ t(scores.get('label', {}), lang) }}
+                </h4>
+                {% if scores.get('action') %}
+                <div class="alert alert-info mt-3">
+                    <strong>{{ 'Recommended Action' if lang == 'en' else 'Empfohlene Maßnahme' }}:</strong>
+                    {{ t(scores.action, lang) }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {# Score visualization #}
+        {% if scores.get('max_score') and scores.max_score > 0 %}
+        <div class="mb-4">
+            {% set pct = ((scores.total_score / scores.max_score) * 100)|round %}
+            <div class="progress" style="height: 30px;">
+                <div class="progress-bar" role="progressbar"
+                     style="width: {{ pct }}%; background-color: {{ scores.get('color', '#2196F3') }}"
+                     aria-valuenow="{{ scores.total_score }}" aria-valuemin="0"
+                     aria-valuemax="{{ scores.max_score }}">
+                    {{ scores.total_score }} / {{ scores.max_score }}
+                </div>
+            </div>
+            {% if test.scoring.get('clinical_cutoff') %}
+            {% set cutoff_pct = ((test.scoring.clinical_cutoff / scores.max_score) * 100)|round %}
+            <div style="position:relative; height:20px;">
+                <div style="position:absolute; left:{{ cutoff_pct }}%; transform:translateX(-50%);">
+                    <small class="text-danger">&darr; {{ 'Cutoff' }}: {{ test.scoring.clinical_cutoff }}</small>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {# Subscales #}
+        {% if scores.get('subscales') %}
+        <h3>{{ 'Subscales' if lang == 'en' else 'Subskalen' }}</h3>
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>{{ 'Scale' if lang == 'en' else 'Skala' }}</th>
+                        <th>{{ 'Score' if lang == 'en' else 'Wert' }}</th>
+                        <th>{{ 'Visual' if lang == 'en' else 'Visuell' }}</th>
+                        {% if scores.subscales[0].get('severity') %}
+                        <th>{{ 'Level' if lang == 'en' else 'Stufe' }}</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sub in scores.subscales %}
+                    <tr>
+                        <td>{{ t(sub.name, lang) }}</td>
+                        <td>{{ sub.score }}{% if sub.max_score %} / {{ sub.max_score }}{% endif %}</td>
+                        <td style="width:30%;">
+                            {% if sub.max_score and sub.max_score > 0 %}
+                            {% set sub_pct = ((sub.score / sub.max_score) * 100)|round %}
+                            <div class="progress" style="height:16px;">
+                                <div class="progress-bar" style="width:{{ sub_pct }}%; background-color:{{ sub.get('color', '#2196F3') }}">
+                                </div>
+                            </div>
+                            {% endif %}
+                        </td>
+                        {% if sub.get('severity') %}
+                        <td>
+                            <span class="badge" style="background-color:{{ sub.get('color', '#9E9E9E') }}">
+                                {{ t(sub.get('label', {}), lang) }}
+                            </span>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        {# Diagnostic details (ITQ) #}
+        {% if scores.get('details', {}).get('ptsd_criteria_met') is not none %}
+        <div class="card mb-3">
+            <div class="card-header">{{ 'Diagnostic Classification' if lang == 'en' else 'Diagnostische Klassifikation' }}</div>
+            <div class="card-body">
+                <p>
+                    <strong>{{ 'PTSD Criteria' if lang == 'en' else 'PTBS-Kriterien' }}:</strong>
+                    {% if scores.details.ptsd_criteria_met %}
+                    <span class="badge bg-danger">{{ 'Met' if lang == 'en' else 'Erfüllt' }}</span>
+                    {% else %}
+                    <span class="badge bg-success">{{ 'Not met' if lang == 'en' else 'Nicht erfüllt' }}</span>
+                    {% endif %}
+                </p>
+                <p>
+                    <strong>{{ 'Complex PTSD Criteria' if lang == 'en' else 'Komplexe PTBS-Kriterien' }}:</strong>
+                    {% if scores.details.get('cptsd_criteria_met') %}
+                    <span class="badge bg-danger">{{ 'Met' if lang == 'en' else 'Erfüllt' }}</span>
+                    {% else %}
+                    <span class="badge bg-success">{{ 'Not met' if lang == 'en' else 'Nicht erfüllt' }}</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        {% endif %}
+
+        {# Item-level responses #}
+        <h3>{{ 'Item Responses' if lang == 'en' else 'Item-Antworten' }}</h3>
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'Item' if lang == 'en' else 'Frage' }}</th>
+                    <th>{{ 'Response' if lang == 'en' else 'Antwort' }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in test['items'] %}
+                {% set key = item.number|string %}
+                <tr>
+                    <td>{{ item.number }}</td>
+                    <td>{{ t(item.text, lang) }}</td>
+                    <td>
+                        {% if key in responses %}
+                            <strong>{{ responses[key] }}</strong>
+                        {% elif (key ~ '_endorsed') in responses %}
+                            {{ 'Yes' if responses[key ~ '_endorsed']|int > 0 else 'No' }}
+                            {% if responses.get(key ~ '_distress') %}
+                                ({{ 'Distress' if lang == 'en' else 'Belastung' }}: {{ responses[key ~ '_distress'] }})
+                            {% endif %}
+                        {% else %}
+                            <span class="text-muted">-</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% endif %} {# end completed check #}
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">{{ 'Session Info' if lang == 'en' else 'Sitzungsinfo' }}</div>
+            <div class="card-body">
+                <dl>
+                    <dt>Token</dt>
+                    <dd><code>{{ session.id }}</code></dd>
+                    <dt>{{ 'Client' if lang == 'en' else 'Klient/in' }}</dt>
+                    <dd>{{ session.client_name or ('-') }}</dd>
+                    <dt>{{ 'Created' if lang == 'en' else 'Erstellt' }}</dt>
+                    <dd>{{ session.created_at[:16] }}</dd>
+                    <dt>{{ 'Completed' if lang == 'en' else 'Abgeschlossen' }}</dt>
+                    <dd>{{ session.completed_at[:16] if session.completed_at else '-' }}</dd>
+                    <dt>Status</dt>
+                    <dd><span class="badge {{ 'bg-success' if session.status == 'completed' else 'bg-warning' }}">{{ session.status }}</span></dd>
+                </dl>
+            </div>
+        </div>
+
+        {% if session.status == 'completed' %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <a href="{{ url_for('print_results', token=session.id, lang=lang) }}"
+                   class="btn btn-outline-secondary w-100 mb-2" target="_blank">
+                    {{ 'Print Results' if lang == 'en' else 'Ergebnisse drucken' }}
+                </a>
+                <a href="{{ url_for('api_results', token=session.id) }}"
+                   class="btn btn-outline-secondary w-100 mb-2" target="_blank">
+                    JSON Export
+                </a>
+                <hr>
+                <a href="{{ url_for('delete_session', token=session.id, lang=lang) }}"
+                   class="btn btn-outline-danger w-100">
+                    {{ 'Delete Session' if lang == 'en' else 'Sitzung löschen' }}
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

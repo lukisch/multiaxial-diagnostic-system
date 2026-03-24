@@ -1,0 +1,108 @@
+{
+  "id": "asrs",
+  "name": {"de": "Selbstbeurteilungsskala für ADHS im Erwachsenenalter", "en": "Adult ADHD Self-Report Scale"},
+  "abbreviation": "ASRS v1.1",
+  "version": "1.1",
+  "authors": "Kessler, Adler, Ames, Demler, Faraone, Hiripi, Howes, Jin, Secnik, Spencer, Ustun, Walters (WHO)",
+  "year": 2005,
+  "license": "Public Domain (WHO)",
+  "domain": {"de": "Aufmerksamkeitsdefizit-/Hyperaktivitätsstörung", "en": "Attention-Deficit/Hyperactivity Disorder"},
+  "axis": "I",
+  "hitop_spectrum": "Disinhibited Externalizing",
+  "description": {
+    "de": "6-Item Kurzscreening (Part A) zur Erfassung von ADHS-Symptomen bei Erwachsenen. Entwickelt von der WHO in Zusammenarbeit mit Harvard Medical School.",
+    "en": "6-item brief screener (Part A) for adult ADHD symptoms. Developed by WHO in collaboration with Harvard Medical School."
+  },
+  "instructions": {
+    "de": "Bitte beantworten Sie die folgenden Fragen und markieren Sie, wie häufig Sie sich in den letzten 6 Monaten so gefühlt oder verhalten haben.",
+    "en": "Please answer the questions below, rating yourself on each of the criteria shown using the scale. As you answer each question, select the response that best describes how you have felt and conducted yourself over the past 6 months."
+  },
+  "timeframe": {"de": "Letzte 6 Monate", "en": "Past 6 months"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Nie", "en": "Never"}},
+    {"value": 1, "label": {"de": "Selten", "en": "Rarely"}},
+    {"value": 2, "label": {"de": "Manchmal", "en": "Sometimes"}},
+    {"value": 3, "label": {"de": "Oft", "en": "Often"}},
+    {"value": 4, "label": {"de": "Sehr oft", "en": "Very often"}}
+  ],
+  "items": [
+    {
+      "number": 1,
+      "subtype": "inattention",
+      "text": {
+        "de": "Wie häufig haben Sie Schwierigkeiten, die letzten Einzelheiten eines Projektes zu erledigen, nachdem die herausfordernden Teile abgeschlossen sind?",
+        "en": "How often do you have trouble wrapping up the final details of a project, once the challenging parts have been done?"
+      },
+      "scoring_threshold": 2
+    },
+    {
+      "number": 2,
+      "subtype": "inattention",
+      "text": {
+        "de": "Wie häufig haben Sie Schwierigkeiten, Dinge in Ordnung zu bringen, wenn Sie eine Aufgabe erledigen müssen, die Organisation erfordert?",
+        "en": "How often do you have difficulty getting things in order when you have to do a task that requires organization?"
+      },
+      "scoring_threshold": 2
+    },
+    {
+      "number": 3,
+      "subtype": "inattention",
+      "text": {
+        "de": "Wie häufig haben Sie Probleme, sich an Termine oder Verpflichtungen zu erinnern?",
+        "en": "How often do you have problems remembering appointments or obligations?"
+      },
+      "scoring_threshold": 2
+    },
+    {
+      "number": 4,
+      "subtype": "hyperactivity",
+      "text": {
+        "de": "Wenn Sie eine Aufgabe erledigen müssen, die viel Nachdenken erfordert, wie häufig vermeiden oder verzögern Sie den Beginn?",
+        "en": "When you have a task that requires a lot of thought, how often do you avoid or delay getting started?"
+      },
+      "scoring_threshold": 3
+    },
+    {
+      "number": 5,
+      "subtype": "hyperactivity",
+      "text": {
+        "de": "Wie häufig zappeln Sie mit den Händen oder Füßen oder rutschen auf dem Stuhl herum, wenn Sie längere Zeit sitzen müssen?",
+        "en": "How often do you fidget or squirm with your hands or feet when you have to sit down for a long period of time?"
+      },
+      "scoring_threshold": 3
+    },
+    {
+      "number": 6,
+      "subtype": "hyperactivity",
+      "text": {
+        "de": "Wie häufig fühlen Sie sich übermäßig aktiv und dazu getrieben, Dinge zu tun, als würden Sie von einem Motor angetrieben?",
+        "en": "How often do you feel overly active and compelled to do things, like you were driven by a motor?"
+      },
+      "scoring_threshold": 3
+    }
+  ],
+  "scoring": {
+    "method": "threshold_count",
+    "description": {
+      "de": "Items 1-3: Wert ≥2 (Manchmal) = positiv. Items 4-6: Wert ≥3 (Oft) = positiv. ≥4 positive Items: ADHS-Screening positiv.",
+      "en": "Items 1-3: Score ≥2 (Sometimes) = positive. Items 4-6: Score ≥3 (Often) = positive. ≥4 positive items: ADHD screening positive."
+    },
+    "range": [0, 6],
+    "thresholds": [
+      {"min": 0, "max": 3, "severity": "negative", "label": {"de": "ADHS unwahrscheinlich", "en": "ADHD unlikely"}, "color": "#4CAF50"},
+      {"min": 4, "max": 6, "severity": "positive", "label": {"de": "ADHS-Verdacht – weitere Abklärung empfohlen", "en": "ADHD suspected – further assessment recommended"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 4,
+    "sensitivity": "68.7%",
+    "specificity": "99.5%",
+    "note": {
+      "de": "Die hohe Spezifität (99.5%) macht das ASRS v1.1 besonders geeignet als Rule-In-Test. Die moderate Sensitivität bedeutet, dass einige ADHS-Fälle nicht erkannt werden.",
+      "en": "The high specificity (99.5%) makes the ASRS v1.1 particularly suitable as a rule-in test. The moderate sensitivity means some ADHD cases may be missed."
+    }
+  },
+  "references": [
+    "Kessler RC, Adler L, Ames M, et al. The World Health Organization Adult ADHD Self-Report Scale (ASRS): a short screening scale for use in the general population. Psychol Med. 2005;35(2):245-256.",
+    "Kessler RC, Adler LA, Gruber MJ, et al. Validity of the World Health Organization Adult ADHD Self-Report Scale (ASRS) Screener in a representative sample of health plan members. Int J Methods Psychiatr Res. 2007;16(2):52-65."
+  ],
+  "source_url": "https://www.hcp.med.harvard.edu/ncs/asrs.php"
+}

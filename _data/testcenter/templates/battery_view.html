@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Test Battery' if lang == 'en' else 'Testpaket' }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        {% if all_done %}
+        <div class="alert alert-success">
+            <h4>{{ 'All tests completed!' if lang == 'en' else 'Alle Tests abgeschlossen!' }}</h4>
+            <p>
+                {% if lang == 'en' %}
+                    Thank you! All tests in this battery have been completed.
+                    Your clinician will review the results.
+                {% else %}
+                    Vielen Dank! Alle Tests in diesem Paket wurden abgeschlossen.
+                    Ihr/e Therapeut/in wird die Ergebnisse einsehen.
+                {% endif %}
+            </p>
+        </div>
+        {% else %}
+        <h2>
+            {% if lang == 'en' %}Test Battery{% else %}Testpaket{% endif %}
+            {% if battery.client_name %} &mdash; {{ battery.client_name }}{% endif %}
+        </h2>
+        <p class="text-muted">
+            {% if lang == 'en' %}
+                Please complete the following tests. You can take breaks between tests.
+            {% else %}
+                Bitte bearbeiten Sie die folgenden Tests. Sie können zwischen den Tests Pausen machen.
+            {% endif %}
+        </p>
+        {% endif %}
+
+        <div class="list-group mb-4">
+            {% for s in sessions %}
+            <div class="list-group-item d-flex justify-content-between align-items-center
+                        {% if s.status == 'completed' %}list-group-item-success{% endif %}">
+                <div>
+                    <strong>{{ loop.index }}.</strong>
+                    <strong>{{ s.abbreviation }}</strong>
+                    <span class="text-muted ms-1">{{ s.name }}</span>
+                    <br><small class="text-muted">{{ s.items }} Items</small>
+                </div>
+                <div>
+                    {% if s.status == 'completed' %}
+                        <span class="badge bg-success">
+                            {{ 'Done' if lang == 'en' else 'Erledigt' }}
+                        </span>
+                    {% elif s.token == next_token %}
+                        <a href="{{ url_for('client_test', token=s.token) }}"
+                           class="btn btn-primary">
+                            {{ 'Start' if lang == 'en' else 'Starten' }}
+                        </a>
+                    {% else %}
+                        <span class="badge bg-secondary">
+                            {{ 'Waiting' if lang == 'en' else 'Wartend' }}
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if not all_done and next_token %}
+        <div class="d-grid">
+            <a href="{{ url_for('client_test', token=next_token) }}"
+               class="btn btn-primary btn-lg">
+                {{ 'Continue with next test' if lang == 'en' else 'Weiter zum nächsten Test' }}
+            </a>
+        </div>
+        {% endif %}
+
+        {% set done = sessions|selectattr('status', 'equalto', 'completed')|list|length %}
+        <div class="progress mt-3" style="height: 24px;">
+            <div class="progress-bar bg-success" style="width: {{ (done / sessions|length * 100)|round }}%">
+                {{ done }} / {{ sessions|length }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

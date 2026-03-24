@@ -1,0 +1,139 @@
+{
+  "id": "isi",
+  "name": {"de": "Insomnie-Schweregrad-Index", "en": "Insomnia Severity Index"},
+  "abbreviation": "ISI",
+  "version": "1.0",
+  "authors": "Morin",
+  "year": 1993,
+  "license": "Free for clinical and research use",
+  "domain": {"de": "Schlafstörungen / Insomnie", "en": "Sleep Disorders / Insomnia"},
+  "axis": "I",
+  "hitop_spectrum": "Somatoform",
+  "description": {
+    "de": "7-Item Selbstbeurteilungsfragebogen zur Erfassung des Schweregrads einer Insomnie. Erfasst Einschlaf-, Durchschlaf- und Früherwachungsprobleme sowie Zufriedenheit und Beeinträchtigung.",
+    "en": "7-item self-report measure of insomnia severity. Assesses sleep onset, sleep maintenance, and early morning awakening problems as well as satisfaction and impairment."
+  },
+  "instructions": {
+    "de": "Bitte bewerten Sie den aktuellen Schweregrad (d.h. der letzten 2 Wochen) Ihrer Schlafprobleme.",
+    "en": "Please rate the current (i.e., last 2 weeks) severity of your insomnia problem(s)."
+  },
+  "timeframe": {"de": "Letzte 2 Wochen", "en": "Last 2 weeks"},
+  "items": [
+    {
+      "number": 1,
+      "text": {
+        "de": "Schwierigkeiten beim Einschlafen",
+        "en": "Difficulty falling asleep"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Keine", "en": "None"}},
+        {"value": 1, "label": {"de": "Leicht", "en": "Mild"}},
+        {"value": 2, "label": {"de": "Mäßig", "en": "Moderate"}},
+        {"value": 3, "label": {"de": "Schwer", "en": "Severe"}},
+        {"value": 4, "label": {"de": "Sehr schwer", "en": "Very severe"}}
+      ]
+    },
+    {
+      "number": 2,
+      "text": {
+        "de": "Schwierigkeiten beim Durchschlafen",
+        "en": "Difficulty staying asleep"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Keine", "en": "None"}},
+        {"value": 1, "label": {"de": "Leicht", "en": "Mild"}},
+        {"value": 2, "label": {"de": "Mäßig", "en": "Moderate"}},
+        {"value": 3, "label": {"de": "Schwer", "en": "Severe"}},
+        {"value": 4, "label": {"de": "Sehr schwer", "en": "Very severe"}}
+      ]
+    },
+    {
+      "number": 3,
+      "text": {
+        "de": "Probleme mit zu frühem Erwachen",
+        "en": "Problem waking up too early"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Keine", "en": "None"}},
+        {"value": 1, "label": {"de": "Leicht", "en": "Mild"}},
+        {"value": 2, "label": {"de": "Mäßig", "en": "Moderate"}},
+        {"value": 3, "label": {"de": "Schwer", "en": "Severe"}},
+        {"value": 4, "label": {"de": "Sehr schwer", "en": "Very severe"}}
+      ]
+    },
+    {
+      "number": 4,
+      "text": {
+        "de": "Wie zufrieden/unzufrieden sind Sie derzeit mit Ihrem Schlaf?",
+        "en": "How satisfied/dissatisfied are you with your current sleep pattern?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Sehr zufrieden", "en": "Very satisfied"}},
+        {"value": 1, "label": {"de": "Zufrieden", "en": "Satisfied"}},
+        {"value": 2, "label": {"de": "Mäßig zufrieden", "en": "Moderately satisfied"}},
+        {"value": 3, "label": {"de": "Unzufrieden", "en": "Dissatisfied"}},
+        {"value": 4, "label": {"de": "Sehr unzufrieden", "en": "Very dissatisfied"}}
+      ]
+    },
+    {
+      "number": 5,
+      "text": {
+        "de": "In welchem Ausmaß beeinträchtigen Ihre Schlafprobleme Ihr tägliches Funktionieren (z.B. Tagesmüdigkeit, Konzentration, Gedächtnis, Stimmung)?",
+        "en": "How noticeable to others do you think your sleep problem is in terms of impairing the quality of your life?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all noticeable"}},
+        {"value": 1, "label": {"de": "Ein wenig", "en": "A little"}},
+        {"value": 2, "label": {"de": "Etwas", "en": "Somewhat"}},
+        {"value": 3, "label": {"de": "Ziemlich", "en": "Much"}},
+        {"value": 4, "label": {"de": "Sehr stark", "en": "Very much noticeable"}}
+      ]
+    },
+    {
+      "number": 6,
+      "text": {
+        "de": "Wie besorgt/beunruhigt sind Sie über Ihre derzeitigen Schlafprobleme?",
+        "en": "How worried/distressed are you about your current sleep problem?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all worried"}},
+        {"value": 1, "label": {"de": "Ein wenig", "en": "A little"}},
+        {"value": 2, "label": {"de": "Etwas", "en": "Somewhat"}},
+        {"value": 3, "label": {"de": "Ziemlich", "en": "Much"}},
+        {"value": 4, "label": {"de": "Sehr", "en": "Very much worried"}}
+      ]
+    },
+    {
+      "number": 7,
+      "text": {
+        "de": "In welchem Ausmaß beeinträchtigen Ihre Schlafprobleme Ihr tägliches Funktionieren derzeit (z.B. Tagesmüdigkeit, Stimmung, Leistungsfähigkeit bei der Arbeit/bei täglichen Aufgaben, Konzentration, Gedächtnis)?",
+        "en": "To what extent do you consider your sleep problem to currently interfere with your daily functioning (e.g., daytime fatigue, mood, ability to function at work/daily chores, concentration, memory, mood, etc.)?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Überhaupt nicht beeinträchtigend", "en": "Not at all interfering"}},
+        {"value": 1, "label": {"de": "Ein wenig", "en": "A little"}},
+        {"value": 2, "label": {"de": "Etwas", "en": "Somewhat"}},
+        {"value": 3, "label": {"de": "Ziemlich", "en": "Much"}},
+        {"value": 4, "label": {"de": "Sehr stark beeinträchtigend", "en": "Very much interfering"}}
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "range": [0, 28],
+    "thresholds": [
+      {"min": 0, "max": 7, "severity": "none", "label": {"de": "Keine klinisch bedeutsame Insomnie", "en": "No clinically significant insomnia"}, "color": "#4CAF50"},
+      {"min": 8, "max": 14, "severity": "subthreshold", "label": {"de": "Unterschwellige Insomnie", "en": "Subthreshold insomnia"}, "color": "#FFC107"},
+      {"min": 15, "max": 21, "severity": "moderate", "label": {"de": "Mittelschwere klinische Insomnie", "en": "Clinical insomnia (moderate severity)"}, "color": "#FF9800"},
+      {"min": 22, "max": 28, "severity": "severe", "label": {"de": "Schwere klinische Insomnie", "en": "Clinical insomnia (severe)"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 15,
+    "sensitivity": "82%",
+    "specificity": "82%"
+  },
+  "references": [
+    "Morin CM. Insomnia: Psychological Assessment and Management. New York: Guilford Press; 1993.",
+    "Bastien CH, Vallières A, Morin CM. Validation of the Insomnia Severity Index as an outcome measure for insomnia research. Sleep Med. 2001;2(4):297-307."
+  ],
+  "source_url": "https://www.ons.org/sites/default/files/InsomniaSeverityIndex_ISI.pdf"
+}

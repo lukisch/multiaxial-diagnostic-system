@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Battery Results' if lang == 'en' else 'Paketergebnisse' }}{% endblock %}
+
+{% block content %}
+<h1>
+    {{ 'Battery Results' if lang == 'en' else 'Paketergebnisse' }}
+    {% if battery.client_name %} &mdash; {{ battery.client_name }}{% endif %}
+</h1>
+<p class="text-muted">
+    {{ 'Created' if lang == 'en' else 'Erstellt' }}: {{ battery.created_at[:16] }} &bull;
+    {{ results|length }} {{ 'tests' if lang == 'en' else 'Tests' }} &bull;
+    <span class="badge {{ 'bg-success' if battery.status == 'completed' else 'bg-warning' }}">{{ battery.status }}</span>
+</p>
+
+<div class="row">
+    {% for r in results %}
+    <div class="col-md-6 mb-3">
+        <div class="card h-100 {{ 'border-success' if r.session.status == 'completed' else 'border-warning' }}">
+            <div class="card-header d-flex justify-content-between">
+                <strong>{{ r.test.abbreviation if r.test else r.session.test_id }}</strong>
+                <span class="badge {{ 'bg-success' if r.session.status == 'completed' else 'bg-warning' }}">
+                    {{ r.session.status }}
+                </span>
+            </div>
+            <div class="card-body">
+                {% if r.session.status == 'completed' and r.scores %}
+                    <div class="text-center mb-2">
+                        <h3 style="color: {{ r.scores.get('color', '#333') }}">
+                            {{ r.scores.get('total_score', '-') }}
+                            {% if r.scores.get('max_score') %}
+                            <small class="text-muted">/ {{ r.scores.max_score }}</small>
+                            {% endif %}
+                        </h3>
+                        <span class="badge" style="background-color: {{ r.scores.get('color', '#9E9E9E') }}">
+                            {{ t(r.scores.get('label', {}), lang) }}
+                        </span>
+                    </div>
+
+                    {% if r.scores.get('alerts') %}
+                    {% for alert in r.scores.alerts %}
+                    <div class="alert alert-danger py-1 small">{{ t(alert, lang) }}</div>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if r.scores.get('max_score') and r.scores.max_score > 0 %}
+                    {% set pct = ((r.scores.total_score / r.scores.max_score) * 100)|round %}
+                    <div class="progress mb-2" style="height: 12px;">
+                        <div class="progress-bar" style="width:{{ pct }}%; background-color:{{ r.scores.get('color', '#2196F3') }}"></div>
+                    </div>
+                    {% endif %}
+                {% else %}
+                    <p class="text-muted text-center">
+                        {{ 'Not yet completed' if lang == 'en' else 'Noch nicht abgeschlossen' }}
+                    </p>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('view_results', token=r.token, lang=lang) }}"
+                   class="btn btn-sm btn-outline-secondary">
+                    {{ 'Details' if lang == 'en' else 'Details' }}
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Create Session' if lang == 'en' else 'Sitzung erstellen' }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <h1>{{ 'Create Test Session' if lang == 'en' else 'Testsitzung erstellen' }}</h1>
+        <p class="text-muted">
+            {% if lang == 'en' %}
+                Create a session to generate a link that can be sent to the client
+                for remote test completion.
+            {% else %}
+                Erstellen Sie eine Sitzung, um einen Link zu generieren, der dem
+                Klienten zum Ausfüllen geschickt werden kann.
+            {% endif %}
+        </p>
+
+        <form method="POST" class="card p-4">
+            <div class="mb-3">
+                <label class="form-label" for="test_id">
+                    <strong>{{ 'Select Test' if lang == 'en' else 'Test auswählen' }}</strong>
+                </label>
+                <select class="form-select" name="test_id" id="test_id" required>
+                    <option value="">{{ '-- Choose --' if lang == 'en' else '-- Auswählen --' }}</option>
+                    {% for tid, tdef in tests.items() %}
+                    <option value="{{ tid }}"
+                            {% if request.args.get('test_id') == tid %}selected{% endif %}>
+                        {{ tdef.abbreviation }} &mdash; {{ t(tdef.name, lang) }}
+                        ({{ tdef['items']|length }} Items)
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="client_name">
+                    {{ 'Client Name (optional)' if lang == 'en' else 'Name Klient/in (optional)' }}
+                </label>
+                <input type="text" class="form-control" name="client_name" id="client_name"
+                       placeholder="{{ 'e.g., Max Mustermann' if lang == 'en' else 'z.B. Max Mustermann' }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    {{ 'Language for client' if lang == 'en' else 'Sprache für Klient/in' }}
+                </label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="language" value="de"
+                           id="lang_de" {% if lang == 'de' %}checked{% endif %}>
+                    <label class="form-check-label" for="lang_de">Deutsch</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="language" value="en"
+                           id="lang_en" {% if lang == 'en' %}checked{% endif %}>
+                    <label class="form-check-label" for="lang_en">English</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg w-100">
+                {{ 'Create Session & Generate Link' if lang == 'en' else 'Sitzung erstellen & Link generieren' }}
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

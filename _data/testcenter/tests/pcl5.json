@@ -1,0 +1,80 @@
+{
+  "id": "pcl5",
+  "name": {"de": "PTBS-Checkliste für DSM-5", "en": "PTSD Checklist for DSM-5"},
+  "abbreviation": "PCL-5",
+  "version": "1.0",
+  "authors": "Weathers, Litz, Keane, Palmieri, Marx, Schnurr",
+  "year": 2013,
+  "license": "Public Domain (US Government)",
+  "domain": {"de": "Posttraumatische Belastungsstörung", "en": "Post-Traumatic Stress Disorder"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "description": {
+    "de": "20-Item Selbstbeurteilungsfragebogen zur Erfassung der DSM-5 PTBS-Symptome. Einsetzbar als Screening, Verlaufsmaß und zur provisorischen Diagnose.",
+    "en": "20-item self-report measure assessing DSM-5 PTSD symptoms. Useful for screening, monitoring change, and making a provisional diagnosis."
+  },
+  "instructions": {
+    "de": "Nachfolgend finden Sie eine Liste von Problemen, die Menschen manchmal nach einem sehr belastenden Erlebnis haben. Bitte lesen Sie jedes Problem sorgfältig durch und geben Sie an, wie stark Sie im letzten Monat darunter gelitten haben.",
+    "en": "Below is a list of problems that people sometimes have in response to a very stressful experience. Please read each problem carefully and then indicate how much you have been bothered by that problem in the past month."
+  },
+  "timeframe": {"de": "Letzter Monat", "en": "Past month"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
+    {"value": 1, "label": {"de": "Ein wenig", "en": "A little bit"}},
+    {"value": 2, "label": {"de": "Mäßig", "en": "Moderately"}},
+    {"value": 3, "label": {"de": "Ziemlich", "en": "Quite a bit"}},
+    {"value": 4, "label": {"de": "Äußerst", "en": "Extremely"}}
+  ],
+  "items": [
+    {"number": 1, "cluster": "B", "text": {"de": "Wiederholte, belastende Erinnerungen, Gedanken oder Bilder des belastenden Erlebnisses", "en": "Repeated, disturbing, and unwanted memories of the stressful experience"}},
+    {"number": 2, "cluster": "B", "text": {"de": "Wiederholte belastende Träume über das Erlebnis", "en": "Repeated, disturbing dreams of the stressful experience"}},
+    {"number": 3, "cluster": "B", "text": {"de": "Plötzliches Handeln oder Fühlen, als würde das belastende Erlebnis erneut stattfinden (Flashback)", "en": "Suddenly feeling or acting as if the stressful experience were actually happening again (as if you were actually back there reliving it)"}},
+    {"number": 4, "cluster": "B", "text": {"de": "Starke Beunruhigung, wenn etwas Sie an das Erlebnis erinnert", "en": "Feeling very upset when something reminded you of the stressful experience"}},
+    {"number": 5, "cluster": "B", "text": {"de": "Starke körperliche Reaktionen, wenn etwas Sie an das Erlebnis erinnert (z.B. Herzrasen, Atemnot, Schwitzen)", "en": "Having strong physical reactions when something reminded you of the stressful experience (for example, heart pounding, trouble breathing, sweating)"}},
+    {"number": 6, "cluster": "C", "text": {"de": "Vermeidung von Erinnerungen, Gedanken oder Gefühlen in Bezug auf das Erlebnis", "en": "Avoiding memories, thoughts, or feelings related to the stressful experience"}},
+    {"number": 7, "cluster": "C", "text": {"de": "Vermeidung von äußeren Erinnerungsauslösern (z.B. Personen, Orte, Gespräche, Aktivitäten, Gegenstände, Situationen)", "en": "Avoiding external reminders of the stressful experience (for example, people, places, conversations, activities, objects, or situations)"}},
+    {"number": 8, "cluster": "D", "text": {"de": "Schwierigkeiten, sich an wichtige Teile des Erlebnisses zu erinnern", "en": "Trouble remembering important parts of the stressful experience"}},
+    {"number": 9, "cluster": "D", "text": {"de": "Stark negative Überzeugungen über sich selbst, andere oder die Welt", "en": "Having strong negative beliefs about yourself, other people, or the world"}},
+    {"number": 10, "cluster": "D", "text": {"de": "Sich selbst oder anderen die Schuld geben für das Erlebnis oder die Folgen", "en": "Blaming yourself or someone else for the stressful experience or what happened after it"}},
+    {"number": 11, "cluster": "D", "text": {"de": "Starke negative Gefühle wie Angst, Entsetzen, Ärger, Schuld oder Scham", "en": "Having strong negative feelings such as fear, horror, anger, guilt, or shame"}},
+    {"number": 12, "cluster": "D", "text": {"de": "Verlust des Interesses an früher gerne ausgeübten Aktivitäten", "en": "Loss of interest in activities that you used to enjoy"}},
+    {"number": 13, "cluster": "D", "text": {"de": "Gefühl der Distanz oder Entfremdung von anderen", "en": "Feeling distant or cut off from other people"}},
+    {"number": 14, "cluster": "D", "text": {"de": "Schwierigkeiten, positive Gefühle zu erleben (z.B. Freude, liebevolle Gefühle)", "en": "Trouble experiencing positive feelings (for example, being unable to feel happiness or have loving feelings for people close to you)"}},
+    {"number": 15, "cluster": "E", "text": {"de": "Reizbares Verhalten, Wutausbrüche oder aggressives Verhalten", "en": "Irritable behavior, angry outbursts, or acting aggressively"}},
+    {"number": 16, "cluster": "E", "text": {"de": "Übermäßig riskantes oder selbstschädigendes Verhalten", "en": "Taking too many risks or doing things that could cause you harm"}},
+    {"number": 17, "cluster": "E", "text": {"de": "Übermäßige Wachsamkeit (Hypervigilanz)", "en": "Being \"superalert\" or watchful or on guard"}},
+    {"number": 18, "cluster": "E", "text": {"de": "Übermäßige Schreckhaftigkeit", "en": "Feeling jumpy or easily startled"}},
+    {"number": 19, "cluster": "E", "text": {"de": "Konzentrationsschwierigkeiten", "en": "Having difficulty concentrating"}},
+    {"number": 20, "cluster": "E", "text": {"de": "Einschlaf- oder Durchschlafstörungen", "en": "Trouble falling or staying asleep"}}
+  ],
+  "scoring": {
+    "method": "sum",
+    "range": [0, 80],
+    "subscales": [
+      {"name": {"de": "Intrusion (Cluster B)", "en": "Intrusion (Cluster B)"}, "items": [1,2,3,4,5], "range": [0,20]},
+      {"name": {"de": "Vermeidung (Cluster C)", "en": "Avoidance (Cluster C)"}, "items": [6,7], "range": [0,8]},
+      {"name": {"de": "Negative Kognitionen/Stimmung (Cluster D)", "en": "Negative Cognitions/Mood (Cluster D)"}, "items": [8,9,10,11,12,13,14], "range": [0,28]},
+      {"name": {"de": "Hyperarousal (Cluster E)", "en": "Hyperarousal (Cluster E)"}, "items": [15,16,17,18,19,20], "range": [0,24]}
+    ],
+    "thresholds": [
+      {"min": 0, "max": 30, "severity": "none_mild", "label": {"de": "Unter klinischem Schwellenwert", "en": "Below clinical threshold"}, "color": "#4CAF50"},
+      {"min": 31, "max": 32, "severity": "borderline", "label": {"de": "Grenzwertig", "en": "Borderline"}, "color": "#FFC107"},
+      {"min": 33, "max": 80, "severity": "probable_ptsd", "label": {"de": "Wahrscheinliche PTBS", "en": "Probable PTSD"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 33,
+    "provisional_diagnosis": {
+      "method": "dsm5_algorithm",
+      "description": {
+        "de": "Provisorische Diagnose: mind. 1 Item aus Cluster B ≥2, mind. 1 aus C ≥2, mind. 2 aus D ≥2, mind. 2 aus E ≥2",
+        "en": "Provisional diagnosis: at least 1 item from Cluster B ≥2, at least 1 from C ≥2, at least 2 from D ≥2, at least 2 from E ≥2"
+      }
+    },
+    "sensitivity": "85-95%",
+    "specificity": "82-90%"
+  },
+  "references": [
+    "Weathers FW, Litz BT, Keane TM, Palmieri PA, Marx BP, Schnurr PP. The PTSD Checklist for DSM-5 (PCL-5). National Center for PTSD. 2013.",
+    "Krüger-Gottschalk A, Knaevelsrud C, Rau H, et al. The German version of the Posttraumatic Stress Disorder Checklist for DSM-5 (PCL-5). Eur J Psychotraumatol. 2017;8(1):1314-1329."
+  ],
+  "source_url": "https://www.ptsd.va.gov/professional/assessment/adult-sr/ptsd-checklist.asp"
+}

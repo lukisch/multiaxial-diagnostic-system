@@ -1,0 +1,89 @@
+{
+  "id": "itq",
+  "name": {"de": "Internationaler Trauma-Fragebogen", "en": "International Trauma Questionnaire"},
+  "abbreviation": "ITQ",
+  "version": "1.0",
+  "authors": "Cloitre, Shevlin, Brewin, Bisson, Roberts, Maercker, Karatzias, Hyland",
+  "year": 2018,
+  "license": "Creative Commons / Free for clinical use",
+  "domain": {"de": "PTBS / Komplexe PTBS (ICD-11)", "en": "PTSD / Complex PTSD (ICD-11)"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "description": {
+    "de": "18-Item Selbstbeurteilungsfragebogen zur Erfassung von PTBS und Komplexer PTBS nach ICD-11. Erfasst sowohl die Kern-PTBS-Symptome als auch die Disturbances in Self-Organization (DSO).",
+    "en": "18-item self-report measure for ICD-11 PTSD and Complex PTSD. Assesses both core PTSD symptoms and Disturbances in Self-Organization (DSO)."
+  },
+  "instructions": {
+    "de": "Bitte geben Sie an, wie sehr Sie in den letzten Monaten von den folgenden Problemen betroffen waren, die manchmal nach traumatischen oder sehr belastenden Erlebnissen auftreten.",
+    "en": "Please indicate how much you have been bothered by the following problems in the past month that sometimes happen to people after experiencing a traumatic or very stressful event."
+  },
+  "timeframe": {"de": "Letzter Monat", "en": "Past month"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
+    {"value": 1, "label": {"de": "Ein wenig", "en": "A little bit"}},
+    {"value": 2, "label": {"de": "Mäßig", "en": "Moderately"}},
+    {"value": 3, "label": {"de": "Ziemlich", "en": "Quite a bit"}},
+    {"value": 4, "label": {"de": "Äußerst", "en": "Extremely"}}
+  ],
+  "items": [
+    {"number": 1, "cluster": "Re", "text": {"de": "Belastende Alpträume, die Teile des Erlebnisses wiedergeben oder die eindeutig mit dem Erlebnis zusammenhängen", "en": "Having upsetting dreams that replay part of the experience or are clearly related to the experience"}},
+    {"number": 2, "cluster": "Re", "text": {"de": "Erleben von starken Bildern oder Erinnerungen, die manchmal das Gefühl auslösen, das Erlebnis geschehe jetzt gerade wieder (Flashbacks)", "en": "Having powerful images or memories that sometimes come into your mind in which you feel the experience is happening again in the here and now"}},
+    {"number": 3, "cluster": "Av", "text": {"de": "Vermeidung von inneren Erinnerungen an das Erlebnis (z.B. Gedanken, Gefühle, körperliche Empfindungen)", "en": "Avoiding internal reminders of the experience (for example, thoughts, feelings, or physical sensations)"}},
+    {"number": 4, "cluster": "Av", "text": {"de": "Vermeidung von äußeren Erinnerungen an das Erlebnis (z.B. Personen, Orte, Gespräche, Gegenstände, Aktivitäten, Situationen)", "en": "Avoiding external reminders of the experience (for example, people, places, conversations, objects, activities, or situations)"}},
+    {"number": 5, "cluster": "Th", "text": {"de": "Ständiges Auf-der-Hut-sein, Wachsamkeit und Achtsamkeit gegenüber möglichen Gefahren", "en": "Being \"super-alert\", watchful, or on guard"}},
+    {"number": 6, "cluster": "Th", "text": {"de": "Sich nervös oder leicht erschreckt fühlen", "en": "Feeling jumpy or easily startled"}},
+    {"number": 7, "cluster": "PTSD_func", "text": {"de": "Haben die oben genannten Probleme (Fragen 1-6) Ihre Beziehungen oder Ihr soziales Leben beeinträchtigt?", "en": "Have the above problems (1-6) affected your relationships or social life?"}},
+    {"number": 8, "cluster": "PTSD_func", "text": {"de": "Haben die oben genannten Probleme (Fragen 1-6) Ihre Arbeit oder Ihre Fähigkeit, den täglichen Aufgaben nachzugehen, beeinträchtigt?", "en": "Have the above problems (1-6) affected your work or ability to carry out daily tasks?"}},
+    {"number": 9, "cluster": "AD", "text": {"de": "Wenn ich aufgebracht bin, dauert es sehr lange, bis ich mich wieder beruhige", "en": "When I am upset, it takes me a long time to calm down"}},
+    {"number": 10, "cluster": "AD", "text": {"de": "Ich fühle mich taub oder emotional abgeschaltet", "en": "I feel numb or emotionally shut down"}},
+    {"number": 11, "cluster": "NSC", "text": {"de": "Ich erlebe mich als Versager", "en": "I feel like a failure"}},
+    {"number": 12, "cluster": "NSC", "text": {"de": "Ich fühle mich wertlos", "en": "I feel worthless"}},
+    {"number": 13, "cluster": "DR", "text": {"de": "Ich fühle mich von Menschen entfernt oder abgeschnitten", "en": "I feel distant or cut off from people"}},
+    {"number": 14, "cluster": "DR", "text": {"de": "Ich finde es schwer, Menschen nahezukommen", "en": "I find it hard to stay emotionally close to people"}},
+    {"number": 15, "cluster": "DSO_func", "text": {"de": "Haben die oben genannten Probleme (Fragen 9-14) Ihre Beziehungen oder Ihr soziales Leben beeinträchtigt?", "en": "Have the above problems (9-14) affected your relationships or social life?"}},
+    {"number": 16, "cluster": "DSO_func", "text": {"de": "Haben die oben genannten Probleme (Fragen 9-14) Ihre Arbeit oder Ihre Fähigkeit, den täglichen Aufgaben nachzugehen, beeinträchtigt?", "en": "Have the above problems (9-14) affected your work or ability to carry out daily tasks?"}}
+  ],
+  "scoring": {
+    "method": "algorithm",
+    "description": {
+      "de": "ICD-11 Algorithmus: PTBS = mind. 1 Re-Erleben ≥2 UND mind. 1 Vermeidung ≥2 UND mind. 1 Bedrohung ≥2 UND Funktionsbeeinträchtigung. KPTBS = PTBS-Kriterien + mind. 1 AD ≥2 + mind. 1 NSC ≥2 + mind. 1 DR ≥2 + DSO-Funktionsbeeinträchtigung.",
+      "en": "ICD-11 Algorithm: PTSD = at least 1 Re-experiencing ≥2 AND at least 1 Avoidance ≥2 AND at least 1 Threat ≥2 AND functional impairment. CPTSD = PTSD criteria + at least 1 AD ≥2 + at least 1 NSC ≥2 + at least 1 DR ≥2 + DSO functional impairment."
+    },
+    "subscales": [
+      {"name": {"de": "Wiedererleben (Re)", "en": "Re-experiencing (Re)"}, "items": [1,2], "range": [0,8]},
+      {"name": {"de": "Vermeidung (Av)", "en": "Avoidance (Av)"}, "items": [3,4], "range": [0,8]},
+      {"name": {"de": "Bedrohungserleben (Th)", "en": "Sense of Threat (Th)"}, "items": [5,6], "range": [0,8]},
+      {"name": {"de": "PTBS-Funktionsbeeinträchtigung", "en": "PTSD Functional Impairment"}, "items": [7,8], "range": [0,8]},
+      {"name": {"de": "Affektive Dysregulation (AD)", "en": "Affective Dysregulation (AD)"}, "items": [9,10], "range": [0,8]},
+      {"name": {"de": "Negatives Selbstkonzept (NSC)", "en": "Negative Self-Concept (NSC)"}, "items": [11,12], "range": [0,8]},
+      {"name": {"de": "Gestörte Beziehungen (DR)", "en": "Disturbed Relationships (DR)"}, "items": [13,14], "range": [0,8]},
+      {"name": {"de": "DSO-Funktionsbeeinträchtigung", "en": "DSO Functional Impairment"}, "items": [15,16], "range": [0,8]}
+    ],
+    "diagnostic_algorithm": {
+      "ptsd": {
+        "criteria": [
+          {"cluster": "Re", "items": [1,2], "min_endorsed": 1, "threshold": 2},
+          {"cluster": "Av", "items": [3,4], "min_endorsed": 1, "threshold": 2},
+          {"cluster": "Th", "items": [5,6], "min_endorsed": 1, "threshold": 2},
+          {"cluster": "PTSD_func", "items": [7,8], "min_endorsed": 1, "threshold": 2}
+        ]
+      },
+      "cptsd": {
+        "requires": "ptsd",
+        "additional_criteria": [
+          {"cluster": "AD", "items": [9,10], "min_endorsed": 1, "threshold": 2},
+          {"cluster": "NSC", "items": [11,12], "min_endorsed": 1, "threshold": 2},
+          {"cluster": "DR", "items": [13,14], "min_endorsed": 1, "threshold": 2},
+          {"cluster": "DSO_func", "items": [15,16], "min_endorsed": 1, "threshold": 2}
+        ]
+      }
+    },
+    "sensitivity": "excellent",
+    "specificity": "excellent"
+  },
+  "references": [
+    "Cloitre M, Shevlin M, Brewin CR, et al. The International Trauma Questionnaire: development of a self-report measure of ICD-11 PTSD and complex PTSD. Acta Psychiatr Scand. 2018;138(6):536-546.",
+    "Karatzias T, Shevlin M, Fyvie C, et al. Evidence of distinct profiles of posttraumatic stress disorder (PTSD) and complex posttraumatic stress disorder (CPTSD) based on the new ICD-11 Trauma Questionnaire (ICD-TQ). J Affect Disord. 2017;207:181-187."
+  ],
+  "source_url": "https://www.traumameasuresglobal.com/itq"
+}

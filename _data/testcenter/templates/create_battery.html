@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Create Test Battery' if lang == 'en' else 'Testpaket erstellen' }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <h1>{{ 'Create Test Battery' if lang == 'en' else 'Testpaket erstellen' }}</h1>
+        <p class="text-muted">
+            {% if lang == 'en' %}
+                Select multiple tests to send as a package. The client receives one link
+                and works through all tests sequentially.
+            {% else %}
+                Wählen Sie mehrere Tests als Paket aus. Der Klient erhält einen Link
+                und arbeitet alle Tests nacheinander ab.
+            {% endif %}
+        </p>
+
+        {% if error %}
+        <div class="alert alert-warning">
+            {{ 'Please select at least one test.' if lang == 'en' else 'Bitte mindestens einen Test auswählen.' }}
+        </div>
+        {% endif %}
+
+        <form method="POST" class="card p-4">
+            <div class="mb-3">
+                <label class="form-label">
+                    <strong>{{ 'Client Name (optional)' if lang == 'en' else 'Name Klient/in (optional)' }}</strong>
+                </label>
+                <input type="text" class="form-control" name="client_name"
+                       placeholder="{{ 'e.g., Max Mustermann' if lang == 'en' else 'z.B. Max Mustermann' }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    {{ 'Language' if lang == 'en' else 'Sprache' }}
+                </label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="language" value="de"
+                           id="lang_de" {% if lang == 'de' %}checked{% endif %}>
+                    <label class="form-check-label" for="lang_de">Deutsch</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="language" value="en"
+                           id="lang_en" {% if lang == 'en' %}checked{% endif %}>
+                    <label class="form-check-label" for="lang_en">English</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    <strong>{{ 'Select Tests' if lang == 'en' else 'Tests auswählen' }}</strong>
+                </label>
+                <div class="row">
+                    {% for tid, tdef in tests.items() %}
+                    <div class="col-md-6 mb-2">
+                        <div class="form-check card p-2">
+                            <input class="form-check-input" type="checkbox"
+                                   name="test_ids" value="{{ tid }}"
+                                   id="bat_{{ tid }}"
+                                   {% if tid in preselected %}checked{% endif %}>
+                            <label class="form-check-label" for="bat_{{ tid }}">
+                                <strong>{{ tdef.abbreviation }}</strong>
+                                <br><small class="text-muted">{{ t(tdef.name, lang) }}</small>
+                                <br><small class="badge bg-secondary">{{ tdef['items']|length }} Items &bull; {{ t(tdef.domain, lang) }}</small>
+                            </label>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    {{ 'Create Battery & Generate Link' if lang == 'en' else 'Paket erstellen & Link generieren' }}
+                </button>
+                <button type="button" class="btn btn-outline-secondary" onclick="selectAll()">
+                    {{ 'Select All' if lang == 'en' else 'Alle auswählen' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function selectAll() {
+    document.querySelectorAll('input[name="test_ids"]').forEach(cb => cb.checked = !cb.checked);
+}
+</script>
+{% endblock %}

@@ -53,6 +53,13 @@ REVIEW.txt
 # Session data (may contain patient information)
 diagnostic_session.json
 
+# Testcenter runtime data (patient data, sessions)
+_data/testcenter/testcenter.db
+_data/testcenter/sessions/
+_data/testcenter/pdfs/
+_data/testcenter/server.log
+_data/testcenter/response.html
+
 # Artifacts from other tools
 compass_artifact_*.md
 

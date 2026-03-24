@@ -1,0 +1,182 @@
+{
+  "id": "audit",
+  "name": {"de": "Alkoholgebrauchsstörungen-Identifikationstest", "en": "Alcohol Use Disorders Identification Test"},
+  "abbreviation": "AUDIT",
+  "version": "2.0",
+  "authors": "Saunders, Aasland, Babor, de la Fuente, Grant (WHO)",
+  "year": 1993,
+  "license": "Public Domain (WHO)",
+  "domain": {"de": "Alkoholgebrauch", "en": "Alcohol Use"},
+  "axis": "I",
+  "hitop_spectrum": "Disinhibited Externalizing",
+  "description": {
+    "de": "10-Item Screening-Instrument der WHO zur Identifikation von riskantem und schädlichem Alkoholkonsum sowie Alkoholabhängigkeit.",
+    "en": "10-item WHO screening instrument for identifying hazardous and harmful alcohol use and dependence."
+  },
+  "instructions": {
+    "de": "Die folgenden Fragen beziehen sich auf Ihren Alkoholkonsum im vergangenen Jahr. Bitte beantworten Sie jede Frage so genau wie möglich.",
+    "en": "The following questions ask about your use of alcoholic beverages during the past year. Please answer each question as accurately as possible."
+  },
+  "timeframe": {"de": "Vergangenes Jahr", "en": "Past year"},
+  "items": [
+    {
+      "number": 1,
+      "text": {
+        "de": "Wie oft nehmen Sie ein alkoholisches Getränk zu sich?",
+        "en": "How often do you have a drink containing alcohol?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nie", "en": "Never"}},
+        {"value": 1, "label": {"de": "Einmal pro Monat oder seltener", "en": "Monthly or less"}},
+        {"value": 2, "label": {"de": "2- bis 4-mal pro Monat", "en": "2-4 times a month"}},
+        {"value": 3, "label": {"de": "2- bis 3-mal pro Woche", "en": "2-3 times a week"}},
+        {"value": 4, "label": {"de": "4-mal oder öfter pro Woche", "en": "4 or more times a week"}}
+      ]
+    },
+    {
+      "number": 2,
+      "text": {
+        "de": "Wenn Sie alkoholische Getränke zu sich nehmen, wie viel trinken Sie dann typischerweise an einem Tag? (Ein alkoholisches Getränk = 0,5l Bier, 0,25l Wein, 0,04l Spirituosen)",
+        "en": "How many drinks containing alcohol do you have on a typical day when you are drinking?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "1 oder 2", "en": "1 or 2"}},
+        {"value": 1, "label": {"de": "3 oder 4", "en": "3 or 4"}},
+        {"value": 2, "label": {"de": "5 oder 6", "en": "5 or 6"}},
+        {"value": 3, "label": {"de": "7 bis 9", "en": "7 to 9"}},
+        {"value": 4, "label": {"de": "10 oder mehr", "en": "10 or more"}}
+      ]
+    },
+    {
+      "number": 3,
+      "text": {
+        "de": "Wie oft trinken Sie 6 oder mehr Getränke bei einer Gelegenheit?",
+        "en": "How often do you have six or more drinks on one occasion?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nie", "en": "Never"}},
+        {"value": 1, "label": {"de": "Seltener als einmal im Monat", "en": "Less than monthly"}},
+        {"value": 2, "label": {"de": "Jeden Monat", "en": "Monthly"}},
+        {"value": 3, "label": {"de": "Jede Woche", "en": "Weekly"}},
+        {"value": 4, "label": {"de": "Täglich oder fast täglich", "en": "Daily or almost daily"}}
+      ]
+    },
+    {
+      "number": 4,
+      "text": {
+        "de": "Wie oft haben Sie in den letzten 12 Monaten erlebt, dass Sie nicht mehr mit dem Trinken aufhören konnten, nachdem Sie einmal begonnen hatten?",
+        "en": "How often during the last year have you found that you were not able to stop drinking once you had started?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nie", "en": "Never"}},
+        {"value": 1, "label": {"de": "Seltener als einmal im Monat", "en": "Less than monthly"}},
+        {"value": 2, "label": {"de": "Jeden Monat", "en": "Monthly"}},
+        {"value": 3, "label": {"de": "Jede Woche", "en": "Weekly"}},
+        {"value": 4, "label": {"de": "Täglich oder fast täglich", "en": "Daily or almost daily"}}
+      ]
+    },
+    {
+      "number": 5,
+      "text": {
+        "de": "Wie oft passierte es in den letzten 12 Monaten, dass Sie wegen des Trinkens Erwartungen, die man normalerweise an Sie hat, nicht mehr erfüllen konnten?",
+        "en": "How often during the last year have you failed to do what was normally expected of you because of drinking?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nie", "en": "Never"}},
+        {"value": 1, "label": {"de": "Seltener als einmal im Monat", "en": "Less than monthly"}},
+        {"value": 2, "label": {"de": "Jeden Monat", "en": "Monthly"}},
+        {"value": 3, "label": {"de": "Jede Woche", "en": "Weekly"}},
+        {"value": 4, "label": {"de": "Täglich oder fast täglich", "en": "Daily or almost daily"}}
+      ]
+    },
+    {
+      "number": 6,
+      "text": {
+        "de": "Wie oft brauchten Sie in den letzten 12 Monaten morgens ein alkoholisches Getränk, um sich nach einem Abend mit viel Alkoholgenuss wieder in Gang zu bringen?",
+        "en": "How often during the last year have you needed a first drink in the morning to get yourself going after a heavy drinking session?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nie", "en": "Never"}},
+        {"value": 1, "label": {"de": "Seltener als einmal im Monat", "en": "Less than monthly"}},
+        {"value": 2, "label": {"de": "Jeden Monat", "en": "Monthly"}},
+        {"value": 3, "label": {"de": "Jede Woche", "en": "Weekly"}},
+        {"value": 4, "label": {"de": "Täglich oder fast täglich", "en": "Daily or almost daily"}}
+      ]
+    },
+    {
+      "number": 7,
+      "text": {
+        "de": "Wie oft hatten Sie in den letzten 12 Monaten wegen Ihrer Trinkgewohnheiten Schuldgefühle oder Gewissensbisse?",
+        "en": "How often during the last year have you had a feeling of guilt or remorse after drinking?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nie", "en": "Never"}},
+        {"value": 1, "label": {"de": "Seltener als einmal im Monat", "en": "Less than monthly"}},
+        {"value": 2, "label": {"de": "Jeden Monat", "en": "Monthly"}},
+        {"value": 3, "label": {"de": "Jede Woche", "en": "Weekly"}},
+        {"value": 4, "label": {"de": "Täglich oder fast täglich", "en": "Daily or almost daily"}}
+      ]
+    },
+    {
+      "number": 8,
+      "text": {
+        "de": "Wie oft konnten Sie sich in den letzten 12 Monaten nicht mehr an den vorangegangenen Abend erinnern, weil Sie getrunken hatten?",
+        "en": "How often during the last year have you been unable to remember what happened the night before because of your drinking?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nie", "en": "Never"}},
+        {"value": 1, "label": {"de": "Seltener als einmal im Monat", "en": "Less than monthly"}},
+        {"value": 2, "label": {"de": "Jeden Monat", "en": "Monthly"}},
+        {"value": 3, "label": {"de": "Jede Woche", "en": "Weekly"}},
+        {"value": 4, "label": {"de": "Täglich oder fast täglich", "en": "Daily or almost daily"}}
+      ]
+    },
+    {
+      "number": 9,
+      "text": {
+        "de": "Haben Sie sich oder eine andere Person infolge Ihres Trinkens verletzt?",
+        "en": "Have you or someone else been injured because of your drinking?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nein", "en": "No"}},
+        {"value": 2, "label": {"de": "Ja, aber nicht im letzten Jahr", "en": "Yes, but not in the last year"}},
+        {"value": 4, "label": {"de": "Ja, im letzten Jahr", "en": "Yes, during the last year"}}
+      ]
+    },
+    {
+      "number": 10,
+      "text": {
+        "de": "Hat ein Verwandter, Freund oder Arzt schon einmal Bedenken wegen Ihres Trinkverhaltens geäußert oder vorgeschlagen, dass Sie Ihren Alkoholkonsum einschränken sollten?",
+        "en": "Has a relative, friend, doctor, or other health care worker been concerned about your drinking or suggested that you cut down?"
+      },
+      "response_options": [
+        {"value": 0, "label": {"de": "Nein", "en": "No"}},
+        {"value": 2, "label": {"de": "Ja, aber nicht im letzten Jahr", "en": "Yes, but not in the last year"}},
+        {"value": 4, "label": {"de": "Ja, im letzten Jahr", "en": "Yes, during the last year"}}
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "sum",
+    "range": [0, 40],
+    "subscales": [
+      {"name": {"de": "Konsum (AUDIT-C)", "en": "Consumption (AUDIT-C)"}, "items": [1,2,3], "range": [0,12]},
+      {"name": {"de": "Abhängigkeit", "en": "Dependence"}, "items": [4,5,6], "range": [0,12]},
+      {"name": {"de": "Schädliche Folgen", "en": "Harmful consequences"}, "items": [7,8,9,10], "range": [0,16]}
+    ],
+    "thresholds": [
+      {"min": 0, "max": 7, "severity": "low_risk", "label": {"de": "Niedriges Risiko", "en": "Low risk"}, "color": "#4CAF50"},
+      {"min": 8, "max": 15, "severity": "hazardous", "label": {"de": "Riskanter Konsum", "en": "Hazardous use"}, "color": "#FFC107"},
+      {"min": 16, "max": 19, "severity": "harmful", "label": {"de": "Schädlicher Konsum", "en": "Harmful use"}, "color": "#FF9800"},
+      {"min": 20, "max": 40, "severity": "dependence", "label": {"de": "Wahrscheinliche Abhängigkeit", "en": "Probable dependence"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 8,
+    "sensitivity": "92%",
+    "specificity": "94%"
+  },
+  "references": [
+    "Saunders JB, Aasland OG, Babor TF, de la Fuente JR, Grant M. Development of the Alcohol Use Disorders Identification Test (AUDIT). Addiction. 1993;88(6):791-804.",
+    "Dybek I, Bischof G, Grothues J, et al. The reliability and validity of the Alcohol Use Disorders Identification Test (AUDIT) in a German general practice population sample. J Stud Alcohol. 2006;67(3):473-481."
+  ],
+  "source_url": "https://www.who.int/publications/i/item/WHO-MSD-MSB-01.6a"
+}
