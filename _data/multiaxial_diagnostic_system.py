@@ -771,7 +771,7 @@ def render_hitop_radar(hitop: HiTOPProfile):
 
 st.set_page_config(
     page_title="Multiaxiales Diagnostik-Expertensystem v10",
-    page_icon="🏥",
+    page_icon=os.path.join(os.path.dirname(os.path.abspath(__file__)), "multiaxial_diagnostic_system.ico"),
     layout="wide"
 )
 

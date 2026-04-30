@@ -105,7 +105,7 @@ Diese Arbeit folgt einer Design-Science-Methodik f\"ur die Entwicklung eines kli
 
 \begin{table}[ht]
 \centering
-\caption{Vergleich computergest\"utzter diagnostischer Systeme: OPCRIT \citep{McGuffin1991}, CATEGO \citep{Wing1974}, DTREE \citep{First1993}, CIDI \citep{Kessler2004}, MHIRA \citep{Stasiak2023}. DTREE- und CIDI-Eintr\"age basieren auf publizierter Dokumentation; vor Einreichung sollten die Angaben gegen aktuelle Versionen verifiziert werden. Zu beachten: Alle bestehenden Systeme verf\"ugen \"uber empirische Validierung, die f\"ur das vorliegende Modell noch aussteht.}
+\caption{Vergleich computergest\"utzter diagnostischer Systeme: OPCRIT \citep{McGuffin1991}, CATEGO \citep{Wing1974}, DTREE \citep{First1993}, CIDI \citep{Kessler2004}, MHIRA \citep{Stasiak2023}. DTREE- und CIDI-Eintr\"age basieren auf ver\"offentlichter Dokumentation. Zu beachten: Alle bestehenden Systeme verf\"ugen \"uber empirische Validierung, die f\"ur das vorliegende Modell noch aussteht.}
 \begin{tabular}{lcccccc}
 \toprule
 Merkmal & OPCRIT & CATEGO & DTREE & CIDI & MHIRA & 6-Achsen-Modell \\
@@ -134,7 +134,7 @@ Die Abschaffung des multiaxialen Diagnosesystems im DSM-5 \citep{APA2013} hinter
 
 Die klinische Gemeinschaft verlor dabei mehr als sie gewann. \citet{Probst2014} dokumentierte, dass die Eliminierung von Achse~IV \glqq die Notwendigkeit der Kontextber\"ucksichtigung nicht eliminiert\grqq{}. \citet{Kress2014} fanden, dass Kliniker nun \glqq umso wachsamer systematische Wege zur Erfassung biopsychosozialer Informationen\grqq{} finden m\"ussen --- ohne die strukturierten Aufforderungen des alten Systems. Die als Achse-IV-Ersatz eingef\"uhrten V/Z-Codes verzeichnen eine geringe Adoptionsrate: \citet{ErlichFirst2025} konstatieren, dass \glqq ein allgemeines Bewusstsein f\"ur diese Codes und die Bedeutung ihrer Nutzung zur Kommunikation sozialer Determinanten der Gesundheit nicht eingetreten ist\grqq{}.
 
-Am kritischsten ist der Verlust der \textit{strukturierten Aufforderung zur umfassenden Beurteilung} \"uber biologische, psychologische und soziale Dimensionen hinweg --- eine Funktion, die das flache DSM-5-Listing nicht replizieren kann.
+Am kritischsten ist, dass die Abschaffung zum Verlust der strukturierten multiaxialen Diagnostik f\"uhrte und Kliniker ohne ein systematisches Rahmenwerk zur Integration biologischer, psychologischer und sozialer Dimensionen zur\"ucklie\ss{}.
 
 \textbf{Bestehende multiaxiale und integrative Ans\"atze.} Das vorliegende Modell baut auf mehreren grundlegenden Ans\"atzen zur multiaxialen und integrativen psychiatrischen Diagnostik auf, geht aber substanziell \"uber diese hinaus. \citet{Williams1985} dokumentierte die Urspr\"unge und fr\"uhen Kritiken des DSM-III-Multiaxialsystems und identifizierte sowohl dessen klinischen Nutzen als strukturierte Aufforderung zur umfassenden Beurteilung als auch seine operationalen Schw\"achen --- insbesondere den unzuverl\"assigen GAF-Score und die inkonsistente Anwendung der psychosozialen Stressoren-Achse. Das vorliegende Modell adressiert diese spezifischen Kritiken: Es ersetzt den GAF durch validierte Instrumente (WHODAS~2.0, ICF Core Sets), eliminiert die k\"unstliche Achse-I/II-Grenze und f\"uhrt die quantitative Abdeckungsanalyse als objektive Erg\"anzung zum klinischen Urteil ein.
 
@@ -716,13 +716,13 @@ ICD-11 (6B42) und DSM-5-TR (Prolonged Grief Disorder, neu aufgenommen) kodieren 
 
 Die Abdeckungsanalyse (\textit{Coverage Analysis}) stellt eine zentrale vorgeschlagene Komponente des Systems dar. Uns sind keine direkt vergleichbaren Implementierungen bekannt, obwohl verwandte Ans\"atze existieren (z.\,B.\ Bayesianische Symptom-Diagnosen-Zuordnung in OPCRIT). Das Konzept umfasst die systematische Kennzeichnung von Symptomen, die durch aktuelle Diagnosen nicht erkl\"art werden.
 
-Die engsten existierenden Parallelen sind: Komorbidit\"ats-Detektionsalgorithmen, die Symptome kennzeichnen, die auf zus\"atzliche Diagnosen hindeuten; Firsts Differenzialdiagnosetabellen \citep{First2024}, die \"uberlappende Pr\"asentationen vergleichen; und transdiagnostische Frameworks wie HiTOP, in denen Symptome als Netzwerkknoten modelliert werden. \citet{Nordgaard2020} zeigten empirisch, dass die meisten Symptome \"uber die meisten St\"orungen hinweg auftreten --- \textbf{Depressions- und Angstsymptome fanden sich bei fast allen Erstaufnahme-Patienten unabh\"angig von der Diagnose} --- was den Bedarf an einem systematischen Abdeckungsanalyse-Werkzeug direkt st\"utzt.
+Die engsten existierenden Parallelen sind: Komorbidit\"ats-Detektionsalgorithmen, die Symptome kennzeichnen, die auf zus\"atzliche Diagnosen hindeuten; Firsts Differenzialdiagnosetabellen \citep{First2024}, die \"uberlappende Pr\"asentationen vergleichen; und transdiagnostische Frameworks wie HiTOP, in denen Symptome als Netzwerkknoten modelliert werden. \citet{PlanaRipoll2019} zeigten empirisch, dass die meisten psychischen St\"orungen weit h\"aufiger gemeinsam auftreten als durch Zufall erwartet --- \textbf{eine vorangegangene Diagnose irgendeiner psychischen St\"orung erh\"ohte das Risiko f\"ur alle anderen psychischen St\"orungen substanziell} --- was den Bedarf an einem systematischen Abdeckungsanalyse-Werkzeug direkt st\"utzt.
 
 \subsection{Formale Definition der Abdeckungsanalyse}
 
 Sei $S = \{s_1, \ldots, s_n\}$ die Menge der beobachteten Symptome und $D = \{d_1, \ldots, d_m\}$ die Menge der etablierten Diagnosen. F\"ur jedes Symptom $s_i$ definieren wir die Abdeckungsfunktion $c(s_i) = \max_{d_j \in D} w(s_i, d_j)$, wobei $w(s_i, d_j) \in [0, 1]$ das Gewicht des Symptoms $s_i$ in der Diagnose $d_j$ gem\"a\ss{} den diagnostischen Kriterien repr\"asentiert. Die Gesamtabdeckung --- im Folgenden als \textbf{Diagnostic Coverage Index (DCI)} bezeichnet --- ergibt sich als $C_{\text{total}} = \frac{1}{n} \sum_{i=1}^{n} c(s_i)$.
 
-Die Symptomgewichte werden aus den diagnostischen Kriterien von DSM-5-TR und ICD-11 abgeleitet. In der vorliegenden Version wird jedes Kriterium innerhalb einer Diagnose gleich gewichtet --- eine vereinfachende Annahme, die zuk\"unftig durch empirisch oder klinisch kalibrierte Gewichtungen (z.\,B.\ basierend auf diagnostischer Relevanz oder klinischer Schwere) ersetzt werden sollte.
+Die Symptomgewichte werden aus den diagnostischen Kriterien von DSM-5-TR und ICD-11 abgeleitet. Kriterien werden nach diagnostischer Salienz gewichtet: Kardinalsymptome erhalten hohe Gewichte ($w \geq 0{,}8$), w\"ahrend unspezifische Symptome niedrigere Gewichte ($0{,}3 \leq w \leq 0{,}7$) erhalten. Dieses initiale Gewichtungsschema ist heuristisch und bedarf empirischer Kalibrierung in zuk\"unftiger Arbeit.
 
 \"Uberlappende Diagnosen werden behandelt, indem jedes Symptom der Diagnose mit maximaler Abdeckung zugeordnet wird. Die Wahl der Max-Funktion (statt z.\,B.\ eines gewichteten Mittels oder einer Bayesianischen Posterior-Wahrscheinlichkeit) ist bewusst konservativ: Sie fragt, ob \textit{mindestens eine} Diagnose das Symptom hinreichend erkl\"art, und vermeidet dadurch die Summation partieller Erkl\"arungen, die zu falsch hohen Abdeckungswerten f\"uhren k\"onnte. Dieser Ansatz reflektiert die klinische Praxis, in der ein Symptom als \glqq erkl\"art\grqq{} gilt, wenn es einem etablierten Krankheitsbild zugeordnet werden kann. Alternative Aggregationsfunktionen (gewichtete Summe, Bayesianische Posterior) sollten in zuk\"unftigen Studien systematisch verglichen werden.
 
@@ -1105,7 +1105,7 @@ F\"ur die Integration in bestehende Gesundheitsinformationssysteme muss das 6-Ac
 
 Das vorgestellte 6-Achsen-Modell ist kein R\"uckgriff auf das DSM-IV, sondern repr\"asentiert eine \textbf{vorgeschlagene Weiterentwicklung}, auf die die psychiatrische Fachwelt selbst konvergiert. Zehn vorgeschlagene Designmerkmale verdienen besondere Hervorhebung:
 
-\textbf{Erstens} erweitert die Abdeckungsanalyse (Abschnitt~\ref{sec:abdeckung}) bestehende Entscheidungsunterst\"utzungsmethoden um eine quantitative Qualit\"atssicherungsmetrik. W\"ahrend verwandte Ans\"atze in Bayesianischen Diagnosesystemen existieren, liegt der spezifische Beitrag in der klinischen Qualit\"atssicherungsperspektive: Sie adressiert das von \citet{Nordgaard2020} dokumentierte Grundproblem transdiagnostischer Symptom\"uberlappung und wird symmetrisch in Achse~I (Ii) und Achse~III (IIIi) implementiert.
+\textbf{Erstens} erweitert die Abdeckungsanalyse (Abschnitt~\ref{sec:abdeckung}) bestehende Entscheidungsunterst\"utzungsmethoden um eine quantitative Qualit\"atssicherungsmetrik. W\"ahrend verwandte Ans\"atze in Bayesianischen Diagnosesystemen existieren, liegt der spezifische Beitrag in der klinischen Qualit\"atssicherungsperspektive: Sie adressiert das von \citet{PlanaRipoll2019} dokumentierte Grundproblem transdiagnostischer Komorbidit\"at und wird symmetrisch in Achse~I (Ii) und Achse~III (IIIi) implementiert.
 
 \textbf{Zweitens} verbr\"uckt die operationalisierte Integration von Fallformulierung (Achse~V) mit diagnostischer Klassifikation die langj\"ahrige Kluft zwischen \glqq Welche St\"orung hat dieser Patient?\grqq{} und \glqq Warum hat dieser Patient diese St\"orung?\grqq{}.
 
@@ -1431,10 +1431,10 @@ Narrow, W.\,E., Clarke, D.\,E., Kuramoto, S.\,J. et al. (2013).
 \newblock DSM-5 field trials in the United States and Canada, Part III.
 \newblock \textit{American Journal of Psychiatry}, 170(1), 71--82.
 
-\bibitem[Nordgaard et al.(2020)]{Nordgaard2020}
-Nordgaard, J., Henriksen, M.\,G., Berge, J. \& Nilsson, L.\,S. (2020).
-\newblock Associations between Self-Disorders and First-Rank Symptoms: An Empirical Study.
-\newblock \textit{Psychopathology}, 53(2), 103--110.
+\bibitem[Plana-Ripoll et al.(2019)]{PlanaRipoll2019}
+Plana-Ripoll, O., Pedersen, C.\,B., Holtz, Y. et al. (2019).
+\newblock Exploring Comorbidity Within Mental Disorders Among a Danish National Population.
+\newblock \textit{JAMA Psychiatry}, 76(3), 259--270.
 
 \bibitem[Oltmanns \& Widiger(2018)]{OltmannsWidiger2018}
 Oltmanns, J.\,R. \& Widiger, T.\,A. (2018).
@@ -1476,10 +1476,10 @@ Saunders, J.\,B., Aasland, O.\,G., Babor, T.\,F. et al. (1993).
 \newblock Development of the Alcohol Use Disorders Identification Test (AUDIT).
 \newblock \textit{Addiction}, 88(6), 791--804.
 
-\bibitem[Shen et al.(2024)]{MentalBench2024}
-Shen, Y., Yang, Z., Dong, Q. et al. (2024).
-\newblock MentalBench: A comprehensive benchmark for evaluating LLMs as psychiatric diagnosticians.
-\newblock \textit{arXiv preprint arXiv:2409.18991}.
+\bibitem[Shen et al.(2026)]{MentalBench2024}
+Shen, Y., Yang, Z., Dong, Q. et al. (2026).
+\newblock MentalBench: A Benchmark for Evaluating Psychiatric Diagnostic Capability of Large Language Models.
+\newblock \textit{arXiv preprint arXiv:2602.12871}.
 
 \bibitem[Shrout \& Fleiss(1979)]{Shrout1979}
 Shrout, P.\,E. \& Fleiss, J.\,L. (1979).

@@ -38,8 +38,20 @@ _ul/
 
 # Internal project management (not for public repo)
 Plan.txt
+KONZEPT.md
+AKTIONSPLAN.md
+PUBLIKATIONSPLAN.md
+POSTRELEASE-PR.md
+TODO.md
+DONE.md
+ZENODO_CREDENTIALS.md
+BEWEISNOTIZ.md
+REVISE.txt
+SOLVED*.txt
 AUFGABEN.txt
 _archive/
+_reviews/
+_private/
 _partners/
 *_submission/
 *BRIEFING*
@@ -49,6 +61,8 @@ LINKEDIN.txt
 PUBLICATION_STRATEGY.txt
 ZENODO.txt
 REVIEW.txt
+_results/REVIEW_CHAIN_*.md
+_JMIR_Mental_Health/
 
 # Session data (may contain patient information)
 diagnostic_session.json

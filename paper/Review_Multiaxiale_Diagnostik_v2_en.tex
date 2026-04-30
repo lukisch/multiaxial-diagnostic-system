@@ -100,7 +100,7 @@ This paper follows a design science methodology for the development of a clinica
 
 \begin{table}[ht]
 \centering
-\caption{Comparison of computer-assisted diagnostic systems: OPCRIT \citep{McGuffin1991}, CATEGO \citep{Wing1974}, DTREE \citep{First1993}, CIDI \citep{Kessler2004}, MHIRA \citep{Stasiak2023}. DTREE and CIDI entries based on published documentation; authors should verify against current versions prior to submission. Note: All existing systems have empirical validation, which is still pending for the present model.}
+\caption{Comparison of computer-assisted diagnostic systems: OPCRIT \citep{McGuffin1991}, CATEGO \citep{Wing1974}, DTREE \citep{First1993}, CIDI \citep{Kessler2004}, MHIRA \citep{Stasiak2023}. DTREE and CIDI entries are based on published documentation. Note: All existing systems have empirical validation, which is still pending for the present model.}
 \begin{tabular}{lcccccc}
 \toprule
 Feature & OPCRIT & CATEGO & DTREE & CIDI & MHIRA & Present Model \\
@@ -129,7 +129,7 @@ The abolition of the multiaxial diagnostic system in DSM-5 \citep{APA2013} left 
 
 The clinical community lost more than it gained. \citet{Probst2014} documented that the elimination of Axis~IV ``does not eliminate the necessity of considering context.'' \citet{Kress2014} found that clinicians must now ``be all the more vigilant in finding systematic ways to capture biopsychosocial information''---without the structured prompts of the old system. The V/Z codes introduced as an Axis~IV replacement have seen low adoption: \citet{ErlichFirst2025} note that ``a general awareness of these codes and the importance of their use in communicating social determinants of health has not materialized.''
 
-Most critically, the loss of the \textit{structured prompt for comprehensive assessment} across biological, psychological, and social dimensions---a function that the flat DSM-5 listing cannot replicate.
+Most critically, the abolition resulted in the loss of structured multiaxial assessment, leaving clinicians without a systematic framework for integrating biological, psychological, and social dimensions.
 
 \textbf{Existing multiaxial and integrative approaches.} The present model builds upon, but substantially extends, several foundational approaches to multiaxial and integrative psychiatric assessment. \citet{Williams1985} documented the origins and early critiques of the DSM-III multiaxial system, identifying both its clinical utility as a structured prompt for comprehensive assessment and its operational weaknesses---particularly the unreliable GAF score and the inconsistent application of the psychosocial stressors axis. The present model addresses these specific critiques: it replaces the GAF with validated instruments (WHODAS~2.0, ICF Core Sets), eliminates the artificial Axis~I/II boundary, and introduces quantitative coverage analysis as an objective complement to clinical judgment.
 
@@ -163,16 +163,6 @@ Three design principles guide the entire system:
 \end{description}
 
 This philosophy fundamentally distinguishes the system from rigid form-based systems: it provides structure where structure is useful, and freedom where freedom is clinically warranted.
-
-\textbf{Existing multiaxial and integrative approaches.} The present model builds upon, but substantially extends, several foundational approaches to multiaxial and integrative psychiatric assessment. \citet{Williams1985} documented the origins and early critiques of the DSM-III multiaxial system, identifying both its clinical utility as a structured prompt for comprehensive assessment and its operational weaknesses---particularly the unreliable GAF score and the inconsistent application of the psychosocial stressors axis. The present model addresses these specific critiques: it replaces the GAF with validated instruments (WHODAS~2.0, ICF Core Sets), eliminates the artificial Axis~I/II boundary, and introduces quantitative coverage analysis as an objective complement to clinical judgment.
-
-\citet{Bolton2008} argued that formulation---the individualized narrative account of a patient's difficulties---should complement, not replace, categorical diagnosis. Bolton's key insight was that classification systems capture \textit{what} a patient has, while formulation captures \textit{why} and \textit{how}. The present model operationalizes this insight through Axis~V (Integrated Condition Model), which implements a structured 3P/4P formulation schema with explicit links back to the diagnostic axes---bridging the gap between Bolton's narrative formulation and the structured classification that clinical systems require.
-
-The continued clinical relevance of multiaxial thinking is further supported by recent work in child and adolescent psychiatry, where multiaxial classification has been described as a ``clinically useful biopsychosocial framework'' that captures developmental complexity more effectively than uniaxial alternatives \citep{BJPsychAdv2024}.
-
-\citet{Wakefield1992} proposed the influential ``harmful dysfunction'' analysis, arguing that mental disorder is a condition in which an internal mechanism fails to perform its natural function \textit{and} the dysfunction causes harm to the individual. This conceptual framework informs the present model's approach to differential diagnosis: the 6-step gatekeeper logic \citep{First2024} systematically distinguishes normal variation from dysfunction by requiring evidence of both impaired mechanism \textit{and} clinically significant distress or functional impairment. The coverage analysis further operationalizes this by quantifying which symptoms are explained by established diagnoses and which remain unexplained---a direct operationalization of Wakefield's requirement to identify genuine dysfunction rather than mere statistical deviance.
-
-The present model thus synthesizes these traditions: it retains the structural comprehensiveness of Williams's multiaxial vision, operationalizes Bolton's formulation imperative, and embeds Wakefield's conceptual rigor into a computationally tractable system---while adding proposed innovations (symmetric Axis~I/III architecture, quantitative coverage analysis, CAVE alerts [\textit{CAVE}: from Latin \textit{cave}, ``beware''; a standard clinical warning marker used here for system-generated safety alerts regarding contraindications, drug interactions, lab artifacts, and cross-axis risk factors]) that aim to go beyond all three predecessors.
 
 \textbf{Contribution.} The paper's primary contributions are threefold: (1)~the quantitative coverage analysis as a clinical quality assurance metric for diagnostic completeness, (2)~the symmetric Axis~I/III architecture enabling structured multi-professional collaboration, and (3)~the operationalized connection between categorical diagnostics and individualized case formulation within a single system. Related approaches exist in sub-areas (e.g., Bayesian diagnostic systems, OPD multiaxiality); the specific contribution lies in their integration into a computer-assisted overall system. These design elements address clinical deficits that have persisted since the abolition of the DSM-IV multiaxial system and that have regained urgency through recent calls \citep{ErlichFirst2025}.
 
@@ -704,13 +694,11 @@ ICD-11 (6B42) and DSM-5-TR (Prolonged Grief Disorder, newly added) both encode p
 
 The coverage analysis (\textit{Coverage Analysis}) represents a central proposed component of the system. We are not aware of directly comparable implementations, although related approaches exist (e.g., Bayesian symptom--diagnosis assignment in OPCRIT). The concept encompasses the systematic identification of symptoms not explained by current diagnoses.
 
-The closest existing parallels are: comorbidity detection algorithms that flag symptoms indicating additional diagnoses; First's differential diagnosis tables \citep{First2024}, which compare overlapping presentations; and transdiagnostic frameworks such as HiTOP, in which symptoms are modeled as network nodes. \citet{Nordgaard2020} demonstrated empirically that most symptoms occur across most disorders---\textbf{depression and anxiety symptoms were found in nearly all first-admission patients regardless of diagnosis}---which directly supports the need for a systematic coverage analysis tool.
+The closest existing parallels are: comorbidity detection algorithms that flag symptoms indicating additional diagnoses; First's differential diagnosis tables \citep{First2024}, which compare overlapping presentations; and transdiagnostic frameworks such as HiTOP, in which symptoms are modeled as network nodes. \citet{PlanaRipoll2019} demonstrated empirically that most mental disorders co-occur far more frequently than expected by chance---\textbf{prior diagnosis of any mental disorder substantially increased the risk of all other mental disorders}---which directly supports the need for a systematic coverage analysis tool.
 
 \subsection{Formal Definition of Coverage Analysis}
 
-Let $S = \{s_1, \ldots, s_n\}$ be the set of observed symptoms and $D = \{d_1, \ldots, d_m\}$ the set of established diagnoses. For each symptom $s_i$, define the coverage function $c(s_i) = \max_{d_j \in D} w(s_i, d_j)$, where $w(s_i, d_j) \in [0, 1]$ represents the weight of symptom $s_i$ in diagnosis $d_j$ as defined by the diagnostic criteria. The total coverage---hereafter termed the \textbf{Diagnostic Coverage Index (DCI)}---is then $C_{\text{total}} = \frac{1}{n} \sum_{i=1}^{n} c(s_i)$. Symptom weights are derived from the diagnostic criteria of DSM-5-TR and ICD-11. In the present version, each criterion contributes equally within a diagnosis---a simplifying assumption that should be replaced in future iterations by empirically or clinically calibrated weights (e.g., based on diagnostic relevance or clinical severity). Overlapping diagnoses are handled by assigning each symptom to the diagnosis providing maximum coverage. The choice of the max function (rather than, e.g., a weighted mean or Bayesian posterior probability) is deliberately conservative: it asks whether \textit{at least one} diagnosis adequately explains the symptom, thereby avoiding the summation of partial explanations that could yield falsely elevated coverage scores. This approach reflects clinical practice, where a symptom is considered ``explained'' when it can be attributed to an established diagnostic entity. Alternative aggregation functions (weighted sum, Bayesian posterior) should be systematically compared in future studies.
-
-Overlapping diagnoses are handled by assigning each symptom to the diagnosis providing maximum coverage. The choice of the max function (rather than, e.g., a weighted mean or Bayesian posterior probability) is deliberately conservative: it asks whether \textit{at least one} diagnosis adequately explains the symptom, thereby avoiding the summation of partial explanations that could yield falsely elevated coverage scores. This approach reflects clinical practice, where a symptom is considered ``explained'' when it can be attributed to an established diagnostic entity. Alternative aggregation functions (weighted sum, Bayesian posterior) should be systematically compared in future studies.
+Let $S = \{s_1, \ldots, s_n\}$ be the set of observed symptoms and $D = \{d_1, \ldots, d_m\}$ the set of established diagnoses. For each symptom $s_i$, define the coverage function $c(s_i) = \max_{d_j \in D} w(s_i, d_j)$, where $w(s_i, d_j) \in [0, 1]$ represents the weight of symptom $s_i$ in diagnosis $d_j$ as defined by the diagnostic criteria. The total coverage---hereafter termed the \textbf{Diagnostic Coverage Index (DCI)}---is then $C_{\text{total}} = \frac{1}{n} \sum_{i=1}^{n} c(s_i)$. Symptom weights are derived from the diagnostic criteria of DSM-5-TR and ICD-11. Criteria are weighted according to diagnostic salience: cardinal symptoms receive high weights ($w \geq 0.8$), while nonspecific symptoms receive lower weights ($0.3 \leq w \leq 0.7$). This initial weighting scheme is heuristic and requires empirical calibration in future work. Overlapping diagnoses are handled by assigning each symptom to the diagnosis providing maximum coverage. The choice of the max function (rather than, e.g., a weighted mean or Bayesian posterior probability) is deliberately conservative: it asks whether \textit{at least one} diagnosis adequately explains the symptom, thereby avoiding the summation of partial explanations that could yield falsely elevated coverage scores. This approach reflects clinical practice, where a symptom is considered ``explained'' when it can be attributed to an established diagnostic entity. Alternative aggregation functions (weighted sum, Bayesian posterior) should be systematically compared in future studies.
 
 \subsection{Threshold Rationale and Sensitivity}
 
@@ -934,7 +922,7 @@ The complete source code of the prototype (V9, approx.\ 1,850~lines Python/Strea
 
 \noindent The provision as an open-source repository serves scientific transparency and reproducibility. Installation instructions can be found in the repository's \texttt{README.md}.
 
-\textbf{Licensing and archiving:} The repository is under the MIT license, which permits both academic and commercial use but provides no warranty (cf.\ liability issues, Section~\ref{sec:ethics}). For long-term citability and versioning, the repository should be archived via Zenodo. A DOI registration (e.g., \texttt{10.5281/zenodo.XXXXXX}) enables permanent referencing of a specific version, independent of changes to the GitHub repository. \textit{Note:} At the time of submission, Zenodo archiving is still pending and should be completed before publication.
+\textbf{Licensing and archiving:} The repository is under the MIT license, which permits both academic and commercial use but provides no warranty (cf.\ liability issues, Section~\ref{sec:ethics}). For long-term citability and versioning, the repository is planned to be archived as a Zenodo dataset record in addition to the paper (DOI: \texttt{10.5281/zenodo.18736725}), enabling permanent referencing of a specific code version independent of changes to the GitHub repository.
 
 \section{Functional Assessment: Bridge Between Diagnosis and Disability}
 \label{sec:functional}
@@ -1099,7 +1087,7 @@ For integration into existing health information systems, the 6-axis model must 
 
 The presented 6-axis model is not a return to DSM-IV but represents a \textbf{proposed advancement} toward which the psychiatric field itself is converging. Ten proposed design features deserve particular emphasis:
 
-\textbf{First,} the coverage analysis (Section~\ref{sec:coverage}) extends existing decision-support methods with a quantitative quality assurance metric. While related approaches exist in Bayesian diagnostic systems, the specific contribution lies in the clinical quality assurance perspective: it addresses the fundamental problem of transdiagnostic symptom overlap documented by \citet{Nordgaard2020} and is symmetrically implemented in Axis~I (Ii) and Axis~III (IIIi).
+\textbf{First,} the coverage analysis (Section~\ref{sec:coverage}) extends existing decision-support methods with a quantitative quality assurance metric. While related approaches exist in Bayesian diagnostic systems, the specific contribution lies in the clinical quality assurance perspective: it addresses the fundamental problem of transdiagnostic comorbidity documented by \citet{PlanaRipoll2019} and is symmetrically implemented in Axis~I (Ii) and Axis~III (IIIi).
 
 \textbf{Second,} the operationalized integration of case formulation (Axis~V) with diagnostic classification bridges the long-standing gap between ``What disorder does this patient have?'' and ``Why does this patient have this disorder?''
 
@@ -1340,10 +1328,10 @@ Narrow, W.\,E., Clarke, D.\,E., Kuramoto, S.\,J. et al. (2013).
 \newblock DSM-5 field trials in the United States and Canada, Part III.
 \newblock \textit{American Journal of Psychiatry}, 170(1), 71--82.
 
-\bibitem[Nordgaard et al.(2020)]{Nordgaard2020}
-Nordgaard, J., Henriksen, M.\,G., Berge, J. \& Nilsson, L.\,S. (2020).
-\newblock Associations between Self-Disorders and First-Rank Symptoms: An Empirical Study.
-\newblock \textit{Psychopathology}, 53(2), 103--110.
+\bibitem[Plana-Ripoll et al.(2019)]{PlanaRipoll2019}
+Plana-Ripoll, O., Pedersen, C.\,B., Holtz, Y. et al. (2019).
+\newblock Exploring Comorbidity Within Mental Disorders Among a Danish National Population.
+\newblock \textit{JAMA Psychiatry}, 76(3), 259--270.
 
 \bibitem[Oltmanns \& Widiger(2018)]{OltmannsWidiger2018}
 Oltmanns, J.\,R. \& Widiger, T.\,A. (2018).
@@ -1445,10 +1433,10 @@ Kessler, R.\,C. \& \"{U}st\"{u}n, T.\,B. (2004).
 \newblock The World Mental Health (WMH) Survey Initiative version of the World Health Organization (WHO) Composite International Diagnostic Interview (CIDI).
 \newblock \textit{International Journal of Methods in Psychiatric Research}, 13(2), 93--121.
 
-\bibitem[Shen et al.(2024)]{MentalBench2024}
-Shen, Y., Yang, Z., Dong, Q. et al. (2024).
-\newblock MentalBench: A comprehensive benchmark for evaluating LLMs as psychiatric diagnosticians.
-\newblock \textit{arXiv preprint arXiv:2409.18991}.
+\bibitem[Shen et al.(2026)]{MentalBench2024}
+Shen, Y., Yang, Z., Dong, Q. et al. (2026).
+\newblock MentalBench: A Benchmark for Evaluating Psychiatric Diagnostic Capability of Large Language Models.
+\newblock \textit{arXiv preprint arXiv:2602.12871}.
 
 \bibitem[Mayall et al.(2024)]{BJPsychAdv2024}
 Mayall, M., McDermott, B., Sadhu, R. et al. (2024).
