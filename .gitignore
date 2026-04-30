@@ -53,9 +53,11 @@ _archive/
 _reviews/
 _private/
 _partners/
+_copilot/
+_handoff/
 *_submission/
 *BRIEFING*
-CORE.txt
+CORE*.txt
 removed_sections/
 LINKEDIN.txt
 PUBLICATION_STRATEGY.txt
@@ -69,10 +71,28 @@ diagnostic_session.json
 
 # Testcenter runtime data (patient data, sessions)
 _data/testcenter/testcenter.db
+_data/testcenter/*.db-shm
+_data/testcenter/*.db-wal
+_data/testcenter/*.sqlite
+_data/testcenter/*.sqlite3
+_data/testcenter/instance/
 _data/testcenter/sessions/
 _data/testcenter/pdfs/
 _data/testcenter/server.log
 _data/testcenter/response.html
+
+# Credentials / local environment
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*TOKEN*
+*SECRET*
+credentials.*
+secrets.*
+local_config.*
 
 # Artifacts from other tools
 compass_artifact_*.md
