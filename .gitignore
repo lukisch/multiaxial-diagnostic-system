@@ -1,5 +1,6 @@
 # Python
 __pycache__/
+.pytest_cache/
 *.py[cod]
 *$py.class
 *.egg-info/
@@ -45,8 +46,8 @@ POSTRELEASE-PR.md
 TODO.md
 DONE.md
 ZENODO_CREDENTIALS.md
-BEWEISNOTIZ.md
-REVISE.txt
+BEWEISNOTIZ*.md
+REVISE*
 SOLVED*.txt
 AUFGABEN.txt
 _archive/
@@ -63,6 +64,8 @@ LINKEDIN.txt
 PUBLICATION_STRATEGY.txt
 ZENODO.txt
 REVIEW.txt
+REVIEW_CHAIN*.md
+REVIEW_CYCLE*.md
 _results/REVIEW_CHAIN_*.md
 _JMIR_Mental_Health/
 

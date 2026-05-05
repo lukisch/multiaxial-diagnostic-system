@@ -70,9 +70,9 @@ The theoretical foundation and clinical rationale for this system are described 
 > **Geiger, L.** (2026). *An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis: Synthesis of DSM-5-TR, ICD-11, and ICF in a 6-Axis Expert System.* Zenodo. [https://doi.org/10.5281/zenodo.18736725](https://doi.org/10.5281/zenodo.18736725)
 
 The preprint is available in English, German, and a combined bilingual edition:
-- [`paper/Review_Multiaxiale_Diagnostik_v2_en.pdf`](paper/Review_Multiaxiale_Diagnostik_v2_en.pdf) -- English
-- [`paper/Review_Multiaxiale_Diagnostik_v2_ger.pdf`](paper/Review_Multiaxiale_Diagnostik_v2_ger.pdf) -- German
-- [`paper/Review_Multiaxiale_Diagnostik_v2_kombi.pdf`](paper/Review_Multiaxiale_Diagnostik_v2_kombi.pdf) -- combined bilingual edition
+- [`paper/Review_Multiaxiale_Diagnostik_v3_en.pdf`](paper/Review_Multiaxiale_Diagnostik_v3_en.pdf) -- English
+- [`paper/Review_Multiaxiale_Diagnostik_v3_ger.pdf`](paper/Review_Multiaxiale_Diagnostik_v3_ger.pdf) -- German
+- [`paper/Review_Multiaxiale_Diagnostik_v3_kombi.pdf`](paper/Review_Multiaxiale_Diagnostik_v3_kombi.pdf) -- combined bilingual edition
 
 ### Data-Integrity & Input-Validation Layer (V10)
 
@@ -174,6 +174,7 @@ _data/testcenter/                            # Diagnostic Testcenter (Flask web 
     static/                                  #   CSS + JavaScript
 _results/Konzept_Dimensionale_Integration.md # Dimensional integration concept (DE)
 _results/Ausbauplan_Prototyp_V9.md           # Development roadmap (DE)
+_results/QUELLENCHECK_2026-05-01.md          # Source-verification report for paper v3
 ```
 
 ## Development Roadmap
@@ -243,7 +244,7 @@ If you use this system in your research, please cite:
 
 ## Author
 
-**Lukas Geiger** -- Independent Researcher, Bernau im Schwarzwald, Germany
+**Lukas Geiger** -- Independent Researcher, Bernau, Germany
 
 *AI-assisted development: Claude Opus 4.6 (Anthropic), Gemini (Google DeepMind), Copilot (Microsoft)*
 

@@ -97,7 +97,7 @@ Diese Arbeit folgt einer Design-Science-Methodik f\"ur die Entwicklung eines kli
 
 \textbf{Phase~2: Iteratives Design.} Die 6-Achsen-Architektur wurde durch iterative Zyklen von Design und Verfeinerung entwickelt. Designentscheidungen --- wie die symmetrische Achse-I/III-Struktur, das Konzept der Abdeckungsanalyse und das CAVE-Warnsystem --- wurden gegen die identifizierten Anforderungen evaluiert. Jede Iteration wurde dokumentiert und versioniert (V1--V5). Es ist anzumerken, dass der Designprozess kein formales Expertenpanel einschloss; die iterative Verfeinerung erfolgte prim\"ar durch den Autor mit KI-gest\"utzter Konsistenzpr\"ufung. Ein formales Experten-Review ist als Phase~1 der Validierungsstrategie (Abschnitt~\ref{sec:validierung}) vorgesehen.
 
-\textbf{Phase~3: Prototypische Implementierung.} Eine Python-Referenzimplementierung (ca.\ 1.850~Zeilen) unter Verwendung hierarchischer Zustandsmaschinen (\texttt{transitions}-Bibliothek) und einer Streamlit-Oberfl\"ache wurde entwickelt, um die Machbarkeit zu demonstrieren. Der Quellcode ist \"offentlich verf\"ugbar unter \url{https://github.com/lukisch/multiaxial-diagnostic-system}.
+\textbf{Phase~3: Prototypische Implementierung.} Eine Python-Referenzimplementierung (ca.\ 1.850~Zeilen) unter Verwendung hierarchischer Zustandsmaschinen (\texttt{transitions}-Bibliothek) und einer Streamlit-Oberfl\"ache wurde entwickelt, um die Machbarkeit zu demonstrieren. Der Quellcode ist \"offentlich verf\"ugbar unter \url{https://github.com/research-line/multiaxial-diagnostic-system}.
 
 \textbf{Phase~4: KI-gest\"utzte Entwicklung und Review.} Manuskript und Systemdesign wurden mit substanzieller KI-Unterst\"utzung entwickelt (Claude Opus 4.6 als Co-Writer; Gemini und Copilot als Reviewer). Alle KI-Beitr\"age sind im Abschnitt zur KI-Nutzung dokumentiert. Die wissenschaftliche Verantwortung f\"ur alle Inhalte liegt beim menschlichen Autor.
 
@@ -345,7 +345,7 @@ WHODAS~2.0 und GAF messen \textit{fundamental unterschiedliche Konstrukte}: GAF 
 
 F\"ur den deutschen Kontext ist die \textbf{GdB-Integration} (Grad der Behinderung) essentiell. Der GdB verwendet eine 20--100-Skala ($\geq 50$ = Schwerbehinderung) und wird nach den Versorgungsmedizinischen Grunds\"atzen (VMG) bewertet.
 
-Drei validierte \textbf{ICF Core Sets} existieren f\"ur psychische Gesundheit \citep{AyusoMateos2010}: Depression (31~kurze/121~umfassende Kategorien), bipolare St\"orungen (19/38) und Schizophrenie (25/97). F\"ur die praktische Implementierung ist das \textbf{Mini-ICF-APP} (Mini-ICF f\"ur Aktivit\"aten und Partizipation bei psychischen St\"orungen) von \citet{LindenBaron2005} mit 13~Kapazit\"atsdimensionen das effizienteste Werkzeug.
+Drei \textbf{ICF-Core-Set}-Familien f\"ur psychische Gesundheit wurden f\"ur Depression, bipolare St\"orung und Schizophrenie entwickelt \citep{Cieza2004Depression, AyusoMateos2013Bipolar, GomezBenito2018Schizophrenia}: Depression (31~kurze/121~umfassende Kategorien), bipolare St\"orung (19/38) und Schizophrenie (25/97). F\"ur die praktische Implementierung ist das \textbf{Mini-ICF-P}-Rating von \citet{LindenBaron2005} mit 13~Kapazit\"atsdimensionen das effizienteste Werkzeug.
 
 \textbf{Operationalisierung der ICF-Integration in Achsen~III und~VI:} Die ICF-Codierung im 6-Achsen-Modell folgt einer dreistufigen Logik. \textit{Erstens} werden auf Achse~III (Medizinische Synopse) die K\"orperfunktionen (ICF-Kapitel~b) und K\"orperstrukturen (ICF-Kapitel~s) dokumentiert, die f\"ur die somatisch-psychische Kausalanalyse (IIIk) relevant sind --- beispielsweise \texttt{b130} (Funktionen der psychischen Energie und des Antriebs), \texttt{b152} (emotionale Funktionen) oder \texttt{b144} (Funktionen des Ged\"achtnisses). \textit{Zweitens} erfasst Achse~IV die Aktivit\"aten und Partizipation (ICF-Kapitel~d) sowie Umweltfaktoren (ICF-Kapitel~e) --- operationalisiert \"uber WHODAS~2.0 (Dom\"anen d1--d6) und Mini-ICF-APP (13~Kapazit\"atsdimensionen, z.\,B.\ F\"ahigkeit zur Regelm\"a\ss{}igkeit, Flexibilit\"at, Kontaktf\"ahigkeit). \textit{Drittens} werden in der Evidenz-Matrix (Achse~VI) die ICF-Qualifikatoren (Ausma\ss{} der Beeintr\"achtigung: 0--4) zu jeder codierten Funktionseinschr\"ankung dokumentiert, um die Quantifizierung \"uber die Zeit zu erm\"oglichen.
 
@@ -951,7 +951,7 @@ Interoperabilit\"at & HL7 FHIR (R4) & Standardisierter Datenaustausch \\
 Der vollst\"andige Quellcode des Prototyps (V9, ca.\ 1.850~Zeilen Python/Streamlit), die bilinguale \"Ubersetzungsdatei, der Entwicklungsfahrplan und das vorliegende Paper sind \"offentlich verf\"ugbar unter:
 
 \begin{center}
-\url{https://github.com/lukisch/multiaxial-diagnostic-system}
+\url{https://github.com/research-line/multiaxial-diagnostic-system}
 \end{center}
 
 \noindent Die Bereitstellung als Open-Source-Repository dient der wissenschaftlichen Transparenz und Reproduzierbarkeit. Installationsanweisungen finden sich in der \texttt{README.md} des Repositories.
@@ -1121,7 +1121,7 @@ Das vorgestellte 6-Achsen-Modell ist kein R\"uckgriff auf das DSM-IV, sondern re
 
 \textbf{Achtens} implementiert das CAVE-Warnsystem in Achse~VI eine achsen\"ubergreifende Sicherheitsschicht, die kritische klinische Risiken (Labor-Artefakte, Medikamenten-Interaktionen, Kontraindikationen, zeitliche Fehlzuordnungen) prominent kennzeichnet. Angesichts der bekannten Polypharmazie-Problematik in der Psychiatrie --- insbesondere bei komorbiden somatischen Erkrankungen --- adressiert das CAVE-System eine h\"aufige klinische Fehlerquelle, die in bestehenden Klassifikationssystemen nicht systematisch ber\"ucksichtigt wird.
 
-\textbf{Neuntens} erg\"anzt der longitudinale Symptomverlauf die querschnittliche Diagnostik um eine zeitliche Dimension: Die Dokumentation von Symptombeginn, aktuellem Status und Therapieansprechen erm\"oglicht die Identifikation von Chronifizierungsmustern und Therapieresistenz, die f\"ur die Behandlungsplanung essentiell sind. Achse~VI realisiert damit de facto ein \textit{integriertes Routine Outcome Monitoring (ROM)}-System im Sinne von \citet{Barkham2023} (vgl.\ auch \citealp{Huber2022}): Die regelm\"a\ss{}ige Erfassung validierter Instrumente (PHQ-9, GAD-7, PCL-5) mit Verlaufsvisualisierung erm\"oglicht die fr\"uhzeitige Erkennung von Not-on-Track-Verl\"aufen und unterst\"utzt adaptive Behandlungsplanung.
+\textbf{Neuntens} erg\"anzt der longitudinale Symptomverlauf die querschnittliche Diagnostik um eine zeitliche Dimension: Die Dokumentation von Symptombeginn, aktuellem Status und Therapieansprechen erm\"oglicht die Identifikation von Chronifizierungsmustern und Therapieresistenz, die f\"ur die Behandlungsplanung essentiell sind. Achse~VI realisiert damit de facto ein \textit{integriertes Routine Outcome Monitoring (ROM)}-System im Sinne von \citet{Barkham2023}: Die regelm\"a\ss{}ige Erfassung validierter Instrumente (PHQ-9, GAD-7, PCL-5) mit Verlaufsvisualisierung erm\"oglicht die fr\"uhzeitige Erkennung von Not-on-Track-Verl\"aufen und unterst\"utzt adaptive Behandlungsplanung.
 
 \textbf{Zehntens} realisiert die Designphilosophie des \textit{lebenden Dokuments} ein Paradigma, das die diagnostische Akte nicht als einmalig auszuf\"ullendes Formular, sondern als mitwachsende Prozessdokumentation versteht. Bezugspersonen-Netzwerk (Achse~IV), pr\"agende Erfahrungen und Grundkonflikte (Achse~II) sowie das Kontakt- und Beobachtungsprotokoll (Achse~VI) sind offene Listen, die den diagnostischen Prozess selbst dokumentieren und kontinuierlich Material f\"ur die Fallformulierung (Achse~V) liefern.
 
@@ -1232,14 +1232,14 @@ Zusammengefasst: Das 6-Achsen-Modell versteht sich als Entwurf einer diagnostisc
 \begin{thebibliography}{99}
 
 \bibitem[Aboraya et al.(2006)]{Aboraya2006}
-Aboraya, A., Rankin, E., France, C. et al. (2006).
-\newblock The reliability of psychiatric diagnosis revisited.
-\newblock \textit{Psychiatry}, 3(1), 41--50.
+Aboraya, A., Rankin, E., France, C., El-Missiry, A. \& John, C. (2006).
+\newblock The reliability of psychiatric diagnosis revisited: The clinician's guide to improve the reliability of psychiatric diagnosis.
+\newblock \textit{Psychiatry (Edgmont)}, 3(1), 41--50. PMID: 21103149.
 
 \bibitem[Allison et al.(2012)]{Allison2012}
 Allison, C., Auyeung, B. \& Baron-Cohen, S. (2012).
 \newblock Toward brief ``red flags'' for autism screening: The Short Autism Spectrum Quotient and the Short Quantitative Checklist in 1,000 cases and 3,000 controls.
-\newblock \textit{Journal of the American Academy of Child \& Adolescent Psychiatry}, 51(2), 202--212.
+\newblock \textit{Journal of the American Academy of Child \& Adolescent Psychiatry}, 51(2), 202--212.e7. DOI: 10.1016/j.jaac.2011.11.003.
 
 \bibitem[APA(1980)]{APA1980DSM3}
 American Psychiatric Association (1980).
@@ -1256,10 +1256,15 @@ American Psychiatric Association (2022).
 \newblock \textit{Diagnostic and Statistical Manual of Mental Disorders, Text Revision} (DSM-5-TR).
 \newblock Washington, DC: American Psychiatric Publishing.
 
-\bibitem[Ayuso-Mateos et al.(2010)]{AyusoMateos2010}
-Ayuso-Mateos, J.\,L., Miret, M., Caballero, F.\,F. et al. (2010).
-\newblock Multi-country evaluation of ICF Core Sets for depression.
-\newblock \textit{BMC Psychiatry}, 10, 44.
+\bibitem[Cieza et al.(2004)]{Cieza2004Depression}
+Cieza, A., Chatterji, S., Andersen, C. et al. (2004).
+\newblock ICF Core Sets for depression.
+\newblock \textit{Journal of Rehabilitation Medicine}, 36(Suppl. 44), 128--134. DOI: 10.1080/16501960410016055.
+
+\bibitem[Ayuso-Mateos et al.(2013)]{AyusoMateos2013Bipolar}
+Ayuso-Mateos, J.\,L., Avila, C.\,C., Anaya, C., Cieza, A. \& Vieta, E. (2013).
+\newblock Development of the International Classification of Functioning, Disability and Health core sets for bipolar disorders: Results of an international consensus process.
+\newblock \textit{Disability and Rehabilitation}, 35(25), 2138--2146. DOI: 10.3109/09638288.2013.771708.
 
 \bibitem[Bach et al.(2022)]{Bach2022}
 Bach, B., Kramer, U., Doering, S. et al. (2022).
@@ -1268,8 +1273,8 @@ Bach, B., Kramer, U., Doering, S. et al. (2022).
 
 \bibitem[Barkham et al.(2023)]{Barkham2023}
 Barkham, M., De Jong, K., Delgadillo, J. \& Lutz, W. (2023).
-\newblock Routine outcome monitoring (ROM) and feedback.
-\newblock \textit{Psychotherapy Research}, 33(4), 407--413.
+\newblock Routine Outcome Monitoring (ROM) and Feedback: Research Review and Recommendations.
+\newblock \textit{Psychotherapy Research}, 33(7), 841--855. DOI: 10.1080/10503307.2023.2181114.
 
 \bibitem[Barnhill(2014)]{BarnhillDSM5ClinicalCases}
 Barnhill, J.\,W. (Ed.) (2014).
@@ -1337,14 +1342,14 @@ Hevner, A.\,R., March, S.\,T., Park, J. \& Ram, S. (2004).
 \newblock \textit{MIS Quarterly}, 28(1), 75--105.
 
 \bibitem[Mayall et al.(2024)]{BJPsychAdv2024}
-Mayall, M., McDermott, B., Sadhu, R. et al. (2024).
-\newblock Multiaxial classification in child and adolescent psychiatry: A clinically useful biopsychosocial framework.
-\newblock \textit{BJPsych Advances}, 30(4), 242--256.
+Mayall, M., McDermott, B., Sadhu, R., Teoh, Y., Bosanquet, M. \& Nundeekasen, S. (2024).
+\newblock Practical aspects of multiaxial classification: A clinically useful biopsychosocial framework for child and adolescent psychiatry.
+\newblock \textit{BJPsych Advances}, 30(4), 242--256. DOI: 10.1192/bja.2023.39.
 
-\bibitem[Huber et al.(2022)]{Huber2022}
-Huber, C.\,G., Aebi, B.\,J., Engeler, S.\,L. et al. (2022).
-\newblock Adoption of routine outcome monitoring in mental health settings.
-\newblock \textit{BMC Health Services Research}, 22, 1035.
+\bibitem[G{\'o}mez-Benito et al.(2018)]{GomezBenito2018Schizophrenia}
+G{\'o}mez-Benito, J., Guilera, G., Barrios, M. et al. (2018).
+\newblock Beyond diagnosis: The Core Sets for persons with schizophrenia based on the World Health Organization's International Classification of Functioning, Disability, and Health.
+\newblock \textit{Disability and Rehabilitation}, 40(23), 2756--2766. DOI: 10.1080/09638288.2017.1356384.
 
 \bibitem[Insel et al.(2010)]{Insel2010}
 Insel, T., Cuthbert, B., Garvey, M. et al. (2010).
@@ -1403,8 +1408,8 @@ Levis, B., Benedetti, A. \& Thombs, B.\,D. (2019).
 
 \bibitem[Linden \& Baron(2005)]{LindenBaron2005}
 Linden, M. \& Baron, S. (2005).
-\newblock Das Mini-ICF-APP: Mini-ICF-Rating f\"ur Aktivit\"ats- und Partizipationsst\"orungen bei psychischen Erkrankungen.
-\newblock \textit{Die Rehabilitation}, 44(3), 153--159.
+\newblock Das Mini-ICF-Rating f\"ur psychische St\"orungen (Mini-ICF-P): Ein Kurzinstrument zur Beurteilung von F\"ahigkeitsst\"orungen bei psychischen Erkrankungen.
+\newblock \textit{Die Rehabilitation}, 44(3), 144--151. DOI: 10.1055/s-2004-834786.
 
 \bibitem[Luciano et al.(2010)]{Luciano2010}
 Luciano, J.\,V., Ayuso-Mateos, J.\,L., Aguado, J. et al. (2010).
@@ -1458,8 +1463,8 @@ Posner, K., Brown, G.\,K., Stanley, B. et al. (2011).
 
 \bibitem[Probst(2014)]{Probst2014}
 Probst, B. (2014).
-\newblock The life and death of Axis IV: Caught in the quest for a theory-free diagnostic system.
-\newblock \textit{Research on Social Work Practice}, 24(1), 123--131.
+\newblock The life and death of Axis IV: Caught in the quest for a theory of mental disorder.
+\newblock \textit{Research on Social Work Practice}, 24(1), 123--131. DOI: 10.1177/1049731513491326.
 
 \bibitem[Regier et al.(2013)]{Regier2013}
 Regier, D.\,A., Narrow, W.\,E., Clarke, D.\,E. et al. (2013).
@@ -1494,7 +1499,7 @@ Spitzer, R.\,L., Kroenke, K., Williams, J.\,B.\,W. \& L\"owe, B. (2006).
 \bibitem[Zimmermann et al.(2023)]{Stasiak2023}
 Zimmermann, R., Konjufca, J., Sakejo, P. et al. (2023).
 \newblock Mental Health Information Reporting Assistant (MHIRA)---an open-source software facilitating evidence-based assessment for clinical services.
-\newblock \textit{BMC Psychiatry}, 23, 706.
+\newblock \textit{BMC Psychiatry}, 23, 706. DOI: 10.1186/s12888-023-05201-0.
 
 \bibitem[Wakefield(1992)]{Wakefield1992}
 Wakefield, J.\,C. (1992).
