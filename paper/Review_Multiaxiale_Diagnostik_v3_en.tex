@@ -6,12 +6,14 @@
 \geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
 \usepackage{mathptmx}
 \usepackage{helvet}
+\usepackage{microtype}
 \usepackage{amsmath}
 \usepackage{titlesec}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{xcolor}
 \usepackage{authblk}
+\usepackage{xurl}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{graphicx}
@@ -24,6 +26,8 @@
 \usepackage{quoting}
 \usepackage{multirow}
 \usepackage{array}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
 
 \titleformat{\section}{\Large\bfseries\sffamily\color{black}}{\thesection}{1em}{}
 \titleformat{\subsection}{\large\bfseries\sffamily\color{darkgray}}{\thesubsection}{1em}{}
@@ -32,11 +36,19 @@
 \hypersetup{
     pdftitle={An Integrated Multiaxial Model for Computer-Assisted Psychiatric Diagnosis},
     pdfauthor={Lukas Geiger},
+    pdfsubject={Methods and design paper for a 6-axis psychiatric decision support system},
+    pdfkeywords={Multiaxial diagnosis, psychiatric decision support, DSM-5-TR, ICD-11, ICF, diagnostic coverage index},
     colorlinks=true,
     linkcolor=black,
     urlcolor=blue,
-    citecolor=black
+    citecolor=black,
+    breaklinks=true,
+    hypertexnames=false
 }
+\makeatletter
+\renewcommand*{\HyperDestNameFilter}[1]{en.#1}
+\makeatother
+\setlength{\emergencystretch}{2em}
 
 \onehalfspacing
 
@@ -46,7 +58,7 @@
 \Large Synthesis of DSM-5-TR, ICD-11, and ICF\\in a 6-Axis Decision Support System\\[0.3em]
 \large A Methods and Design Paper}
 
-\author[1]{Lukas Geiger\thanks{Correspondence: Lukas Geiger, Bernau, Germany. ORCID: \url{https://orcid.org/0009-0005-7296-1534}}}
+\author[1]{Lukas Geiger\thanks{Correspondence: Lukas Geiger, Bernau, Germany. ORCID: \href{https://orcid.org/0009-0005-7296-1534}{0009-0005-7296-1534}}}
 \affil[1]{Independent Researcher, Bernau}
 
 \date{March 2026}
@@ -92,7 +104,7 @@ This paper follows a design science methodology for the development of a clinica
 
 \textbf{Phase~2: Iterative design.} The 6-axis architecture was developed through iterative cycles of design and refinement. Design decisions---such as the symmetric Axis~I/III structure, the coverage analysis concept, and the CAVE alert system---were evaluated against the identified requirements. Each iteration was documented and versioned (V1--V5). It should be noted that the design process did not include a formal expert panel; the iterative refinement was primarily conducted by the author with AI-assisted consistency checking. A formal expert review is planned as Phase~1 of the validation strategy (Section~\ref{sec:validation}).
 
-\textbf{Phase~3: Prototypical implementation.} A Python reference implementation (approx.\ 1,850~lines) using hierarchical state machines (\texttt{transitions} library) and a Streamlit interface was developed to demonstrate feasibility. The source code is publicly available at \url{https://github.com/research-line/multiaxial-diagnostic-system}.
+\textbf{Phase~3: Prototypical implementation.} A Python reference implementation (approx.\ 1,850~lines) using hierarchical state machines (\texttt{transitions} library) and a Streamlit interface was developed to demonstrate feasibility. The source code is publicly available in the \href{https://github.com/research-line/multiaxial-diagnostic-system}{project repository on GitHub}.
 
 \textbf{Phase~4: AI-assisted development and review.} Manuscript and system design were developed with substantial AI assistance (Claude Opus 4.6 as co-writer; Gemini and Copilot as reviewers). All AI contributions are documented in the AI usage declaration section. The scientific responsibility for all content lies with the human author.
 
@@ -101,7 +113,8 @@ This paper follows a design science methodology for the development of a clinica
 \begin{table}[ht]
 \centering
 \caption{Comparison of computer-assisted diagnostic systems: OPCRIT \citep{McGuffin1991}, CATEGO \citep{Wing1974}, DTREE \citep{First1993}, CIDI \citep{Kessler2004}, MHIRA \citep{Stasiak2023}. DTREE and CIDI entries are based on published documentation. Note: All existing systems have empirical validation, which is still pending for the present model.}
-\begin{tabular}{lcccccc}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}Y *{6}{C}@{}}
 \toprule
 Feature & OPCRIT & CATEGO & DTREE & CIDI & MHIRA & Present Model \\
 \midrule
@@ -112,7 +125,8 @@ Dimensional integration & No & No & No & No & Partial & Yes (HiTOP) \\
 FHIR interoperability & No & No & No & No & Partial & Planned \\
 Empirical validation & Yes & Yes & Yes & Yes (ext.) & Partial & Planned \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
+\normalsize
 \label{tab:comparison}
 \end{table}
 
@@ -263,7 +277,10 @@ The proposed model integrates categorical diagnostics (DSM-5-TR \citep{APA2022};
 \label{fig:architecture}
 \end{figure}
 
-\begin{longtable}{p{0.8cm}p{2.2cm}p{3.8cm}p{4cm}p{2cm}}
+\small
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\begin{longtable}{@{}p{0.75cm}p{2.05cm}p{3.25cm}p{3.75cm}p{1.85cm}@{}}
 \caption{Overview of the diagnostic axes of the 6-axis model} \label{tab:achsen} \\
 \toprule
 \textbf{Axis} & \textbf{Designation} & \textbf{Subdivision} & \textbf{Core Content} & \textbf{Typical Profession} \\
@@ -286,6 +303,7 @@ V & Condition Model & Predisposing Factors \newline Precipitating Factors \newli
 VI & Evidence Collection \& Clinical Safety & Evidence Matrix (with assessment) \newline CAVE Alerts \newline Symptom Course \newline Contact Log & Document register with clinical assessment; CAVE alerts; Symptom course; Contact/Observation log & All Professions \\
 \bottomrule
 \end{longtable}
+\normalsize
 
 \subsection{Axis~I: Mental Health Profiles --- Temporal Diagnostics}
 \label{sec:axis1}
@@ -917,12 +935,12 @@ Interoperability & HL7 FHIR (R4) & Standardized data exchange \\
 The complete source code of the prototype (V9, approx.\ 1,850~lines Python/Streamlit), the bilingual translation file, the development roadmap, and this paper are publicly available at:
 
 \begin{center}
-\url{https://github.com/research-line/multiaxial-diagnostic-system}
+\href{https://github.com/research-line/multiaxial-diagnostic-system}{github.com/research-line/multiaxial-diagnostic-system}
 \end{center}
 
 \noindent The provision as an open-source repository serves scientific transparency and reproducibility. Installation instructions can be found in the repository's \texttt{README.md}.
 
-\textbf{Licensing and archiving:} The repository is under the MIT license, which permits both academic and commercial use but provides no warranty (cf.\ liability issues, Section~\ref{sec:ethics}). For long-term citability and versioning, the repository is planned to be archived as a Zenodo dataset record in addition to the paper (DOI: \texttt{10.5281/zenodo.18736725}), enabling permanent referencing of a specific code version independent of changes to the GitHub repository.
+\textbf{Licensing and archiving:} The repository is under the MIT license, which permits both academic and commercial use but provides no warranty (cf.\ liability issues, Section~\ref{sec:ethics}). For long-term citability and versioning, the repository is planned to be archived as a Zenodo dataset record in addition to the paper (DOI: \href{https://doi.org/10.5281/zenodo.18736725}{10.5281/zenodo.18736725}), enabling permanent referencing of a specific code version independent of changes to the GitHub repository.
 
 \section{Functional Assessment: Bridge Between Diagnosis and Disability}
 \label{sec:functional}

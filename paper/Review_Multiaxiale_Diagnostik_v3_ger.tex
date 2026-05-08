@@ -6,12 +6,14 @@
 \geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
 \usepackage{mathptmx}
 \usepackage{helvet}
+\usepackage{microtype}
 \usepackage{amsmath}
 \usepackage{titlesec}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{xcolor}
 \usepackage{authblk}
+\usepackage{xurl}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{graphicx}
@@ -24,19 +26,29 @@
 \usepackage{quoting}
 \usepackage{multirow}
 \usepackage{array}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
 
 \titleformat{\section}{\Large\bfseries\sffamily\color{black}}{\thesection}{1em}{}
 \titleformat{\subsection}{\large\bfseries\sffamily\color{darkgray}}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\normalsize\bfseries\sffamily\color{darkgray}}{\thesubsubsection}{1em}{}
 
 \hypersetup{
-    pdftitle={Ein integriertes multiaxiales Modell zur computergestuetzten psychiatrischen Diagnostik},
+    pdftitle={Ein integriertes multiaxiales Modell zur computergest\"utzten psychiatrischen Diagnostik},
     pdfauthor={Lukas Geiger},
+    pdfsubject={Methoden- und Design-Paper f\"ur ein 6-Achsen-Entscheidungsunterst\"utzungssystem},
+    pdfkeywords={Multiaxiale Diagnostik, DSM-5-TR, ICD-11, ICF, Entscheidungsunterst\"utzung, Abdeckungsanalyse},
     colorlinks=true,
     linkcolor=black,
     urlcolor=blue,
-    citecolor=black
+    citecolor=black,
+    breaklinks=true,
+    hypertexnames=false
 }
+\makeatletter
+\renewcommand*{\HyperDestNameFilter}[1]{ger.#1}
+\makeatother
+\setlength{\emergencystretch}{2em}
 
 \onehalfspacing
 
@@ -51,7 +63,7 @@
 \Large Synthese von DSM-5-TR, ICD-11 und ICF\\in einem 6-Achsen-Entscheidungsunterst\"utzungssystem\\[0.3em]
 \large Ein Methoden- und Design-Paper}
 
-\author[1]{Lukas Geiger\thanks{Korrespondenz: Lukas Geiger, Bernau, Deutschland. ORCID: \url{https://orcid.org/0009-0005-7296-1534}}}
+\author[1]{Lukas Geiger\thanks{Korrespondenz: Lukas Geiger, Bernau, Deutschland. ORCID: \href{https://orcid.org/0009-0005-7296-1534}{0009-0005-7296-1534}}}
 \affil[1]{Unabh\"angiger Forscher, Bernau}
 
 \date{M\"arz 2026}
@@ -91,13 +103,13 @@ Bei der Erstellung dieses Manuskripts wurden KI-gest\"utzte Werkzeuge unterst\"u
 % ===================================================================
 \section{Methodik}
 
-Diese Arbeit folgt einer Design-Science-Methodik f\"ur die Entwicklung eines klinischen Entscheidungsunterst\"utzungs-Artefakts. Der Forschungsprozess umfasste vier Phasen:
+Diese Arbeit folgt einer Design-Science-Methodik f\"ur die Entwicklung eines klinischen Artefakts zur Entscheidungsunterst\"utzung. Der Forschungsprozess umfasste vier Phasen:
 
 \textbf{Phase~1: Problemidentifikation und Anforderungsanalyse.} Ein strukturiertes Literaturreview zur Abschaffung des DSM-IV-Multiaxialsystems identifizierte f\"unf spezifische klinische Defizite: Verlust der strukturierten Aufforderung zur biopsychosozialen Beurteilung, geringe GAF-Interrater-Reliabilit\"at, inkonsistente Achse-IV-Nutzung, die k\"unstliche Achse-I/II-Grenze und die niedrige Adoptionsrate der Ersatz-V/Z-Codes. Anforderungen wurden aus diesen Defiziten, aus Firsts (2024) Goldstandard-Framework f\"ur Differenzialdiagnostik und aus aktuellen dimensionalen Ans\"atzen (HiTOP, RDoC, ICD-11 dimensionales Pers\"onlichkeitsmodell) abgeleitet.
 
 \textbf{Phase~2: Iteratives Design.} Die 6-Achsen-Architektur wurde durch iterative Zyklen von Design und Verfeinerung entwickelt. Designentscheidungen --- wie die symmetrische Achse-I/III-Struktur, das Konzept der Abdeckungsanalyse und das CAVE-Warnsystem --- wurden gegen die identifizierten Anforderungen evaluiert. Jede Iteration wurde dokumentiert und versioniert (V1--V5). Es ist anzumerken, dass der Designprozess kein formales Expertenpanel einschloss; die iterative Verfeinerung erfolgte prim\"ar durch den Autor mit KI-gest\"utzter Konsistenzpr\"ufung. Ein formales Experten-Review ist als Phase~1 der Validierungsstrategie (Abschnitt~\ref{sec:validierung}) vorgesehen.
 
-\textbf{Phase~3: Prototypische Implementierung.} Eine Python-Referenzimplementierung (ca.\ 1.850~Zeilen) unter Verwendung hierarchischer Zustandsmaschinen (\texttt{transitions}-Bibliothek) und einer Streamlit-Oberfl\"ache wurde entwickelt, um die Machbarkeit zu demonstrieren. Der Quellcode ist \"offentlich verf\"ugbar unter \url{https://github.com/research-line/multiaxial-diagnostic-system}.
+\textbf{Phase~3: Prototypische Implementierung.} Eine Python-Referenzimplementierung (ca.\ 1.850~Zeilen) unter Verwendung hierarchischer Zustandsmaschinen (\texttt{transitions}-Bibliothek) und einer Streamlit-Oberfl\"ache wurde entwickelt, um die Machbarkeit zu demonstrieren. Der Quellcode ist im \href{https://github.com/research-line/multiaxial-diagnostic-system}{Projekt-Repository auf GitHub} \"offentlich verf\"ugbar.
 
 \textbf{Phase~4: KI-gest\"utzte Entwicklung und Review.} Manuskript und Systemdesign wurden mit substanzieller KI-Unterst\"utzung entwickelt (Claude Opus 4.6 als Co-Writer; Gemini und Copilot als Reviewer). Alle KI-Beitr\"age sind im Abschnitt zur KI-Nutzung dokumentiert. Die wissenschaftliche Verantwortung f\"ur alle Inhalte liegt beim menschlichen Autor.
 
@@ -106,7 +118,8 @@ Diese Arbeit folgt einer Design-Science-Methodik f\"ur die Entwicklung eines kli
 \begin{table}[ht]
 \centering
 \caption{Vergleich computergest\"utzter diagnostischer Systeme: OPCRIT \citep{McGuffin1991}, CATEGO \citep{Wing1974}, DTREE \citep{First1993}, CIDI \citep{Kessler2004}, MHIRA \citep{Stasiak2023}. DTREE- und CIDI-Eintr\"age basieren auf ver\"offentlichter Dokumentation. Zu beachten: Alle bestehenden Systeme verf\"ugen \"uber empirische Validierung, die f\"ur das vorliegende Modell noch aussteht.}
-\begin{tabular}{lcccccc}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}Y *{6}{C}@{}}
 \toprule
 Merkmal & OPCRIT & CATEGO & DTREE & CIDI & MHIRA & 6-Achsen-Modell \\
 \midrule
@@ -117,7 +130,8 @@ Dimensionale Integration & Nein & Nein & Nein & Nein & Partiell & Ja (HiTOP) \\
 FHIR-Interoperabilit\"at & Nein & Nein & Nein & Nein & Partiell & Geplant \\
 Empirische Validierung & Ja & Ja & Ja & Ja (ext.) & Partiell & Geplant \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
+\normalsize
 \label{tab:vergleich}
 \end{table}
 
@@ -269,7 +283,10 @@ Das vorgeschlagene Modell integriert die kategoriale Diagnostik (DSM-5-TR \citep
 \label{fig:architecture}
 \end{figure}
 
-\begin{longtable}{p{0.8cm}p{2.2cm}p{3.8cm}p{4cm}p{2cm}}
+\small
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\begin{longtable}{@{}p{0.75cm}p{2.05cm}p{3.25cm}p{3.75cm}p{1.85cm}@{}}
 \caption{\"Ubersicht der diagnostischen Achsen des 6-Achsen-Modells} \label{tab:achsen} \\
 \toprule
 \textbf{Achse} & \textbf{Bezeichnung} & \textbf{Unterteilung} & \textbf{Kerninhalte} & \textbf{Typische Profession} \\
@@ -292,6 +309,7 @@ V & Bedingungsmodell & Pr\"adisponierende Fakt. \newline Ausl\"osende Faktoren \
 VI & Belegsammlung \& Klinische Sicherheit & Evidenz-Matrix (m. Bewertung) \newline CAVE-Warnhinweise \newline Symptomverlauf \newline Kontaktprotokoll & Dokumentenregister m. klin. Bewertung; CAVE-Alerts; Symptomverlauf; Kontakt-/Beobachtungs\-protokoll & Alle Professionen \\
 \bottomrule
 \end{longtable}
+\normalsize
 
 \subsection{Achse I: Psychische Profile --- Temporale Diagnostik}
 \label{sec:achse1}
@@ -951,7 +969,7 @@ Interoperabilit\"at & HL7 FHIR (R4) & Standardisierter Datenaustausch \\
 Der vollst\"andige Quellcode des Prototyps (V9, ca.\ 1.850~Zeilen Python/Streamlit), die bilinguale \"Ubersetzungsdatei, der Entwicklungsfahrplan und das vorliegende Paper sind \"offentlich verf\"ugbar unter:
 
 \begin{center}
-\url{https://github.com/research-line/multiaxial-diagnostic-system}
+\href{https://github.com/research-line/multiaxial-diagnostic-system}{github.com/research-line/multiaxial-diagnostic-system}
 \end{center}
 
 \noindent Die Bereitstellung als Open-Source-Repository dient der wissenschaftlichen Transparenz und Reproduzierbarkeit. Installationsanweisungen finden sich in der \texttt{README.md} des Repositories.
@@ -1163,7 +1181,7 @@ Das vorgestellte 6-Achsen-Modell unterliegt mehreren Limitationen, die bei der I
 
 \textbf{Fehlende Stakeholder-Perspektive und Kosteneffektivit\"at:} Das vorliegende Paper ist prim\"ar aus der Systementwickler-Perspektive geschrieben. Wesentliche Perspektiven fehlen: Wie erleben Patienten ein derart umfassendes Assessment? Wie verh\"alt sich die Bearbeitungszeit im Vergleich zur konventionellen Diagnostik? Wie bewerten Kostentr\"ager (z.\,B.\ Krankenkassen) den zus\"atzlichen diagnostischen Aufwand? Zuk\"unftige Studien sollten eine Time-on-Task-Analyse, eine Kosten-Nutzen-Bewertung und eine systematische Erhebung der Patientenperspektive einschlie\ss{}en.
 
-\textbf{Learning-Health-System-Perspektive:} Die strukturierten, standardisiert kodierten Daten des 6-Achsen-Modells (ICD-11, SNOMED~CT, ICF, PID-5) eignen sich ideal f\"ur sekund\"are Forschungsnutzung. In einem Learning-Health-System-Paradigma tr\"agt jede diagnostische Episode zur iterativen Verbesserung der Gewichtsmatrix der Abdeckungsanalyse bei: Empirische Symptom-Diagnose-Assoziationen aus aggregierten, anonymisierten Patientendaten k\"onnen die initialen Gewichte schrittweise durch datengestuetzte Sch\"atzungen ersetzen. Diese Perspektive verbindet die klinische Routineanwendung mit der kontinuierlichen Systemoptimierung.
+\textbf{Learning-Health-System-Perspektive:} Die strukturierten, standardisiert kodierten Daten des 6-Achsen-Modells (ICD-11, SNOMED~CT, ICF, PID-5) eignen sich ideal f\"ur sekund\"are Forschungsnutzung. In einem Learning-Health-System-Paradigma tr\"agt jede diagnostische Episode zur iterativen Verbesserung der Gewichtsmatrix der Abdeckungsanalyse bei: Empirische Symptom-Diagnose-Assoziationen aus aggregierten, anonymisierten Patientendaten k\"onnen die initialen Gewichte schrittweise durch datengest\"utzte Sch\"atzungen ersetzen. Diese Perspektive verbindet die klinische Routineanwendung mit der kontinuierlichen Systemoptimierung.
 
 \textbf{Zuk\"unftiger Forschungsbedarf:} Neben der empirischen Validierung (Abschnitt~\ref{sec:validierung}) sind drei Forschungsrichtungen priorit\"ar: (1)~die Entwicklung eines abgek\"urzten \glqq Rapid Assessment\grqq{}-Modus f\"ur Notaufnahmen und Erstgespr\"ache, (2)~die Integration pr\"adiktiver Modelle (maschinelles Lernen) zur Unterst\"utzung der Differenzialdiagnostik auf Basis der akkumulierten Patientendaten, (3)~l\"angsschnittliche Studien zur Sensitivit\"at des Symptomverlaufs (Achse~VI) f\"ur Therapieansprechen und R\"uckfallpr\"adiktion, und (4)~die Anbindung an Ecological Momentary Assessment (EMA) und Digital Phenotyping: Smartphone-basierte Echtzeit-Datenerhebung k\"onnte den longitudinalen Symptomverlauf (Achse~VI) mit kontinuierlichen Verhaltensdaten anreichern und die zeitliche Aufl\"osung der diagnostischen Dokumentation substanziell erh\"ohen. Dar\"uber hinaus sollte die tats\"achliche klinische Einf\"uhrung durch einen Implementation-Science-Rahmen --- etwa das Consolidated Framework for Implementation Research (CFIR) --- begleitet werden, der Barrieren und F\"orderfaktoren der Adoption in den f\"unf CFIR-Dom\"anen (Intervention Characteristics, Outer Setting, Inner Setting, Individuals, Process) systematisch erfasst. Die historische Erfahrung mit dem DSM-IV-Multiaxialsystem zeigt, dass selbst gut konzipierte Systeme an inkonsistenter klinischer Nutzung scheitern k\"onnen.
 

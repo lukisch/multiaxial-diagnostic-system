@@ -33,6 +33,8 @@ Thumbs.db
 
 # Temporary
 _ul/
+paper/_pdfcheck/
+paper/_pdfcheck_post/
 
 # Claude Code internal
 .claude/
