@@ -14,7 +14,6 @@
 \usepackage{xcolor}
 \usepackage{authblk}
 \usepackage{xurl}
-\usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -26,6 +25,8 @@
 \usepackage{quoting}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{hyperref}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 
@@ -277,19 +278,15 @@ The proposed model integrates categorical diagnostics (DSM-5-TR \citep{APA2022};
 \label{fig:architecture}
 \end{figure}
 
-\small
-\setlength{\LTleft}{0pt}
-\setlength{\LTright}{0pt}
-\begin{longtable}{@{}p{0.75cm}p{2.05cm}p{3.25cm}p{3.75cm}p{1.85cm}@{}}
-\caption{Overview of the diagnostic axes of the 6-axis model} \label{tab:achsen} \\
+\begin{table}[H]
+\centering
+\caption{Overview of the diagnostic axes of the 6-axis model}
+\label{tab:achsen}
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}L{0.8cm}L{2.1cm}L{3.3cm}Y L{2.2cm}@{}}
 \toprule
 \textbf{Axis} & \textbf{Designation} & \textbf{Subdivision} & \textbf{Core Content} & \textbf{Typical Profession} \\
 \midrule
-\endfirsthead
-\toprule
-\textbf{Axis} & \textbf{Designation} & \textbf{Subdivision} & \textbf{Core Content} & \textbf{Typical Profession} \\
-\midrule
-\endhead
 I & Mental Health Profiles & Ia: Acute Disorders \newline Ib: Chronic Courses \newline Ic: Refuted Suspects \newline Id: Remitted Diagnoses \newline Ie: Remission Factors \newline If: Treatment History \newline Ig: Treatment Adherence \newline Ih: Suspected Diagnoses \newline Ii: Coverage Analysis \newline Ij: Investigation Plan & DSM-5 Cross-Cutting; PHQ-9, PCL-5, ITQ; Differential Diagnosis; Chronification; Temporal Mapping & Psychologist / Psychiatrist \\
 \addlinespace
 II & Biography \& Personality & Developmental History \newline Formative Experiences \newline Core Conflicts \newline Personality (PID-5) & IQ, Education, Socialization; Life Events; OPD Conflicts; PID-5-BF/+M & Psychologist / Social Worker \\
@@ -302,8 +299,9 @@ V & Condition Model & Predisposing Factors \newline Precipitating Factors \newli
 \addlinespace
 VI & Evidence Collection \& Clinical Safety & Evidence Matrix (with assessment) \newline CAVE Alerts \newline Symptom Course \newline Contact Log & Document register with clinical assessment; CAVE alerts; Symptom course; Contact/Observation log & All Professions \\
 \bottomrule
-\end{longtable}
+\end{tabularx}
 \normalsize
+\end{table}
 
 \subsection{Axis~I: Mental Health Profiles --- Temporal Diagnostics}
 \label{sec:axis1}
@@ -447,7 +445,9 @@ The system implements three levels of comorbidity rules essential for correct di
 
 Table~\ref{tab:subaxes} provides a complete inventory of all sub-axes across the six main axes, including associated instruments and data sources.
 
-\begin{longtable}{p{1.8cm} p{2.5cm} p{5.5cm} p{4.2cm}}
+\clearpage
+\footnotesize
+\begin{longtable}{@{}L{1.8cm}L{2.4cm}L{5.0cm}L{4.0cm}@{}}
 \caption{Complete inventory of sub-axes with associated instruments.} \label{tab:subaxes} \\
 \toprule
 \textbf{Axis} & \textbf{Sub-Axis} & \textbf{Description} & \textbf{Instrument / Source} \\
@@ -464,7 +464,7 @@ Table~\ref{tab:subaxes} provides a complete inventory of all sub-axes across the
 \bottomrule
 \endlastfoot
 % --- Axis I ---
-\multirow{10}{1.8cm}{I\\Psychological} & Ia: Acute Disorders & Current DSM-5-TR/ICD-11 diagnoses with PRO/CONTRA evidence and confidence & DSM-5-TR, ICD-11 \\
+I\\Psychological & Ia: Acute Disorders & Current DSM-5-TR/ICD-11 diagnoses with PRO/CONTRA evidence and confidence & DSM-5-TR, ICD-11 \\
  & Ib: Chronic Courses & Long-term diagnoses with chronification risk & Clinical records \\
  & Ic: Refuted Suspects & Explicitly ruled-out diagnoses with differential-diagnostic rationale & Differential diagnosis \\
  & Id: Remitted Diagnoses & Former diagnoses with documented inactivity & Clinical records \\
@@ -476,12 +476,12 @@ Table~\ref{tab:subaxes} provides a complete inventory of all sub-axes across the
  & Ij: Investigation Plan & Prioritized next steps (urgent / important / monitoring) & Clinical judgment \\
 \midrule
 % --- Axis II ---
-\multirow{3}{1.8cm}{II\\Personality} & IIa: PID-5 Dimensional Profile & 5 trait domains, 25 facets & PID-5, PID5BF+ \\
+II\\Personality & IIa: PID-5 Dimensional Profile & 5 trait domains, 25 facets & PID-5, PID5BF+ \\
  & IIb: Formative Life Experiences & Biographical events shaping personality development & Clinical interview \\
  & IIc: Core Conflicts & Central relational patterns and conflict themes & OPD-3, clinical formulation \\
 \midrule
 % --- Axis III ---
-\multirow{13}{1.8cm}{III\\Somatic} & IIIa: Acute Somatic Diagnoses & Current somatic diagnoses with PRO/CONTRA evidence & ICD-11 somatic codes \\
+III\\Somatic & IIIa: Acute Somatic Diagnoses & Current somatic diagnoses with PRO/CONTRA evidence & ICD-11 somatic codes \\
  & IIIb: Chronic Diagnoses (explanatory) & Conditions that fully account for specific symptoms & Clinical records \\
  & IIIc: Contributing Medical Factors & Somatic findings that promote or exacerbate psychopathology & Clinical records \\
  & IIId: Remitted Conditions & Prior somatic conditions with documented inactivity & Clinical records \\
@@ -496,25 +496,26 @@ Table~\ref{tab:subaxes} provides a complete inventory of all sub-axes across the
  & IIIm: Medication History & Current and past medications with efficacy ratings & Medication records \\
 \midrule
 % --- Axis IV ---
-\multirow{5}{1.8cm}{IV\\Functional\\Status} & IVa: WHODAS 2.0 & 6 functional domains (36-item or 12-item version) & WHODAS 2.0 \\
+IV\\Functional\\Status & IVa: WHODAS 2.0 & 6 functional domains (36-item or 12-item version) & WHODAS 2.0 \\
  & IVb: GdB & German disability degree (\textit{Grad der Behinderung}) & VersMedV guidelines \\
  & IVc: ICF Core Sets & Disorder-specific ICF component profiles & ICF Core Sets \\
  & IVd: Cultural Formulation Interview & Cultural context of illness experience & CFI (DSM-5-TR) \\
  & IVe: Treatment Network Register & Contact persons, providers, social support & Structured register \\
 \midrule
 % --- Axis V ---
-\multirow{5}{1.8cm}{V\\Case\\Formulation} & Va: Predisposing Factors & Vulnerability factors preceding disorder onset & 3P/4P schema \\
+V\\Case\\Formulation & Va: Predisposing Factors & Vulnerability factors preceding disorder onset & 3P/4P schema \\
  & Vb: Precipitating Factors & Triggering events and stressors & 3P/4P schema \\
  & Vc: Perpetuating Factors & Maintaining mechanisms and feedback loops & 3P/4P schema \\
  & Vd: Protective Factors & Resilience resources and strengths & 3P/4P schema \\
  & Ve: Coverage Gap Integration & Unexplained symptoms from Axes I + III coverage analysis & Cross-axis synthesis \\
 \midrule
 % --- Axis VI ---
-\multirow{4}{1.8cm}{VI\\Evidence\\\& Safety} & VIa: Central Evidence Matrix & Structured evidence fields per diagnosis & System-generated \\
+VI\\Evidence\\\& Safety & VIa: Central Evidence Matrix & Structured evidence fields per diagnosis & System-generated \\
  & VIb: CAVE Clinical Alerts & Cross-axis risk warnings (interactions, contraindications) & Rule-based alerts \\
  & VIc: Longitudinal Symptom Tracking & Repeated measures with therapy response documentation & PHQ-9, GAD-7, PCL-5, etc. \\
  & VId: Contact and Observation Log & Session documentation and process notes & Clinician entries \\
 \end{longtable}
+\normalsize
 
 \section{The 6-Step Gatekeeper Logic}
 \label{sec:gatekeeper}
@@ -630,7 +631,8 @@ The DSM-5 Cross-Cutting system includes a separate \textbf{parent-report version
 
 Table~\ref{tab:instruments} shows the recommended instruments for all major diagnostic domains.
 
-\begin{longtable}{p{2.5cm}p{2.3cm}cp{1.5cm}p{2.5cm}c}
+\footnotesize
+\begin{longtable}{@{}L{2.4cm}L{2.0cm}L{0.9cm}L{1.6cm}L{2.5cm}L{1.1cm}@{}}
 \caption{Screening instrument matrix} \label{tab:instruments} \\
 \toprule
 \textbf{Domain} & \textbf{Instrument} & \textbf{Items} & \textbf{Cutoff} & \textbf{Sens./Spec.} & \textbf{Cost} \\
@@ -679,6 +681,7 @@ Sleep disorders & ISI & 7 & $\geq 15$ & 82\%/82\% & Free \\
 Impulse control & SSIS & 5 & $\geq 3$ & Screening & Free \\
 \bottomrule
 \end{longtable}
+\normalsize
 
 All recommended instruments are \textbf{freely available}---no licensing costs impede implementation. The selection is based on the respective validation publications: PHQ-9 \citep{Levis2019}, GAD-7 \citep{Spitzer2006}, PCL-5 \citep{Blevins2015}, ITQ \citep{Cloitre2018}, PQ-16 \citep{Ising2012}, ASRS \citep{Kessler2005}, AQ-10 \citep{Allison2012}, AUDIT \citep{Saunders1993}, PID-5 \citep{OltmannsWidiger2018, Zimmermann2021}, C-SSRS \citep{Posner2011}, OCI-R \citep{Foa2002}, SSS-8 \citep{Gierk2014}, DES-II \citep{CarlsonPutnam1993}, SCOFF \citep{Morgan1999}, ISI \citep{Morin2011}. For inter-rater reliability of categorical DSM-5 diagnoses, see \citet{Regier2013} and \citet{Aboraya2006}.
 

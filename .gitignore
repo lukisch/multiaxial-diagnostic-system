@@ -35,6 +35,7 @@ Thumbs.db
 _ul/
 paper/_pdfcheck/
 paper/_pdfcheck_post/
+paper/_pdfcheck_design*/
 
 # Claude Code internal
 .claude/
@@ -49,6 +50,10 @@ TODO.md
 DONE.md
 ZENODO_CREDENTIALS.md
 BEWEISNOTIZ*.md
+FORSCHUNGSSTAND*.md
+GAPS*.md
+POI-USECASES*.md
+VERGRIFFEN*.md
 REVISE*
 SOLVED*.txt
 AUFGABEN.txt
@@ -70,6 +75,7 @@ REVIEW_CHAIN*.md
 REVIEW_CYCLE*.md
 _results/REVIEW_CHAIN_*.md
 _JMIR_Mental_Health/
+_sources/
 
 # Session data (may contain patient information)
 diagnostic_session.json

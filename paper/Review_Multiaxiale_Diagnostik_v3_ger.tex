@@ -14,7 +14,6 @@
 \usepackage{xcolor}
 \usepackage{authblk}
 \usepackage{xurl}
-\usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -26,6 +25,8 @@
 \usepackage{quoting}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{hyperref}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 
@@ -48,7 +49,7 @@
 \makeatletter
 \renewcommand*{\HyperDestNameFilter}[1]{ger.#1}
 \makeatother
-\setlength{\emergencystretch}{2em}
+\setlength{\emergencystretch}{4em}
 
 \onehalfspacing
 
@@ -118,19 +119,21 @@ Diese Arbeit folgt einer Design-Science-Methodik f\"ur die Entwicklung eines kli
 \begin{table}[ht]
 \centering
 \caption{Vergleich computergest\"utzter diagnostischer Systeme: OPCRIT \citep{McGuffin1991}, CATEGO \citep{Wing1974}, DTREE \citep{First1993}, CIDI \citep{Kessler2004}, MHIRA \citep{Stasiak2023}. DTREE- und CIDI-Eintr\"age basieren auf ver\"offentlichter Dokumentation. Zu beachten: Alle bestehenden Systeme verf\"ugen \"uber empirische Validierung, die f\"ur das vorliegende Modell noch aussteht.}
-\footnotesize
+\scriptsize
+\setlength{\tabcolsep}{2pt}
 \begin{tabularx}{\textwidth}{@{}Y *{6}{C}@{}}
 \toprule
-Merkmal & OPCRIT & CATEGO & DTREE & CIDI & MHIRA & 6-Achsen-Modell \\
+Merkmal & OPCRIT & CATEGO & DTREE & CIDI & MHIRA & 6-Achsen-\\Modell \\
 \midrule
 Multiaxiale Struktur & Nein & Nein & Nein & Nein & Nein & Ja (6 Achsen) \\
-Duale Kodierung (DSM/ICD) & Partiell & Nur ICD & DSM/ICD & DSM/ICD & Flexibel & Vollst\"andig \\
-Abdeckungsanalyse & Nein & Nein & Nein & Nein & Nein & Ja \\
-Dimensionale Integration & Nein & Nein & Nein & Nein & Partiell & Ja (HiTOP) \\
-FHIR-Interoperabilit\"at & Nein & Nein & Nein & Nein & Partiell & Geplant \\
+Duale Kodierung (DSM/ICD) & Partiell & Nur ICD & DSM/ICD & DSM/ICD & Flexibel & Voll\-st\"andig \\
+Abdeckungs-\\analyse & Nein & Nein & Nein & Nein & Nein & Ja \\
+Dimensionale Integration & Nein & Nein & Nein & Nein & Partiell & Ja\\(HiTOP) \\
+FHIR-Interoperabi\-lit\"at & Nein & Nein & Nein & Nein & Partiell & Geplant \\
 Empirische Validierung & Ja & Ja & Ja & Ja (ext.) & Partiell & Geplant \\
 \bottomrule
 \end{tabularx}
+\setlength{\tabcolsep}{6pt}
 \normalsize
 \label{tab:vergleich}
 \end{table}
@@ -283,19 +286,15 @@ Das vorgeschlagene Modell integriert die kategoriale Diagnostik (DSM-5-TR \citep
 \label{fig:architecture}
 \end{figure}
 
-\small
-\setlength{\LTleft}{0pt}
-\setlength{\LTright}{0pt}
-\begin{longtable}{@{}p{0.75cm}p{2.05cm}p{3.25cm}p{3.75cm}p{1.85cm}@{}}
-\caption{\"Ubersicht der diagnostischen Achsen des 6-Achsen-Modells} \label{tab:achsen} \\
+\begin{table}[H]
+\centering
+\caption{\"Ubersicht der diagnostischen Achsen des 6-Achsen-Modells}
+\label{tab:achsen}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}L{0.8cm}L{2.1cm}L{3.3cm}Y L{2.2cm}@{}}
 \toprule
 \textbf{Achse} & \textbf{Bezeichnung} & \textbf{Unterteilung} & \textbf{Kerninhalte} & \textbf{Typische Profession} \\
 \midrule
-\endfirsthead
-\toprule
-\textbf{Achse} & \textbf{Bezeichnung} & \textbf{Unterteilung} & \textbf{Kerninhalte} & \textbf{Typische Profession} \\
-\midrule
-\endhead
 I & Psychische Profile & Ia: Akute St\"orungen \newline Ib: Chronische Verl\"aufe \newline Ic: Widerlegte Verdachte \newline Id: Remittierte Diagnosen \newline Ie: Remissionsfaktoren \newline If: Behandlungsgeschichte \newline Ig: Therapietreue \newline Ih: Verdachtsdiagnosen \newline Ii: Abdeckungsanalyse \newline Ij: Untersuchungsplan & DSM-5 Cross-Cutting; PHQ-9, PCL-5, ITQ; Differenzialdiagnostik; Chronifizierung; Zeitliche Verortung & Psychologe / Psychiater \\
 \addlinespace
 II & Biographie \& Pers\"onlichkeit & Entwicklungshistorie \newline Pr\"agende Erfahrungen \newline Grundkonflikte \newline Pers\"onlichkeit (PID-5) & IQ, Bildung, Sozialisation; Lebensereignisse; OPD-Konflikte; PID-5-BF/+M & Psychologe / Sozialp\"adagoge \\
@@ -304,12 +303,13 @@ III & Medizinische Synopse & IIIa: Akute med. Diagnosen \newline IIIb: Chron. Di
 \addlinespace
 IV & Umwelt \& Funktion & Teilhabe (ICF) \newline Psychosoziale Umst\"ande \newline Bezugspersonen-Netzwerk \newline Cultural Formulation & WHODAS~2.0, GdB; Mini-ICF-APP; Stressoren; Behandlungsnetzwerk; CFI & Sozialarbeiter / Sozialp\"adagoge \\
 \addlinespace
-V & Bedingungsmodell & Pr\"adisponierende Fakt. \newline Ausl\"osende Faktoren \newline Aufrechterhaltende Fakt. \newline Protektive Faktoren \newline Klinische Synthese & 3P/4P-Modell; Achsen\-integration; Behandlungs\-planung; Prognose & Interdisziplin\"ares Team \\
+V & Bedingungsmodell & Pr\"adisponierende Fakt. \newline Ausl\"osende Faktoren \newline Aufrechterhaltende Fakt. \newline Protektive Faktoren \newline Klinische Synthese & 3P/4P-Modell; Achsen\-integration; Behandlungs\-planung; Prognose & Interdisziplin\"ares\\Team \\
 \addlinespace
 VI & Belegsammlung \& Klinische Sicherheit & Evidenz-Matrix (m. Bewertung) \newline CAVE-Warnhinweise \newline Symptomverlauf \newline Kontaktprotokoll & Dokumentenregister m. klin. Bewertung; CAVE-Alerts; Symptomverlauf; Kontakt-/Beobachtungs\-protokoll & Alle Professionen \\
 \bottomrule
-\end{longtable}
+\end{tabularx}
 \normalsize
+\end{table}
 
 \subsection{Achse I: Psychische Profile --- Temporale Diagnostik}
 \label{sec:achse1}
@@ -442,7 +442,9 @@ Der Mehrwert der Zuordnung liegt nicht in einer starren Zugangsbeschr\"ankung, s
 
 Tabelle~\ref{tab:subaxes} bietet ein vollst\"andiges Inventar aller Sub-Achsen der sechs Hauptachsen, einschlie\ss{}lich der zugeordneten Instrumente und Datenquellen.
 
-\begin{longtable}{p{1.8cm} p{2.5cm} p{5.5cm} p{4.2cm}}
+\clearpage
+\footnotesize
+\begin{longtable}{@{}L{1.8cm}L{2.4cm}L{5.0cm}L{4.0cm}@{}}
 \caption{Vollst\"andiges Inventar der Sub-Achsen mit zugeordneten Instrumenten.} \label{tab:subaxes} \\
 \toprule
 \textbf{Achse} & \textbf{Sub-Achse} & \textbf{Beschreibung} & \textbf{Instrument / Quelle} \\
@@ -459,7 +461,7 @@ Tabelle~\ref{tab:subaxes} bietet ein vollst\"andiges Inventar aller Sub-Achsen d
 \bottomrule
 \endlastfoot
 % --- Achse I ---
-\multirow{10}{1.8cm}{I\\Psychisch} & Ia: Akute St\"orungen & Aktuelle DSM-5-TR/ICD-11-Diagnosen mit PRO/CONTRA-Evidenz und Konfidenz & DSM-5-TR, ICD-11 \\
+I\\Psychisch & Ia: Akute St\"orungen & Aktuelle DSM-5-TR/ICD-11-Diagnosen mit PRO/CONTRA-Evidenz und Konfidenz & DSM-5-TR, ICD-11 \\
  & Ib: Chronische Verl\"aufe & Langzeitdiagnosen mit Chronifizierungsrisiko & Klinische Akten \\
  & Ic: Widerlegte Verdachte & Explizit ausgeschlossene Diagnosen mit differenzialdiagn. Begr\"undung & Differenzialdiagnostik \\
  & Id: Remittierte Diagnosen & Fr\"uhere Diagnosen mit belegter Inaktivit\"at & Klinische Akten \\
@@ -471,12 +473,12 @@ Tabelle~\ref{tab:subaxes} bietet ein vollst\"andiges Inventar aller Sub-Achsen d
  & Ij: Untersuchungsplan & Priorisierte n\"achste Schritte (dringend / wichtig / Monitoring) & Klinisches Urteil \\
 \midrule
 % --- Achse II ---
-\multirow{3}{1.8cm}{II\\Pers\"onlichkeit} & IIa: PID-5 Dimensionales Profil & 5 Trait-Dom\"anen, 25 Facetten & PID-5, PID5BF+ \\
+II\\Pers\"onlichkeit & IIa: PID-5 Dimensionales Profil & 5 Trait-Dom\"anen, 25 Facetten & PID-5, PID5BF+ \\
  & IIb: Pr\"agende Lebenserfahrungen & Biographische Ereignisse mit Einfluss auf Pers\"onlichkeitsentwicklung & Klinisches Interview \\
  & IIc: Grundkonflikte & Zentrale Beziehungsmuster und Konfliktthemen & OPD-3, klin. Formulierung \\
 \midrule
 % --- Achse III ---
-\multirow{13}{1.8cm}{III\\Somatisch} & IIIa: Akute somatische Diagnosen & Aktuelle somatische Diagnosen mit PRO/CONTRA-Evidenz & ICD-11 somatische Codes \\
+III\\Somatisch & IIIa: Akute somatische Diagnosen & Aktuelle somatische Diagnosen mit PRO/CONTRA-Evidenz & ICD-11 somatische Codes \\
  & IIIb: Chronische Diagnosen (erkl\"arend) & Erkrankungen, die bestimmte Symptome vollst\"andig erkl\"aren & Klinische Akten \\
  & IIIc: Beitragende med. Faktoren & Somatische Befunde, die Psychopathologie beg\"unstigen oder verst\"arken & Klinische Akten \\
  & IIId: Remittierte Erkrankungen & Fr\"uhere somatische Erkrankungen mit belegter Inaktivit\"at & Klinische Akten \\
@@ -491,25 +493,26 @@ Tabelle~\ref{tab:subaxes} bietet ein vollst\"andiges Inventar aller Sub-Achsen d
  & IIIm: Medikamentenanamnese & Aktuelle und fr\"uhere Medikation mit Wirksamkeitsbewertung & Medikamentenakten \\
 \midrule
 % --- Achse IV ---
-\multirow{5}{1.8cm}{IV\\Funktions-\\status} & IVa: WHODAS 2.0 & 6 Funktionsdom\"anen (36- oder 12-Item-Version) & WHODAS 2.0 \\
+IV\\Funktions-\\status & IVa: WHODAS 2.0 & 6 Funktionsdom\"anen (36- oder 12-Item-Version) & WHODAS 2.0 \\
  & IVb: GdB & Grad der Behinderung & VersMedV-Richtlinien \\
  & IVc: ICF Core Sets & St\"orungsspezifische ICF-Komponentenprofile & ICF Core Sets \\
  & IVd: Cultural Formulation Interview & Kultureller Kontext der Krankheitserfahrung & CFI (DSM-5-TR) \\
- & IVe: Behandlungsnetzwerk-Register & Kontaktpersonen, Versorger, soziale Unterst\"utzung & Strukturiertes Register \\
+ & IVe: Behandlungsnetzwerk\\Register & Kontaktpersonen, Versorger, soziale Unterst\"utzung & Strukturiertes Register \\
 \midrule
 % --- Achse V ---
-\multirow{5}{1.8cm}{V\\Fall-\\formulierung} & Va: Pr\"adisponierende Faktoren & Vulnerabilit\"atsfaktoren vor St\"orungsbeginn & 3P/4P-Modell \\
+V\\Fall-\\formulierung & Va: Pr\"adisponierende Faktoren & Vulnerabilit\"atsfaktoren vor St\"orungsbeginn & 3P/4P-Modell \\
  & Vb: Ausl\"osende Faktoren & Triggerereignisse und Stressoren & 3P/4P-Modell \\
  & Vc: Aufrechterhaltende Faktoren & Aufrechterhaltende Mechanismen und R\"uckkopplungsschleifen & 3P/4P-Modell \\
  & Vd: Protektive Faktoren & Resilienzressourcen und St\"arken & 3P/4P-Modell \\
  & Ve: Abdeckungsl\"ucken-Integration & Unerkl\"arte Symptome aus Achse-I/III-Abdeckungsanalyse & Achsen\"ubergreifende Synthese \\
 \midrule
 % --- Achse VI ---
-\multirow{4}{1.8cm}{VI\\Evidenz\\\& Sicherheit} & VIa: Zentrale Evidenz-Matrix & Strukturierte Evidenzfelder pro Diagnose & Systemgeneriert \\
+VI\\Evidenz\\\& Sicherheit & VIa: Zentrale Evidenz-Matrix & Strukturierte Evidenzfelder pro Diagnose & Systemgeneriert \\
  & VIb: CAVE Klinische Warnungen & Achsen\"ubergreifende Risikowarnungen (Interaktionen, Kontraindikationen) & Regelbasierte Alerts \\
  & VIc: Longitudinales Symptom-Tracking & Wiederholte Messungen mit Therapieansprechen-Dokumentation & PHQ-9, GAD-7, PCL-5 etc. \\
  & VId: Kontakt- und Beobachtungsprotokoll & Sitzungsdokumentation und Prozessnotizen & Kliniker-Eintr\"age \\
 \end{longtable}
+\normalsize
 
 \subsection{Komorbidit\"atsregeln und diagnostische Hierarchie}
 \label{sec:komorbiditaet}
@@ -644,7 +647,8 @@ Das DSM-5 Cross-Cutting-System umfasst eine separate \textbf{Elternberichtsversi
 
 Tabelle~\ref{tab:instrumente} zeigt die empfohlenen Instrumente f\"ur alle wesentlichen diagnostischen Dom\"anen.
 
-\begin{longtable}{p{2.5cm}p{2.3cm}cp{1.5cm}p{2.5cm}c}
+\footnotesize
+\begin{longtable}{@{}L{2.4cm}L{2.0cm}L{0.9cm}L{1.8cm}L{2.2cm}L{1.1cm}@{}}
 \caption{Screening-Instrument-Matrix} \label{tab:instrumente} \\
 \toprule
 \textbf{Dom\"ane} & \textbf{Instrument} & \textbf{Items} & \textbf{Cutoff} & \textbf{Sens./Spez.} & \textbf{Kosten} \\
@@ -693,6 +697,7 @@ Schlafst\"orungen & ISI & 7 & $\geq 15$ & 82\%/82\% & Frei \\
 Impulskontrolle & SSIS & 5 & $\geq 3$ & Screening & Frei \\
 \bottomrule
 \end{longtable}
+\normalsize
 
 Alle empfohlenen Instrumente sind \textbf{frei verf\"ugbar} --- keine Lizenzkosten behindern die Implementierung. Die Auswahl basiert auf den jeweiligen Validierungspublikationen: PHQ-9 \citep{Levis2019}, GAD-7 \citep{Spitzer2006}, PCL-5 \citep{Blevins2015}, ITQ \citep{Cloitre2018}, PQ-16 \citep{Ising2012}, ASRS \citep{Kessler2005}, AQ-10 \citep{Allison2012}, AUDIT \citep{Saunders1993}, PID-5 \citep{OltmannsWidiger2018, Zimmermann2021}, C-SSRS \citep{Posner2011}, OCI-R \citep{Foa2002}, SSS-8 \citep{Gierk2014}, DES-II \citep{CarlsonPutnam1993}, SCOFF \citep{Morgan1999}, ISI \citep{Morin2011}. F\"ur die Interrater-Reliabilit\"at kategorialer DSM-5-Diagnosen siehe \citet{Regier2013} und \citet{Aboraya2006}.
 
