@@ -1,0 +1,85 @@
+{
+  "id": "crafft",
+  "name": {"de": "CRAFFT 2.1+N – Substanzgebrauchs-Screening für Jugendliche", "en": "CRAFFT 2.1+N – Adolescent Substance Use Screening"},
+  "abbreviation": "CRAFFT 2.1+N",
+  "version": "1.0",
+  "authors": "Knight, Sherritt, Shrier, Harris, Chang (Center for Adolescent Behavioral Health Research, Boston Children's Hospital)",
+  "year": 2018,
+  "license": "Free for clinical, educational, and non-commercial research use (CeASAR)",
+  "domain": {"de": "Substanzgebrauch (Jugendliche)", "en": "Substance Use (Adolescents)"},
+  "axis": "I",
+  "hitop_spectrum": "Externalizing",
+  "age_group": "adolescent",
+  "age_min": 12,
+  "age_max": 21,
+  "description": {
+    "de": "Kurzes, validiertes Screening-Instrument für problematischen Alkohol- und Drogengebrauch bei Jugendlichen (12-21 Jahre). Besteht aus Teil A (Häufigkeits-Items zu Alkohol, Cannabis und anderen Substanzen im letzten Jahr) und Teil B (6 CRAFFT-Items zur Risikoabschätzung). Die '+N' Erweiterung erfasst Nikotin-/E-Zigaretten-Gebrauch.",
+    "en": "Brief, validated screening instrument for problematic alcohol and drug use in adolescents (ages 12-21). Consists of Part A (past-year frequency items for alcohol, cannabis, and other substances) and Part B (6 CRAFFT items for risk assessment). The '+N' extension captures nicotine/e-cigarette use."
+  },
+  "instructions": {
+    "de": "Bitte beantworte die folgenden Fragen ehrlich. Deine Antworten sind vertraulich.",
+    "en": "Please answer the following questions honestly. Your answers are confidential."
+  },
+  "timeframe": {"de": "Letzte 12 Monate", "en": "Past 12 months"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Nein", "en": "No"}},
+    {"value": 1, "label": {"de": "Ja", "en": "Yes"}}
+  ],
+  "sections": [
+    {
+      "id": "part_a",
+      "title": {"de": "Teil A: Häufigkeit (letzte 12 Monate)", "en": "Part A: Frequency (Past 12 Months)"},
+      "response_options": [
+        {"value": 0, "label": {"de": "0 Tage", "en": "0 days"}},
+        {"value": 1, "label": {"de": "1-2 Tage", "en": "1-2 days"}},
+        {"value": 2, "label": {"de": "3-9 Tage", "en": "3-9 days"}},
+        {"value": 3, "label": {"de": "10-19 Tage", "en": "10-19 days"}},
+        {"value": 4, "label": {"de": "20-39 Tage", "en": "20-39 days"}},
+        {"value": 5, "label": {"de": "40 oder mehr Tage", "en": "40 or more days"}}
+      ]
+    }
+  ],
+  "items": [
+    {"number": 1, "section": "part_a", "text": {"de": "An wie vielen Tagen hast du in den letzten 12 Monaten Alkohol getrunken (mehr als ein paar Schlucke)?", "en": "During the past 12 months, on how many days did you drink more than a few sips of beer, wine, or any drink containing alcohol?"}},
+    {"number": 2, "section": "part_a", "text": {"de": "An wie vielen Tagen hast du in den letzten 12 Monaten Cannabis (Marihuana, Haschisch) konsumiert?", "en": "During the past 12 months, on how many days did you use any marijuana (cannabis, weed, oil, wax, or hash)?"}},
+    {"number": 3, "section": "part_a", "text": {"de": "An wie vielen Tagen hast du in den letzten 12 Monaten etwas anderes konsumiert, um 'high' zu werden (illegale Drogen, verschreibungspflichtige oder rezeptfreie Medikamente, andere Substanzen)?", "en": "During the past 12 months, on how many days did you use anything else to get high (like other illegal drugs, prescription or over-the-counter medications, or things that you sniff, huff, vape, or inject)?"}},
+    {"number": 4, "section": "part_b", "text": {"de": "C – Bist du jemals in einem AUTO mitgefahren, das von jemandem (einschließlich dir selbst) gefahren wurde, der 'high' war oder Alkohol oder Drogen konsumiert hatte?", "en": "C – Have you ever ridden in a CAR driven by someone (including yourself) who was 'high' or had been using alcohol or drugs?"}},
+    {"number": 5, "section": "part_b", "text": {"de": "R – Benutzt du jemals Alkohol oder Drogen, um dich zu ENTSPANNEN, dich besser zu fühlen oder dazuzugehören?", "en": "R – Do you ever use alcohol or drugs to RELAX, feel better about yourself, or fit in?"}},
+    {"number": 6, "section": "part_b", "text": {"de": "A – Benutzt du jemals Alkohol oder Drogen, wenn du ALLEIN bist?", "en": "A – Do you ever use alcohol or drugs while you are by yourself, or ALONE?"}},
+    {"number": 7, "section": "part_b", "text": {"de": "F – VERGISST du jemals Dinge, die du getan hast, während du Alkohol oder Drogen konsumiert hast?", "en": "F – Do you ever FORGET things you did while using alcohol or drugs?"}},
+    {"number": 8, "section": "part_b", "text": {"de": "F – Sagen deine FAMILIE oder FREUNDE jemals, dass du deinen Alkohol- oder Drogenkonsum reduzieren solltest?", "en": "F – Do your FAMILY or FRIENDS ever tell you that you should cut down on your drinking or drug use?"}},
+    {"number": 9, "section": "part_b", "text": {"de": "T – Bist du jemals in SCHWIERIGKEITEN geraten, während du Alkohol oder Drogen konsumiert hast?", "en": "T – Have you ever gotten into TROUBLE while you were using alcohol or drugs?"}},
+    {"number": 10, "section": "part_b_n", "text": {"de": "+N – Hast du jemals Tabak oder Nikotin geraucht oder gedampft (E-Zigaretten, Vape Pens, JUUL, Wasserpfeife, Zigaretten)?", "en": "+N – Have you ever used tobacco or nicotine, such as smoking or vaping (e-cigarettes, vape pens, JUUL, hookah, cigarettes)?"}}
+  ],
+  "scoring": {
+    "method": "crafft_algorithm",
+    "range": [0, 6],
+    "scoring_rule": {
+      "de": "Wenn Teil A bei allen drei Items 0 ergibt: nur CRAFFT-Item 1 (Car) stellen. Bei mindestens einem 'Ja' in Teil A: alle 6 CRAFFT-Items (B1-B6) stellen. Score = Summe der 'Ja'-Antworten in Teil B.",
+      "en": "If all three Part A items are 0: only ask CRAFFT item 1 (Car). If any Part A item ≥ 1: ask all 6 CRAFFT items (B1-B6). Score = sum of 'Yes' answers in Part B."
+    },
+    "thresholds": [
+      {"min": 0, "max": 1, "severity": "low", "label": {"de": "Niedriges Risiko", "en": "Low risk"}, "color": "#4CAF50"},
+      {"min": 2, "max": 6, "severity": "high", "label": {"de": "Hohes Risiko – vertiefte Abklärung indiziert", "en": "High risk – further assessment indicated"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 2,
+    "sensitivity": "76-100%",
+    "specificity": "82-94%",
+    "action_guide": {
+      "de": [
+        {"range": "0-1", "action": "Anticipatory Guidance (Aufklärung, positive Verstärkung der Abstinenz)"},
+        {"range": "2-6", "action": "Brief Intervention (motivational interviewing); ggf. Überweisung an Suchtberatung Jugend"}
+      ],
+      "en": [
+        {"range": "0-1", "action": "Anticipatory guidance (psychoeducation, positive reinforcement of abstinence)"},
+        {"range": "2-6", "action": "Brief intervention (motivational interviewing); refer to adolescent substance use treatment if indicated"}
+      ]
+    }
+  },
+  "references": [
+    "Knight JR, Sherritt L, Shrier LA, Harris SK, Chang G. Validity of the CRAFFT substance abuse screening test among adolescent clinic patients. Arch Pediatr Adolesc Med. 2002;156(6):607-614.",
+    "Harris SK, Knight JR, Van Hook S, et al. Adolescent substance use screening in primary care: validity of computer self-administered versus clinician-administered screening. Subst Abus. 2016;37(1):197-203.",
+    "Shenoi RP, Linakis JG, Bromberg JR, et al. Predictive Validity of the CRAFFT for Substance Use Disorder. Pediatrics. 2019;144(2):e20183415."
+  ],
+  "source_url": "https://crafft.org/"
+}

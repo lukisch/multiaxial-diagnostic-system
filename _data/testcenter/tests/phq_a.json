@@ -1,0 +1,83 @@
+{
+  "id": "phq_a",
+  "name": {"de": "Gesundheitsfragebogen für Patienten – Jugendversion", "en": "Patient Health Questionnaire – Modified for Adolescents"},
+  "abbreviation": "PHQ-A (PHQ-9 mod.)",
+  "version": "1.0",
+  "authors": "Johnson, Harris, Spitzer, Williams",
+  "year": 2002,
+  "license": "Public Domain",
+  "domain": {"de": "Depression (Jugendliche)", "en": "Depression (Adolescents)"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "age_group": "adolescent",
+  "age_min": 11,
+  "age_max": 17,
+  "description": {
+    "de": "Adaptierte Version des PHQ-9 zur Erfassung depressiver Symptome bei Jugendlichen (11-17 Jahre). Die 9 Kernsymptom-Items sind identisch mit dem PHQ-9, validiert für die adoleszente Population. Item 9 (Suizidalität) erfordert immer eine direkte klinische Nachexploration.",
+    "en": "Adapted version of the PHQ-9 for assessing depressive symptoms in adolescents (ages 11-17). The 9 core symptom items are identical to the PHQ-9 and have been validated for adolescent populations. Item 9 (suicidality) always requires direct clinical follow-up."
+  },
+  "instructions": {
+    "de": "Wie oft hast du in den letzten 2 Wochen unter den folgenden Beschwerden gelitten?",
+    "en": "Over the last 2 weeks, how often have you been bothered by any of the following problems?"
+  },
+  "timeframe": {"de": "Letzte 2 Wochen", "en": "Last 2 weeks"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
+    {"value": 1, "label": {"de": "An einzelnen Tagen", "en": "Several days"}},
+    {"value": 2, "label": {"de": "An mehr als der Hälfte der Tage", "en": "More than half the days"}},
+    {"value": 3, "label": {"de": "Beinahe jeden Tag", "en": "Nearly every day"}}
+  ],
+  "items": [
+    {"number": 1, "text": {"de": "Wenig Interesse oder Freude an deinen Tätigkeiten", "en": "Little interest or pleasure in doing things"}},
+    {"number": 2, "text": {"de": "Niedergeschlagenheit, Schwermut oder Hoffnungslosigkeit", "en": "Feeling down, depressed, irritable, or hopeless"}},
+    {"number": 3, "text": {"de": "Schwierigkeiten ein- oder durchzuschlafen oder vermehrter Schlaf", "en": "Trouble falling asleep, staying asleep, or sleeping too much"}},
+    {"number": 4, "text": {"de": "Müdigkeit oder Gefühl, keine Energie zu haben", "en": "Poor appetite, weight loss, or overeating"}},
+    {"number": 5, "text": {"de": "Verminderter Appetit oder übermäßiges Bedürfnis zu essen", "en": "Feeling tired or having little energy"}},
+    {"number": 6, "text": {"de": "Schlechte Meinung von sich selbst; Gefühl, ein Versager zu sein oder die Familie enttäuscht zu haben", "en": "Feeling bad about yourself — or feeling that you are a failure, or that you have let yourself or your family down"}},
+    {"number": 7, "text": {"de": "Schwierigkeiten, sich auf etwas zu konzentrieren, z.B. beim Lesen oder Fernsehen", "en": "Trouble concentrating on things like school work, reading, or watching TV"}},
+    {"number": 8, "text": {"de": "Waren deine Bewegungen oder deine Sprache so verlangsamt, dass es auch anderen auffallen würde? Oder warst du im Gegenteil zappelig oder ruhelos und hattest einen stärkeren Bewegungsdrang als sonst?", "en": "Moving or speaking so slowly that other people could have noticed. Or the opposite — being so fidgety or restless that you were moving around a lot more than usual"}},
+    {"number": 9, "text": {"de": "Gedanken, dass du lieber tot wärst oder dir Leid zufügen möchtest", "en": "Thoughts that you would be better off dead, or of hurting yourself in some way"}}
+  ],
+  "scoring": {
+    "method": "sum",
+    "range": [0, 27],
+    "thresholds": [
+      {"min": 0, "max": 4, "severity": "none", "label": {"de": "Minimal/keine Depression", "en": "Minimal depression"}, "color": "#4CAF50"},
+      {"min": 5, "max": 9, "severity": "mild", "label": {"de": "Leichte Depression", "en": "Mild depression"}, "color": "#FFC107"},
+      {"min": 10, "max": 14, "severity": "moderate", "label": {"de": "Mittelgradige Depression", "en": "Moderate depression"}, "color": "#FF9800"},
+      {"min": 15, "max": 19, "severity": "moderately_severe", "label": {"de": "Mittelschwere bis schwere Depression", "en": "Moderately severe depression"}, "color": "#FF5722"},
+      {"min": 20, "max": 27, "severity": "severe", "label": {"de": "Schwere Depression", "en": "Severe depression"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 11,
+    "sensitivity": "89.5%",
+    "specificity": "77.5%",
+    "action_guide": {
+      "de": [
+        {"range": "0-4", "action": "Keine Behandlung erforderlich; Beobachtung im Verlauf"},
+        {"range": "5-10", "action": "Beobachten, Wiederholung bei nächstem Besuch; Psychoedukation"},
+        {"range": "11-14", "action": "Behandlungsplan erwägen (kinder-/jugendpsychotherapeutische Beratung)"},
+        {"range": "15-19", "action": "Aktive Behandlung mit Psychotherapie; pharmakotherapeutische Mitbehandlung nach KJP-Leitlinie"},
+        {"range": "20-27", "action": "Sofortige Behandlung; Überweisung an Kinder-/Jugendpsychiatrie"}
+      ],
+      "en": [
+        {"range": "0-4", "action": "No treatment required; monitor"},
+        {"range": "5-10", "action": "Watchful waiting; repeat at follow-up; psychoeducation"},
+        {"range": "11-14", "action": "Consider treatment plan (child/adolescent psychotherapy)"},
+        {"range": "15-19", "action": "Active treatment with psychotherapy; pharmacotherapy per pediatric guidelines"},
+        {"range": "20-27", "action": "Immediate treatment; refer to child/adolescent psychiatry"}
+      ]
+    },
+    "critical_item": {
+      "item_number": 9,
+      "alert": {
+        "de": "ACHTUNG: Item 9 (Suizidalität) wurde positiv beantwortet. Sofortige Risikoeinschätzung erforderlich; bei Jugendlichen niedrigere Schwelle für stationäre Einweisung beachten.",
+        "en": "WARNING: Item 9 (suicidality) endorsed. Immediate risk assessment required; lower threshold for inpatient referral in adolescents."
+      }
+    }
+  },
+  "references": [
+    "Johnson JG, Harris ES, Spitzer RL, Williams JB. The patient health questionnaire for adolescents: validation of an instrument for the assessment of mental disorders among adolescent primary care patients. J Adolesc Health. 2002;30(3):196-204.",
+    "Richardson LP, McCauley E, Grossman DC, et al. Evaluation of the Patient Health Questionnaire-9 Item for detecting major depression among adolescents. Pediatrics. 2010;126(6):1117-1123."
+  ],
+  "source_url": "https://www.aacap.org/App_Themes/AACAP/docs/member_resources/toolbox_for_clinical_practice_and_outcomes/symptoms/GLAD-PC_PHQ-9.pdf"
+}

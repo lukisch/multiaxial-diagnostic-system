@@ -1,0 +1,96 @@
+{
+  "id": "snap_iv_26",
+  "name": {"de": "SNAP-IV-26 ADHS Eltern-/Lehrer-Beurteilungsskala", "en": "SNAP-IV 26-Item Teacher and Parent Rating Scale"},
+  "abbreviation": "SNAP-IV-26",
+  "version": "1.0",
+  "authors": "Swanson, Nolan, Pelham",
+  "year": 1992,
+  "license": "Public Domain — freely available for clinical, educational, and research use (Swanson, University of California Irvine)",
+  "domain": {"de": "ADHS und Oppositionelle Verhaltensstörung (Kinder/Jugendliche)", "en": "ADHD and Oppositional Defiant Disorder (Children/Adolescents)"},
+  "axis": "I",
+  "hitop_spectrum": "Externalizing",
+  "age_group": "child_adolescent",
+  "age_min": 6,
+  "age_max": 18,
+  "rater": "parent_or_teacher",
+  "_translation_note": {
+    "de": "Englische Items: verbatim aus DSM-IV-Kriterien für ADHS/ODD (Swanson 1992). Deutsche Items: informelle Arbeitsübersetzung — vor klinischem Einsatz mit deutscher Adaption (z.B. FBB-HKS) abgleichen.",
+    "en": "English items: verbatim from DSM-IV criteria for ADHD/ODD (Swanson 1992). German items: informal working translation."
+  },
+  "description": {
+    "de": "26-Item Eltern-/Lehrer-Beurteilungsskala. Erfasst DSM-IV-Symptome von ADHS — Unaufmerksamkeit (Items 1-9) und Hyperaktivität/Impulsivität (Items 10-18) — sowie Oppositionelles Verhalten (Items 19-26).",
+    "en": "26-item parent/teacher rating scale assessing DSM-IV symptoms of ADHD — Inattention (items 1-9) and Hyperactivity/Impulsivity (items 10-18) — plus Oppositional Defiance (items 19-26)."
+  },
+  "instructions": {
+    "de": "Bitte markieren Sie für jeden Punkt die Spalte, die dieses Kind/diesen Jugendlichen am besten beschreibt.",
+    "en": "For each item, check the column which best describes this child/adolescent."
+  },
+  "timeframe": {"de": "Generelles Verhalten", "en": "General behavior"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
+    {"value": 1, "label": {"de": "Ein wenig", "en": "Just a little"}},
+    {"value": 2, "label": {"de": "Ziemlich", "en": "Quite a bit"}},
+    {"value": 3, "label": {"de": "Sehr stark", "en": "Very much"}}
+  ],
+  "items": [
+    {"number": 1, "subscale": "inattention", "text": {"de": "Achtet oft nicht genau auf Details oder macht Flüchtigkeitsfehler bei Schularbeiten oder anderen Aufgaben.", "en": "Often fails to give close attention to details or makes careless mistakes in schoolwork or tasks"}},
+    {"number": 2, "subscale": "inattention", "text": {"de": "Hat oft Schwierigkeiten, die Aufmerksamkeit bei Aufgaben oder Spielen aufrechtzuerhalten.", "en": "Often has difficulty sustaining attention in tasks or play activities"}},
+    {"number": 3, "subscale": "inattention", "text": {"de": "Scheint oft nicht zuzuhören, wenn er/sie direkt angesprochen wird.", "en": "Often does not seem to listen when spoken to directly"}},
+    {"number": 4, "subscale": "inattention", "text": {"de": "Befolgt oft Anweisungen nicht und beendet Schularbeiten, Pflichten oder Aufgaben nicht.", "en": "Often does not follow through on instructions and fails to finish schoolwork, chores, or duties"}},
+    {"number": 5, "subscale": "inattention", "text": {"de": "Hat oft Schwierigkeiten, Aufgaben und Aktivitäten zu organisieren.", "en": "Often has difficulty organizing tasks and activities"}},
+    {"number": 6, "subscale": "inattention", "text": {"de": "Vermeidet oft Aufgaben, die anhaltende geistige Anstrengung erfordern, mag sie nicht oder beteiligt sich nur widerwillig.", "en": "Often avoids, dislikes, or reluctantly engages in tasks requiring sustained mental effort"}},
+    {"number": 7, "subscale": "inattention", "text": {"de": "Verliert oft Gegenstände, die für Aufgaben oder Aktivitäten benötigt werden (z.B. Spielzeug, Hausaufgaben, Stifte, Bücher).", "en": "Often loses things necessary for activities (e.g., toys, school assignments, pencils or books)"}},
+    {"number": 8, "subscale": "inattention", "text": {"de": "Lässt sich oft durch äußere Reize ablenken.", "en": "Often is distracted by extraneous stimuli"}},
+    {"number": 9, "subscale": "inattention", "text": {"de": "Ist oft vergesslich bei alltäglichen Aktivitäten.", "en": "Often is forgetful in daily activities"}},
+    {"number": 10, "subscale": "hyperactivity", "text": {"de": "Zappelt oft mit Händen oder Füßen oder rutscht auf dem Stuhl herum.", "en": "Often fidgets with hands or feet or squirms in seat"}},
+    {"number": 11, "subscale": "hyperactivity", "text": {"de": "Steht oft im Klassenzimmer oder in anderen Situationen, in denen Sitzenbleiben erwartet wird, vom Platz auf.", "en": "Often leaves seat in classroom or in other situations in which remaining seated is expected"}},
+    {"number": 12, "subscale": "hyperactivity", "text": {"de": "Läuft oft umher oder klettert übermäßig in Situationen, in denen dies unangemessen ist.", "en": "Often runs about or climbs excessively in situations in which it is inappropriate"}},
+    {"number": 13, "subscale": "hyperactivity", "text": {"de": "Hat oft Schwierigkeiten, sich ruhig mit Freizeitaktivitäten zu beschäftigen.", "en": "Often has difficulty playing or engaging in leisure activities quietly"}},
+    {"number": 14, "subscale": "hyperactivity", "text": {"de": "Ist oft 'auf Achse' oder verhält sich, als wäre er/sie 'von einem Motor angetrieben'.", "en": "Often is 'on the go' or often acts as if 'driven by a motor'"}},
+    {"number": 15, "subscale": "hyperactivity", "text": {"de": "Redet oft übermäßig viel.", "en": "Often talks excessively"}},
+    {"number": 16, "subscale": "hyperactivity", "text": {"de": "Platzt oft mit Antworten heraus, bevor die Frage zu Ende gestellt wurde.", "en": "Often blurts out answers before questions have been completed"}},
+    {"number": 17, "subscale": "hyperactivity", "text": {"de": "Hat oft Schwierigkeiten zu warten, bis er/sie an der Reihe ist.", "en": "Often has difficulty awaiting turn"}},
+    {"number": 18, "subscale": "hyperactivity", "text": {"de": "Unterbricht oder stört oft andere (z.B. mischt sich in Gespräche/Spiele ein).", "en": "Often interrupts or intrudes on others (e.g., butts into conversations/games)"}},
+    {"number": 19, "subscale": "odd", "text": {"de": "Verliert oft die Beherrschung.", "en": "Often loses temper"}},
+    {"number": 20, "subscale": "odd", "text": {"de": "Streitet oft mit Erwachsenen.", "en": "Often argues with adults"}},
+    {"number": 21, "subscale": "odd", "text": {"de": "Widersetzt sich oder weigert sich aktiv, Anweisungen oder Regeln von Erwachsenen zu befolgen.", "en": "Often actively defies or refuses adult requests or rules"}},
+    {"number": 22, "subscale": "odd", "text": {"de": "Tut oft absichtlich Dinge, die andere ärgern.", "en": "Often deliberately does things that annoy other people"}},
+    {"number": 23, "subscale": "odd", "text": {"de": "Schiebt oft anderen die Schuld für eigene Fehler oder schlechtes Verhalten zu.", "en": "Often blames others for his or her mistakes or misbehaviour"}},
+    {"number": 24, "subscale": "odd", "text": {"de": "Ist oft empfindlich oder lässt sich leicht durch andere verärgern.", "en": "Often is touchy or easily annoyed by others"}},
+    {"number": 25, "subscale": "odd", "text": {"de": "Ist oft wütend und nachtragend.", "en": "Often is angry and resentful"}},
+    {"number": 26, "subscale": "odd", "text": {"de": "Ist oft gehässig oder rachsüchtig.", "en": "Often is spiteful or vindictive"}}
+  ],
+  "scoring": {
+    "method": "subscale_sum",
+    "subscales": [
+      {"id": "inattention", "label": {"de": "Unaufmerksamkeit", "en": "Inattention"}, "items": [1, 2, 3, 4, 5, 6, 7, 8, 9], "range": [0, 27], "thresholds": [
+        {"min": 0, "max": 12, "severity": "none", "label": {"de": "Klinisch unauffällig", "en": "Not clinically significant"}},
+        {"min": 13, "max": 17, "severity": "mild", "label": {"de": "Leicht", "en": "Mild"}},
+        {"min": 18, "max": 22, "severity": "moderate", "label": {"de": "Mäßig", "en": "Moderate"}},
+        {"min": 23, "max": 27, "severity": "severe", "label": {"de": "Schwer", "en": "Severe"}}
+      ]},
+      {"id": "hyperactivity", "label": {"de": "Hyperaktivität/Impulsivität", "en": "Hyperactivity/Impulsivity"}, "items": [10, 11, 12, 13, 14, 15, 16, 17, 18], "range": [0, 27], "thresholds": [
+        {"min": 0, "max": 12, "severity": "none", "label": {"de": "Klinisch unauffällig", "en": "Not clinically significant"}},
+        {"min": 13, "max": 17, "severity": "mild", "label": {"de": "Leicht", "en": "Mild"}},
+        {"min": 18, "max": 22, "severity": "moderate", "label": {"de": "Mäßig", "en": "Moderate"}},
+        {"min": 23, "max": 27, "severity": "severe", "label": {"de": "Schwer", "en": "Severe"}}
+      ]},
+      {"id": "odd", "label": {"de": "Oppositionelles Verhalten", "en": "Opposition/Defiance"}, "items": [19, 20, 21, 22, 23, 24, 25, 26], "range": [0, 24], "thresholds": [
+        {"min": 0, "max": 7, "severity": "none", "label": {"de": "Klinisch unauffällig", "en": "Not clinically significant"}},
+        {"min": 8, "max": 13, "severity": "mild", "label": {"de": "Leicht", "en": "Mild"}},
+        {"min": 14, "max": 18, "severity": "moderate", "label": {"de": "Mäßig", "en": "Moderate"}},
+        {"min": 19, "max": 24, "severity": "severe", "label": {"de": "Schwer", "en": "Severe"}}
+      ]}
+    ],
+    "scoring_note": {
+      "de": "Subskalen-Cutoffs orientieren sich an Swanson 1992. Optional: Durchschnittswerte pro Subskala berechnen (Summe ÷ Itemanzahl) und mit publizierten Cutoff-Werten vergleichen (typisch ≥1.78 für Inattention und Hyperactivity, ≥1.88 für ODD bei Lehrerbeurteilung).",
+      "en": "Subscale cutoffs based on Swanson 1992. Optional: calculate average score per subscale (total ÷ number of items) and compare with published cutoffs (typically ≥1.78 for Inattention and Hyperactivity, ≥1.88 for ODD on teacher rating)."
+    }
+  },
+  "references": [
+    "Swanson JM. School-Based Assessments and Interventions for ADD Students. Irvine, CA: K.C. Publishing; 1992.",
+    "Bussing R, Fernandez M, Harwood M, et al. Parent and teacher SNAP-IV ratings of attention deficit hyperactivity disorder symptoms: psychometric properties and normative ratings from a school district sample. Assessment. 2008;15(3):317-328."
+  ],
+  "source_url": "https://www.ohsu.edu/sites/default/files/2022-01/SNAP_ADHD_Rating_Scale.pdf",
+  "source_local": "_sources/instruments/en/snap_iv_26.pdf"
+}

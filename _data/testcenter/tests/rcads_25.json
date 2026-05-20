@@ -1,0 +1,92 @@
+{
+  "id": "rcads_25",
+  "name": {"de": "Revidierte Skala für Ängstlichkeit und Depression bei Kindern – Kurzform", "en": "Revised Child Anxiety and Depression Scale – Short Form"},
+  "abbreviation": "RCADS-25",
+  "version": "1.0",
+  "authors": "Ebesutani, Reise, Chorpita, Ale, Regan, Young, Higa-McMillan, Weisz",
+  "year": 2012,
+  "copyright": "© 1998 Bruce F. Chorpita and Susan H. Spence",
+  "license": "Free to users under a limited license (UCLA Child FIRST). Non-commercial clinical/research/educational use permitted. Items may not be modified; commercial distribution prohibited.",
+  "domain": {"de": "Angst + Depression (Kinder/Jugendliche)", "en": "Anxiety + Depression (Children/Adolescents)"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "age_group": "child_adolescent",
+  "age_min": 8,
+  "age_max": 18,
+  "_translation_note": {
+    "de": "Englische Items: Wortlaut aus der offiziellen RCADS-25-Youth-English-2018 Version (UCLA Child FIRST). Deutsche Items: informelle Arbeitsübersetzung — vor klinischem Einsatz mit der validierten deutschen RCADS-Version (z.B. Donnelly et al. 2025, German RCADS-25) abgleichen oder bei UCLA Child FIRST die deutsche Version anfragen.",
+    "en": "English items: verbatim from official RCADS-25 Youth English 2018 (UCLA Child FIRST). German items: informal working translation — verify against validated German RCADS version (e.g., Donnelly et al. 2025, German RCADS-25) before clinical use."
+  },
+  "description": {
+    "de": "25-Item Kurzform der RCADS-47 zur Erfassung von Angst- und depressiven Symptomen bei Kindern/Jugendlichen. Zwei Subskalen: Gesamt-Angst (15 Items, kombiniert aus 5 Angstdomänen der RCADS-47) und Depression (10 Items, MDD-orientiert). T-Werte normiert für Klassenstufe und Geschlecht. Klinischer Cutoff: T ≥ 65 (Grenzwertig), T ≥ 70 (klinisch auffällig).",
+    "en": "25-item short form of RCADS-47 measuring anxiety and depressive symptoms in children/adolescents. Two subscales: Total Anxiety (15 items, combining 5 anxiety domains from RCADS-47) and Depression (10 items, MDD-oriented). T-scores normed by grade and gender. Clinical cutoff: T ≥ 65 (borderline), T ≥ 70 (clinical)."
+  },
+  "instructions": {
+    "de": "Bitte markiere für jeden Punkt, wie oft jedes der folgenden Dinge dir passiert. Es gibt keine richtigen oder falschen Antworten.",
+    "en": "Please put a circle around the word that shows how often each of these things happens to you. There are no right or wrong answers."
+  },
+  "timeframe": {"de": "Gegenwärtig / generelles Empfinden", "en": "Current / general experience"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Nie", "en": "Never"}},
+    {"value": 1, "label": {"de": "Manchmal", "en": "Sometimes"}},
+    {"value": 2, "label": {"de": "Oft", "en": "Often"}},
+    {"value": 3, "label": {"de": "Immer", "en": "Always"}}
+  ],
+  "items": [
+    {"number": 1, "subscale": "depression", "text": {"de": "Ich fühle mich traurig oder leer.", "en": "I feel sad or empty"}},
+    {"number": 2, "subscale": "anxiety", "text": {"de": "Ich mache mir Sorgen, wenn ich denke, dass ich etwas schlecht gemacht habe.", "en": "I worry when I think I have done poorly at something"}},
+    {"number": 3, "subscale": "anxiety", "text": {"de": "Ich hätte Angst, alleine zu Hause zu sein.", "en": "I would feel afraid of being on my own at home"}},
+    {"number": 4, "subscale": "depression", "text": {"de": "Nichts macht mir mehr richtig Spaß.", "en": "Nothing is much fun anymore"}},
+    {"number": 5, "subscale": "anxiety", "text": {"de": "Ich mache mir Sorgen, dass jemandem in meiner Familie etwas Schreckliches passiert.", "en": "I worry that something awful will happen to someone in my family"}},
+    {"number": 6, "subscale": "anxiety", "text": {"de": "Ich habe Angst, an überfüllten Orten zu sein (z.B. Einkaufszentren, Kino, Bus, vollen Spielplätzen).", "en": "I am afraid of being in crowded places (like shopping centers, the movies, buses, busy playgrounds)"}},
+    {"number": 7, "subscale": "anxiety", "text": {"de": "Ich mache mir Sorgen, was andere über mich denken.", "en": "I worry what other people think of me"}},
+    {"number": 8, "subscale": "depression", "text": {"de": "Ich habe Schwierigkeiten beim Schlafen.", "en": "I have trouble sleeping"}},
+    {"number": 9, "subscale": "anxiety", "text": {"de": "Ich habe Angst, wenn ich alleine schlafen muss.", "en": "I feel scared if I have to sleep on my own"}},
+    {"number": 10, "subscale": "depression", "text": {"de": "Ich habe Probleme mit meinem Appetit.", "en": "I have problems with my appetite"}},
+    {"number": 11, "subscale": "anxiety", "text": {"de": "Mir wird plötzlich schwindlig oder ohnmächtig, ohne dass es einen Grund dafür gibt.", "en": "I suddenly become dizzy or faint when there is no reason for this"}},
+    {"number": 12, "subscale": "anxiety", "text": {"de": "Ich muss bestimmte Dinge immer wieder tun (z.B. Hände waschen, putzen oder Dinge in einer bestimmten Reihenfolge ordnen).", "en": "I have to do some things over and over again (like washing my hands, cleaning or putting things in a certain order)"}},
+    {"number": 13, "subscale": "depression", "text": {"de": "Ich habe keine Energie für Dinge.", "en": "I have no energy for things"}},
+    {"number": 14, "subscale": "anxiety", "text": {"de": "Ich beginne plötzlich zu zittern, ohne dass es einen Grund dafür gibt.", "en": "I suddenly start to tremble or shake when there is no reason for this"}},
+    {"number": 15, "subscale": "depression", "text": {"de": "Ich kann nicht klar denken.", "en": "I cannot think clearly"}},
+    {"number": 16, "subscale": "depression", "text": {"de": "Ich fühle mich wertlos.", "en": "I feel worthless"}},
+    {"number": 17, "subscale": "anxiety", "text": {"de": "Ich muss an bestimmte Gedanken denken (z.B. Zahlen oder Wörter), damit nichts Schlimmes passiert.", "en": "I have to think of special thoughts (like numbers or words) to stop bad things from happening"}},
+    {"number": 18, "subscale": "depression", "text": {"de": "Ich denke an den Tod.", "en": "I think about death"}},
+    {"number": 19, "subscale": "depression", "text": {"de": "Ich habe das Gefühl, dass ich mich nicht bewegen möchte.", "en": "I feel like I don't want to move"}},
+    {"number": 20, "subscale": "anxiety", "text": {"de": "Ich mache mir Sorgen, dass mich plötzlich ein Angstgefühl überkommt, obwohl es nichts gibt, wovor man Angst haben müsste.", "en": "I worry that I will suddenly get a scared feeling when there is nothing to be afraid of"}},
+    {"number": 21, "subscale": "depression", "text": {"de": "Ich bin oft müde.", "en": "I am tired a lot"}},
+    {"number": 22, "subscale": "anxiety", "text": {"de": "Ich habe Angst, mich vor Leuten zum Narren zu machen.", "en": "I feel afraid that I will make a fool of myself in front of people"}},
+    {"number": 23, "subscale": "anxiety", "text": {"de": "Ich muss bestimmte Dinge auf eine ganz bestimmte Weise tun, damit nichts Schlimmes passiert.", "en": "I have to do some things in just the right way to stop bad things from happening"}},
+    {"number": 24, "subscale": "anxiety", "text": {"de": "Ich fühle mich ruhelos.", "en": "I feel restless"}},
+    {"number": 25, "subscale": "anxiety", "text": {"de": "Ich mache mir Sorgen, dass mir etwas Schlimmes passieren wird.", "en": "I worry that something bad will happen to me"}}
+  ],
+  "scoring": {
+    "method": "subscale_sum_to_t",
+    "subscales": [
+      {"id": "anxiety", "label": {"de": "Gesamt-Angst (15 Items)", "en": "Total Anxiety (15 items)"}, "items": [2, 3, 5, 6, 7, 9, 11, 12, 14, 17, 20, 22, 23, 24, 25], "range": [0, 45]},
+      {"id": "depression", "label": {"de": "Depression (10 Items)", "en": "Depression (10 items)"}, "items": [1, 4, 8, 10, 13, 15, 16, 18, 19, 21], "range": [0, 30]}
+    ],
+    "total_score": {"label": {"de": "Gesamt-Internalisierung", "en": "Total Internalizing"}, "range": [0, 75]},
+    "thresholds_t": [
+      {"min": 0, "max": 64, "severity": "none", "label": {"de": "Unauffällig", "en": "Normal"}, "color": "#4CAF50"},
+      {"min": 65, "max": 69, "severity": "borderline", "label": {"de": "Grenzwertig", "en": "Borderline"}, "color": "#FFC107"},
+      {"min": 70, "max": 100, "severity": "clinical", "label": {"de": "Klinisch auffällig", "en": "Clinical"}, "color": "#F44336"}
+    ],
+    "scoring_note": {
+      "de": "T-Wert-Umrechnung erfolgt geschlechts- und klassenspezifisch nach den RCADS-Normen (UCLA Child FIRST RCADS Users Guide). Roh-Score allein nicht klinisch interpretierbar.",
+      "en": "T-score conversion is gender- and grade-specific per RCADS norms (UCLA Child FIRST RCADS Users Guide). Raw score alone is not clinically interpretable."
+    },
+    "critical_item": {
+      "item_number": 18,
+      "alert": {
+        "de": "ACHTUNG: Item 18 (Gedanken an den Tod) positiv beantwortet — direkte klinische Nachexploration zur Suizidalität indiziert.",
+        "en": "WARNING: Item 18 (thoughts about death) endorsed — direct clinical follow-up on suicidality indicated."
+      }
+    }
+  },
+  "references": [
+    "Ebesutani C, Reise SP, Chorpita BF, Ale C, Regan J, Young J, Higa-McMillan C, Weisz JR. The Revised Child Anxiety and Depression Scale-Short Version: scale reduction via exploratory bifactor modeling of the broad anxiety factor. Psychol Assess. 2012;24(4):833-845.",
+    "Chorpita BF, Yim L, Moffitt C, Umemoto LA, Francis SE. Assessment of symptoms of DSM-IV anxiety and depression in children: a revised child anxiety and depression scale. Behav Res Ther. 2000;38(8):835-855."
+  ],
+  "source_url": "https://www.childfirst.ucla.edu/wp-content/uploads/sites/163/2018/03/RCADS25-Youth-English-2018.pdf",
+  "source_local": "_sources/instruments/en/rcads25_youth.pdf"
+}

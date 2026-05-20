@@ -1,12 +1,18 @@
 {
   "id": "sss8",
-  "name": {"de": "Somatische Symptomskala-8", "en": "Somatic Symptom Scale-8"},
+  "name": {
+    "de": "Somatische Symptomskala-8",
+    "en": "Somatic Symptom Scale-8"
+  },
   "abbreviation": "SSS-8",
   "version": "1.0",
   "authors": "Gierk, Kohlmann, Kroenke, Spangenberg, Zenger, Brähler, Löwe",
   "year": 2014,
   "license": "Free for clinical use",
-  "domain": {"de": "Somatische Symptome / Somatisierung", "en": "Somatic Symptoms / Somatization"},
+  "domain": {
+    "de": "Somatische Symptome / Somatisierung",
+    "en": "Somatic Symptoms / Somatization"
+  },
   "axis": "I",
   "hitop_spectrum": "Somatoform",
   "description": {
@@ -17,13 +23,46 @@
     "de": "Wie stark haben Sie in den letzten 7 Tagen unter den folgenden körperlichen Beschwerden gelitten?",
     "en": "How much have you been bothered by any of the following problems during the past 7 days?"
   },
-  "timeframe": {"de": "Letzte 7 Tage", "en": "Past 7 days"},
+  "timeframe": {
+    "de": "Letzte 7 Tage",
+    "en": "Past 7 days"
+  },
   "response_options": [
-    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
-    {"value": 1, "label": {"de": "Ein wenig", "en": "A little bit"}},
-    {"value": 2, "label": {"de": "Etwas", "en": "Somewhat"}},
-    {"value": 3, "label": {"de": "Ziemlich", "en": "Quite a bit"}},
-    {"value": 4, "label": {"de": "Sehr", "en": "Very much"}}
+    {
+      "value": 0,
+      "label": {
+        "de": "Überhaupt nicht",
+        "en": "Not at all"
+      }
+    },
+    {
+      "value": 1,
+      "label": {
+        "de": "Ein wenig",
+        "en": "A little bit"
+      }
+    },
+    {
+      "value": 2,
+      "label": {
+        "de": "Etwas",
+        "en": "Somewhat"
+      }
+    },
+    {
+      "value": 3,
+      "label": {
+        "de": "Ziemlich",
+        "en": "Quite a bit"
+      }
+    },
+    {
+      "value": 4,
+      "label": {
+        "de": "Sehr",
+        "en": "Very much"
+      }
+    }
   ],
   "items": [
     {
@@ -62,13 +101,13 @@
       "number": 5,
       "cluster": "cardiopulmonary",
       "text": {
-        "de": "Schmerzen oder Probleme beim Geschlechtsverkehr",
+        "de": "Brustschmerzen oder Kurzatmigkeit",
         "en": "Chest pain or shortness of breath"
       }
     },
     {
       "number": 6,
-      "cluster": "fatigue",
+      "cluster": "cardiopulmonary",
       "text": {
         "de": "Schwindel",
         "en": "Dizziness"
@@ -93,24 +132,128 @@
   ],
   "scoring": {
     "method": "sum",
-    "range": [0, 32],
+    "range": [
+      0,
+      32
+    ],
     "subscales": [
-      {"name": {"de": "Gastrointestinal", "en": "Gastrointestinal"}, "items": [1], "range": [0, 4]},
-      {"name": {"de": "Schmerz", "en": "Pain"}, "items": [2, 3, 4], "range": [0, 12]},
-      {"name": {"de": "Kardiopulmonal", "en": "Cardiopulmonary"}, "items": [5, 6], "range": [0, 8]},
-      {"name": {"de": "Erschöpfung", "en": "Fatigue"}, "items": [7, 8], "range": [0, 8]}
+      {
+        "name": {
+          "de": "Gastrointestinal",
+          "en": "Gastrointestinal"
+        },
+        "items": [
+          1
+        ],
+        "range": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": {
+          "de": "Schmerz",
+          "en": "Pain"
+        },
+        "items": [
+          2,
+          3,
+          4
+        ],
+        "range": [
+          0,
+          12
+        ]
+      },
+      {
+        "name": {
+          "de": "Kardiopulmonal",
+          "en": "Cardiopulmonary"
+        },
+        "items": [
+          5,
+          6
+        ],
+        "range": [
+          0,
+          8
+        ]
+      },
+      {
+        "name": {
+          "de": "Erschöpfung",
+          "en": "Fatigue"
+        },
+        "items": [
+          7,
+          8
+        ],
+        "range": [
+          0,
+          8
+        ]
+      }
     ],
     "thresholds": [
-      {"min": 0, "max": 3, "severity": "none", "label": {"de": "Keine bis minimale Belastung", "en": "No to minimal burden"}, "color": "#4CAF50"},
-      {"min": 4, "max": 7, "severity": "low", "label": {"de": "Geringe Belastung", "en": "Low burden"}, "color": "#8BC34A"},
-      {"min": 8, "max": 11, "severity": "medium", "label": {"de": "Mittlere Belastung", "en": "Medium burden"}, "color": "#FFC107"},
-      {"min": 12, "max": 15, "severity": "high", "label": {"de": "Hohe Belastung", "en": "High burden"}, "color": "#FF9800"},
-      {"min": 16, "max": 32, "severity": "very_high", "label": {"de": "Sehr hohe Belastung", "en": "Very high burden"}, "color": "#F44336"}
+      {
+        "min": 0,
+        "max": 3,
+        "severity": "none",
+        "label": {
+          "de": "Keine bis minimale Belastung",
+          "en": "No to minimal burden"
+        },
+        "color": "#4CAF50"
+      },
+      {
+        "min": 4,
+        "max": 7,
+        "severity": "low",
+        "label": {
+          "de": "Geringe Belastung",
+          "en": "Low burden"
+        },
+        "color": "#8BC34A"
+      },
+      {
+        "min": 8,
+        "max": 11,
+        "severity": "medium",
+        "label": {
+          "de": "Mittlere Belastung",
+          "en": "Medium burden"
+        },
+        "color": "#FFC107"
+      },
+      {
+        "min": 12,
+        "max": 15,
+        "severity": "high",
+        "label": {
+          "de": "Hohe Belastung",
+          "en": "High burden"
+        },
+        "color": "#FF9800"
+      },
+      {
+        "min": 16,
+        "max": 32,
+        "severity": "very_high",
+        "label": {
+          "de": "Sehr hohe Belastung",
+          "en": "Very high burden"
+        },
+        "color": "#F44336"
+      }
     ],
-    "clinical_cutoff": 12
+    "clinical_cutoff": 12,
+    "cutoff_type": "high_somatic_burden_threshold",
+    "sensitivity": null,
+    "specificity": null,
+    "_note": "SSS-8 nutzt eine dimensionale Symptombelastungsskala: 0-3=keine bis minimale, 4-7=geringe, 8-11=mittlere, 12-15=hohe, 16-32=sehr hohe somatische Symptombelastung (Gierk 2014). Gierk 2014 berichtet hierfür Schweregradkategorien, keinen krankheitsdiagnostischen Sensitivitäts-/Spezifitäts-Cutoff."
   },
   "references": [
-    "Gierk B, Kohlmann S, Kroenke K, et al. The somatic symptom scale-8 (SSS-8): a brief measure of somatic symptom burden. JAMA Intern Med. 2014;174(3):399-407."
+    "Gierk B, Kohlmann S, Kroenke K, et al. The somatic symptom scale-8 (SSS-8): a brief measure of somatic symptom burden. JAMA Intern Med. 2014;174(3):399-407. DOI: 10.1001/jamainternmed.2013.12179."
   ],
-  "source_url": "https://www.phqscreeners.com/"
+  "source_url": "https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/1783305"
 }

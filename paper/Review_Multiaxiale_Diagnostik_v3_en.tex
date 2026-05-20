@@ -84,14 +84,14 @@
 \section*{Declaration on the Use of AI-Assisted Tools}
 \addcontentsline{toc}{section}{Declaration on the Use of AI-Assisted Tools}
 
-AI-assisted tools were used in a supporting capacity during the preparation of this manuscript:
+AI-assisted tools were used as non-authorial support tools during the preparation of this manuscript:
 
 \begin{description}[style=nextline, leftmargin=2cm]
-\item[\textbf{Claude Opus 4.6} (Anthropic)] Literature search, text structuring, translation assistance, drafting support, and assistance with the iterative refinement of the system design. The use was substantial; all substantive decisions were made and are the responsibility of the human author.
-\item[\textbf{Gemini} (Google DeepMind) \& \textbf{Copilot} (Microsoft)] Consistency checks and supplementary literature search.
+\item[\textbf{Claude Opus 4.6} (Anthropic)] Support for literature organization, text structuring, translation assistance, drafting assistance, consistency checks, and iterative design review. This did not constitute independent scientific validation; all substantive decisions were made and are the responsibility of the human author.
+\item[\textbf{Gemini} (Google DeepMind) \& \textbf{Copilot} (Microsoft)] Supplementary consistency checks and literature-search support. Outputs were treated as suggestions requiring human assessment.
 \end{description}
 
-\noindent The conceptual design, scientific argumentation, and responsibility for the entire content lie exclusively with the author. In accordance with ICMJE and COPE guidelines, AI systems do not meet the criteria for authorship.
+\noindent The conceptual design, scientific argumentation, and responsibility for the entire content lie exclusively with the author. In accordance with ICMJE and COPE guidelines, AI systems do not meet the criteria for authorship. They are not authors or co-authors, were not used as acknowledgement recipients, ground-truth authorities, or independent validators, and do not bear responsibility for the manuscript.
 
 \newpage
 
@@ -108,7 +108,7 @@ This paper follows a design science methodology for the development of a clinica
 
 \textbf{Phase~3: Prototypical implementation.} A Python reference implementation (approx.\ 1,850~lines) using hierarchical state machines (\texttt{transitions} library) and a Streamlit interface was developed to demonstrate feasibility. The source code is publicly available in the \href{https://github.com/research-line/multiaxial-diagnostic-system}{project repository on GitHub}.
 
-\textbf{Phase~4: AI-assisted development and review.} Manuscript and system design were developed with substantial AI assistance (Claude Opus 4.6 as co-writer; Gemini and Copilot as reviewers). All AI contributions are documented in the AI usage declaration section. The scientific responsibility for all content lies with the human author.
+\textbf{Phase~4: AI-assisted development and review.} Manuscript and system design were developed by the author with substantial AI-assisted tool support (Claude Opus 4.6 for structuring and drafting assistance; Gemini and Copilot for consistency checks and literature-search support). All AI tool use is documented in the AI usage declaration section. The scientific responsibility for all content lies with the human author.
 
 \textbf{Scope and limitations of the present paper.} This is a methods and design paper. It presents the architecture, rationale, and prototypical implementation of the 6-axis model. Empirical validation (inter-rater reliability, clinical utility, convergent validity) is planned in four phases (Section~\ref{sec:validation}) but has not yet been conducted. The coverage analysis thresholds (85\%/60\%) are proposed as initial values based on clinical reasoning and require empirical calibration in future studies. Following design science methodology \citep{Hevner2004, Peffers2007}, the formal evaluation phase of the artifact is still pending; the validation strategy described in Section~\ref{sec:validation} outlines the planned evaluation framework.
 
@@ -624,8 +624,51 @@ Level-2 measures refer to specific validated instruments: PROMIS Depression Shor
 The DSM-5 Field Trials \citep{Narrow2013} demonstrated \textbf{good to excellent test-retest reliability} (ICC~0.64--0.97) for most items.
 
 \subsection{Child and Adolescent Version}
+\label{sec:screening_ca}
 
-The DSM-5 Cross-Cutting system includes a separate \textbf{parent-report version for children and adolescents} (ages 6--17) with \textbf{25~items across 12~domains}. The ``Personality Functioning'' domain is omitted for developmental reasons; instead, irritability and anger are weighted more heavily. For a complete implementation, the system should offer the pediatric variant as a separate entry pathway and reference age-appropriate Level-2 instruments (e.g., CBCL, SDQ, SCARED).
+The DSM-5 Cross-Cutting system includes a separate \textbf{parent-report version for children and adolescents} (ages 6--17) with \textbf{25~items across 12~domains}. The ``Personality Functioning'' domain is omitted for developmental reasons; instead, irritability and anger are weighted more heavily. A complete implementation requires the pediatric variant as a separate entry pathway and age-appropriate Level-2 instruments.
+
+The present system prefers \textbf{exclusively freely available instruments}; the proprietary CBCL/YSR complex \citep{Achenbach2001} is acknowledged as a reference standard but replaced by license-free alternatives. Table~\ref{tab:instrumente_ca} lists the recommended set of free child/adolescent (C/A) instruments in parallel to the adult matrix (Table~\ref{tab:instruments}).
+
+\footnotesize
+\begin{longtable}{@{}L{2.4cm}L{2.4cm}L{0.9cm}L{1.5cm}L{2.0cm}L{1.5cm}@{}}
+\caption{Free screening instruments for children and adolescents (C/A matrix)} \label{tab:instrumente_ca} \\
+\toprule
+\textbf{Domain} & \textbf{Instrument} & \textbf{Items} & \textbf{Age range} & \textbf{Cutoff / Norm} & \textbf{Cost} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Domain} & \textbf{Instrument} & \textbf{Items} & \textbf{Age range} & \textbf{Cutoff / Norm} & \textbf{Cost} \\
+\midrule
+\endhead
+Cross-Cutting (Parent) & DSM-5 XC L1 Parent & 25 & 6--17 & $\geq 1$/$\geq 2$ triage & Free \\
+\addlinespace
+Gen. psychosoc. screen & SDQ (Self/Parent) & 25 & 4--17 & $\geq 20$ (Total) & Free \\
+\addlinespace
+Depression & PHQ-9 mod.\ (PHQ-A) & 9 & 11--17 & $\geq 11$ & Free \\
+\addlinespace
+Anxiety + Depression & RCADS-25 & 25 & 8--18 & $T \geq 65$ & Free \\
+\addlinespace
+Anxiety (multidim.) & SCARED-C & 41 & 8--18 & $\geq 25$ & Free \\
+\addlinespace
+PTSD & CPSS-V / CRIES-8 & 20 / 8 & 7--18 & $\geq 31$ / $\geq 17$ & Free \\
+\addlinespace
+Substance use & CRAFFT 2.1+N & 6+3 & 12--21 & $\geq 2$ & Free \\
+\addlinespace
+ADHD & SNAP-IV-26 & 26 & 6--18 & Subscale mean & Free \\
+\addlinespace
+Autism & AQ-10 Adolescent/Child & 10 & 4--15 & $\geq 6$ & Free \\
+\addlinespace
+OCD & CY-BOCS-SR & 10 & 8--18 & $\geq 16$ & Free \\
+\addlinespace
+Suicidality & C-SSRS Pediatric & 6 & $\geq 5$ & Any endorse.\ & Free \\
+\addlinespace
+Eating disorders & SCOFF (from $\sim$age 13) & 5 & 13--18 & $\geq 2$ & Free \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+This selection preserves the diagnostic logic of the adult matrix (domain-oriented, cutoff-based) while substituting each instrument with a developmentally validated, license-free C/A variant. For safety-critical domains (suicidality, substance use, psychosis), the same lower triage threshold applies. The split between \textbf{self-report} (from $\sim$ages 8--11) and \textbf{parent report} (ages 6--17; obligatory for younger children) follows the established convention of pediatric psychometrics.
 
 \subsection{Comprehensive Screening Instrument Matrix}
 
@@ -678,7 +721,7 @@ Eating dis. (detailed) & EDE-QS & 12 & $\geq 15$ & Good/Good & Free \\
 \addlinespace
 Sleep disorders & ISI & 7 & $\geq 15$ & 82\%/82\% & Free \\
 \addlinespace
-Impulse control & SSIS & 5 & $\geq 3$ & Screening & Free \\
+Functioning & WHODAS 2.0 (12) & 12 & Dimensional & N/A & Free \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -1154,7 +1197,7 @@ The presented 6-axis model is subject to several limitations that must be consid
 
 \textbf{Limited literature base.} As a design work, this paper draws primarily on diagnostic classification manuals and a small number of foundational publications. A systematic review of all existing computer-assisted diagnostic systems (e.g., OPCRIT, DTREE, CATEGO) and their empirical track records would strengthen the rationale for the specific design decisions made here.
 
-\textbf{AI-intensive development.} The substantial AI involvement in both system design and manuscript preparation (i.e., AI tools were used for literature search, text structuring, and translation assistance; cf.\ Methods, Phase~4) raises questions about reproducibility and independent verifiability of design decisions. While the source code is publicly available, the iterative design process---including expert feedback cycles---is not fully documented in a way that permits independent replication.
+\textbf{AI-supported process documentation.} The substantial use of AI-assisted tools in both system design and manuscript preparation (i.e., literature organization, text structuring, translation assistance, consistency checking, and drafting assistance; cf.\ Methods, Phase~4) raises process-transparency questions. While the source code is publicly available, the iterative prompt, review, and revision history---including expert feedback cycles---is not fully documented in a way that permits complete process reconstruction.
 
 \textbf{Cultural generalizability and jurisdiction-specific modules.} The model integrates the Cultural Formulation Interview (CFI) but was primarily developed from a Western European perspective. Jurisdiction-specific sub-axes such as the GdB (Axis~IVb) are designed as interchangeable modules: for international implementations, the GdB should be replaced with the respective national disability assessment system (e.g., Disability Adjusted Life Years in WHO contexts, Social Security Disability Determination in the U.S.). Applicability in non-Western clinical contexts requires separate examination. In particular, the personality assessment via PID-5 and the biographical components (Axis~II) may be interpreted differently across cultures.
 
@@ -1483,6 +1526,11 @@ Barnhill, J.\,W. (Ed.) (2014).
 Shrout, P.\,E. \& Fleiss, J.\,L. (1979).
 \newblock Intraclass correlations: Uses in assessing rater reliability.
 \newblock \textit{Psychological Bulletin}, 86(2), 420--428.
+
+\bibitem[Achenbach \& Rescorla(2001)]{Achenbach2001}
+Achenbach, T. M. \& Rescorla, L. A. (2001).
+\newblock \textit{Manual for the ASEBA School-Age Forms \& Profiles}.
+\newblock Burlington, VT: University of Vermont, Research Center for Children, Youth, \& Families.
 
 \end{thebibliography}
 

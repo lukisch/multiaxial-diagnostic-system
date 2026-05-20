@@ -1,0 +1,101 @@
+{
+  "id": "scared_c",
+  "name": {"de": "Screen for Child Anxiety Related Emotional Disorders – Kinderversion", "en": "Screen for Child Anxiety Related Disorders – Child Version"},
+  "abbreviation": "SCARED-C",
+  "version": "1.0",
+  "authors": "Birmaher, Khetarpal, Cully, Brent, McKenzie (Western Psychiatric Institute and Clinic, University of Pittsburgh)",
+  "year": 1997,
+  "license": "Free for clinical and research use (Boris Birmaher, M.D.; reproduktions-erlaubt mit unveränderter Form)",
+  "domain": {"de": "Angststörungen (Kinder/Jugendliche)", "en": "Anxiety Disorders (Children/Adolescents)"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "age_group": "child_adolescent",
+  "age_min": 8,
+  "age_max": 18,
+  "_translation_note": {
+    "de": "Englische Items: Wortlaut aus der von Boris Birmaher freigegebenen Form (Western Psychiatric Institute and Clinic). Deutsche Items: informelle Arbeitsübersetzung, lehnt sich an die deutschen SCARED-Adaptionen (SCARED-D nach Essau 2002, FAS-K) an, ist aber NICHT die offizielle SCARED-D-Übersetzung — vor klinischem Einsatz mit Cecilia Essau (Universität Münster) oder der FAS-K-Version abgleichen.",
+    "en": "English items: verbatim from Birmaher's permission-granted form (Western Psychiatric Institute and Clinic). German items: informal working translation, based on established German SCARED adaptations (SCARED-D Essau 2002, FAS-K) but NOT the official SCARED-D — verify against Cecilia Essau (University of Münster) or FAS-K before clinical use."
+  },
+  "description": {
+    "de": "41-Item Selbstberichts-Screening für kindliche/jugendliche Angststörungen, basierend auf DSM-IV-Kriterien. Liefert einen Gesamtwert und 5 Subskalen: Panikstörung/somatische Symptome, generalisierte Angst, Trennungsangst, soziale Angst, Schulvermeidung. Für Kinder 8-11 J. empfohlen: Items vom Kliniker erklären lassen oder mit Erwachsenem ausfüllen.",
+    "en": "41-item self-report screening for pediatric anxiety disorders based on DSM-IV criteria. Yields a total score and 5 subscale scores: Panic/Somatic, Generalized Anxiety, Separation Anxiety, Social Anxiety, School Avoidance. For children ages 8-11, clinician should explain items or have child fill out with adult present."
+  },
+  "instructions": {
+    "de": "Unten findest du eine Liste mit Sätzen, die beschreiben, wie Menschen sich fühlen. Lies jeden Satz und entscheide, ob er für dich in den letzten 3 Monaten 'nicht wahr oder fast nie wahr', 'manchmal wahr' oder 'oft oder sehr oft wahr' war. Markiere für jeden Satz die passende Antwort.",
+    "en": "Below is a list of sentences that describe how people feel. Read each phrase and decide if it is 'Not True or Hardly Ever True' or 'Somewhat True or Sometimes True' or 'Very True or Often True' for you. Then for each sentence, fill in one circle that corresponds to the response that seems to describe you for the last 3 months."
+  },
+  "timeframe": {"de": "Letzte 3 Monate", "en": "Last 3 months"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Nicht oder fast nie wahr", "en": "Not True or Hardly Ever True"}},
+    {"value": 1, "label": {"de": "Manchmal wahr", "en": "Somewhat True or Sometimes True"}},
+    {"value": 2, "label": {"de": "Oft oder sehr oft wahr", "en": "Very True or Often True"}}
+  ],
+  "items": [
+    {"number": 1, "subscale": "panic_somatic", "text": {"de": "Wenn ich Angst habe, fällt mir das Atmen schwer.", "en": "When I feel frightened, it is hard to breathe."}},
+    {"number": 2, "subscale": "school", "text": {"de": "Ich bekomme Kopfschmerzen, wenn ich in der Schule bin.", "en": "I get headaches when I am at school."}},
+    {"number": 3, "subscale": "social", "text": {"de": "Ich bin nicht gern mit Menschen zusammen, die ich nicht gut kenne.", "en": "I don't like to be with people I don't know well."}},
+    {"number": 4, "subscale": "separation", "text": {"de": "Ich bekomme Angst, wenn ich nicht zu Hause schlafe.", "en": "I get scared if I sleep away from home."}},
+    {"number": 5, "subscale": "gad", "text": {"de": "Ich mache mir Sorgen darüber, ob andere mich mögen.", "en": "I worry about other people liking me."}},
+    {"number": 6, "subscale": "panic_somatic", "text": {"de": "Wenn ich Angst bekomme, habe ich das Gefühl, ohnmächtig zu werden.", "en": "When I get frightened, I feel like passing out."}},
+    {"number": 7, "subscale": "gad", "text": {"de": "Ich bin nervös.", "en": "I am nervous."}},
+    {"number": 8, "subscale": "separation", "text": {"de": "Ich folge meiner Mutter oder meinem Vater, wohin sie auch gehen.", "en": "I follow my mother or father wherever they go."}},
+    {"number": 9, "subscale": "panic_somatic", "text": {"de": "Andere Leute sagen, ich sehe nervös aus.", "en": "People tell me that I look nervous."}},
+    {"number": 10, "subscale": "social", "text": {"de": "Ich werde nervös bei Menschen, die ich nicht gut kenne.", "en": "I feel nervous with people I don't know well."}},
+    {"number": 11, "subscale": "school", "text": {"de": "Ich bekomme Bauchschmerzen in der Schule.", "en": "I get stomachaches at school."}},
+    {"number": 12, "subscale": "panic_somatic", "text": {"de": "Wenn ich Angst bekomme, habe ich das Gefühl, verrückt zu werden.", "en": "When I get frightened, I feel like I am going crazy."}},
+    {"number": 13, "subscale": "separation", "text": {"de": "Ich mache mir Sorgen, allein zu schlafen.", "en": "I worry about sleeping alone."}},
+    {"number": 14, "subscale": "gad", "text": {"de": "Ich mache mir Sorgen, ob ich genauso gut bin wie andere Kinder.", "en": "I worry about being as good as other kids."}},
+    {"number": 15, "subscale": "panic_somatic", "text": {"de": "Wenn ich Angst bekomme, habe ich das Gefühl, dass die Dinge nicht echt sind.", "en": "When I get frightened, I feel like things are not real."}},
+    {"number": 16, "subscale": "separation", "text": {"de": "Ich habe Alpträume, dass meinen Eltern etwas Schlimmes passiert.", "en": "I have nightmares about something bad happening to my parents."}},
+    {"number": 17, "subscale": "school", "text": {"de": "Ich mache mir Sorgen, in die Schule zu gehen.", "en": "I worry about going to school."}},
+    {"number": 18, "subscale": "panic_somatic", "text": {"de": "Wenn ich Angst bekomme, schlägt mein Herz schnell.", "en": "When I get frightened, my heart beats fast."}},
+    {"number": 19, "subscale": "panic_somatic", "text": {"de": "Ich zittere.", "en": "I get shaky."}},
+    {"number": 20, "subscale": "separation", "text": {"de": "Ich habe Alpträume, dass mir etwas Schlimmes passiert.", "en": "I have nightmares about something bad happening to me."}},
+    {"number": 21, "subscale": "gad", "text": {"de": "Ich mache mir Sorgen, ob bei mir alles gut geht.", "en": "I worry about things working out for me."}},
+    {"number": 22, "subscale": "panic_somatic", "text": {"de": "Wenn ich Angst bekomme, schwitze ich stark.", "en": "When I get frightened, I sweat a lot."}},
+    {"number": 23, "subscale": "gad", "text": {"de": "Ich mache mir oft Sorgen (ich bin ein Sorgenkind).", "en": "I am a worrier."}},
+    {"number": 24, "subscale": "panic_somatic", "text": {"de": "Ich bekomme ohne ersichtlichen Grund große Angst.", "en": "I get really frightened for no reason at all."}},
+    {"number": 25, "subscale": "separation", "text": {"de": "Ich habe Angst davor, allein zu Hause zu sein.", "en": "I am afraid to be alone in the house."}},
+    {"number": 26, "subscale": "social", "text": {"de": "Es fällt mir schwer, mit Menschen zu sprechen, die ich nicht gut kenne.", "en": "It is hard for me to talk with people I don't know well."}},
+    {"number": 27, "subscale": "panic_somatic", "text": {"de": "Wenn ich Angst bekomme, habe ich das Gefühl, zu ersticken.", "en": "When I get frightened, I feel like I am choking."}},
+    {"number": 28, "subscale": "gad", "text": {"de": "Andere Leute sagen, ich mache mir zu viele Sorgen.", "en": "People tell me that I worry too much."}},
+    {"number": 29, "subscale": "separation", "text": {"de": "Ich bin nicht gern von meiner Familie weg.", "en": "I don't like to be away from my family."}},
+    {"number": 30, "subscale": "panic_somatic", "text": {"de": "Ich habe Angst davor, Angst- oder Panikattacken zu bekommen.", "en": "I am afraid of having anxiety (or panic) attacks."}},
+    {"number": 31, "subscale": "separation", "text": {"de": "Ich mache mir Sorgen, dass meinen Eltern etwas Schlimmes passieren könnte.", "en": "I worry that something bad might happen to my parents."}},
+    {"number": 32, "subscale": "social", "text": {"de": "Ich bin schüchtern bei Menschen, die ich nicht gut kenne.", "en": "I feel shy with people I don't know well."}},
+    {"number": 33, "subscale": "gad", "text": {"de": "Ich mache mir Sorgen darüber, was in der Zukunft passieren wird.", "en": "I worry about what is going to happen in the future."}},
+    {"number": 34, "subscale": "panic_somatic", "text": {"de": "Wenn ich Angst bekomme, habe ich das Gefühl, mich übergeben zu müssen.", "en": "When I get frightened, I feel like throwing up."}},
+    {"number": 35, "subscale": "gad", "text": {"de": "Ich mache mir Sorgen darüber, wie gut ich Dinge mache.", "en": "I worry about how well I do things."}},
+    {"number": 36, "subscale": "school", "text": {"de": "Ich habe Angst, in die Schule zu gehen.", "en": "I am scared to go to school."}},
+    {"number": 37, "subscale": "gad", "text": {"de": "Ich mache mir Sorgen über Dinge, die bereits passiert sind.", "en": "I worry about things that have already happened."}},
+    {"number": 38, "subscale": "panic_somatic", "text": {"de": "Wenn ich Angst bekomme, fühle ich mich schwindelig.", "en": "When I get frightened, I feel dizzy."}},
+    {"number": 39, "subscale": "social", "text": {"de": "Ich bin nervös, wenn ich mit anderen Kindern oder Erwachsenen zusammen bin und etwas tun muss, während sie mich beobachten (z.B. vorlesen, sprechen, ein Spiel spielen, Sport machen).", "en": "I feel nervous when I am with other children or adults and I have to do something while they watch me (for example: read aloud, speak, play a game, play a sport)."}},
+    {"number": 40, "subscale": "social", "text": {"de": "Ich bin nervös, wenn ich zu Partys, Tanzveranstaltungen oder an Orte gehe, wo Menschen sein werden, die ich nicht gut kenne.", "en": "I feel nervous when I am going to parties, dances, or any place where there will be people that I don't know well."}},
+    {"number": 41, "subscale": "social", "text": {"de": "Ich bin schüchtern.", "en": "I am shy."}}
+  ],
+  "scoring": {
+    "method": "subscale_sum_and_total",
+    "subscales": [
+      {"id": "panic_somatic", "label": {"de": "Panikstörung/Somatische Symptome", "en": "Panic Disorder or Significant Somatic Symptoms"}, "items": [1, 6, 9, 12, 15, 18, 19, 22, 24, 27, 30, 34, 38], "cutoff": 7, "max": 26},
+      {"id": "gad", "label": {"de": "Generalisierte Angststörung", "en": "Generalized Anxiety Disorder"}, "items": [5, 7, 14, 21, 23, 28, 33, 35, 37], "cutoff": 9, "max": 18},
+      {"id": "separation", "label": {"de": "Trennungsangst", "en": "Separation Anxiety Disorder"}, "items": [4, 8, 13, 16, 20, 25, 29, 31], "cutoff": 5, "max": 16},
+      {"id": "social", "label": {"de": "Soziale Angststörung", "en": "Social Anxiety Disorder"}, "items": [3, 10, 26, 32, 39, 40, 41], "cutoff": 8, "max": 14},
+      {"id": "school", "label": {"de": "Signifikante Schulvermeidung", "en": "Significant School Avoidance"}, "items": [2, 11, 17, 36], "cutoff": 3, "max": 8}
+    ],
+    "total_score": {"label": {"de": "Gesamtwert", "en": "Total Score"}, "range": [0, 82]},
+    "thresholds_total": [
+      {"min": 0, "max": 24, "severity": "none", "label": {"de": "Unauffällig", "en": "Below threshold"}, "color": "#4CAF50"},
+      {"min": 25, "max": 30, "severity": "moderate", "label": {"de": "Hinweis auf Angststörung", "en": "Possible anxiety disorder"}, "color": "#FFC107"},
+      {"min": 31, "max": 82, "severity": "high", "label": {"de": "Spezifischer Hinweis auf Angststörung", "en": "More specific for anxiety disorder"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 25,
+    "sensitivity": "71%",
+    "specificity": "67%"
+  },
+  "references": [
+    "Birmaher B, Khetarpal S, Brent D, Cully M, Balach L, Kaufman J, Neer SM. The Screen for Child Anxiety Related Emotional Disorders (SCARED): scale construction and psychometric characteristics. J Am Acad Child Adolesc Psychiatry. 1997;36(4):545-553.",
+    "Birmaher B, Brent DA, Chiappetta L, Bridge J, Monga S, Baugher M. Psychometric properties of the Screen for Child Anxiety Related Emotional Disorders (SCARED): a replication study. J Am Acad Child Adolesc Psychiatry. 1999;38(10):1230-1236."
+  ],
+  "source_url": "https://www.aacap.org/App_Themes/AACAP/docs/member_resources/toolbox_for_clinical_practice_and_outcomes/symptoms/ScaredChild.pdf",
+  "source_local": "_sources/instruments/en/scared_child.pdf"
+}

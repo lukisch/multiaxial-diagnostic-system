@@ -1,0 +1,94 @@
+{
+  "id": "dsm5_xc_parent",
+  "name": {"de": "DSM-5 Cross-Cutting Symptom-Maß Level 1 – Elternbericht für Kinder 6-17", "en": "DSM-5 Parent/Guardian-Rated Level 1 Cross-Cutting Symptom Measure – Child Age 6-17"},
+  "abbreviation": "DSM-5 XC Parent L1",
+  "version": "1.0",
+  "authors": "American Psychiatric Association",
+  "year": 2013,
+  "license": "APA: 'This measure can be reproduced without permission by researchers and by clinicians for use with their patients.'",
+  "domain": {"de": "Cross-Cutting Screening (Kinder/Jugendliche)", "en": "Cross-Cutting Screening (Children/Adolescents)"},
+  "axis": "I",
+  "hitop_spectrum": "Cross-Spectrum",
+  "age_group": "child_adolescent",
+  "age_min": 6,
+  "age_max": 17,
+  "rater": "parent_guardian",
+  "_translation_note": {
+    "de": "Englische Items: Wortlaut aus dem APA-Originaldokument (Copyright © 2013 APA, reproduktions-erlaubt für Forschung/Klinik). Deutsche Items: informelle Arbeitsübersetzung — vor klinischem Einsatz mit der offiziellen Hogrefe-Übersetzung (DSM-5/DSM-5-TR Deutsche Ausgabe) abgleichen.",
+    "en": "English items: verbatim from APA original (Copyright © 2013 APA, reproduction permitted for research/clinical use). German items: informal working translation — verify against official Hogrefe translation (DSM-5/DSM-5-TR German Edition) before clinical use."
+  },
+  "description": {
+    "de": "Elternbericht-Variante des DSM-5 Cross-Cutting Symptom Measure. 25 Items in 12 Domänen (somatische Symptome, Schlafprobleme, Unaufmerksamkeit, Depression, Ärger, Reizbarkeit, Manie, Angst, Psychose, repetitive Gedanken/Verhalten, Substanzgebrauch, Suizidalität). Erfasst, wie sehr/wie oft das Kind in den letzten 2 Wochen unter dem jeweiligen Symptom litt. Triage-Schwelle: 'leicht' oder größer (Score ≥2) bei den meisten Domänen, 'gering' oder größer (Score ≥1) bei Unaufmerksamkeit und Psychose; bei Substanzgebrauch und Suizidalität jedes 'Ja' oder 'Weiß nicht'.",
+    "en": "Parent/Guardian-rated variant of the DSM-5 Cross-Cutting Symptom Measure. 25 items in 12 domains (somatic, sleep, inattention, depression, anger, irritability, mania, anxiety, psychosis, repetitive thoughts/behaviors, substance use, suicidality). Asks how much/how often the child has been bothered by the symptom during the past 2 weeks. Triage threshold: mild or greater (score ≥2) for most domains, slight or greater (score ≥1) for inattention and psychosis; any 'Yes' or 'Don't Know' for substance use and suicidality."
+  },
+  "instructions": {
+    "de": "Die folgenden Fragen beziehen sich auf Dinge, die Ihr Kind möglicherweise belastet haben. Geben Sie für jede Frage an, wie sehr (oder wie oft) Ihr Kind in den letzten ZWEI (2) WOCHEN unter dem jeweiligen Problem gelitten hat.",
+    "en": "The questions below ask about things that might have bothered your child. For each question, circle the number that best describes how much (or how often) your child has been bothered by each problem during the past TWO (2) WEEKS."
+  },
+  "timeframe": {"de": "Letzte 2 Wochen", "en": "Last 2 weeks"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Keines / überhaupt nicht", "en": "None / not at all"}},
+    {"value": 1, "label": {"de": "Gering / selten, weniger als 1-2 Tage", "en": "Slight / rare, less than a day or two"}},
+    {"value": 2, "label": {"de": "Leicht / einige Tage", "en": "Mild / several days"}},
+    {"value": 3, "label": {"de": "Mäßig / mehr als die Hälfte der Tage", "en": "Moderate / more than half the days"}},
+    {"value": 4, "label": {"de": "Schwer / fast jeden Tag", "en": "Severe / nearly every day"}}
+  ],
+  "binary_response_options": [
+    {"value": 1, "label": {"de": "Ja", "en": "Yes"}},
+    {"value": 0, "label": {"de": "Nein", "en": "No"}},
+    {"value": null, "label": {"de": "Weiß nicht", "en": "Don't Know"}}
+  ],
+  "items": [
+    {"number": 1, "domain": "somatic_complaints", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind über Bauchschmerzen, Kopfschmerzen oder andere Schmerzen geklagt?", "en": "Complained of stomachaches, headaches, or other aches and pains?"}},
+    {"number": 2, "domain": "somatic_complaints", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind gesagt, es sei besorgt um seine Gesundheit oder davor, krank zu werden?", "en": "Said he/she was worried about his/her health or about getting sick?"}},
+    {"number": 3, "domain": "sleep", "response_type": "likert_5", "text": {"de": "Hatte Ihr Kind Schlafprobleme – also Schwierigkeiten beim Einschlafen, Durchschlafen oder zu frühes Aufwachen?", "en": "Had problems sleeping—that is, trouble falling asleep, staying asleep, or waking up too early?"}},
+    {"number": 4, "domain": "inattention", "response_type": "likert_5", "text": {"de": "Hatte Ihr Kind Probleme, aufmerksam zu sein, wenn es im Unterricht war, Hausaufgaben machte, ein Buch las oder ein Spiel spielte?", "en": "Had problems paying attention when he/she was in class or doing his/her homework or reading a book or playing a game?"}},
+    {"number": 5, "domain": "depression", "response_type": "likert_5", "text": {"de": "Hatte Ihr Kind weniger Freude an Tätigkeiten als früher?", "en": "Had less fun doing things than he/she used to?"}},
+    {"number": 6, "domain": "depression", "response_type": "likert_5", "text": {"de": "Wirkte Ihr Kind über mehrere Stunden traurig oder niedergeschlagen?", "en": "Seemed sad or depressed for several hours?"}},
+    {"number": 7, "domain": "anger_irritability", "response_type": "likert_5", "text": {"de": "Wirkte Ihr Kind gereizter oder leichter zu verärgern als sonst?", "en": "Seemed more irritated or easily annoyed than usual?"}},
+    {"number": 8, "domain": "anger_irritability", "response_type": "likert_5", "text": {"de": "Wirkte Ihr Kind wütend oder verlor die Beherrschung?", "en": "Seemed angry or lost his/her temper?"}},
+    {"number": 9, "domain": "mania", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind viel mehr Projekte als sonst angefangen oder mehr riskante Dinge als sonst getan?", "en": "Started lots more projects than usual or did more risky things than usual?"}},
+    {"number": 10, "domain": "mania", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind weniger als sonst geschlafen, hatte aber trotzdem viel Energie?", "en": "Slept less than usual for him/her, but still had lots of energy?"}},
+    {"number": 11, "domain": "anxiety", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind gesagt, es fühle sich nervös, ängstlich oder verängstigt?", "en": "Said he/she felt nervous, anxious, or scared?"}},
+    {"number": 12, "domain": "anxiety", "response_type": "likert_5", "text": {"de": "Konnte Ihr Kind nicht aufhören, sich Sorgen zu machen?", "en": "Not been able to stop worrying?"}},
+    {"number": 13, "domain": "anxiety", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind gesagt, es könne Dinge nicht tun, die es tun wollte oder hätte tun sollen, weil sie es nervös machten?", "en": "Said he/she couldn't do things he/she wanted to or should have done, because they made him/her feel nervous?"}},
+    {"number": 14, "domain": "psychosis", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind gesagt, es höre Stimmen – wenn niemand da war – die über es sprechen, ihm sagen, was es tun soll, oder schlimme Dinge zu ihm sagen?", "en": "Said that he/she heard voices—when there was no one there—speaking about him/her or telling him/her what to do or saying bad things to him/her?"}},
+    {"number": 15, "domain": "psychosis", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind gesagt, es habe eine Vision gehabt, während es völlig wach war – also etwas oder jemanden gesehen, das/den sonst niemand sehen konnte?", "en": "Said that he/she had a vision when he/she was completely awake—that is, saw something or someone that no one else could see?"}},
+    {"number": 16, "domain": "repetitive_thoughts", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind gesagt, es habe Gedanken, die ihm immer wieder in den Sinn kommen, etwas Schlimmes zu tun, oder dass ihm oder jemand anderem etwas Schlimmes passieren würde?", "en": "Said that he/she had thoughts that kept coming into his/her mind that he/she would do something bad or that something bad would happen to him/her or to someone else?"}},
+    {"number": 17, "domain": "repetitive_thoughts", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind gesagt, es müsse bestimmte Dinge immer wieder überprüfen, etwa ob eine Tür abgeschlossen ist oder der Herd ausgeschaltet wurde?", "en": "Said he/she felt the need to check on certain things over and over again, like whether a door was locked or whether the stove was turned off?"}},
+    {"number": 18, "domain": "repetitive_thoughts", "response_type": "likert_5", "text": {"de": "Hat sich Ihr Kind viele Sorgen darüber gemacht, dass Dinge, die es berührt hat, schmutzig sind oder Keime tragen oder vergiftet sein könnten?", "en": "Seemed to worry a lot about things he/she touched being dirty or having germs or being poisoned?"}},
+    {"number": 19, "domain": "repetitive_thoughts", "response_type": "likert_5", "text": {"de": "Hat Ihr Kind gesagt, es müsse Dinge auf eine bestimmte Weise tun, wie zählen oder bestimmte Dinge laut sagen, damit nichts Schlimmes passiert?", "en": "Said that he/she had to do things in a certain way, like counting or saying special things out loud, in order to keep something bad from happening?"}},
+    {"number": 20, "domain": "substance_use", "response_type": "yes_no_dk", "text": {"de": "Hat Ihr Kind in den letzten 2 Wochen ein alkoholisches Getränk konsumiert (Bier, Wein, Spirituosen usw.)?", "en": "Had an alcoholic beverage (beer, wine, liquor, etc.)?"}},
+    {"number": 21, "domain": "substance_use", "response_type": "yes_no_dk", "text": {"de": "Hat Ihr Kind eine Zigarette, Zigarre oder Pfeife geraucht oder Schnupf- oder Kautabak verwendet?", "en": "Smoked a cigarette, a cigar, or pipe, or used snuff or chewing tobacco?"}},
+    {"number": 22, "domain": "substance_use", "response_type": "yes_no_dk", "text": {"de": "Hat Ihr Kind Drogen wie Marihuana, Kokain/Crack, Partydrogen (z.B. Ecstasy), Halluzinogene (z.B. LSD), Heroin, Schnüffelstoffe oder Lösungsmittel (z.B. Klebstoff) oder Methamphetamin (z.B. Crystal) konsumiert?", "en": "Used drugs like marijuana, cocaine or crack, club drugs (like ecstasy), hallucinogens (like LSD), heroin, inhalants or solvents (like glue), or methamphetamine (like speed)?"}},
+    {"number": 23, "domain": "substance_use", "response_type": "yes_no_dk", "text": {"de": "Hat Ihr Kind Medikamente ohne ärztliche Verschreibung eingenommen (z.B. Schmerzmittel wie Vicodin; Stimulanzien wie Ritalin oder Adderall; Beruhigungsmittel wie Schlaftabletten oder Valium; oder Steroide)?", "en": "Used any medicine without a doctor's prescription (e.g., painkillers [like Vicodin], stimulants [like Ritalin or Adderall], sedatives or tranquilizers [like sleeping pills or Valium], or steroids)?"}},
+    {"number": 24, "domain": "suicidality", "response_type": "yes_no_dk", "text": {"de": "Hat Ihr Kind in den letzten 2 Wochen davon gesprochen, sich selbst töten oder Suizid begehen zu wollen?", "en": "In the past TWO (2) WEEKS, has he/she talked about wanting to kill himself/herself or about wanting to commit suicide?"}},
+    {"number": 25, "domain": "suicidality", "response_type": "yes_no_dk", "text": {"de": "Hat Ihr Kind JEMALS versucht, sich selbst zu töten?", "en": "Has he/she EVER tried to kill himself/herself?"}}
+  ],
+  "scoring": {
+    "method": "domain_threshold_triage",
+    "scoring_rule": {
+      "de": "Pro Domäne den höchsten Score eines Items eintragen. Triage-Schwelle: ≥1 ('gering') bei Unaufmerksamkeit und Psychose; ≥2 ('leicht') bei allen anderen 5-Punkt-Domänen. Bei Substanzgebrauch und Suizidalität: jedes 'Ja' oder 'Weiß nicht' triggert vertiefte Abklärung.",
+      "en": "Per domain, record the highest score on any item. Triage threshold: ≥1 ('slight') for inattention and psychosis; ≥2 ('mild') for all other 5-point domains. For substance use and suicidality: any 'Yes' or 'Don't Know' triggers further inquiry."
+    },
+    "domains": [
+      {"id": "somatic_complaints", "roman": "I", "label": {"de": "Somatische Beschwerden", "en": "Somatic Symptoms"}, "items": [1, 2], "trigger_threshold": 2, "level2": "PHQ-15 Somatic Symptom Severity (Parent/Guardian)"},
+      {"id": "sleep", "roman": "II", "label": {"de": "Schlafprobleme", "en": "Sleep Problems"}, "items": [3], "trigger_threshold": 2, "level2": "PROMIS Sleep Disturbance (Parent/Guardian)"},
+      {"id": "inattention", "roman": "III", "label": {"de": "Unaufmerksamkeit", "en": "Inattention"}, "items": [4], "trigger_threshold": 1, "level2": "SNAP-IV"},
+      {"id": "depression", "roman": "IV", "label": {"de": "Depression", "en": "Depression"}, "items": [5, 6], "trigger_threshold": 2, "level2": "PROMIS Emotional Distress – Depression (Parent)"},
+      {"id": "anger_irritability", "roman": "V+VI", "label": {"de": "Ärger/Reizbarkeit", "en": "Anger/Irritability"}, "items": [7, 8], "trigger_threshold": 2, "level2": "PROMIS Anger (Parent) / Affective Reactivity Index"},
+      {"id": "mania", "roman": "VII", "label": {"de": "Manie", "en": "Mania"}, "items": [9, 10], "trigger_threshold": 2, "level2": "Altman Self-Rating Mania Scale (adapted)"},
+      {"id": "anxiety", "roman": "VIII", "label": {"de": "Angst", "en": "Anxiety"}, "items": [11, 12, 13], "trigger_threshold": 2, "level2": "PROMIS Anxiety (Parent, adapted)"},
+      {"id": "psychosis", "roman": "IX", "label": {"de": "Psychose", "en": "Psychosis"}, "items": [14, 15], "trigger_threshold": 1, "level2": "None – clinical evaluation", "critical": true},
+      {"id": "repetitive_thoughts", "roman": "X", "label": {"de": "Repetitive Gedanken/Verhalten", "en": "Repetitive Thoughts and Behaviors"}, "items": [16, 17, 18, 19], "trigger_threshold": 2, "level2": "None"},
+      {"id": "substance_use", "roman": "XI", "label": {"de": "Substanzgebrauch", "en": "Substance Use"}, "items": [20, 21, 22, 23], "trigger_threshold": "yes_or_dk", "level2": "NIDA-modified ASSIST (Parent/Child 11-17)", "critical": true},
+      {"id": "suicidality", "roman": "XII", "label": {"de": "Suizidalität", "en": "Suicidal Ideation/Attempts"}, "items": [24, 25], "trigger_threshold": "yes_or_dk", "level2": "C-SSRS Pediatric / clinical evaluation", "critical": true}
+    ]
+  },
+  "references": [
+    "American Psychiatric Association. (2013). DSM-5 Parent/Guardian-Rated Level 1 Cross-Cutting Symptom Measure—Child Age 6–17. Arlington, VA: American Psychiatric Association.",
+    "Narrow WE, Clarke DE, Kuramoto SJ, et al. DSM-5 field trials in the United States and Canada, Part III: development and reliability testing of a cross-cutting symptom assessment for DSM-5. Am J Psychiatry. 2013;170(1):71-82."
+  ],
+  "source_url": "https://www.psychiatry.org/psychiatrists/practice/dsm/educational-resources/assessment-measures",
+  "source_local": "_sources/instruments/en/dsm5_xc_parent_6-17.pdf"
+}

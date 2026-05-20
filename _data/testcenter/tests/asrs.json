@@ -1,12 +1,18 @@
 {
   "id": "asrs",
-  "name": {"de": "Selbstbeurteilungsskala für ADHS im Erwachsenenalter", "en": "Adult ADHD Self-Report Scale"},
-  "abbreviation": "ASRS v1.1",
+  "name": {
+    "de": "Selbstbeurteilungsskala fuer ADHS im Erwachsenenalter – Screener (v1.1)",
+    "en": "Adult ADHD Self-Report Scale – Screener (v1.1)"
+  },
+  "abbreviation": "ASRS v1.1 Screener",
   "version": "1.1",
   "authors": "Kessler, Adler, Ames, Demler, Faraone, Hiripi, Howes, Jin, Secnik, Spencer, Ustun, Walters (WHO)",
   "year": 2005,
   "license": "Public Domain (WHO)",
-  "domain": {"de": "Aufmerksamkeitsdefizit-/Hyperaktivitätsstörung", "en": "Attention-Deficit/Hyperactivity Disorder"},
+  "domain": {
+    "de": "Aufmerksamkeitsdefizit-/Hyperaktivitätsstörung",
+    "en": "Attention-Deficit/Hyperactivity Disorder"
+  },
   "axis": "I",
   "hitop_spectrum": "Disinhibited Externalizing",
   "description": {
@@ -17,13 +23,46 @@
     "de": "Bitte beantworten Sie die folgenden Fragen und markieren Sie, wie häufig Sie sich in den letzten 6 Monaten so gefühlt oder verhalten haben.",
     "en": "Please answer the questions below, rating yourself on each of the criteria shown using the scale. As you answer each question, select the response that best describes how you have felt and conducted yourself over the past 6 months."
   },
-  "timeframe": {"de": "Letzte 6 Monate", "en": "Past 6 months"},
+  "timeframe": {
+    "de": "Letzte 6 Monate",
+    "en": "Past 6 months"
+  },
   "response_options": [
-    {"value": 0, "label": {"de": "Nie", "en": "Never"}},
-    {"value": 1, "label": {"de": "Selten", "en": "Rarely"}},
-    {"value": 2, "label": {"de": "Manchmal", "en": "Sometimes"}},
-    {"value": 3, "label": {"de": "Oft", "en": "Often"}},
-    {"value": 4, "label": {"de": "Sehr oft", "en": "Very often"}}
+    {
+      "value": 0,
+      "label": {
+        "de": "Nie",
+        "en": "Never"
+      }
+    },
+    {
+      "value": 1,
+      "label": {
+        "de": "Selten",
+        "en": "Rarely"
+      }
+    },
+    {
+      "value": 2,
+      "label": {
+        "de": "Manchmal",
+        "en": "Sometimes"
+      }
+    },
+    {
+      "value": 3,
+      "label": {
+        "de": "Oft",
+        "en": "Often"
+      }
+    },
+    {
+      "value": 4,
+      "label": {
+        "de": "Sehr oft",
+        "en": "Very often"
+      }
+    }
   ],
   "items": [
     {
@@ -87,10 +126,31 @@
       "de": "Items 1-3: Wert ≥2 (Manchmal) = positiv. Items 4-6: Wert ≥3 (Oft) = positiv. ≥4 positive Items: ADHS-Screening positiv.",
       "en": "Items 1-3: Score ≥2 (Sometimes) = positive. Items 4-6: Score ≥3 (Often) = positive. ≥4 positive items: ADHD screening positive."
     },
-    "range": [0, 6],
+    "range": [
+      0,
+      6
+    ],
     "thresholds": [
-      {"min": 0, "max": 3, "severity": "negative", "label": {"de": "ADHS unwahrscheinlich", "en": "ADHD unlikely"}, "color": "#4CAF50"},
-      {"min": 4, "max": 6, "severity": "positive", "label": {"de": "ADHS-Verdacht – weitere Abklärung empfohlen", "en": "ADHD suspected – further assessment recommended"}, "color": "#F44336"}
+      {
+        "min": 0,
+        "max": 3,
+        "severity": "negative",
+        "label": {
+          "de": "ADHS unwahrscheinlich",
+          "en": "ADHD unlikely"
+        },
+        "color": "#4CAF50"
+      },
+      {
+        "min": 4,
+        "max": 6,
+        "severity": "positive",
+        "label": {
+          "de": "ADHS-Verdacht – weitere Abklärung empfohlen",
+          "en": "ADHD suspected – further assessment recommended"
+        },
+        "color": "#F44336"
+      }
     ],
     "clinical_cutoff": 4,
     "sensitivity": "68.7%",

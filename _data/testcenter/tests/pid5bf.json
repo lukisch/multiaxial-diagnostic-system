@@ -25,46 +25,44 @@
     {"value": 3, "label": {"de": "Trifft genau zu", "en": "Very true or often true"}}
   ],
   "items": [
-    {"number": 1, "domain": "negative_affectivity", "text": {"de": "Menschen würden mich als leichtsinnig beschreiben", "en": "People would describe me as reckless"}},
-    {"number": 2, "domain": "detachment", "text": {"de": "Ich habe das Gefühl, in der Gesellschaft anderer zu handeln, als spielte ich eine Rolle", "en": "I feel like I act totally on impulse"}},
-    {"number": 3, "domain": "antagonism", "text": {"de": "Ich bin es gewohnt, Leute herumzukommandieren", "en": "Even though I know better, I can't stop making rash decisions"}},
-    {"number": 4, "domain": "disinhibition", "text": {"de": "Ich handle oft impulsiv", "en": "I often feel like nothing I do really matters"}},
-    {"number": 5, "domain": "psychoticism", "text": {"de": "Ich verstehe nicht, warum manche Dinge andere so sehr beunruhigen", "en": "Others see me as irresponsible"}},
-    {"number": 6, "domain": "negative_affectivity", "text": {"de": "Ich mache mir über fast alles Sorgen", "en": "I worry about almost everything"}},
-    {"number": 7, "domain": "detachment", "text": {"de": "Ich halte mich von sozialen Kontakten fern", "en": "I avoid social events"}},
-    {"number": 8, "domain": "antagonism", "text": {"de": "Es kommt vor, dass ich Menschen benutze, um zu bekommen, was ich will", "en": "I often have to deal with people who are less important than me"}},
-    {"number": 9, "domain": "disinhibition", "text": {"de": "Ich werde oft ablenkbar", "en": "I'm often pretty careless with my money"}},
-    {"number": 10, "domain": "psychoticism", "text": {"de": "Ich habe ungewöhnliche Wahrnehmungen, z.B. unbekannte Stimmen gehört", "en": "I have seen things that weren't really there"}},
-    {"number": 11, "domain": "negative_affectivity", "text": {"de": "Meine Emotionen schwanken oft ohne erkennbaren Grund", "en": "I get emotional easily, and it's hard to calm down"}},
-    {"number": 12, "domain": "detachment", "text": {"de": "Ich habe nichts, für das ich mich begeistern könnte", "en": "Nothing seems to interest me very much"}},
-    {"number": 13, "domain": "antagonism", "text": {"de": "Ich bin ziemlich gut darin, andere um den Finger zu wickeln", "en": "I'm good at conning people"}},
-    {"number": 14, "domain": "disinhibition", "text": {"de": "Ich ziehe es vor, Dinge sofort zu bekommen, anstatt zu warten", "en": "I do things that are really stupid and likely to get me in trouble"}},
-    {"number": 15, "domain": "psychoticism", "text": {"de": "Ich vergesse manchmal ganze Alltagssituationen, als hätte ich sie nicht erlebt", "en": "I lose track of conversations because other things catch my attention"}},
-    {"number": 16, "domain": "negative_affectivity", "text": {"de": "Ich werde schnell wütend", "en": "I get angry easily"}},
-    {"number": 17, "domain": "detachment", "text": {"de": "Ich zeige meine Gefühle selten", "en": "I don't get as much pleasure from things as others seem to"}},
-    {"number": 18, "domain": "antagonism", "text": {"de": "Ich glaube, dass ich besondere Behandlung verdiene", "en": "I do things to make sure people notice me"}},
-    {"number": 19, "domain": "disinhibition", "text": {"de": "Mein Verhalten ist oft unberechenbar", "en": "People say I'm not considerate enough of others' feelings"}},
-    {"number": 20, "domain": "psychoticism", "text": {"de": "Ich habe Gedanken, die anderen seltsam erscheinen", "en": "I have several habits that others find eccentric or strange"}},
-    {"number": 21, "domain": "negative_affectivity", "text": {"de": "Ich fühle mich oft unsicher in meinen Beziehungen", "en": "I can have trouble telling the difference between dreams and waking life"}},
-    {"number": 22, "domain": "detachment", "text": {"de": "Ich bin selten von irgendetwas begeistert", "en": "I steer clear of romantic relationships"}},
-    {"number": 23, "domain": "antagonism", "text": {"de": "Es macht mir Spaß, die Kontrolle über eine Situation zu haben", "en": "I'm not interested in making friends"}},
-    {"number": 24, "domain": "disinhibition", "text": {"de": "Ich handle ohne nachzudenken", "en": "I take risks for excitement"}},
-    {"number": 25, "domain": "psychoticism", "text": {"de": "Die Dinge um mich herum fühlen sich manchmal unwirklich an oder ich fühle mich außerhalb meines Körpers", "en": "Things around me often feel unreal, or more real than usual"}}
+    {"number": 1, "domain": "disinhibition", "text": {"de": "Menschen würden mich als waghalsig beschreiben.", "en": "People would describe me as reckless."}},
+    {"number": 2, "domain": "disinhibition", "text": {"de": "Ich habe das Gefühl, völlig impulsiv zu handeln.", "en": "I feel like I act totally on impulse."}},
+    {"number": 3, "domain": "disinhibition", "text": {"de": "Obwohl ich es besser weiß, kann ich nicht aufhören, unüberlegte Entscheidungen zu treffen.", "en": "Even though I know better, I can't stop making rash decisions."}},
+    {"number": 4, "domain": "detachment", "text": {"de": "Ich habe oft das Gefühl, dass nichts, was ich tue, wirklich zählt.", "en": "I often feel like nothing I do really matters."}},
+    {"number": 5, "domain": "disinhibition", "text": {"de": "Andere halten mich für verantwortungslos.", "en": "Others see me as irresponsible."}},
+    {"number": 6, "domain": "disinhibition", "text": {"de": "Ich bin nicht gut darin, vorauszuplanen.", "en": "I'm not good at planning ahead."}},
+    {"number": 7, "domain": "psychoticism", "text": {"de": "Meine Gedanken ergeben für andere oft keinen Sinn.", "en": "My thoughts often don't make sense to others."}},
+    {"number": 8, "domain": "negative_affectivity", "text": {"de": "Ich mache mir über fast alles Sorgen.", "en": "I worry about almost everything."}},
+    {"number": 9, "domain": "negative_affectivity", "text": {"de": "Ich werde leicht emotional, oft aus sehr geringem Anlass.", "en": "I get emotional easily, often for very little reason."}},
+    {"number": 10, "domain": "negative_affectivity", "text": {"de": "Ich fürchte mehr als alles andere, im Leben allein zu sein.", "en": "I fear being alone in life more than anything else."}},
+    {"number": 11, "domain": "negative_affectivity", "text": {"de": "Ich verharre bei einer Vorgehensweise, auch wenn klar ist, dass sie nicht funktioniert.", "en": "I get stuck on one way of doing things, even when it's clear it won't work."}},
+    {"number": 12, "domain": "psychoticism", "text": {"de": "Ich habe Dinge gesehen, die nicht wirklich da waren.", "en": "I have seen things that weren't really there."}},
+    {"number": 13, "domain": "detachment", "text": {"de": "Ich halte mich von romantischen Beziehungen fern.", "en": "I steer clear of romantic relationships."}},
+    {"number": 14, "domain": "detachment", "text": {"de": "Ich bin nicht daran interessiert, Freundschaften zu schließen.", "en": "I'm not interested in making friends."}},
+    {"number": 15, "domain": "negative_affectivity", "text": {"de": "Ich werde durch alle möglichen Dinge leicht gereizt.", "en": "I get irritated easily by all sorts of things."}},
+    {"number": 16, "domain": "detachment", "text": {"de": "Ich mag es nicht, Menschen zu nahe zu kommen.", "en": "I don't like to get too close to people."}},
+    {"number": 17, "domain": "antagonism", "text": {"de": "Es ist keine große Sache, wenn ich die Gefühle anderer verletze.", "en": "It's no big deal if I hurt other people's feelings."}},
+    {"number": 18, "domain": "detachment", "text": {"de": "Ich bin selten für irgendetwas begeistert.", "en": "I rarely get enthusiastic about anything."}},
+    {"number": 19, "domain": "antagonism", "text": {"de": "Ich verlange nach Aufmerksamkeit.", "en": "I crave attention."}},
+    {"number": 20, "domain": "antagonism", "text": {"de": "Ich muss mich oft mit Menschen befassen, die weniger wichtig sind als ich.", "en": "I often have to deal with people who are less important than me."}},
+    {"number": 21, "domain": "psychoticism", "text": {"de": "Ich habe oft Gedanken, die für mich Sinn ergeben, die andere aber seltsam finden.", "en": "I often have thoughts that make sense to me but that other people say are strange."}},
+    {"number": 22, "domain": "antagonism", "text": {"de": "Ich benutze Menschen, um zu bekommen, was ich will.", "en": "I use people to get what I want."}},
+    {"number": 23, "domain": "psychoticism", "text": {"de": "Ich schalte oft ab und komme plötzlich wieder zu mir und merke, dass viel Zeit vergangen ist.", "en": "I often zone out and then suddenly come to and realize that a lot of time has passed."}},
+    {"number": 24, "domain": "psychoticism", "text": {"de": "Dinge um mich herum fühlen sich oft unwirklich oder wirklicher als sonst an.", "en": "Things around me often feel unreal, or more real than usual."}},
+    {"number": 25, "domain": "antagonism", "text": {"de": "Es fällt mir leicht, andere auszunutzen.", "en": "It is easy for me to take advantage of others."}}
   ],
   "scoring": {
     "method": "domain_mean",
     "range": [0, 3],
     "domains": [
-      {"name": {"de": "Negative Affektivität", "en": "Negative Affectivity"}, "items": [1, 6, 11, 16, 21], "range": [0, 15], "hitop": "Internalizing", "icd11_trait": "Negative Affectivity"},
-      {"name": {"de": "Distanziertheit", "en": "Detachment"}, "items": [2, 7, 12, 17, 22], "range": [0, 15], "hitop": "Detachment", "icd11_trait": "Detachment"},
-      {"name": {"de": "Antagonismus", "en": "Antagonism"}, "items": [3, 8, 13, 18, 23], "range": [0, 15], "hitop": "Antagonistic Externalizing", "icd11_trait": "Dissociality"},
-      {"name": {"de": "Enthemmung", "en": "Disinhibition"}, "items": [4, 9, 14, 19, 24], "range": [0, 15], "hitop": "Disinhibited Externalizing", "icd11_trait": "Disinhibition"},
-      {"name": {"de": "Psychotizismus", "en": "Psychoticism"}, "items": [5, 10, 15, 20, 25], "range": [0, 15], "hitop": "Thought Disorder", "icd11_trait": "-"}
+      {"name": {"de": "Negative Affektivität", "en": "Negative Affectivity"}, "items": [8, 9, 10, 11, 15], "range": [0, 15], "hitop": "Internalizing", "icd11_trait": "Negative Affectivity"},
+      {"name": {"de": "Distanziertheit", "en": "Detachment"}, "items": [4, 13, 14, 16, 18], "range": [0, 15], "hitop": "Detachment", "icd11_trait": "Detachment"},
+      {"name": {"de": "Antagonismus", "en": "Antagonism"}, "items": [17, 19, 20, 22, 25], "range": [0, 15], "hitop": "Antagonistic Externalizing", "icd11_trait": "Dissociality"},
+      {"name": {"de": "Enthemmung", "en": "Disinhibition"}, "items": [1, 2, 3, 5, 6], "range": [0, 15], "hitop": "Disinhibited Externalizing", "icd11_trait": "Disinhibition"},
+      {"name": {"de": "Psychotizismus", "en": "Psychoticism"}, "items": [7, 12, 21, 23, 24], "range": [0, 15], "hitop": "Thought Disorder", "icd11_trait": "-"}
     ],
     "thresholds_per_domain": [
-      {"min": 0, "max": 4, "severity": "low", "label": {"de": "Gering", "en": "Low"}, "color": "#4CAF50"},
-      {"min": 5, "max": 9, "severity": "moderate", "label": {"de": "Moderat", "en": "Moderate"}, "color": "#FFC107"},
-      {"min": 10, "max": 15, "severity": "high", "label": {"de": "Hoch – klinisch auffällig", "en": "High – clinically significant"}, "color": "#F44336"}
+      {"min": 0, "max": 15, "severity": "dimensional", "label": {"de": "Dimensionaler Domänenscore; kein Cutoff", "en": "Dimensional domain score; no cutoff"}, "color": "#607D8B"}
     ],
     "hitop_mapping": {
       "de": "Die 5 Domänen können direkt auf die HiTOP-Spektren abgebildet werden für dimensionale Persönlichkeitsdiagnostik.",
@@ -72,9 +70,10 @@
     }
   },
   "references": [
-    "Krueger RF, Derringer J, Markon KE, Watson D, Skodol AE. Initial construction of a maladaptive personality trait model and inventory for DSM-5. Psychol Med. 2012;42(9):1879-1890.",
+    "Krueger RF, Derringer J, Markon KE, Watson D, Skodol AE. Initial construction of a maladaptive personality trait model and inventory for DSM-5. Psychol Med. 2012;42(9):1879-1890. DOI: 10.1017/S0033291711002674.",
     "American Psychiatric Association. Online assessment measures: PID-5-BF. Washington, DC: APA; 2013.",
     "Zimmermann J, Altenstein D, Krieger T, et al. The structure and correlates of self-reported DSM-5 maladaptive personality traits: findings from two German-speaking samples. J Pers Disord. 2014;28(4):518-540."
   ],
-  "source_url": "https://www.psychiatry.org/psychiatrists/practice/dsm/educational-resources/assessment-measures"
+  "source_url": "https://www.psychiatry.org/psychiatrists/practice/dsm/educational-resources/assessment-measures",
+  "source_form_url": "https://www.psychiatry.org/File%20Library/Psychiatrists/Practice/DSM/APA_DSM5_The-Personality-Inventory-For-DSM-5-Brief-Form-Adult.pdf"
 }

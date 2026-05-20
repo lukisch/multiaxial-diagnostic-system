@@ -88,7 +88,7 @@ A standalone web application for digital administration of all 16 validated scre
 
 ### Features
 
-- **16 validated instruments** (PHQ-9, GAD-7, PCL-5, ITQ, AUDIT, C-SSRS, PQ-16, ASRS, AQ-10, OCI-R, SSS-8, DES-II, SCOFF, ISI, PID-5-BF, WHODAS 2.0) -- all freely available, bilingual (DE/EN)
+- **26 validated instruments** -- the original adult/core set plus 10 expansion instruments for child/adolescent, bipolar, drug-use, and extended cross-cutting screening; all publicly documented in the repo and available bilingually (DE/EN), with translation-status notes where official German wording is not available
 - **Automatic scoring** with severity classification, color-coded thresholds, and clinical action guides
 - **Test batteries**: Send multiple tests as a package -- client receives one link and works through all tests sequentially with progress tracking
 - **Link sharing**: Clinician creates session → generates token URL → sends to client → client fills out remotely → clinician views results
@@ -113,9 +113,9 @@ python app.py
 | PHQ-9 | 9 | Depression | I | Sum (0-27), cutoff ≥10 |
 | GAD-7 | 7 | Anxiety | I | Sum (0-21), cutoff ≥10 |
 | PCL-5 | 20 | PTSD (DSM-5) | I | Sum + DSM-5 clusters |
-| ITQ | 16 | PTSD/CPTSD (ICD-11) | I | Diagnostic algorithm |
+| ITQ | 18 | PTSD/CPTSD (ICD-11) | I | ICD-11 algorithm + impairment |
 | PQ-16 | 16 | Psychosis risk | I | Endorsement + distress |
-| ASRS v1.1 | 6 | ADHD | I | Threshold count |
+| ASRS v1.1 Screener | 6 | ADHD | I | Threshold count |
 | AQ-10 | 10 | Autism spectrum | I | Directional sum |
 | AUDIT | 10 | Alcohol use | I | Sum (0-40), 3 subscales |
 | C-SSRS | 6 | Suicidality | I | Risk classification |
@@ -125,7 +125,17 @@ python app.py
 | SCOFF | 5 | Eating disorders | I | Sum (0-5) |
 | ISI | 7 | Insomnia | I | Sum (0-28) |
 | PID-5-BF | 25 | Personality traits | II | 5 domains → HiTOP |
-| WHODAS 2.0 | 12 | Functioning | IV | 6 ICF domains |
+| WHODAS 2.0 | 12 + 3 impact items | Functioning | IV | 12-item sum + impact-day fields |
+| PHQ-A | 9 | Adolescent depression | I | Sum (0-27), adolescent cutoff |
+| RCADS-25 | 25 | Child/adolescent anxiety + depression | I | T-score based |
+| SCARED-C | 41 | Child anxiety | I | Sum with dimensional interpretation |
+| SDQ Self/Parent | 25 | Psychosocial screening | I | Total difficulties + subscales |
+| DSM-5 XC Parent | 25 | Child/adolescent cross-cutting | I | Domain triage thresholds |
+| SNAP-IV-26 | 26 | Child/adolescent ADHD | I | Subscale means |
+| CRAFFT 2.1+N | 10 | Adolescent substance use | I | Part A + CRAFFT + nicotine |
+| CRIES-8 | 8 | Child PTSD screening | I | Sum cutoff |
+| DAST-10 | 10 | Drug use problems | I | Sum (0-10) |
+| MDQ | 14 | Bipolar spectrum screening | I | Symptom count + co-occurrence |
 
 ## Tech Stack
 
@@ -169,7 +179,7 @@ _data/testcenter/                            # Diagnostic Testcenter (Flask web 
     app.py                                   #   Main application
     scoring.py                               #   Scoring engine (9 methods)
     config.py                                #   Configuration
-    tests/                                   #   16 test definitions (JSON, bilingual)
+    tests/                                   #   26 test definitions (JSON, bilingual)
     templates/                               #   HTML templates (Bootstrap 5)
     static/                                  #   CSS + JavaScript
 _results/Konzept_Dimensionale_Integration.md # Dimensional integration concept (DE)
@@ -207,7 +217,7 @@ See [Ausbauplan_Prototyp_V9.md](_results/Ausbauplan_Prototyp_V9.md) for the full
 - Session auto-save / data persistence (JSON-based save & load)
 
 **Completed (Sprint 3 / V10.1 -- Testcenter):**
-- Diagnostic Testcenter: standalone Flask web app with 16 validated instruments
+- Diagnostic Testcenter: standalone Flask web app with 26 validated instruments
 - Bilingual test definitions (DE/EN) with complete item content and scoring
 - Test batteries: multiple tests as a single client link
 - Print-friendly output for pen & paper administration

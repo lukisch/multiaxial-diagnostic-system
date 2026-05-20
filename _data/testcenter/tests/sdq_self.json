@@ -1,0 +1,87 @@
+{
+  "id": "sdq_self",
+  "name": {"de": "Fragebogen zu Stärken und Schwächen – Selbstbericht (11-17)", "en": "Strengths and Difficulties Questionnaire – Self-Report (11-17)"},
+  "abbreviation": "SDQ-S (YR1)",
+  "version": "1.0",
+  "authors": "Goodman",
+  "year": 1997,
+  "license": "Copyright Robert Goodman. Free for non-commercial use; reproduction allowed for non-commercial clinical, research and educational use (sdqinfo.org). Items may not be modified.",
+  "domain": {"de": "Allgemeines psychosoziales Screening (Jugendliche)", "en": "General psychosocial screening (adolescents)"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing+Externalizing",
+  "age_group": "adolescent",
+  "age_min": 11,
+  "age_max": 17,
+  "_translation_note": {
+    "de": "Englische Items: Wortlaut aus der offiziellen YR1-Version (SDQ Self-Report 11-17, Goodman 1997). Deutsche Items: informelle Arbeitsübersetzung — vor klinischem Einsatz mit der offiziellen deutschen Selbstbeurteilungs-Version (SDQ-Deu-S, Lohbeck/Schultheiß/Petermann 2015 oder Klasen et al.) abgleichen.",
+    "en": "English items: verbatim from official YR1 version (SDQ Self-Report 11-17, Goodman 1997). German items: informal working translation — verify against official SDQ-Deu-S (Lohbeck/Schultheiß/Petermann 2015 or Klasen et al.) before clinical use."
+  },
+  "description": {
+    "de": "25-Item Selbstberichts-Screening für emotionale und Verhaltensprobleme bei Jugendlichen (11-17 J.). 5 Subskalen à 5 Items: Emotionale Probleme, Verhaltensprobleme, Hyperaktivität/Unaufmerksamkeit, Probleme mit Gleichaltrigen, Prosoziales Verhalten. Gesamtproblem-Score = Summe der ersten 4 Subskalen (ohne Prosoziales). 5 Items sind invers kodiert (7, 11, 14, 21, 25).",
+    "en": "25-item self-report screening for emotional and behavioural problems in adolescents (ages 11-17). 5 subscales of 5 items each: Emotional Problems, Conduct Problems, Hyperactivity/Inattention, Peer Problems, Prosocial Behaviour. Total Difficulties Score = sum of first 4 subscales (excluding Prosocial). 5 items are reverse-coded (7, 11, 14, 21, 25)."
+  },
+  "instructions": {
+    "de": "Bitte markiere für jeden Punkt das Kästchen 'Nicht zutreffend', 'Teilweise zutreffend' oder 'Eindeutig zutreffend'. Es würde uns helfen, wenn du alle Punkte so gut wie möglich beantwortest, auch wenn du nicht ganz sicher bist. Bitte beantworte die Fragen basierend darauf, wie es dir in den letzten 6 Monaten ging.",
+    "en": "For each item, please mark the box for Not True, Somewhat True or Certainly True. It would help us if you answered all items as best you can even if you are not absolutely certain. Please give your answers on the basis of how things have been for you over the last six months."
+  },
+  "timeframe": {"de": "Letzte 6 Monate", "en": "Last 6 months"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Nicht zutreffend", "en": "Not True"}},
+    {"value": 1, "label": {"de": "Teilweise zutreffend", "en": "Somewhat True"}},
+    {"value": 2, "label": {"de": "Eindeutig zutreffend", "en": "Certainly True"}}
+  ],
+  "items": [
+    {"number": 1, "subscale": "prosocial", "reverse": false, "text": {"de": "Ich versuche, nett zu anderen Menschen zu sein. Ihre Gefühle sind mir wichtig.", "en": "I try to be nice to other people. I care about their feelings"}},
+    {"number": 2, "subscale": "hyperactivity", "reverse": false, "text": {"de": "Ich bin unruhig, ich kann nicht lange still bleiben.", "en": "I am restless, I cannot stay still for long"}},
+    {"number": 3, "subscale": "emotional", "reverse": false, "text": {"de": "Ich habe oft Kopfschmerzen, Bauchschmerzen oder fühle mich krank.", "en": "I get a lot of headaches, stomach-aches, or sickness"}},
+    {"number": 4, "subscale": "prosocial", "reverse": false, "text": {"de": "Ich teile gewöhnlich mit anderen, zum Beispiel CDs, Spiele, Essen.", "en": "I usually share with others, for example CDs, games, food"}},
+    {"number": 5, "subscale": "conduct", "reverse": false, "text": {"de": "Ich werde sehr wütend und verliere oft die Beherrschung.", "en": "I get very angry and often lose my temper"}},
+    {"number": 6, "subscale": "peer", "reverse": false, "text": {"de": "Ich bin lieber allein als mit Menschen in meinem Alter.", "en": "I would rather be alone than with people of my age"}},
+    {"number": 7, "subscale": "conduct", "reverse": true, "text": {"de": "Normalerweise tue ich, was mir gesagt wird.", "en": "I usually do as I am told"}},
+    {"number": 8, "subscale": "emotional", "reverse": false, "text": {"de": "Ich mache mir viele Sorgen.", "en": "I worry a lot"}},
+    {"number": 9, "subscale": "prosocial", "reverse": false, "text": {"de": "Ich bin hilfsbereit, wenn jemand verletzt, traurig oder krank ist.", "en": "I am helpful if someone is hurt, upset or feeling ill"}},
+    {"number": 10, "subscale": "hyperactivity", "reverse": false, "text": {"de": "Ich zappele oder bewege mich ständig.", "en": "I am constantly fidgeting or squirming"}},
+    {"number": 11, "subscale": "peer", "reverse": true, "text": {"de": "Ich habe einen oder mehrere gute Freunde.", "en": "I have one good friend or more"}},
+    {"number": 12, "subscale": "conduct", "reverse": false, "text": {"de": "Ich streite oft mit anderen. Ich kann andere dazu bringen, das zu tun, was ich will.", "en": "I fight a lot. I can make other people do what I want"}},
+    {"number": 13, "subscale": "emotional", "reverse": false, "text": {"de": "Ich bin oft unglücklich, niedergeschlagen oder den Tränen nahe.", "en": "I am often unhappy, depressed or tearful"}},
+    {"number": 14, "subscale": "peer", "reverse": true, "text": {"de": "Andere Leute meines Alters mögen mich grundsätzlich.", "en": "Other people my age generally like me"}},
+    {"number": 15, "subscale": "hyperactivity", "reverse": false, "text": {"de": "Ich bin leicht ablenkbar, es fällt mir schwer, mich zu konzentrieren.", "en": "I am easily distracted, I find it difficult to concentrate"}},
+    {"number": 16, "subscale": "emotional", "reverse": false, "text": {"de": "Ich bin nervös in neuen Situationen und verliere leicht das Selbstvertrauen.", "en": "I am nervous in new situations. I easily lose confidence"}},
+    {"number": 17, "subscale": "prosocial", "reverse": false, "text": {"de": "Ich bin nett zu jüngeren Kindern.", "en": "I am kind to younger children"}},
+    {"number": 18, "subscale": "conduct", "reverse": false, "text": {"de": "Ich werde oft beschuldigt zu lügen oder zu betrügen.", "en": "I am often accused of lying or cheating"}},
+    {"number": 19, "subscale": "peer", "reverse": false, "text": {"de": "Andere Kinder oder Jugendliche ärgern oder schikanieren mich.", "en": "Other children or young people pick on me or bully me"}},
+    {"number": 20, "subscale": "prosocial", "reverse": false, "text": {"de": "Ich melde mich oft freiwillig, um anderen zu helfen (Eltern, Lehrer, Kindern).", "en": "I often volunteer to help others (parents, teachers, children)"}},
+    {"number": 21, "subscale": "hyperactivity", "reverse": true, "text": {"de": "Ich denke nach, bevor ich handle.", "en": "I think before I do things"}},
+    {"number": 22, "subscale": "conduct", "reverse": false, "text": {"de": "Ich nehme Dinge, die mir nicht gehören, von zu Hause, aus der Schule oder anderswo.", "en": "I take things that are not mine from home, school or elsewhere"}},
+    {"number": 23, "subscale": "peer", "reverse": false, "text": {"de": "Ich komme besser mit Erwachsenen aus als mit Gleichaltrigen.", "en": "I get along better with adults than with people my own age"}},
+    {"number": 24, "subscale": "emotional", "reverse": false, "text": {"de": "Ich habe viele Ängste, ich erschrecke leicht.", "en": "I have many fears, I am easily scared"}},
+    {"number": 25, "subscale": "hyperactivity", "reverse": true, "text": {"de": "Ich bringe die Arbeit, die ich angefangen habe, zu Ende. Meine Aufmerksamkeit ist gut.", "en": "I finish the work I'm doing. My attention is good"}}
+  ],
+  "scoring": {
+    "method": "subscale_sum_with_reverse",
+    "scoring_rule": {
+      "de": "Für nicht-invers-kodierte Items: Not True=0, Somewhat=1, Certainly=2. Für invers-kodierte Items (7, 11, 14, 21, 25): Not True=2, Somewhat=1, Certainly=0. Subskalen-Score = Summe der 5 Items je Subskala (0-10). Gesamtproblem-Score = emotional + conduct + hyperactivity + peer (0-40); prosocial fließt NICHT ein.",
+      "en": "For non-reverse items: Not True=0, Somewhat=1, Certainly=2. For reverse-coded items (7, 11, 14, 21, 25): Not True=2, Somewhat=1, Certainly=0. Subscale score = sum of 5 items per subscale (0-10). Total Difficulties = emotional + conduct + hyperactivity + peer (0-40); prosocial NOT included."
+    },
+    "subscales": [
+      {"id": "emotional", "label": {"de": "Emotionale Probleme", "en": "Emotional Problems"}, "items": [3, 8, 13, 16, 24], "range": [0, 10]},
+      {"id": "conduct", "label": {"de": "Verhaltensprobleme", "en": "Conduct Problems"}, "items": [5, 7, 12, 18, 22], "range": [0, 10]},
+      {"id": "hyperactivity", "label": {"de": "Hyperaktivität/Unaufmerksamkeit", "en": "Hyperactivity/Inattention"}, "items": [2, 10, 15, 21, 25], "range": [0, 10]},
+      {"id": "peer", "label": {"de": "Probleme mit Gleichaltrigen", "en": "Peer Problems"}, "items": [6, 11, 14, 19, 23], "range": [0, 10]},
+      {"id": "prosocial", "label": {"de": "Prosoziales Verhalten", "en": "Prosocial Behaviour"}, "items": [1, 4, 9, 17, 20], "range": [0, 10]}
+    ],
+    "total_score": {"label": {"de": "Gesamtproblem-Score", "en": "Total Difficulties Score"}, "components": ["emotional", "conduct", "hyperactivity", "peer"], "range": [0, 40]},
+    "thresholds_total": [
+      {"min": 0, "max": 15, "severity": "none", "label": {"de": "Unauffällig (Selbstbericht)", "en": "Close to average"}, "color": "#4CAF50"},
+      {"min": 16, "max": 19, "severity": "borderline", "label": {"de": "Grenzwertig", "en": "Slightly raised"}, "color": "#FFC107"},
+      {"min": 20, "max": 40, "severity": "high", "label": {"de": "Auffällig (Selbstbericht)", "en": "High/very high"}, "color": "#F44336"}
+    ]
+  },
+  "references": [
+    "Goodman R. The Strengths and Difficulties Questionnaire: a research note. J Child Psychol Psychiatry. 1997;38(5):581-586.",
+    "Goodman R, Meltzer H, Bailey V. The Strengths and Difficulties Questionnaire: a pilot study on the validity of the self-report version. Eur Child Adolesc Psychiatry. 1998;7(3):125-130.",
+    "Lohbeck A, Schultheiß J, Petermann F, Petermann U. Die deutsche Selbstbeurteilungsversion des Strengths and Difficulties Questionnaire (SDQ-Deu-S). Diagnostica. 2015;61(4):222-235."
+  ],
+  "source_url": "https://www.sdqinfo.org/",
+  "source_local": "_sources/instruments/en/sdq_self_11-17_v2.pdf"
+}

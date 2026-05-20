@@ -36,6 +36,7 @@ _ul/
 paper/_pdfcheck/
 paper/_pdfcheck_post/
 paper/_pdfcheck_design*/
+paper/_designcheck*/
 
 # Claude Code internal
 .claude/
@@ -74,6 +75,8 @@ REVIEW.txt
 REVIEW_CHAIN*.md
 REVIEW_CYCLE*.md
 _results/REVIEW_CHAIN_*.md
+_results/LLM_MUSTER_CHECK_*.md
+_results/QUELLENCHECK_TESTCENTER_*.md
 _JMIR_Mental_Health/
 _sources/
 

@@ -35,10 +35,10 @@
 \titleformat{\subsubsection}{\normalsize\bfseries\sffamily\color{darkgray}}{\thesubsubsection}{1em}{}
 
 \hypersetup{
-    pdftitle={Ein integriertes multiaxiales Modell zur computergest\"utzten psychiatrischen Diagnostik},
+    pdftitle={Ein integriertes multiaxiales Modell zur computergestuetzten psychiatrischen Diagnostik},
     pdfauthor={Lukas Geiger},
-    pdfsubject={Methoden- und Design-Paper f\"ur ein 6-Achsen-Entscheidungsunterst\"utzungssystem},
-    pdfkeywords={Multiaxiale Diagnostik, DSM-5-TR, ICD-11, ICF, Entscheidungsunterst\"utzung, Abdeckungsanalyse},
+    pdfsubject={Methoden- und Design-Paper fuer ein 6-Achsen-Entscheidungsunterstuetzungssystem},
+    pdfkeywords={Multiaxiale Diagnostik, DSM-5-TR, ICD-11, ICF, Entscheidungsunterstuetzung, Abdeckungsanalyse},
     unicode=true,
     colorlinks=true,
     linkcolor=black,
@@ -89,14 +89,14 @@
 \section*{Erkl\"arung zur Nutzung KI-gest\"utzter Werkzeuge}
 \addcontentsline{toc}{section}{Erkl\"arung zur Nutzung KI-gest\"utzter Werkzeuge}
 
-Bei der Erstellung dieses Manuskripts wurden KI-gest\"utzte Werkzeuge unterst\"utzend eingesetzt:
+Bei der Erstellung dieses Manuskripts wurden KI-gest\"utzte Werkzeuge als nicht-autorschaftliche Hilfsmittel eingesetzt:
 
 \begin{description}[style=nextline, leftmargin=2cm]
-\item[\textbf{Claude Opus 4.6} (Anthropic)] Literaturrecherche, Textstrukturierung, \"Ubersetzungsunterst\"utzung, Formulierungshilfe und Unterst\"utzung bei der iterativen Verfeinerung des Systemdesigns. Die Verwendung war substanziell; alle inhaltlichen Entscheidungen wurden vom menschlichen Autor getroffen und verantwortet.
-\item[\textbf{Gemini} (Google DeepMind) \& \textbf{Copilot} (Microsoft)] Konsistenzpr\"ufung und erg\"anzende Literaturrecherche.
+\item[\textbf{Claude Opus 4.6} (Anthropic)] Unterst\"utzung bei Literaturorganisation, Textstrukturierung, \"Ubersetzung, Formulierung, Konsistenzpr\"ufung und iterativer Designpr\"ufung. Dies stellte keine unabh\"angige wissenschaftliche Validierung dar; alle inhaltlichen Entscheidungen wurden vom menschlichen Autor getroffen und verantwortet.
+\item[\textbf{Gemini} (Google DeepMind) \& \textbf{Copilot} (Microsoft)] Erg\"anzende Konsistenzpr\"ufungen und Unterst\"utzung bei der Literaturrecherche. Ausgaben wurden als Vorschl\"age behandelt, die menschliche Bewertung erfordern.
 \end{description}
 
-\noindent Die inhaltliche Konzeption, wissenschaftliche Argumentation und Verantwortung f\"ur den gesamten Inhalt liegen ausschlie\ss{}lich beim Autor. Gem\"a\ss{} ICMJE- und COPE-Richtlinien erf\"ullen KI-Systeme nicht die Kriterien f\"ur Autorenschaft.
+\noindent Die inhaltliche Konzeption, wissenschaftliche Argumentation und Verantwortung f\"ur den gesamten Inhalt liegen ausschlie\ss{}lich beim Autor. Gem\"a\ss{} ICMJE- und COPE-Richtlinien erf\"ullen KI-Systeme nicht die Kriterien f\"ur Autorenschaft. Sie sind weder Autoren noch Koautoren, keine Danksagungsempf\"anger, keine Wahrheits- oder Ground-Truth-Instanzen und keine unabh\"angigen Validierungsinstanzen; sie tragen keine Verantwortung f\"ur das Manuskript.
 
 \newpage
 
@@ -113,7 +113,7 @@ Diese Arbeit folgt einer Design-Science-Methodik f\"ur die Entwicklung eines kli
 
 \textbf{Phase~3: Prototypische Implementierung.} Eine Python-Referenzimplementierung (ca.\ 1.850~Zeilen) unter Verwendung hierarchischer Zustandsmaschinen (\texttt{transitions}-Bibliothek) und einer Streamlit-Oberfl\"ache wurde entwickelt, um die Machbarkeit zu demonstrieren. Der Quellcode ist im \href{https://github.com/research-line/multiaxial-diagnostic-system}{Projekt-Repository auf GitHub} \"offentlich verf\"ugbar.
 
-\textbf{Phase~4: KI-gest\"utzte Entwicklung und Review.} Manuskript und Systemdesign wurden mit substanzieller KI-Unterst\"utzung entwickelt (Claude Opus 4.6 als Co-Writer; Gemini und Copilot als Reviewer). Alle KI-Beitr\"age sind im Abschnitt zur KI-Nutzung dokumentiert. Die wissenschaftliche Verantwortung f\"ur alle Inhalte liegt beim menschlichen Autor.
+\textbf{Phase~4: KI-gest\"utzte Entwicklung und Review.} Manuskript und Systemdesign wurden vom Autor mit substanzieller KI-gest\"utzter Werkzeugunterst\"utzung entwickelt (Claude Opus 4.6 f\"ur Strukturierungs- und Formulierungshilfe; Gemini und Copilot f\"ur Konsistenzpr\"ufungen und Unterst\"utzung bei der Literaturrecherche). Die KI-Nutzung ist im Abschnitt zur Nutzung KI-gest\"utzter Werkzeuge dokumentiert. Die wissenschaftliche Verantwortung f\"ur alle Inhalte liegt beim menschlichen Autor.
 
 \textbf{Umfang und Limitationen der vorliegenden Arbeit.} Dies ist ein Methoden- und Design-Paper. Es pr\"asentiert Architektur, Begr\"undung und prototypische Implementierung des 6-Achsen-Modells. Die empirische Validierung (Interrater-Reliabilit\"at, klinischer Nutzen, konvergente Validit\"at) ist in vier Phasen geplant (Abschnitt~\ref{sec:validierung}), aber noch nicht durchgef\"uhrt. Die Abdeckungsanalyse-Schwellenwerte (85\%/60\%) sind als initiale Werte auf Basis klinischer Erw\"agungen vorgeschlagen und bed\"urfen empirischer Kalibrierung in zuk\"unftigen Studien. Gem\"a\ss{} der Design-Science-Methodik \citep{Hevner2004, Peffers2007} steht die formale Evaluationsphase des Artefakts noch aus; die in Abschnitt~\ref{sec:validierung} beschriebene Validierungsstrategie beschreibt den geplanten Evaluationsrahmen.
 
@@ -640,8 +640,51 @@ Die Level-2-Ma\ss{}e verweisen auf spezifische validierte Instrumente: PROMIS De
 Die DSM-5 Field Trials \citep{Narrow2013} zeigten \textbf{gute bis exzellente Test-Retest-Reliabilit\"at} (ICC~0,64--0,97) f\"ur die meisten Items.
 
 \subsection{Kinder- und Jugendversion}
+\label{sec:screening_kj}
 
-Das DSM-5 Cross-Cutting-System umfasst eine separate \textbf{Elternberichtsversion f\"ur Kinder und Jugendliche} (6--17~Jahre) mit \textbf{25~Items \"uber 12~Dom\"anen}. Die Dom\"ane \glqq Pers\"onlichkeitsfunktion\grqq{} entf\"allt entwicklungsbedingt; stattdessen werden Reizbarkeit und \"Arger st\"arker gewichtet. F\"ur eine vollst\"andige Implementierung sollte das System die p\"adiatrische Variante als separaten Einstiegspfad anbieten und altersangepasste Level-2-Instrumente referenzieren (z.\,B.\ CBCL, SDQ, SCARED).
+Das DSM-5 Cross-Cutting-System umfasst eine separate \textbf{Elternberichtsversion f\"ur Kinder und Jugendliche} (6--17~Jahre) mit \textbf{25~Items \"uber 12~Dom\"anen}. Die Dom\"ane \glqq Pers\"onlichkeitsfunktion\grqq{} entf\"allt entwicklungsbedingt; stattdessen werden Reizbarkeit und \"Arger st\"arker gewichtet. Eine vollst\"andige Implementierung erfordert die p\"adiatrische Variante als separaten Einstiegspfad sowie altersangepasste Level-2-Instrumente.
+
+Das vorliegende System bevorzugt \textbf{ausschlie\ss{}lich frei verf\"ugbare Instrumente}; der proprietaere CBCL/YSR-Komplex \citep{Achenbach2001} wird zwar als Referenzstandard anerkannt, aber durch lizenzfreie Alternativen ersetzt. Tabelle~\ref{tab:instrumente_kj} listet die empfohlene Auswahl freier K/J-Instrumente parallel zur Erwachsenenmatrix (Tabelle~\ref{tab:instrumente}).
+
+\footnotesize
+\begin{longtable}{@{}L{2.4cm}L{2.4cm}L{0.9cm}L{1.5cm}L{2.0cm}L{1.5cm}@{}}
+\caption{Freie Screening-Instrumente f\"ur Kinder und Jugendliche (K/J-Matrix)} \label{tab:instrumente_kj} \\
+\toprule
+\textbf{Dom\"ane} & \textbf{Instrument} & \textbf{Items} & \textbf{Alter} & \textbf{Cutoff / Norm} & \textbf{Kosten} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Dom\"ane} & \textbf{Instrument} & \textbf{Items} & \textbf{Alter} & \textbf{Cutoff / Norm} & \textbf{Kosten} \\
+\midrule
+\endhead
+Cross-Cutting (Eltern) & DSM-5 XC L1 Parent & 25 & 6--17 & $\geq 1$/$\geq 2$ Triage & Frei \\
+\addlinespace
+Allg. psychosoz. Screen & SDQ (Self/Parent) & 25 & 4--17 & $\geq 20$ (Total) & Frei \\
+\addlinespace
+Depression & PHQ-9 mod. (PHQ-A) & 9 & 11--17 & $\geq 11$ & Frei \\
+\addlinespace
+Angst + Depression & RCADS-25 & 25 & 8--18 & $T \geq 65$ & Frei \\
+\addlinespace
+Angst (multidim.) & SCARED-C & 41 & 8--18 & $\geq 25$ & Frei \\
+\addlinespace
+PTBS & CPSS-V / CRIES-8 & 20 / 8 & 7--18 & $\geq 31$ / $\geq 17$ & Frei \\
+\addlinespace
+Substanzgebrauch & CRAFFT 2.1+N & 6+3 & 12--21 & $\geq 2$ & Frei \\
+\addlinespace
+ADHS & SNAP-IV-26 & 26 & 6--18 & Subskalen-Mittelwert & Frei \\
+\addlinespace
+Autismus & AQ-10 Adolescent/Child & 10 & 4--15 & $\geq 6$ & Frei \\
+\addlinespace
+Zwang & CY-BOCS-SR & 10 & 8--18 & $\geq 16$ & Frei \\
+\addlinespace
+Suizidalit\"at & C-SSRS Pediatric & 6 & $\geq 5$ & Jede Best\"at. & Frei \\
+\addlinespace
+Essst\"orungen & SCOFF (ab $\sim$13~J.) & 5 & 13--18 & $\geq 2$ & Frei \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+Diese Auswahl bewahrt die diagnostische Logik der Erwachsenenmatrix (Dom\"anen-orientiert, Cutoff-basiert), substituiert aber jedes Instrument durch eine entwicklungspsychologisch validierte und lizenzfreie K/J-Variante. F\"ur sicherheitskritische Dom\"anen (Suizidalit\"at, Substanzgebrauch, Psychose) gilt analog die niedrigere Triage-Schwelle. Die Trennung in \textbf{Selbstbericht} (ab $\sim$8--11~J.) und \textbf{Elternbericht} (6--17~J., bei jungen Kindern obligatorisch) folgt der etablierten Konvention der p\"adiatrischen Psychometrie.
 
 \subsection{Umfassende Screening-Instrument-Matrix}
 
@@ -694,7 +737,7 @@ Essst\"orungen (detail.) & EDE-QS & 12 & $\geq 15$ & Gut/Gut & Frei \\
 \addlinespace
 Schlafst\"orungen & ISI & 7 & $\geq 15$ & 82\%/82\% & Frei \\
 \addlinespace
-Impulskontrolle & SSIS & 5 & $\geq 3$ & Screening & Frei \\
+Funktionsf\"ahigkeit & WHODAS 2.0 (12) & 12 & Dimensional & N/A & Frei \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -1178,7 +1221,7 @@ Das vorgestellte 6-Achsen-Modell unterliegt mehreren Limitationen, die bei der I
 
 \textbf{Eingeschr\"ankte Literaturbasis:} Als Designarbeit st\"utzt sich diese Arbeit prim\"ar auf diagnostische Klassifikationshandb\"ucher und eine kleine Anzahl grundlegender Publikationen. Ein systematisches Review aller existierenden computergest\"utzten Diagnosesysteme (z.\,B.\ OPCRIT, DTREE, CATEGO) und deren empirische Erfolgsbilanz w\"urde die Begr\"undung f\"ur die hier getroffenen spezifischen Designentscheidungen st\"arken.
 
-\textbf{KI-intensive Entwicklung:} Die substanzielle KI-Beteiligung sowohl am Systemdesign als auch an der Manuskripterstellung (d.\,h.\ KI-Werkzeuge wurden f\"ur Literaturrecherche, Textstrukturierung und \"Ubersetzungsunterst\"utzung eingesetzt; vgl.\ Methoden, Phase~4) wirft Fragen zur Reproduzierbarkeit und unabh\"angigen Verifizierbarkeit der Designentscheidungen auf. W\"ahrend der Quellcode \"offentlich verf\"ugbar ist, ist der iterative Designprozess --- einschlie\ss{}lich der Expertenfeedback-Zyklen --- nicht vollst\"andig so dokumentiert, dass eine unabh\"angige Replikation m\"oglich w\"are.
+\textbf{Dokumentation des KI-gest\"utzten Prozesses:} Der substanzielle Einsatz KI-gest\"utzter Werkzeuge sowohl am Systemdesign als auch an der Manuskripterstellung (d.\,h.\ Literaturorganisation, Textstrukturierung, \"Ubersetzungsunterst\"utzung, Konsistenzpr\"ufung und Formulierungshilfe; vgl.\ Methoden, Phase~4) wirft Fragen zur Prozesstransparenz auf. W\"ahrend der Quellcode \"offentlich verf\"ugbar ist, ist die iterative Prompt-, Review- und Revisionsgeschichte --- einschlie\ss{}lich der Expertenfeedback-Zyklen --- nicht vollst\"andig so dokumentiert, dass eine vollst\"andige Prozessrekonstruktion m\"oglich w\"are.
 
 \textbf{Kulturelle Generalisierbarkeit und jurisdiktionsspezifische Module:} Das Modell integriert das Cultural Formulation Interview (CFI), wurde aber prim\"ar aus westlich-europ\"aischer Perspektive entwickelt. Jurisdiktionsspezifische Subachsen wie der GdB (Achse~IVb) sind als austauschbare Module konzipiert: F\"ur internationale Implementierungen sollte der GdB durch das jeweilige nationale Behinderungsbewertungssystem ersetzt werden (z.\,B.\ Disability Adjusted Life Years in WHO-Kontexten, Social Security Disability Determination in den USA). Die Anwendbarkeit in nicht-westlichen klinischen Kontexten bedarf gesonderter Pr\"ufung. Insbesondere die Pers\"onlichkeitsdiagnostik mittels PID-5 und die biographischen Komponenten (Achse~II) k\"onnen kulturell unterschiedlich interpretiert werden.
 
@@ -1553,6 +1596,11 @@ Wing, J.\,K., Cooper, J.\,E. \& Sartorius, N. (1974).
 Zimmermann, J., Kerber, A., Rek, K. et al. (2021).
 \newblock Psychometric properties of the independent 36-item PID5BF+M for ICD-11 in the Czech-speaking community sample.
 \newblock \textit{Frontiers in Psychiatry}, 12, 643270.
+
+\bibitem[Achenbach \& Rescorla(2001)]{Achenbach2001}
+Achenbach, T. M. \& Rescorla, L. A. (2001).
+\newblock \textit{Manual for the ASEBA School-Age Forms \& Profiles}.
+\newblock Burlington, VT: University of Vermont, Research Center for Children, Youth, \& Families.
 
 \end{thebibliography}
 

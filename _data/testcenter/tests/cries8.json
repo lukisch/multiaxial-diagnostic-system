@@ -1,0 +1,74 @@
+{
+  "id": "cries8",
+  "name": {"de": "Kinder-Impact of Events Scale (8-Item)", "en": "Children's Revised Impact of Event Scale (8-Item)"},
+  "abbreviation": "CRIES-8",
+  "version": "1.0",
+  "authors": "Children and War Foundation (Yule, Dyregrov, Smith, Perrin et al.)",
+  "year": 1998,
+  "license": "© Children and War Foundation, 1998. Provided free of cost; freely available to clinicians and researchers (childrenandwar.org)",
+  "domain": {"de": "PTBS – Screening (Kinder/Jugendliche)", "en": "PTSD – Screening (Children/Adolescents)"},
+  "axis": "I",
+  "hitop_spectrum": "Internalizing",
+  "age_group": "child_adolescent",
+  "age_min": 8,
+  "age_max": 18,
+  "_translation_note": {
+    "de": "Englische Items: verbatim aus dem offiziellen CRIES-8 (Children and War Foundation 1998). Deutsche Items: informelle Arbeitsübersetzung. Offizielle Übersetzungen in mehrere Sprachen (Chinesisch, Finnisch, Norwegisch, Niederländisch, Türkisch, Griechisch, Bosnisch, Arabisch, Farsi, Hindi, Tamil) sind über childrenandwar.org verfügbar — bei Bedarf dort anfragen, ob deutsche Version vorliegt.",
+    "en": "English items: verbatim from official CRIES-8 (Children and War Foundation 1998). German items: informal working translation. Official translations in multiple languages available via childrenandwar.org."
+  },
+  "description": {
+    "de": "8-Item kinderfreundliches Screening-Instrument für Posttraumatische Belastungsstörung (PTBS) bei Kindern/Jugendlichen ≥8 J. Kürzversion der Impact of Events Scale (IES, Horowitz 1979). 4 Items Intrusion (Wiedererleben), 4 Items Vermeidung. Cutoff ≥17 für klinische Verdachtsdiagnose. Empfohlen von der Foundation als primäres Screening-Tool gegenüber dem CRIES-13 (das 5 zusätzliche Arousal-Items hat, aber laut Perrin 2005 nicht besser performt).",
+    "en": "8-item child-friendly screening instrument for PTSD in children/adolescents ≥8 y. Short version of the Impact of Events Scale (IES, Horowitz 1979). 4 Intrusion + 4 Avoidance items. Cutoff ≥17 for clinical suspicion. Recommended by the Foundation as primary screening tool over CRIES-13 (which adds 5 arousal items but per Perrin 2005 does not outperform CRIES-8)."
+  },
+  "instructions": {
+    "de": "Unten findest du eine Liste von Aussagen, die Menschen nach belastenden Lebensereignissen oft machen. Bitte kreuze für jeden Punkt an, wie häufig diese Aussagen für dich in den letzten sieben Tagen zutrafen. Wenn sie in dieser Zeit nicht aufgetreten sind, kreuze das Kästchen 'Überhaupt nicht' an.",
+    "en": "Below is a list of comments made by people after stressful life events. Please tick each item showing how frequently these comments were true for you during the past seven days. If they did not occur during that time please tick the 'not at all' box."
+  },
+  "timeframe": {"de": "Letzte 7 Tage", "en": "Past 7 days"},
+  "response_options": [
+    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
+    {"value": 1, "label": {"de": "Selten", "en": "Rarely"}},
+    {"value": 3, "label": {"de": "Manchmal", "en": "Sometimes"}},
+    {"value": 5, "label": {"de": "Oft", "en": "Often"}}
+  ],
+  "items": [
+    {"number": 1, "subscale": "intrusion", "text": {"de": "Denkst du daran, auch wenn du es gar nicht willst?", "en": "Do you think about it even when you don't mean to?"}},
+    {"number": 2, "subscale": "avoidance", "text": {"de": "Versuchst du, es aus deiner Erinnerung zu verbannen?", "en": "Do you try to remove it from your memory?"}},
+    {"number": 3, "subscale": "intrusion", "text": {"de": "Hast du Wellen starker Gefühle dazu?", "en": "Do you have waves of strong feelings about it?"}},
+    {"number": 4, "subscale": "avoidance", "text": {"de": "Hältst du dich von Dingen fern, die dich daran erinnern (z.B. bestimmte Orte oder Situationen)?", "en": "Do you stay away from reminders of it (e.g. places or situations)?"}},
+    {"number": 5, "subscale": "avoidance", "text": {"de": "Versuchst du, nicht darüber zu sprechen?", "en": "Do you try not to talk about it?"}},
+    {"number": 6, "subscale": "intrusion", "text": {"de": "Tauchen Bilder davon plötzlich vor deinen Augen auf?", "en": "Do pictures about it pop into your mind?"}},
+    {"number": 7, "subscale": "intrusion", "text": {"de": "Bringen dich andere Dinge immer wieder dazu, daran zu denken?", "en": "Do other things keep making you think about it?"}},
+    {"number": 8, "subscale": "avoidance", "text": {"de": "Versuchst du, nicht daran zu denken?", "en": "Do you try not to think about it?"}}
+  ],
+  "scoring": {
+    "method": "subscale_sum",
+    "scoring_rule": {
+      "de": "Antwortwerte: Überhaupt nicht=0, Selten=1, Manchmal=3, Oft=5. Intrusion = Summe der Items 1+3+6+7. Vermeidung = Summe der Items 2+4+5+8. Gesamtscore = Intrusion + Vermeidung.",
+      "en": "Response values: Not at all=0, Rarely=1, Sometimes=3, Often=5. Intrusion = sum of items 1+3+6+7. Avoidance = sum of items 2+4+5+8. Total = Intrusion + Avoidance."
+    },
+    "subscales": [
+      {"id": "intrusion", "label": {"de": "Intrusion (Wiedererleben)", "en": "Intrusion"}, "items": [1, 3, 6, 7], "range": [0, 20]},
+      {"id": "avoidance", "label": {"de": "Vermeidung", "en": "Avoidance"}, "items": [2, 4, 5, 8], "range": [0, 20]}
+    ],
+    "total_score": {"label": {"de": "Gesamtscore", "en": "Total"}, "range": [0, 40]},
+    "thresholds_total": [
+      {"min": 0, "max": 16, "severity": "none", "label": {"de": "Unauffällig", "en": "Below threshold"}, "color": "#4CAF50"},
+      {"min": 17, "max": 40, "severity": "high", "label": {"de": "Verdacht auf PTBS — klinische Abklärung indiziert", "en": "Possible PTSD — clinical follow-up indicated"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 17,
+    "sensitivity": "75-83% korrekte Klassifikation",
+    "specificity": "75-83% korrekte Klassifikation",
+    "scoring_note": {
+      "de": "Eine klinische Diagnose kann nicht allein aus Selbstauskünften gestellt werden. Eine korrekte Diagnose erfordert detailliertere Informationen aus einem strukturierten Interview, das nicht nur Vorhandensein und Schweregrad der Stress-Symptome erfasst, sondern auch die Auswirkungen auf die soziale Gesamtfunktion des Kindes (Children and War Foundation).",
+      "en": "A clinical diagnosis cannot be made from self-completed scales alone. A proper clinical diagnosis relies on much more detailed information obtained from a structured interview assessing presence, severity, and impact on social functioning (Children and War Foundation)."
+    }
+  },
+  "references": [
+    "Perrin S, Meiser-Stedman R, Smith P. The Children's Revised Impact of Event Scale (CRIES): Validity as a Screening Instrument for PTSD. Behav Cogn Psychother. 2005;33(4):487-498.",
+    "Yule W. Anxiety, Depression and Post-Traumatic Stress in Childhood. In: Sclare I, ed. Child Psychology Portfolio. Windsor: NFER-Nelson; 1997.",
+    "Horowitz MJ, Wilner N, Alvarez W. Impact of Event Scale: A measure of subjective stress. Psychosom Med. 1979;41:209-218."
+  ],
+  "source_url": "https://www.childrenandwar.org",
+  "source_local": "_sources/instruments/en/cries13_corc.pdf"
+}

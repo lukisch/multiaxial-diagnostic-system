@@ -3,7 +3,7 @@
   "name": {"de": "Prodromalquestionär", "en": "Prodromal Questionnaire"},
   "abbreviation": "PQ-16",
   "version": "1.0",
-  "authors": "Ising, Velthorst, Nieman, Becker, Birchwood, Linszen, de Haan",
+  "authors": "Ising, Veling, Loewy, Rietveld, Rietdijk, Dragt, Klaassen, Nieman, Wunderink, Linszen, van der Gaag",
   "year": 2012,
   "license": "Free for clinical use",
   "domain": {"de": "Psychose-Risiko", "en": "Psychosis Risk"},
@@ -184,8 +184,9 @@
     "specificity": "87%"
   },
   "references": [
-    "Ising HK, Veling W, Loewy RL, et al. The validity of the 16-item version of the Prodromal Questionnaire (PQ-16) to screen for ultra high risk of developing psychosis in the general help-seeking population. Schizophr Bull. 2012;38(6):1288-1296.",
-    "Loewy RL, Bearden CE, Johnson JK, Raine A, Cannon TD. The prodromal questionnaire (PQ): preliminary validation of a self-report screening measure for prodromal and psychotic syndromes. Schizophr Res. 2005;79(1):117-125."
+    "Ising HK, Veling W, Loewy RL, et al. The validity of the 16-item version of the Prodromal Questionnaire (PQ-16) to screen for ultra high risk of developing psychosis in the general help-seeking population. Schizophr Bull. 2012;38(6):1288-1296. DOI: 10.1093/schbul/sbs068.",
+    "Loewy RL, Bearden CE, Johnson JK, Raine A, Cannon TD. The prodromal questionnaire (PQ): preliminary validation of a self-report screening measure for prodromal and psychotic syndromes. Schizophr Res. 2005;77(2-3):141-149. DOI: 10.1016/j.schres.2005.03.007."
   ],
-  "source_url": "https://www.schizophrenia.com/sztest.htm"
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3713086/",
+  "source_measure_url": "https://loewylab.ucsf.edu/prodromal-questionnaire-pq"
 }

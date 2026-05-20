@@ -1,12 +1,18 @@
 {
   "id": "phq9",
-  "name": {"de": "Gesundheitsfragebogen für Patienten", "en": "Patient Health Questionnaire"},
+  "name": {
+    "de": "Gesundheitsfragebogen für Patienten",
+    "en": "Patient Health Questionnaire"
+  },
   "abbreviation": "PHQ-9",
   "version": "1.0",
   "authors": "Kroenke, Spitzer, Williams",
-  "year": 1999,
+  "year": 2001,
   "license": "Public Domain",
-  "domain": {"de": "Depression", "en": "Depression"},
+  "domain": {
+    "de": "Depression",
+    "en": "Depression"
+  },
   "axis": "I",
   "hitop_spectrum": "Internalizing",
   "description": {
@@ -17,12 +23,39 @@
     "de": "Wie oft haben Sie in den letzten 2 Wochen unter den folgenden Beschwerden gelitten?",
     "en": "Over the last 2 weeks, how often have you been bothered by any of the following problems?"
   },
-  "timeframe": {"de": "Letzte 2 Wochen", "en": "Last 2 weeks"},
+  "timeframe": {
+    "de": "Letzte 2 Wochen",
+    "en": "Last 2 weeks"
+  },
   "response_options": [
-    {"value": 0, "label": {"de": "Überhaupt nicht", "en": "Not at all"}},
-    {"value": 1, "label": {"de": "An einzelnen Tagen", "en": "Several days"}},
-    {"value": 2, "label": {"de": "An mehr als der Hälfte der Tage", "en": "More than half the days"}},
-    {"value": 3, "label": {"de": "Beinahe jeden Tag", "en": "Nearly every day"}}
+    {
+      "value": 0,
+      "label": {
+        "de": "Überhaupt nicht",
+        "en": "Not at all"
+      }
+    },
+    {
+      "value": 1,
+      "label": {
+        "de": "An einzelnen Tagen",
+        "en": "Several days"
+      }
+    },
+    {
+      "value": 2,
+      "label": {
+        "de": "An mehr als der Hälfte der Tage",
+        "en": "More than half the days"
+      }
+    },
+    {
+      "value": 3,
+      "label": {
+        "de": "Beinahe jeden Tag",
+        "en": "Nearly every day"
+      }
+    }
   ],
   "items": [
     {
@@ -95,39 +128,141 @@
       "en": "If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
     },
     "options": [
-      {"value": 0, "label": {"de": "Überhaupt nicht erschwert", "en": "Not difficult at all"}},
-      {"value": 1, "label": {"de": "Etwas erschwert", "en": "Somewhat difficult"}},
-      {"value": 2, "label": {"de": "Relativ stark erschwert", "en": "Very difficult"}},
-      {"value": 3, "label": {"de": "Sehr stark erschwert", "en": "Extremely difficult"}}
+      {
+        "value": 0,
+        "label": {
+          "de": "Überhaupt nicht erschwert",
+          "en": "Not difficult at all"
+        }
+      },
+      {
+        "value": 1,
+        "label": {
+          "de": "Etwas erschwert",
+          "en": "Somewhat difficult"
+        }
+      },
+      {
+        "value": 2,
+        "label": {
+          "de": "Relativ stark erschwert",
+          "en": "Very difficult"
+        }
+      },
+      {
+        "value": 3,
+        "label": {
+          "de": "Sehr stark erschwert",
+          "en": "Extremely difficult"
+        }
+      }
     ]
   },
   "scoring": {
     "method": "sum",
-    "range": [0, 27],
+    "range": [
+      0,
+      27
+    ],
     "thresholds": [
-      {"min": 0, "max": 4, "severity": "none", "label": {"de": "Minimal/keine Depression", "en": "Minimal depression"}, "color": "#4CAF50"},
-      {"min": 5, "max": 9, "severity": "mild", "label": {"de": "Leichte Depression", "en": "Mild depression"}, "color": "#FFC107"},
-      {"min": 10, "max": 14, "severity": "moderate", "label": {"de": "Mittelgradige Depression", "en": "Moderate depression"}, "color": "#FF9800"},
-      {"min": 15, "max": 19, "severity": "moderately_severe", "label": {"de": "Mittelschwere bis schwere Depression", "en": "Moderately severe depression"}, "color": "#FF5722"},
-      {"min": 20, "max": 27, "severity": "severe", "label": {"de": "Schwere Depression", "en": "Severe depression"}, "color": "#F44336"}
+      {
+        "min": 0,
+        "max": 4,
+        "severity": "none",
+        "label": {
+          "de": "Minimal/keine Depression",
+          "en": "Minimal depression"
+        },
+        "color": "#4CAF50"
+      },
+      {
+        "min": 5,
+        "max": 9,
+        "severity": "mild",
+        "label": {
+          "de": "Leichte Depression",
+          "en": "Mild depression"
+        },
+        "color": "#FFC107"
+      },
+      {
+        "min": 10,
+        "max": 14,
+        "severity": "moderate",
+        "label": {
+          "de": "Mittelgradige Depression",
+          "en": "Moderate depression"
+        },
+        "color": "#FF9800"
+      },
+      {
+        "min": 15,
+        "max": 19,
+        "severity": "moderately_severe",
+        "label": {
+          "de": "Mittelschwere bis schwere Depression",
+          "en": "Moderately severe depression"
+        },
+        "color": "#FF5722"
+      },
+      {
+        "min": 20,
+        "max": 27,
+        "severity": "severe",
+        "label": {
+          "de": "Schwere Depression",
+          "en": "Severe depression"
+        },
+        "color": "#F44336"
+      }
     ],
     "clinical_cutoff": 10,
     "sensitivity": "88%",
     "specificity": "88%",
     "action_guide": {
       "de": [
-        {"range": "0-4", "action": "Keine Behandlung erforderlich"},
-        {"range": "5-9", "action": "Beobachten, Wiederholung bei nächstem Besuch"},
-        {"range": "10-14", "action": "Behandlungsplan erwägen (Beratung, Psychotherapie)"},
-        {"range": "15-19", "action": "Aktive Behandlung mit Psychotherapie und/oder Pharmakotherapie"},
-        {"range": "20-27", "action": "Sofortige Behandlung; bei unzureichendem Ansprechen Überweisung an Spezialisten"}
+        {
+          "range": "0-4",
+          "action": "Keine Behandlung erforderlich"
+        },
+        {
+          "range": "5-9",
+          "action": "Beobachten, Wiederholung bei nächstem Besuch"
+        },
+        {
+          "range": "10-14",
+          "action": "Behandlungsplan erwägen (Beratung, Psychotherapie)"
+        },
+        {
+          "range": "15-19",
+          "action": "Aktive Behandlung mit Psychotherapie und/oder Pharmakotherapie"
+        },
+        {
+          "range": "20-27",
+          "action": "Sofortige Behandlung; bei unzureichendem Ansprechen Überweisung an Spezialisten"
+        }
       ],
       "en": [
-        {"range": "0-4", "action": "No treatment required"},
-        {"range": "5-9", "action": "Watchful waiting; repeat at follow-up"},
-        {"range": "10-14", "action": "Consider treatment plan (counseling, psychotherapy)"},
-        {"range": "15-19", "action": "Active treatment with psychotherapy and/or pharmacotherapy"},
-        {"range": "20-27", "action": "Immediate treatment; if inadequate response, refer to specialist"}
+        {
+          "range": "0-4",
+          "action": "No treatment required"
+        },
+        {
+          "range": "5-9",
+          "action": "Watchful waiting; repeat at follow-up"
+        },
+        {
+          "range": "10-14",
+          "action": "Consider treatment plan (counseling, psychotherapy)"
+        },
+        {
+          "range": "15-19",
+          "action": "Active treatment with psychotherapy and/or pharmacotherapy"
+        },
+        {
+          "range": "20-27",
+          "action": "Immediate treatment; if inadequate response, refer to specialist"
+        }
       ]
     },
     "critical_item": {

@@ -1,0 +1,90 @@
+{
+  "id": "mdq",
+  "name": {"de": "Fragebogen zu affektiven Störungen", "en": "Mood Disorder Questionnaire"},
+  "abbreviation": "MDQ",
+  "version": "1.0",
+  "authors": "Hirschfeld, Williams, Spitzer, Calabrese, Flynn, Keck",
+  "year": 2000,
+  "license": "Free for research or educational purposes only; not for commercial purposes (Hirschfeld et al. 2000).",
+  "domain": {"de": "Bipolare Störung – Screening", "en": "Bipolar Disorder Screening"},
+  "axis": "I",
+  "hitop_spectrum": "Thought Disorder",
+  "age_group": "adult",
+  "age_min": 18,
+  "_translation_note": {
+    "de": "Englische Items: verbatim aus Hirschfeld et al. 2000. Deutsche Items: informelle Arbeitsübersetzung — vor klinischem Einsatz mit deutscher Validierung abgleichen (z.B. Hautzinger MDQ-DE).",
+    "en": "English items: verbatim from Hirschfeld et al. 2000. German items: informal working translation."
+  },
+  "description": {
+    "de": "15-Item Selbstbeurteilungs-Screening für Bipolar-Spektrum-Störungen. Erfasst lebenslange Geschichte manischer/hypomanischer Symptome (Frage 1a-1m, 13 Items) plus Symptom-Clusterung (Frage 2) und funktionelle Beeinträchtigung (Frage 3). Positiver Screen erfordert alle drei Kriterien.",
+    "en": "15-item self-report screening for bipolar spectrum disorders. Assesses lifetime history of manic/hypomanic symptoms (Question 1a-1m, 13 items) plus symptom clustering (Question 2) and functional impairment (Question 3). Positive screen requires all three criteria."
+  },
+  "instructions": {
+    "de": "Die folgenden Fragen beziehen sich auf Ihre persönliche Erfahrung. Wir möchten herausfinden, ob es jemals einen Zeitraum gab, in dem Sie nicht Sie selbst waren.",
+    "en": "The following questions are about your personal experience. We want to know if there was ever a period of time when you were not your usual self."
+  },
+  "timeframe": {"de": "Lebenszeit", "en": "Lifetime"},
+  "response_options": [
+    {"value": 1, "label": {"de": "Ja", "en": "Yes"}},
+    {"value": 0, "label": {"de": "Nein", "en": "No"}}
+  ],
+  "sections": [
+    {
+      "id": "q1",
+      "title": {"de": "Frage 1: Gab es jemals einen Zeitraum, in dem Sie nicht Sie selbst waren und…", "en": "Question 1: Has there ever been a period of time when you were not your usual self and…"}
+    },
+    {
+      "id": "q2",
+      "title": {"de": "Frage 2: Symptom-Clusterung", "en": "Question 2: Symptom Clustering"}
+    },
+    {
+      "id": "q3",
+      "title": {"de": "Frage 3: Funktionelle Beeinträchtigung", "en": "Question 3: Functional Impairment"}
+    }
+  ],
+  "items": [
+    {"number": 1, "section": "q1", "letter": "a", "text": {"de": "…Sie sich so gut oder so überdreht fühlten, dass andere dachten, Sie seien nicht Sie selbst, oder so überdreht, dass Sie in Schwierigkeiten gerieten?", "en": "…you felt so good or so hyper that other people thought you were not your normal self or you were so hyper that you got into trouble?"}},
+    {"number": 2, "section": "q1", "letter": "b", "text": {"de": "…Sie so reizbar waren, dass Sie Menschen anschrien oder Streit oder Auseinandersetzungen begannen?", "en": "…you were so irritable that you shouted at people or started fights or arguments?"}},
+    {"number": 3, "section": "q1", "letter": "c", "text": {"de": "…Sie sich wesentlich selbstsicherer als sonst fühlten?", "en": "…you felt much more self-confident than usual?"}},
+    {"number": 4, "section": "q1", "letter": "d", "text": {"de": "…Sie wesentlich weniger Schlaf als sonst bekamen und feststellten, dass Sie ihn nicht wirklich vermissten?", "en": "…you got much less sleep than usual and found you didn't really miss it?"}},
+    {"number": 5, "section": "q1", "letter": "e", "text": {"de": "…Sie wesentlich gesprächiger waren oder schneller sprachen als sonst?", "en": "…you were much more talkative or spoke faster than usual?"}},
+    {"number": 6, "section": "q1", "letter": "f", "text": {"de": "…Gedanken durch Ihren Kopf rasten oder Sie Ihre Gedanken nicht verlangsamen konnten?", "en": "…thoughts raced through your head or you couldn't slow your mind down?"}},
+    {"number": 7, "section": "q1", "letter": "g", "text": {"de": "…Sie so leicht von Dingen in Ihrer Umgebung abgelenkt waren, dass Sie Schwierigkeiten hatten, sich zu konzentrieren oder bei der Sache zu bleiben?", "en": "…you were so easily distracted by things around you that you had trouble concentrating or staying on track?"}},
+    {"number": 8, "section": "q1", "letter": "h", "text": {"de": "…Sie wesentlich mehr Energie als sonst hatten?", "en": "…you had much more energy than usual?"}},
+    {"number": 9, "section": "q1", "letter": "i", "text": {"de": "…Sie wesentlich aktiver waren oder wesentlich mehr Dinge taten als sonst?", "en": "…you were much more active or did many more things than usual?"}},
+    {"number": 10, "section": "q1", "letter": "j", "text": {"de": "…Sie wesentlich geselliger oder offener waren als sonst, z.B. Freunde mitten in der Nacht anriefen?", "en": "…you were much more social or outgoing than usual, for example, you telephoned friends in the middle of the night?"}},
+    {"number": 11, "section": "q1", "letter": "k", "text": {"de": "…Sie wesentlich mehr an Sex interessiert waren als sonst?", "en": "…you were much more interested in sex than usual?"}},
+    {"number": 12, "section": "q1", "letter": "l", "text": {"de": "…Sie Dinge taten, die für Sie ungewöhnlich waren oder die andere als übertrieben, töricht oder riskant empfunden haben könnten?", "en": "…you did things that were unusual for you or that other people might have thought were excessive, foolish, or risky?"}},
+    {"number": 13, "section": "q1", "letter": "m", "text": {"de": "…Geldausgeben Sie oder Ihre Familie in Schwierigkeiten gebracht hat?", "en": "…spending money got you or your family into trouble?"}},
+    {"number": 14, "section": "q2", "text": {"de": "Wenn Sie mehr als eine der obigen Fragen mit JA beantwortet haben: Sind mehrere dieser Symptome jemals im selben Zeitraum aufgetreten?", "en": "If you checked YES to more than one of the above, have several of these ever happened during the same period of time?"}}
+  ],
+  "impairment_item": {
+    "number": 15,
+    "section": "q3",
+    "text": {"de": "Wie sehr haben diese Symptome Ihnen Probleme bereitet — z.B. nicht arbeiten zu können; familiäre, finanzielle oder rechtliche Probleme; in Streit oder Konflikte zu geraten?", "en": "How much of a problem did any of these cause you — like being unable to work; having family, money, or legal troubles; getting into arguments or fights?"},
+    "response_options": [
+      {"value": 0, "label": {"de": "Kein Problem", "en": "No problem"}},
+      {"value": 1, "label": {"de": "Geringes Problem", "en": "Minor problem"}},
+      {"value": 2, "label": {"de": "Mäßiges Problem", "en": "Moderate problem"}},
+      {"value": 3, "label": {"de": "Schwerwiegendes Problem", "en": "Serious problem"}}
+    ]
+  },
+  "scoring": {
+    "method": "algorithm",
+    "scoring_rule": {
+      "de": "Positiver Screen wenn ALLE drei Kriterien erfüllt: (1) ≥7 JA in Items 1-13, UND (2) JA bei Item 14 (Cluster), UND (3) Item 15 = Mäßig oder Schwerwiegend.",
+      "en": "Positive screen if ALL three criteria are met: (1) ≥7 YES in items 1-13, AND (2) YES on item 14 (clustering), AND (3) Item 15 = Moderate or Serious."
+    },
+    "thresholds": [
+      {"label": {"de": "Negativer Screen", "en": "Negative screen"}, "color": "#4CAF50"},
+      {"label": {"de": "Positiver Screen — bipolare Spektrum-Störung wahrscheinlich, klinische Abklärung indiziert", "en": "Positive screen — bipolar spectrum disorder likely, clinical evaluation indicated"}, "color": "#F44336"}
+    ],
+    "sensitivity": "73%",
+    "specificity": "90%"
+  },
+  "references": [
+    "Hirschfeld RMA, Williams JBW, Spitzer RL, Calabrese JR, Flynn L, Keck PE Jr, et al. Development and validation of a screening instrument for bipolar spectrum disorder: the Mood Disorder Questionnaire. Am J Psychiatry. 2000;157(11):1873-1875."
+  ],
+  "source_url": "https://sabi.unc.edu/pdf/Mood%20Disorder%20Questionnaire_Hirschfeld.pdf",
+  "source_local": "_sources/instruments/en/mdq.pdf"
+}

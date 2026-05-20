@@ -338,11 +338,12 @@ def _score_domain_mean(test_def, scoring, items, responses, result):
 
 def _score_simple_sum(test_def, scoring, items, responses, result):
     """Simple sum + complex IRT scoring (WHODAS 2.0)."""
-    # Simple sum for items 1-10 (Likert items only)
+    # Simple sum for the scored Likert items. WHODAS H1-H3 impact-day items,
+    # when present, must stay outside the 12-item score.
     likert_items = [i for i in items if i.get("response_type") != "days"]
     total = sum(int(responses.get(str(i["number"]), 0)) for i in likert_items)
 
-    simple_range = scoring.get("simple", {}).get("range", [0, 40])
+    simple_range = scoring.get("simple", {}).get("range", [0, 48])
     result["total_score"] = total
     result["max_score"] = simple_range[1]
 

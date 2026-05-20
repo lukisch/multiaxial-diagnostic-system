@@ -1,0 +1,67 @@
+{
+  "id": "dast10",
+  "name": {"de": "Drogenmissbrauchs-Screening-Test (10-Item)", "en": "Drug Abuse Screening Test (DAST-10)"},
+  "abbreviation": "DAST-10",
+  "version": "1.0",
+  "authors": "Skinner",
+  "year": 1982,
+  "license": "Copyright 1982 Addiction Research Foundation (CAMH, Toronto). Free for clinical and research use; modification not permitted.",
+  "domain": {"de": "Substanzgebrauch / Drogenmissbrauch", "en": "Substance Use / Drug Abuse"},
+  "axis": "I",
+  "hitop_spectrum": "Externalizing",
+  "age_group": "adult",
+  "age_min": 16,
+  "_translation_note": {
+    "de": "Englische Items: verbatim aus Skinner 1982 (Addiction Research Foundation / CAMH). Deutsche Items: informelle Arbeitsübersetzung — vor klinischem Einsatz mit der deutschen Validierung (z.B. Yudko et al. 2007 internationaler Review) abgleichen.",
+    "en": "English items: verbatim from Skinner 1982 (Addiction Research Foundation / CAMH). German items: informal working translation."
+  },
+  "description": {
+    "de": "10-Item Selbstbeurteilungs-Screening für problematischen Drogengebrauch (ohne Alkohol) bei Erwachsenen. Erfasst Konsumverhalten in den letzten 12 Monaten. Item 3 ist invers kodiert.",
+    "en": "10-item self-report screening for problematic drug use (excluding alcohol) in adults. Assesses substance use behavior in the past 12 months. Item 3 is reverse-coded."
+  },
+  "instructions": {
+    "de": "Die folgenden Fragen beziehen sich auf Ihren möglichen Drogenkonsum in den letzten 12 Monaten — nicht eingeschlossen sind alkoholische Getränke. 'Drogenmissbrauch' bezeichnet (1) den Konsum verschreibungspflichtiger oder rezeptfreier Medikamente über die ärztlichen Anweisungen hinaus, und (2) jeden nicht-medizinischen Drogenkonsum. Mögliche Drogenklassen umfassen Cannabis (Marihuana, Haschisch), Lösungsmittel (z.B. Farbverdünner), Beruhigungsmittel (z.B. Valium), Barbiturate, Kokain, Stimulanzien (z.B. Speed), Halluzinogene (z.B. LSD) oder Narkotika (z.B. Heroin). Bitte beantworten Sie jede Frage.",
+    "en": "The following questions concern information about your possible involvement with drugs not including alcoholic beverages during the past 12 months. 'Drug abuse' refers to (1) the use of prescribed or over-the-counter drugs in excess of the directions, and (2) any nonmedical use of drugs. The various classes of drugs may include cannabis (marijuana, hashish), solvents (e.g., paint thinner), tranquilizers (e.g., Valium), barbiturates, cocaine, stimulants (e.g., speed), hallucinogens (e.g., LSD) or narcotics (e.g., heroin). Please answer every question."
+  },
+  "timeframe": {"de": "Letzte 12 Monate", "en": "Past 12 months"},
+  "response_options": [
+    {"value": 1, "label": {"de": "Ja", "en": "Yes"}},
+    {"value": 0, "label": {"de": "Nein", "en": "No"}}
+  ],
+  "items": [
+    {"number": 1, "reverse": false, "text": {"de": "Haben Sie Drogen aus anderen als medizinischen Gründen konsumiert?", "en": "Have you used drugs other than those required for medical reasons?"}},
+    {"number": 2, "reverse": false, "text": {"de": "Konsumieren Sie mehr als eine Droge gleichzeitig?", "en": "Do you use more than one drug at a time?"}},
+    {"number": 3, "reverse": true, "text": {"de": "Können Sie immer aufhören, Drogen zu konsumieren, wenn Sie wollen? (Bei Nicht-Konsum: 'Ja' antworten)", "en": "Are you always able to stop using drugs when you want to? (If never use drugs, answer 'Yes')"}},
+    {"number": 4, "reverse": false, "text": {"de": "Hatten Sie jemals Blackouts oder Flashbacks infolge von Drogenkonsum?", "en": "Have you ever had blackouts or flashbacks as a result of drug use?"}},
+    {"number": 5, "reverse": false, "text": {"de": "Fühlen Sie sich jemals schlecht oder schuldig wegen Ihres Drogenkonsums? (Bei Nicht-Konsum: 'Nein' antworten)", "en": "Do you ever feel bad or guilty about your drug use? (If never use drugs, answer 'No')"}},
+    {"number": 6, "reverse": false, "text": {"de": "Beschwert sich Ihr/e Partner/in (oder Ihre Eltern) jemals über Ihren Drogenkonsum?", "en": "Does your spouse (or parents) ever complain about your involvement with drugs?"}},
+    {"number": 7, "reverse": false, "text": {"de": "Haben Sie Ihre Familie wegen Ihres Drogenkonsums vernachlässigt?", "en": "Have you neglected your family because of your use of drugs?"}},
+    {"number": 8, "reverse": false, "text": {"de": "Haben Sie sich an illegalen Aktivitäten beteiligt, um Drogen zu beschaffen?", "en": "Have you engaged in illegal activities in order to obtain drugs?"}},
+    {"number": 9, "reverse": false, "text": {"de": "Haben Sie jemals Entzugssymptome erlebt (sich krank gefühlt), wenn Sie Drogen abgesetzt haben?", "en": "Have you ever experienced withdrawal symptoms (felt sick) when you stopped taking drugs?"}},
+    {"number": 10, "reverse": false, "text": {"de": "Hatten Sie medizinische Probleme infolge Ihres Drogenkonsums (z.B. Gedächtnisverlust, Hepatitis, Krampfanfälle, Blutungen)?", "en": "Have you had medical problems as a result of your drug use (e.g., memory loss, hepatitis, convulsions, bleeding)?"}}
+  ],
+  "scoring": {
+    "method": "sum_with_reverse",
+    "scoring_rule": {
+      "de": "1 Punkt für jede 'Ja'-Antwort, außer Item 3, wo 'Nein' = 1 Punkt. Score 0-10.",
+      "en": "1 point for each 'Yes' answer, except Item 3 where 'No' = 1 point. Score 0-10."
+    },
+    "range": [0, 10],
+    "thresholds": [
+      {"min": 0, "max": 0, "severity": "none", "label": {"de": "Zone 1: Kein Risiko", "en": "Zone 1: No risk"}, "color": "#4CAF50"},
+      {"min": 1, "max": 2, "severity": "low", "label": {"de": "Zone 2: Geringes Risiko / risikoarmer Konsum", "en": "Zone 2: Risky use"}, "color": "#FFC107"},
+      {"min": 3, "max": 5, "severity": "moderate", "label": {"de": "Zone 3: Schädlicher Gebrauch / mäßiges Problem", "en": "Zone 3: Harmful use / moderate problem"}, "color": "#FF9800"},
+      {"min": 6, "max": 8, "severity": "severe", "label": {"de": "Zone 4: Schwere Substanzstörung", "en": "Zone 4: Severe substance use disorder"}, "color": "#FF5722"},
+      {"min": 9, "max": 10, "severity": "very_severe", "label": {"de": "Zone 5: Sehr schwere Substanzstörung", "en": "Zone 5: Very severe substance use disorder"}, "color": "#F44336"}
+    ],
+    "clinical_cutoff": 3,
+    "sensitivity": "98%",
+    "specificity": "91%"
+  },
+  "references": [
+    "Skinner HA. The Drug Abuse Screening Test. Addict Behav. 1982;7(4):363-371.",
+    "Yudko E, Lozhkina O, Fouts A. A comprehensive review of the psychometric properties of the Drug Abuse Screening Test. J Subst Abuse Treat. 2007;32(2):189-198."
+  ],
+  "source_url": "https://oasas.ny.gov/system/files/documents/2019/11/drugabusescreeningtest-10_4-24-18.pdf",
+  "source_local": "_sources/instruments/en/dast10.pdf"
+}
